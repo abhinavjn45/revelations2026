@@ -1,0 +1,325 @@
+/* CSS Variables */
+:root {
+  --stranger-red: #b91c1c;
+  --stranger-dark: #0a0a0a;
+  --stranger-glow: #ff3333;
+}
+
+/* Font Definitions */
+.fontStranger {
+  font-family: 'Benguiat', serif;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+
+.fontHorror {
+  font-family: 'Creepster', cursive;
+}
+
+.fontTypewriter {
+  font-family: 'Special Elite', cursive;
+}
+
+/* Hide preloader when done */
+.preloaderHidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-out;
+}
+
+/* Logo bang-in animation */
+@keyframes bangIn {
+  0% {
+    transform: scale(10) rotate(180deg);
+    opacity: 0;
+    filter: blur(20px);
+  }
+  50% {
+    transform: scale(0.8) rotate(-5deg);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  70% {
+    transform: scale(1.2) rotate(2deg);
+  }
+  85% {
+    transform: scale(0.95) rotate(-1deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+.bangInAnimation {
+  animation: bangIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* Screen shake effect */
+@keyframes screenShake {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5px, 2px); }
+  20% { transform: translate(5px, -2px); }
+  30% { transform: translate(-3px, 4px); }
+  40% { transform: translate(3px, -4px); }
+  50% { transform: translate(-2px, 2px); }
+  60% { transform: translate(2px, -2px); }
+  70% { transform: translate(-1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+  90% { transform: translate(0, 0); }
+}
+
+.screenShake {
+  animation: screenShake 0.5s ease-in-out;
+}
+
+/* Ripple effect on bang */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid var(--stranger-red);
+  animation: ripple 1s ease-out;
+}
+
+/* Flash effect */
+@keyframes flash {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.flashOverlay {
+  animation: flash 0.3s ease-out;
+}
+
+/* Flickering outline */
+@keyframes flickerOutline {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    -webkit-text-stroke: 3px #b91c1c;
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    -webkit-text-stroke: 2px #b91c1c;
+    opacity: 0.7;
+  }
+}
+
+.flickerOutline {
+  animation: flickerOutline 2s infinite;
+}
+
+/* Progress bar fill animation */
+@keyframes progressFill {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+.progressFill {
+  animation: progressFill 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Glitch effect for loading text */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+    clip-path: inset(40% 0 60% 0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+    clip-path: inset(90% 0 0 0);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+    clip-path: inset(50% 0 30% 0);
+  }
+  60% {
+    transform: translate(2px, 2px);
+    clip-path: inset(10% 0 85% 0);
+  }
+  80% {
+    transform: translate(2px, -2px);
+    clip-path: inset(40% 0 43% 0);
+  }
+  100% {
+    transform: translate(0);
+    clip-path: inset(25% 0 58% 0);
+  }
+}
+
+.glitchText {
+  position: relative;
+}
+
+.glitchText::before,
+.glitchText::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitchText::before {
+  animation: glitch 0.3s infinite;
+  color: #ff0000;
+  z-index: -1;
+}
+
+.glitchText::after {
+  animation: glitch 0.3s infinite reverse;
+  color: #00ffff;
+  z-index: -2;
+}
+
+/* Particle effects */
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--stranger-glow);
+  border-radius: 50%;
+  animation: particleFloat 2s ease-out forwards;
+}
+
+/* Crackling electricity effect */
+@keyframes crackle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.electricityBolt {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(180deg, #fff, #ff3333, transparent);
+  animation: crackle 0.1s infinite;
+}
+
+/* Vignette effect */
+.vignette {
+  box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.9);
+}
+
+/* Scanlines */
+.scanlines::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Percentage counter animation */
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+.pulseText {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+/* Portal effect behind logo */
+@keyframes portalSpin {
+  from { transform: rotate(0deg) scale(1); opacity: 0; }
+  50% { opacity: 0.6; }
+  to { transform: rotate(360deg) scale(1.5); opacity: 0; }
+}
+
+.portalEffect {
+  animation: portalSpin 1.5s ease-out;
+}
+
+/* Character floating animation */
+@keyframes characterFloat {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  25% { 
+    transform: translateY(-15px) translateX(5px) rotate(2deg);
+  }
+  50% { 
+    transform: translateY(-25px) translateX(-5px) rotate(-2deg);
+  }
+  75% { 
+    transform: translateY(-15px) translateX(5px) rotate(1deg);
+  }
+}
+
+.characterFloat {
+  animation: characterFloat 8s ease-in-out infinite;
+}
+
+/* Spore floating animation */
+@keyframes sporeFloat {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.15;
+  }
+  50% { 
+    transform: translateY(-30px) translateX(10px);
+    opacity: 0.25;
+  }
+}
+
+.sporeFloat {
+  animation: sporeFloat 6s ease-in-out infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fadeIn {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Shimmer animation for progress bar */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.shimmer {
+  animation: shimmer 2s infinite;
+}
