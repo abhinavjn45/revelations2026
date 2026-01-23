@@ -11,7 +11,7 @@ function App() {
   };
 
   return (
-    <div className="w-screen h-screen bg-[#0a0a0a] overflow-hidden">
+    <div className="bg-[#0a0a0a]">
       {!preloaderComplete && (
         <Preloader onComplete={handlePreloaderComplete} />
       )}
