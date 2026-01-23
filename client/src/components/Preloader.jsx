@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from '../styles/animations.module.css';
-import logoImage from '../assets/images/revelations-logo.png';
+import logoImage from '../assets/images/revelations-logo.svg';
 import { 
   Eleven, Demogorgon, Vecna, MindFlayer, Will, Spore, GridPattern 
 } from './Characters';
