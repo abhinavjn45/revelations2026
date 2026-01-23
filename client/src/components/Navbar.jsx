@@ -89,7 +89,7 @@ export function Navbar() {
 
       {/* Menu Dropdown (All Devices) */}
       {isMenuOpen && (
-        <div className="mt-6 px-4 py-6 bg-gradient-to-b from-[#1a0505] to-[#0a0a0a] border-t border-red-900/30 rounded-b-lg shadow-[0_10px_30px_rgba(185,28,28,0.4)] animate-[posterUnfold_0.5s_cubic-bezier(0.34,1.56,0.64,1)_forwards] origin-top">
+        <div className="mt-6 px-4 py-6 bg-gradient-to-b from-[#1a0505] to-[#0a0a0a] border-t border-red-900/30 rounded-b-lg shadow-[0_10px_30px_rgba(185,28,28,0.4)] poster-unroll">
           {/* Decorative top border */}
           <div className="flex items-center justify-center mb-6">
             <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-red-600 to-transparent"></div>
