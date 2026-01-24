@@ -1,10 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import revelationsLogo from '../assets/images/revelations-logo.svg';
-import christLogo from '../assets/images/christ-logo.png';
+import christLogo from '../assets/images/christ-logo.svg';
+import christSmallLogo from '../assets/images/christ-small-logo.svg';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const torchRef = useRef(null);
+  // Torch pendulum animation for spotlight
+  useEffect(() => {
+    let frame = 0;
+    let raf;
+    const animate = () => {
+      const amplitude = 25; // degrees
+      const frequency = 0.5;
+      const angle = amplitude * Math.sin(frequency * frame * 0.03);
+      if (torchRef.current) {
+        torchRef.current.style.transform = `rotate(${angle}deg)`;
+      }
+      frame++;
+      raf = requestAnimationFrame(animate);
+    };
+    animate();
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,66 +44,71 @@ export function Navbar() {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 px-4 md:px-8 lg:px-12 py-4 transition-all duration-400 ${
-        isScrolled 
-          ? 'bg-[rgba(10,10,10,0.95)] backdrop-blur-[10px] shadow-[0_4px_20px_rgba(185,28,28,0.3)]' 
-          : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 px-4 md:px-8 lg:px-12 py-2 md:py-3 transition-all duration-400 bg-[#0a0a0a] ${isScrolled ? 'backdrop-blur-md shadow-[0_4px_20px_rgba(24,24,27,0.3)]' : ''}`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between relative">
+      <div className="max-w-7xl mx-auto flex items-center justify-between relative" style={{ minHeight: '5rem' }}>
         {/* Left: Christ University Logo */}
-        <a 
-          href="https://christuniversity.in/" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="flex items-center z-10 hover:opacity-80 transition-opacity duration-300"
-        >
-          <img 
-            src={christLogo} 
-            alt="Christ University Logo" 
-            className="w-24 h-24 md:w-32 md:h-32 lg:w-36 lg:h-36"
-            style={{ maxWidth: 'none', objectFit: 'contain' }}
-          />
-        </a>
+        <div className="flex items-center h-full z-10" style={{ minHeight: 'inherit' }}>
+          <a 
+            href="https://christuniversity.in/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center hover:opacity-80 transition-opacity duration-300"
+            style={{ height: '100%' }}
+          >
+            <picture>
+              <source srcSet={christSmallLogo} media="(max-width: 767px)" />
+              <img 
+                src={christLogo} 
+                alt="Christ University Logo" 
+                className="w-10 h-4 md:w-24 md:h-7 lg:w-36 lg:h-10 py-1"
+                style={{ maxWidth: 'none', height: 'auto', objectFit: 'contain', display: 'block' }}
+              />
+            </picture>
+          </a>
+        </div>
 
         {/* Center: Revelations Logo (Coming out of navbar) */}
-        <a 
+        <a
           href={typeof window !== 'undefined' ? window.location.origin : '/'}
-          className="absolute left-1/2 -translate-x-1/2 -top-4 md:-top-6 lg:-top-8 z-20 hover:opacity-90 transition-opacity duration-300"
+          className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-20 flex items-center hover:opacity-90 transition-opacity duration-300"
         >
-          <img 
-            src={revelationsLogo} 
-            alt="Revelations Logo" 
-            className="w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 logo-flicker drop-shadow-[0_0_30px_rgba(185,28,28,0.8)]"
-            style={{ maxWidth: 'none' }}
+          <img
+            src={revelationsLogo}
+            alt="Revelations Logo"
+            className="logo-flicker drop-shadow-[0_0_30px_rgba(185,28,28,0.8)] py-1"
+            style={{ width: '60vw', minWidth: '180px', maxWidth: '320px', height: 'auto' }}
           />
         </a>
 
         {/* Right: Toggle Button (All Devices) */}
-        <button 
-          onClick={toggleMenu}
-          className="focus:outline-none z-10"
-          aria-label="Toggle menu"
-        >
-          <svg width="40" height="40" viewBox="0 0 40 40" className={`transition-all duration-300 ${isMenuOpen ? 'portal-active' : ''}`}>
-            <circle cx="20" cy="20" r="16" fill="none" stroke="#b91c1c" strokeWidth="2" opacity="0.6" />
-            <line 
-              x1="12" y1="15" x2="28" y2="15" 
-              stroke="#ff3333" strokeWidth="2.5" strokeLinecap="round"
-              className={`transition-all duration-300 origin-center ${isMenuOpen ? 'translate-y-[5px] rotate-45' : ''}`}
-            />
-            <line 
-              x1="12" y1="20" x2="28" y2="20" 
-              stroke="#ff3333" strokeWidth="2.5" strokeLinecap="round"
-              className={`transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}
-            />
-            <line 
-              x1="12" y1="25" x2="28" y2="25" 
-              stroke="#ff3333" strokeWidth="2.5" strokeLinecap="round"
-              className={`transition-all duration-300 origin-center ${isMenuOpen ? '-translate-y-[5px] -rotate-45' : ''}`}
-            />
-          </svg>
-        </button>
+        <div className="flex items-center h-full z-10" style={{ minHeight: 'inherit' }}>
+          <button 
+            onClick={toggleMenu}
+            className="focus:outline-none"
+            aria-label="Toggle menu"
+            style={{ display: 'flex', alignItems: 'center', height: '100%' }}
+          >
+            <svg width="40" height="40" viewBox="0 0 40 40" className={`transition-all duration-300 ${isMenuOpen ? 'portal-active' : ''}`} style={{ display: 'block' }}>
+              <circle cx="20" cy="20" r="16" fill="none" stroke="#b91c1c" strokeWidth="2" opacity="0.6" />
+              <line 
+                x1="12" y1="15" x2="28" y2="15" 
+                stroke="#ff3333" strokeWidth="2.5" strokeLinecap="round"
+                className={`transition-all duration-300 origin-center ${isMenuOpen ? 'translate-y-[5px] rotate-45' : ''}`}
+              />
+              <line 
+                x1="12" y1="20" x2="28" y2="20" 
+                stroke="#ff3333" strokeWidth="2.5" strokeLinecap="round"
+                className={`transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}
+              />
+              <line 
+                x1="12" y1="25" x2="28" y2="25" 
+                stroke="#ff3333" strokeWidth="2.5" strokeLinecap="round"
+                className={`transition-all duration-300 origin-center ${isMenuOpen ? '-translate-y-[5px] -rotate-45' : ''}`}
+              />
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* Menu Dropdown (All Devices) */}
@@ -101,7 +125,7 @@ export function Navbar() {
           </div>
 
           {/* Menu Items */}
-          <div className="flex flex-col space-y-5">
+          <div className="flex flex-col items-center space-y-5">
             <a 
               href="#home" 
               onClick={closeMenu}
