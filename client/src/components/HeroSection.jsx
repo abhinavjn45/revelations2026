@@ -167,7 +167,7 @@ export default function HeroSection() {
             </div>
           </div>
           {/* Hero Main Image at Bottom Center */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full flex justify-center z-30 pb-2">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full flex justify-center z-30">
             <img
               src={heroMain}
               alt="Hero Main"
