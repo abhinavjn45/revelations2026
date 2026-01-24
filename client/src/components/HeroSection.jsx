@@ -171,7 +171,7 @@ export default function HeroSection() {
             <img
               src={heroMain}
               alt="Hero Main"
-              className="max-w-[160px] w-1/5 md:max-w-[100px] lg:max-w-[120px] h-auto select-none pointer-events-none"
+              className="max-w-[200px] w-1/4 md:max-w-[100px] lg:max-w-[120px] h-auto select-none pointer-events-none"
               draggable="false"
             />
           </div>

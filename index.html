@@ -3,650 +3,433 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Revelations 2026 - Preloader</title>
+  <title>Revelations 2026 - Portal Opening</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="/_sdk/element_sdk.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Special+Elite&amp;family=Creepster&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.cdnfonts.com/css/benguiat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&amp;family=Special+Elite&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/itc-benguiat" rel="stylesheet">
   <style>
         body {
             box-sizing: border-box;
         }
         
-        :root {
-            --stranger-red: #b91c1c;
-            --stranger-dark: #0a0a0a;
-            --stranger-glow: #ff3333;
-        }
-        
         .font-stranger {
-            font-family: 'Benguiat', serif;
-            letter-spacing: 0.1em;
+            font-family: 'ITC Benguiat', serif;
+            letter-spacing: 0.15em;
             font-weight: 700;
-        }
-        
-        .font-horror {
-            font-family: 'Creepster', cursive;
         }
         
         .font-typewriter {
             font-family: 'Special Elite', cursive;
         }
         
-        /* Hide preloader when done */
-        .preloader-hidden {
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease-out;
+        /* Ground texture */
+        .ground-texture {
+            background: 
+                radial-gradient(circle at 20% 30%, #2a2a2a 0%, transparent 50%),
+                radial-gradient(circle at 80% 60%, #1a1a1a 0%, transparent 50%),
+                linear-gradient(135deg, #3a3a3a 0%, #1a1a1a 50%, #0a0a0a 100%);
         }
         
-        /* Logo bang-in animation */
-        @keyframes bangIn {
+
+        
+        /* Violent earthquake shake */
+        @keyframes earthquakeShake {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            10% { transform: translate(-15px, 8px) rotate(-1deg); }
+            20% { transform: translate(15px, -10px) rotate(1deg); }
+            30% { transform: translate(-12px, 12px) rotate(-0.5deg); }
+            40% { transform: translate(18px, -8px) rotate(0.8deg); }
+            50% { transform: translate(-20px, 15px) rotate(-1.2deg); }
+            60% { transform: translate(12px, -12px) rotate(0.6deg); }
+            70% { transform: translate(-10px, 10px) rotate(-0.8deg); }
+            80% { transform: translate(8px, -8px) rotate(0.4deg); }
+            90% { transform: translate(-5px, 5px) rotate(-0.2deg); }
+        }
+        
+        /* Crack spreading animation */
+        @keyframes crackSpread {
             0% {
-                transform: scale(10) rotate(180deg);
+                stroke-dashoffset: 2000;
                 opacity: 0;
-                filter: blur(20px);
             }
             50% {
-                transform: scale(0.8) rotate(-5deg);
                 opacity: 1;
-                filter: blur(0px);
-            }
-            70% {
-                transform: scale(1.2) rotate(2deg);
-            }
-            85% {
-                transform: scale(0.95) rotate(-1deg);
             }
             100% {
-                transform: scale(1) rotate(0deg);
+                stroke-dashoffset: 0;
                 opacity: 1;
-                filter: blur(0px);
             }
         }
         
-        /* Screen shake effect */
-        @keyframes screenShake {
-            0%, 100% { transform: translate(0, 0); }
-            10% { transform: translate(-5px, 2px); }
-            20% { transform: translate(5px, -2px); }
-            30% { transform: translate(-3px, 4px); }
-            40% { transform: translate(3px, -4px); }
-            50% { transform: translate(-2px, 2px); }
-            60% { transform: translate(2px, -2px); }
-            70% { transform: translate(-1px, 1px); }
-            80% { transform: translate(1px, -1px); }
-            90% { transform: translate(0, 0); }
-        }
-        
-        .screen-shake {
-            animation: screenShake 0.5s ease-in-out;
-        }
-        
-        /* Ripple effect on bang */
-        @keyframes ripple {
+        /* Ground pieces separating after cracks form */
+        @keyframes pieceShiftLeft {
             0% {
-                transform: scale(0);
-                opacity: 1;
+                transform: translate(0, 0);
             }
             100% {
-                transform: scale(4);
+                transform: translate(-100px, 20px) rotate(-5deg);
+            }
+        }
+        
+        @keyframes pieceShiftRight {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(100px, 20px) rotate(5deg);
+            }
+        }
+        
+        @keyframes pieceShiftUp {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(0, -80px) rotate(2deg);
+            }
+        }
+        
+        @keyframes pieceShiftDown {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(0, 100px) rotate(-3deg);
+            }
+        }
+        
+        /* Zoom into portal effect */
+        @keyframes zoomIntoPortal {
+            0% {
+                transform: scale(1) translateZ(0);
+            }
+            100% {
+                transform: scale(5) translateZ(1000px);
                 opacity: 0;
             }
         }
         
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            border: 3px solid var(--stranger-red);
-            animation: ripple 1s ease-out;
-        }
-        
-        /* Flash effect */
-        @keyframes flash {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-        
-        .flash-overlay {
-            animation: flash 0.3s ease-out;
-        }
-        
-        /* Flickering outline (no glow) */
-        @keyframes flickerOutline {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-                -webkit-text-stroke: 3px #b91c1c;
-                opacity: 1;
-            }
-            20%, 24%, 55% {
-                -webkit-text-stroke: 2px #b91c1c;
-                opacity: 0.7;
-            }
-        }
-        
-        .flicker-outline {
-            animation: flickerOutline 2s infinite;
-        }
-        
-        /* Progress bar fill animation */
-        @keyframes progressFill {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
-        
-        .progress-fill {
-            animation: progressFill 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        
-        /* Glitch effect for loading text */
-        @keyframes glitch {
+        /* Lava eruption from cracks */
+        @keyframes lavaEruption {
             0% {
-                transform: translate(0);
-                clip-path: inset(40% 0 60% 0);
+                opacity: 0;
+                transform: scaleY(0);
             }
-            20% {
-                transform: translate(-2px, 2px);
-                clip-path: inset(90% 0 0 0);
-            }
-            40% {
-                transform: translate(-2px, -2px);
-                clip-path: inset(50% 0 30% 0);
-            }
-            60% {
-                transform: translate(2px, 2px);
-                clip-path: inset(10% 0 85% 0);
-            }
-            80% {
-                transform: translate(2px, -2px);
-                clip-path: inset(40% 0 43% 0);
+            50% {
+                opacity: 1;
+                transform: scaleY(1.2);
             }
             100% {
-                transform: translate(0);
-                clip-path: inset(25% 0 58% 0);
+                opacity: 1;
+                transform: scaleY(1);
             }
         }
         
-        .glitch-text::before,
-        .glitch-text::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .glitch-text::before {
-            animation: glitch 0.3s infinite;
-            color: #ff0000;
-            z-index: -1;
-        }
-        
-        .glitch-text::after {
-            animation: glitch 0.3s infinite reverse;
-            color: #00ffff;
-            z-index: -2;
-        }
-        
-        /* Particle effects */
-        @keyframes particleFloat {
+        /* Lava particles shooting up from cracks */
+        @keyframes lavaParticleShoot {
             0% {
-                transform: translateY(0) rotate(0deg);
+                transform: translateY(0) scale(0);
+                opacity: 1;
+            }
+            50% {
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100px) rotate(360deg);
+                transform: translateY(-300px) scale(1.5);
                 opacity: 0;
             }
         }
         
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: var(--stranger-glow);
-            border-radius: 50%;
-            animation: particleFloat 2s ease-out forwards;
-        }
-        
-        /* Crackling electricity effect */
-        @keyframes crackle {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-        
-        .electricity-bolt {
-            position: absolute;
-            width: 2px;
-            background: linear-gradient(180deg, #fff, #ff3333, transparent);
-            animation: crackle 0.1s infinite;
-        }
-        
-        /* Vignette effect */
-        .vignette {
-            box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.9);
-        }
-        
-        /* Scanlines */
-        .scanlines::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.15),
-                rgba(0, 0, 0, 0.15) 1px,
-                transparent 1px,
-                transparent 2px
-            );
-            pointer-events: none;
-            z-index: 100;
-        }
-        
-        /* Percentage counter animation */
-        @keyframes pulse {
-            0%, 100% { 
+        /* Homepage zoom in from portal */
+        @keyframes zoomFromPortal {
+            0% {
+                transform: scale(5);
+                opacity: 0;
+            }
+            100% {
                 transform: scale(1);
-                opacity: 0.8;
-            }
-            50% { 
-                transform: scale(1.1);
                 opacity: 1;
             }
         }
         
-        .pulse-text {
-            animation: pulse 1s ease-in-out infinite;
-        }
-        
-        /* Portal effect behind logo */
-        @keyframes portalSpin {
-            from { transform: rotate(0deg) scale(1); opacity: 0; }
-            50% { opacity: 0.6; }
-            to { transform: rotate(360deg) scale(1.5); opacity: 0; }
-        }
-        
-        .portal-effect {
-            animation: portalSpin 1.5s ease-out;
-        }
-        
-        /* Character floating animation */
-        @keyframes characterFloat {
-            0%, 100% { 
-                transform: translateY(0px) translateX(0px) rotate(0deg);
+        /* Lava glow */
+        @keyframes lavaGlow {
+            0%, 100% {
+                filter: brightness(1) blur(30px);
             }
-            25% { 
-                transform: translateY(-15px) translateX(5px) rotate(2deg);
-            }
-            50% { 
-                transform: translateY(-25px) translateX(-5px) rotate(-2deg);
-            }
-            75% { 
-                transform: translateY(-15px) translateX(5px) rotate(1deg);
+            50% {
+                filter: brightness(1.5) blur(35px);
             }
         }
         
-        .character-float {
-            animation: characterFloat 8s ease-in-out infinite;
+        /* Fade out preloader */
+        .fade-out {
+            animation: fadeOut 1.5s ease-out forwards;
         }
         
-        /* Spore floating animation */
-        @keyframes sporeFloat {
-            0%, 100% { 
-                transform: translateY(0px) translateX(0px);
-                opacity: 0.15;
-            }
-            50% { 
-                transform: translateY(-30px) translateX(10px);
-                opacity: 0.25;
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
             }
         }
         
-        .spore-float {
-            animation: sporeFloat 6s ease-in-out infinite;
+        /* Fade in homepage */
+        .zoom-in {
+            animation: zoomFromPortal 2s ease-out forwards;
         }
     </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
- <body class="h-full bg-[#0a0a0a] overflow-hidden">
-  <div id="app-wrapper" class="w-full h-full relative"><!-- Preloader -->
-   <div id="preloader" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0a0a] vignette scanlines"><!-- Background animated grid -->
-    <div class="absolute inset-0 opacity-10">
-     <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg"><defs>
-       <pattern id="grid" width="40" height="40" patternunits="userSpaceOnUse">
-        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ff3333" stroke-width="0.5" />
-       </pattern>
-      </defs> <rect width="100%" height="100%" fill="url(#grid)" />
-     </svg>
-    </div><!-- Floating Stranger Things Characters -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden"><!-- Eleven (top left) -->
-     <div class="absolute top-[10%] left-[5%] opacity-20 character-float" style="animation-delay: 0s;">
-      <svg width="80" height="120" viewbox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg"><!-- Head --> <ellipse cx="40" cy="25" rx="18" ry="22" fill="#b91c1c" /> <!-- Short hair/buzz cut --> <path d="M 22 20 Q 22 10 40 10 Q 58 10 58 20" fill="#7f1d1d" /> <!-- Body/dress --> <path d="M 30 45 L 25 80 L 35 115 L 45 115 L 55 80 L 50 45 Z" fill="#b91c1c" /> <!-- Arms --> <rect x="18" y="45" width="8" height="35" rx="4" fill="#b91c1c" /> <rect x="54" y="45" width="8" height="35" rx="4" fill="#b91c1c" /> <!-- Nosebleed detail --> <line x1="35" y1="28" x2="35" y2="35" stroke="#ff0000" stroke-width="2" />
-      </svg>
-     </div><!-- Demogorgon (top right) -->
-     <div class="absolute top-[15%] right-[8%] opacity-15 character-float" style="animation-delay: 1s;">
-      <svg width="100" height="140" viewbox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg"><!-- Body --> <path d="M 50 30 L 35 130 L 45 130 L 50 100 L 55 130 L 65 130 Z" fill="#7f1d1d" /> <!-- Flower head petals --> <path d="M 50 25 L 45 10 L 42 20 L 38 8 L 37 20 L 32 10 L 35 25 Z" fill="#991b1b" /> <path d="M 50 25 L 55 10 L 58 20 L 62 8 L 63 20 L 68 10 L 65 25 Z" fill="#991b1b" /> <!-- Center mouth --> <ellipse cx="50" cy="25" rx="8" ry="10" fill="#450a0a" /> <!-- Teeth --> <path d="M 45 20 L 47 25 L 45 30 M 50 20 L 50 30 M 55 20 L 53 25 L 55 30" stroke="#7f1d1d" stroke-width="2" /> <!-- Arms --> <rect x="28" y="40" width="6" height="40" rx="3" fill="#7f1d1d" /> <rect x="66" y="40" width="6" height="40" rx="3" fill="#7f1d1d" />
-      </svg>
-     </div><!-- Vecna (bottom left) -->
-     <div class="absolute bottom-[20%] left-[10%] opacity-15 character-float" style="animation-delay: 2s;">
-      <svg width="90" height="130" viewbox="0 0 90 130" fill="none" xmlns="http://www.w3.org/2000/svg"><!-- Body with vines --> <path d="M 45 30 L 35 120 L 40 120 L 45 90 L 50 120 L 55 120 Z" fill="#7f1d1d" /> <!-- Head --> <ellipse cx="45" cy="20" rx="15" ry="18" fill="#991b1b" /> <!-- Creepy hand reaching out --> <path d="M 20 60 L 15 65 L 12 63 M 15 65 L 15 70 L 13 68 M 15 65 L 18 70 L 16 72" stroke="#b91c1c" stroke-width="2.5" fill="none" /> <!-- Vine tentacles --> <path d="M 40 40 Q 25 50 20 60" stroke="#7f1d1d" stroke-width="3" fill="none" /> <path d="M 45 50 Q 15 70 10 85" stroke="#7f1d1d" stroke-width="2.5" fill="none" /> <path d="M 50 45 Q 70 55 75 70" stroke="#7f1d1d" stroke-width="2.5" fill="none" /> <!-- Eyes --> <circle cx="40" cy="18" r="2" fill="#ff0000" /> <circle cx="50" cy="18" r="2" fill="#ff0000" />
-      </svg>
-     </div><!-- Mind Flayer (bottom right) -->
-     <div class="absolute bottom-[15%] right-[12%] opacity-12 character-float" style="animation-delay: 1.5s;">
-      <svg width="120" height="140" viewbox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg"><!-- Main shadow body --> <ellipse cx="60" cy="40" rx="35" ry="25" fill="#450a0a" /> <!-- Spider-like head --> <path d="M 60 15 L 55 30 L 65 30 Z" fill="#7f1d1d" /> <!-- Multiple legs/tentacles --> <path d="M 30 50 Q 20 80 15 110 L 18 110 Q 23 80 33 52" fill="#7f1d1d" /> <path d="M 40 50 Q 35 85 32 120 L 35 120 Q 38 85 43 52" fill="#7f1d1d" /> <path d="M 50 52 Q 48 90 45 130 L 48 130 Q 51 90 53 54" fill="#7f1d1d" /> <path d="M 60 52 Q 60 95 58 135 L 62 135 Q 60 95 63 54" fill="#7f1d1d" /> <path d="M 70 52 Q 72 90 75 130 L 72 130 Q 69 90 67 54" fill="#7f1d1d" /> <path d="M 80 50 Q 85 85 88 120 L 85 120 Q 82 85 77 52" fill="#7f1d1d" /> <path d="M 90 50 Q 100 80 105 110 L 102 110 Q 97 80 87 52" fill="#7f1d1d" /> <!-- Lightning around it --> <path d="M 25 35 L 28 42 L 25 48" stroke="#ff3333" stroke-width="1.5" fill="none" opacity="0.6" /> <path d="M 95 35 L 92 42 L 95 48" stroke="#ff3333" stroke-width="1.5" fill="none" opacity="0.6" />
-      </svg>
-     </div><!-- Will (center left) -->
-     <div class="absolute top-[45%] left-[3%] opacity-18 character-float" style="animation-delay: 0.5s;">
-      <svg width="70" height="110" viewbox="0 0 70 110" fill="none" xmlns="http://www.w3.org/2000/svg"><!-- Head --> <ellipse cx="35" cy="20" rx="14" ry="16" fill="#b91c1c" /> <!-- Bowl cut hair --> <path d="M 20 15 Q 20 8 35 8 Q 50 8 50 15 L 48 18 L 22 18 Z" fill="#7f1d1d" /> <!-- Body --> <rect x="28" y="35" width="14" height="40" rx="3" fill="#b91c1c" /> <!-- Arms --> <rect x="18" y="38" width="8" height="30" rx="4" fill="#b91c1c" /> <rect x="44" y="38" width="8" height="30" rx="4" fill="#b91c1c" /> <!-- Legs --> <rect x="28" y="75" width="6" height="30" rx="3" fill="#b91c1c" /> <rect x="36" y="75" width="6" height="30" rx="3" fill="#b91c1c" />
-      </svg>
-     </div><!-- Upside Down particles/spores -->
-     <div class="absolute top-[30%] right-[25%] opacity-20 spore-float" style="animation-delay: 0.3s;">
-      <svg width="40" height="40" viewbox="0 0 40 40"><circle cx="20" cy="20" r="3" fill="#ff3333" opacity="0.6" /> <circle cx="10" cy="15" r="2" fill="#ff3333" opacity="0.4" /> <circle cx="30" cy="25" r="2.5" fill="#ff3333" opacity="0.5" /> <circle cx="15" cy="30" r="1.5" fill="#ff3333" opacity="0.7" />
-      </svg>
+ <body class="h-full bg-black overflow-hidden">
+  <div id="app-wrapper" class="w-full h-full"><!-- Preloader Container -->
+   <div id="preloader" class="fixed inset-0 z-50 overflow-hidden"><!-- Earthquake container -->
+    <div id="earthquake-container" class="absolute inset-0"><!-- Lava layer underneath -->
+     <div id="lava-layer" class="absolute inset-0 opacity-0 z-0" style="background: radial-gradient(ellipse at center, #ff6600 0%, #ff0000 40%, #8b0000 70%, #1a0000 100%);">
+      <div class="w-full h-full" style="animation: lavaGlow 2s ease-in-out infinite;"></div><!-- Lava particles shooting from cracks -->
+      <div id="lava-particles" class="absolute inset-0"></div>
+     </div><!-- Ground layer with cracks -->
+     <div id="ground-layer" class="absolute inset-0 ground-texture z-10"><!-- SVG for earthquake cracks -->
+      <svg id="cracks-svg" class="absolute inset-0 w-full h-full z-20 pointer-events-none" viewbox="0 0 1920 1080" preserveaspectratio="none"><defs>
+        <filter id="crackGlow">
+         <fegaussianblur stddeviation="3" result="coloredBlur" />
+         <femerge>
+          <femergenode in="coloredBlur" />
+          <femergenode in="SourceGraphic" />
+         </femerge>
+        </filter>
+       </defs> <!-- Main central crack - jagged and natural --> <path id="crack-main" d="M 960 0 L 968 80 L 955 160 L 972 240 L 950 320 L 965 400 L 945 480 L 968 560 L 952 640 L 970 720 L 948 800 L 963 880 L 955 960 L 960 1080" stroke="#ff3300" stroke-width="12" fill="none" stroke-dasharray="2500" stroke-dashoffset="2500" filter="url(#crackGlow)" opacity="0" stroke-linecap="round" /> <!-- Major branch cracks - spreading left --> <path id="crack-branch-1" d="M 955 240 L 900 260 L 840 285 L 770 310 L 680 340 L 580 375 L 450 415 L 300 460" stroke="#ff4400" stroke-width="8" fill="none" stroke-dasharray="1200" stroke-dashoffset="1200" filter="url(#crackGlow)" opacity="0" stroke-linecap="round" /> <!-- Major branch cracks - spreading right --> <path id="crack-branch-2" d="M 965 240 L 1020 260 L 1080 285 L 1150 310 L 1240 340 L 1340 375 L 1470 415 L 1620 460" stroke="#ff4400" stroke-width="8" fill="none" stroke-dasharray="1200" stroke-dashoffset="1200" filter="url(#crackGlow)" opacity="0" stroke-linecap="round" /> <!-- Secondary left branch --> <path id="crack-branch-3" d="M 950 560 L 880 590 L 790 625 L 680 665 L 540 710 L 380 760 L 200 820" stroke="#ff5500" stroke-width="7" fill="none" stroke-dasharray="1100" stroke-dashoffset="1100" filter="url(#crackGlow)" opacity="0" stroke-linecap="round" /> <!-- Secondary right branch --> <path id="crack-branch-4" d="M 970 560 L 1040 590 L 1130 625 L 1240 665 L 1380 710 L 1540 760 L 1720 820" stroke="#ff5500" stroke-width="7" fill="none" stroke-dasharray="1100" stroke-dashoffset="1100" filter="url(#crackGlow)" opacity="0" stroke-linecap="round" /> <!-- Tertiary cracks upper left --> <path id="crack-spider-1" d="M 900 260 L 860 240 L 810 225 L 750 215" stroke="#ff6600" stroke-width="5" fill="none" stroke-dasharray="250" stroke-dashoffset="250" opacity="0" stroke-linecap="round" /> <!-- Tertiary cracks upper right --> <path id="crack-spider-2" d="M 1020 260 L 1060 240 L 1110 225 L 1170 215" stroke="#ff6600" stroke-width="5" fill="none" stroke-dasharray="250" stroke-dashoffset="250" opacity="0" stroke-linecap="round" /> <!-- Small connecting cracks --> <path id="crack-spider-3" d="M 770 310 L 740 295 L 710 285 M 770 310 L 760 340 L 745 365" stroke="#ff7700" stroke-width="4" fill="none" stroke-dasharray="180" stroke-dashoffset="180" opacity="0" stroke-linecap="round" /> <path id="crack-spider-4" d="M 1150 310 L 1180 295 L 1210 285 M 1150 310 L 1160 340 L 1175 365" stroke="#ff7700" stroke-width="4" fill="none" stroke-dasharray="180" stroke-dashoffset="180" opacity="0" stroke-linecap="round" /> <!-- Fine detail cracks --> <path id="crack-detail-1" d="M 680 340 L 660 355 L 640 375" stroke="#ff8800" stroke-width="3" fill="none" stroke-dasharray="100" stroke-dashoffset="100" opacity="0" stroke-linecap="round" /> <path id="crack-detail-2" d="M 1240 340 L 1260 355 L 1280 375" stroke="#ff8800" stroke-width="3" fill="none" stroke-dasharray="100" stroke-dashoffset="100" opacity="0" stroke-linecap="round" />
+      </svg><!-- Ground pieces (created dynamically via clip-path after cracks) -->
+      <div id="ground-pieces" class="absolute inset-0"></div>
      </div>
-     <div class="absolute bottom-[35%] left-[30%] opacity-15 spore-float" style="animation-delay: 1.2s;">
-      <svg width="35" height="35" viewbox="0 0 35 35"><circle cx="17.5" cy="17.5" r="2.5" fill="#b91c1c" opacity="0.5" /> <circle cx="8" cy="12" r="2" fill="#b91c1c" opacity="0.4" /> <circle cx="26" cy="22" r="1.8" fill="#b91c1c" opacity="0.6" />
-      </svg>
-     </div>
-    </div><!-- Flash overlay for bang effect -->
-    <div id="flash-overlay" class="absolute inset-0 bg-red-600 opacity-0 pointer-events-none"></div><!-- Ripple container -->
-    <div id="ripple-container" class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"></div><!-- Particle effects container -->
-    <div id="particle-container" class="absolute inset-0 pointer-events-none overflow-hidden"></div><!-- Main content container -->
-    <div id="content-container" class="relative z-10 flex flex-col items-center justify-center w-full px-4"><!-- Portal effect behind logo -->
-     <div id="portal-bg" class="absolute opacity-0">
-      <svg width="400" height="400" viewbox="0 0 400 400"><circle cx="200" cy="200" r="150" fill="none" stroke="#b91c1c" stroke-width="3" opacity="0.3" /> <circle cx="200" cy="200" r="120" fill="none" stroke="#ff3333" stroke-width="2" opacity="0.5" /> <circle cx="200" cy="200" r="90" fill="none" stroke="#b91c1c" stroke-width="3" opacity="0.4" /> <circle cx="200" cy="200" r="60" fill="none" stroke="#ff3333" stroke-width="2" opacity="0.6" />
-      </svg>
-     </div><!-- Logo Container -->
-     <div id="logo-container" class="opacity-0 mb-8 relative"><!-- Electricity bolts (appear during bang) -->
-      <div id="electricity-container" class="absolute inset-0 opacity-0"></div><!-- Main Logo -->
-      <div class="text-center relative">
-       <h1 class="font-stranger text-6xl md:text-8xl lg:text-9xl relative flicker-outline" style="-webkit-text-stroke: 3px #b91c1c; color: transparent;">REVELATIONS</h1>
-       <div class="flex items-center justify-center space-x-4 mt-2">
-        <div class="h-[2px] w-16 bg-gradient-to-r from-transparent to-red-600"></div><span class="font-stranger text-3xl md:text-4xl text-red-500 tracking-widest">2026</span>
-        <div class="h-[2px] w-16 bg-gradient-to-l from-transparent to-red-600"></div>
-       </div>
-       <p class="font-typewriter text-xs md:text-sm text-gray-600 mt-3 tracking-wider">THE UPSIDE DOWN AWAITS</p>
-      </div>
-     </div><!-- Loading Section (appears after bang) -->
-     <div id="loading-section" class="opacity-0 w-full max-w-md px-4"><!-- Loading Text -->
-      <div class="text-center mb-6">
-       <p id="loading-text" class="font-stranger text-xl md:text-2xl text-red-400 glitch-text relative tracking-wider" data-text="ENTERING THE UPSIDE DOWN">ENTERING THE UPSIDE DOWN</p>
-      </div><!-- Progress Bar Container -->
-      <div class="relative"><!-- Progress bar background -->
-       <div class="h-2 bg-gray-900 rounded-full overflow-hidden border border-red-900/50 shadow-lg"><!-- Glow effect -->
-        <div class="absolute inset-0 bg-red-600/20 blur-sm"></div><!-- Progress fill -->
-        <div id="progress-fill" class="h-full bg-gradient-to-r from-red-700 via-red-500 to-red-600 rounded-full relative shadow-[0_0_10px_#ff3333]" style="width: 0%;"><!-- Shimmer effect -->
-         <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"></div>
-        </div>
-       </div><!-- Percentage Counter -->
-       <div class="flex justify-between items-center mt-3"><span class="font-typewriter text-xs text-gray-600">INITIALIZING...</span> <span id="percentage" class="font-stranger text-lg text-red-500 pulse-text">0%</span>
-       </div><!-- Loading messages -->
-       <div class="mt-4 text-center min-h-[20px]">
-        <p id="loading-message" class="font-typewriter text-xs text-gray-700 italic"></p>
-       </div>
-      </div>
-     </div>
-    </div><!-- Bottom decorative elements -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center space-x-2 opacity-30">
-     <div class="w-2 h-2 bg-red-600 rounded-full animate-ping"></div><span class="font-typewriter text-xs text-gray-700">CONNECTING TO PARALLEL NETWORK</span>
-     <div class="w-2 h-2 bg-red-600 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
     </div>
-   </div><!-- Main content (hidden until preloader completes) -->
-   <div id="main-content" class="hidden w-full h-full flex items-center justify-center bg-gradient-to-b from-[#0a0a0a] via-[#1a0505] to-[#0a0a0a]">
-    <div class="text-center px-4">
-     <h2 class="font-stranger text-4xl md:text-6xl text-red-500 mb-4">WELCOME TO REVELATIONS 2026</h2>
-     <p class="font-typewriter text-gray-400 text-sm md:text-base max-w-2xl mx-auto">You have successfully entered the Upside Down. The fest awaits...</p><button onclick="location.reload()" class="mt-8 font-stranger text-lg px-8 py-3 bg-gradient-to-r from-red-700 to-red-600 text-white rounded border border-red-500 hover:from-red-600 hover:to-red-500 transition-all duration-300"> REPLAY PRELOADER </button>
+   </div><!-- Homepage (revealed after portal opens) -->
+   <div id="homepage" class="hidden w-full h-full relative overflow-auto"><!-- Dark atmospheric background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black via-red-950/20 to-black"></div><!-- Content -->
+    <div class="relative z-10 min-h-full flex flex-col items-center justify-center px-4 py-20"><!-- Main title -->
+     <div class="text-center mb-12">
+      <h1 id="event-name" class="font-stranger text-5xl md:text-7xl lg:text-8xl text-red-600 mb-4" style="text-shadow: 0 0 30px rgba(220, 38, 38, 0.8), 0 0 60px rgba(220, 38, 38, 0.5);">REVELATIONS 2026</h1>
+      <div class="flex items-center justify-center space-x-4 mb-6">
+       <div class="h-[2px] w-20 bg-gradient-to-r from-transparent to-red-600"></div><span class="font-typewriter text-sm md:text-base text-red-400 tracking-wider">THE PORTAL HAS OPENED</span>
+       <div class="h-[2px] w-20 bg-gradient-to-l from-transparent to-red-600"></div>
+      </div>
+      <p class="font-typewriter text-gray-500 text-xs md:text-sm max-w-2xl mx-auto leading-relaxed">The earth has been torn asunder. You have witnessed the breach. What lies beyond is now accessible...</p>
+     </div><!-- Lava crack illustration on homepage -->
+     <div class="mb-12 opacity-40">
+      <svg width="300" height="100" viewbox="0 0 300 100"><defs>
+        <lineargradient id="homeLava" x1="0%" y1="0%" x2="0%" y2="100%">
+         <stop offset="0%" style="stop-color:#ff4500;stop-opacity:1" />
+         <stop offset="100%" style="stop-color:#8b0000;stop-opacity:0.8" />
+        </lineargradient>
+       </defs> <!-- Cracked ground --> <path d="M 0 40 L 140 40 L 145 50 L 150 40 L 155 50 L 160 40 L 300 40 L 300 100 L 0 100 Z" fill="#1a1a1a" /> <path d="M 0 40 L 140 40 L 145 50 L 140 60 L 0 60 Z" fill="#0a0a0a" /> <path d="M 160 40 L 300 40 L 300 60 L 160 60 L 155 50 Z" fill="#0a0a0a" /> <!-- Lava in crack --> <path d="M 145 50 L 150 40 L 155 50 L 150 60 Z" fill="url(#homeLava)">
+        <animate attributename="opacity" values="0.6;1;0.6" dur="2s" repeatcount="indefinite" />
+       </path>
+      </svg>
+     </div><!-- Call to action -->
+     <div class="flex flex-col sm:flex-row gap-4"><button onclick="location.reload()" class="font-stranger text-base md:text-lg px-8 py-4 bg-gradient-to-r from-red-900 to-red-700 text-white rounded border-2 border-red-600 hover:from-red-800 hover:to-red-600 transition-all duration-300 hover:shadow-[0_0_30px_rgba(220,38,38,0.6)]"> RE-OPEN PORTAL </button> <button class="font-stranger text-base md:text-lg px-8 py-4 bg-transparent text-red-500 rounded border-2 border-red-600 hover:bg-red-950/30 transition-all duration-300"> EXPLORE EVENT </button>
+     </div><!-- Footer warning -->
+     <div class="mt-16 text-center">
+      <div class="inline-flex items-center space-x-3 px-6 py-3 bg-red-950/20 border border-red-900/30 rounded">
+       <svg width="24" height="24" viewbox="0 0 24 24" fill="none"><path d="M12 2L2 22h20L12 2z" stroke="#dc2626" stroke-width="2" fill="none" /> <path d="M12 9v6M12 17v2" stroke="#dc2626" stroke-width="2" />
+       </svg>
+       <p class="font-typewriter text-xs text-red-700">WARNING: Dimensional breach detected. Reality unstable.</p>
+      </div>
+     </div>
     </div>
    </div>
   </div>
   <script>
         // Configuration
         const defaultConfig = {
-            loading_text: 'ENTERING THE UPSIDE DOWN',
-            primary_color: '#b91c1c',
-            text_color: '#d1d5db',
-            background_color: '#0a0a0a',
-            accent_color: '#ff3333',
-            progress_color: '#dc2626'
+            portal_text: 'OPENING PORTAL',
+            event_name: 'REVELATIONS 2026',
+            background_color: '#000000',
+            ground_color: '#1a1a1a',
+            lava_color: '#ff4500',
+            text_color: '#dc2626'
         };
         
         let config = { ...defaultConfig };
         
-        // Preloader state
-        let isPreloaderComplete = false;
-        
-        // Loading messages that cycle during progress
-        const loadingMessages = [
-            'Scanning for threats...',
-            'Opening portal...',
-            'Detecting parallel dimensions...',
-            'Establishing connection...',
-            'Bypassing Hawkins firewall...',
-            'Loading Mind Flayer protocols...',
-            'Syncing with the Upside Down...',
-            'Calibrating Demogorgon sensors...',
-            'Almost there...'
-        ];
-        
-        // Create particles explosion effect
-        function createParticleExplosion(x, y, count = 30) {
-            const container = document.getElementById('particle-container');
+        // Earthquake and crack sequence
+        async function earthquakeSequence() {
+            const earthquakeContainer = document.getElementById('earthquake-container');
+            const lavaLayer = document.getElementById('lava-layer');
+            const preloader = document.getElementById('preloader');
+            const homepage = document.getElementById('homepage');
             
-            for (let i = 0; i < count; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                const angle = (Math.PI * 2 * i) / count;
-                const velocity = 50 + Math.random() * 50;
-                const offsetX = Math.cos(angle) * velocity;
-                const offsetY = Math.sin(angle) * velocity;
-                
-                particle.style.left = x + 'px';
-                particle.style.top = y + 'px';
-                particle.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-                particle.style.animationDuration = (1 + Math.random()) + 's';
-                
-                container.appendChild(particle);
-                
-                setTimeout(() => particle.remove(), 2000);
-            }
-        }
-        
-        // Create ripple effect
-        function createRipple() {
-            const container = document.getElementById('ripple-container');
-            
-            for (let i = 0; i < 3; i++) {
-                setTimeout(() => {
-                    const ripple = document.createElement('div');
-                    ripple.className = 'ripple';
-                    ripple.style.width = '200px';
-                    ripple.style.height = '200px';
-                    ripple.style.marginLeft = '-100px';
-                    ripple.style.marginTop = '-100px';
-                    
-                    container.appendChild(ripple);
-                    
-                    setTimeout(() => ripple.remove(), 1000);
-                }, i * 100);
-            }
-        }
-        
-        // Create electricity bolts
-        function createElectricityBolts() {
-            const container = document.getElementById('electricity-container');
-            container.style.opacity = '1';
-            
-            for (let i = 0; i < 8; i++) {
-                const bolt = document.createElement('div');
-                bolt.className = 'electricity-bolt';
-                
-                const angle = (Math.PI * 2 * i) / 8;
-                const distance = 80 + Math.random() * 40;
-                const x = Math.cos(angle) * distance;
-                const y = Math.sin(angle) * distance;
-                const height = 40 + Math.random() * 60;
-                
-                bolt.style.left = `calc(50% + ${x}px)`;
-                bolt.style.top = `calc(50% + ${y}px)`;
-                bolt.style.height = height + 'px';
-                bolt.style.transform = `rotate(${angle}rad)`;
-                bolt.style.animationDelay = Math.random() * 0.1 + 's';
-                
-                container.appendChild(bolt);
-            }
-            
-            setTimeout(() => {
-                container.style.opacity = '0';
-                setTimeout(() => {
-                    container.innerHTML = '';
-                }, 300);
-            }, 500);
-        }
-        
-        // Bang animation sequence
-        async function bangInSequence() {
-            const logoContainer = document.getElementById('logo-container');
-            const flashOverlay = document.getElementById('flash-overlay');
-            const contentContainer = document.getElementById('content-container');
-            const portalBg = document.getElementById('portal-bg');
-            
-            // Wait a moment
+            // Wait a moment before starting
             await new Promise(resolve => setTimeout(resolve, 500));
             
-            // Show and animate portal
-            portalBg.style.opacity = '1';
-            portalBg.classList.add('portal-effect');
+            // PHASE 1: Earthquake shake (2s)
+            earthquakeContainer.style.animation = 'earthquakeShake 2s ease-in-out';
             
-            // Flash effect
-            flashOverlay.classList.add('flash-overlay');
-            flashOverlay.style.opacity = '1';
+            await new Promise(resolve => setTimeout(resolve, 400));
             
-            setTimeout(() => {
-                flashOverlay.style.opacity = '0';
-            }, 300);
+            // PHASE 2: Cracks start forming during shake (3s total)
+            const crackPaths = [
+                { id: 'crack-main', delay: 0, duration: 2500 },
+                { id: 'crack-branch-1', delay: 600, duration: 1400 },
+                { id: 'crack-branch-2', delay: 600, duration: 1400 },
+                { id: 'crack-spider-1', delay: 1000, duration: 800 },
+                { id: 'crack-spider-2', delay: 1000, duration: 800 },
+                { id: 'crack-branch-3', delay: 1400, duration: 1400 },
+                { id: 'crack-branch-4', delay: 1400, duration: 1400 },
+                { id: 'crack-spider-3', delay: 1800, duration: 700 },
+                { id: 'crack-spider-4', delay: 1800, duration: 700 },
+                { id: 'crack-detail-1', delay: 2200, duration: 500 },
+                { id: 'crack-detail-2', delay: 2200, duration: 500 }
+            ];
             
-            // Screen shake
-            contentContainer.classList.add('screen-shake');
+            crackPaths.forEach(crack => {
+                setTimeout(() => {
+                    const path = document.getElementById(crack.id);
+                    if (path) {
+                        path.style.opacity = '1';
+                        path.style.animation = `crackSpread ${crack.duration / 1000}s ease-out forwards`;
+                    }
+                }, crack.delay);
+            });
             
-            // Create ripples
-            createRipple();
+            await new Promise(resolve => setTimeout(resolve, 3000));
             
-            // Show logo with bang animation
-            logoContainer.style.animation = 'bangIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards';
-            logoContainer.style.opacity = '1';
+            // PHASE 3: Lava erupts from cracks (2s)
+            lavaLayer.style.transition = 'opacity 0.8s ease-out';
+            lavaLayer.style.opacity = '1';
+            lavaLayer.style.animation = 'lavaEruption 1.5s ease-out forwards';
             
-            // Create particle explosion at center
-            setTimeout(() => {
-                const rect = contentContainer.getBoundingClientRect();
-                createParticleExplosion(rect.width / 2, rect.height / 2, 40);
-                createElectricityBolts();
-            }, 400);
+            // Create lava particles shooting up from cracks
+            createLavaParticles();
             
-            // Remove screen shake
-            setTimeout(() => {
-                contentContainer.classList.remove('screen-shake');
-            }, 500);
+            await new Promise(resolve => setTimeout(resolve, 2000));
             
-            // Show loading section after logo settles
-            setTimeout(() => {
-                showLoadingSection();
-            }, 1200);
+            // PHASE 4: Ground pieces separate slightly (1.5s)
+            createGroundPieces();
+            
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // PHASE 5: Zoom into the portal center (1.5s)
+            earthquakeContainer.style.transformOrigin = 'center center';
+            earthquakeContainer.style.animation = 'zoomIntoPortal 1.5s ease-in forwards';
+            
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // PHASE 6: Show homepage zooming out from portal (2s)
+            preloader.style.display = 'none';
+            homepage.classList.remove('hidden');
+            homepage.classList.add('zoom-in');
         }
         
-        // Show loading section with progress bar
-        function showLoadingSection() {
-            const loadingSection = document.getElementById('loading-section');
-            loadingSection.style.transition = 'opacity 0.5s ease-in';
-            loadingSection.style.opacity = '1';
+        // Create lava particles erupting from cracks
+        function createLavaParticles() {
+            const container = document.getElementById('lava-particles');
+            const particleCount = 80;
             
-            // Start progress bar
-            setTimeout(() => {
-                startProgressBar();
-            }, 300);
-        }
-        
-        // Animate progress bar
-        function startProgressBar() {
-            const progressFill = document.getElementById('progress-fill');
-            const percentage = document.getElementById('percentage');
-            const loadingMessage = document.getElementById('loading-message');
-            
-            let progress = 0;
-            const duration = 3000; // 3 seconds
-            const interval = 50; // Update every 50ms
-            const increment = (100 / duration) * interval;
-            
-            let messageIndex = 0;
-            
-            const progressInterval = setInterval(() => {
-                progress += increment;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                const size = Math.random() * 12 + 4;
+                const xPos = 45 + Math.random() * 10; // Center around the main crack
                 
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(progressInterval);
-                    
-                    // Complete preloader
-                    setTimeout(() => {
-                        completePreloader();
-                    }, 500);
+                particle.className = 'absolute rounded-full';
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = xPos + '%';
+                particle.style.bottom = Math.random() * 60 + '%';
+                particle.style.backgroundColor = Math.random() > 0.5 ? '#ff3300' : '#ff6600';
+                particle.style.boxShadow = `0 0 ${size * 3}px ${particle.style.backgroundColor}`;
+                particle.style.animation = `lavaParticleShoot ${1.5 + Math.random() * 1}s ease-out ${Math.random() * 0.5}s forwards`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Create ground pieces that separate
+        function createGroundPieces() {
+            const container = document.getElementById('ground-pieces');
+            
+            // Define pieces with their clip paths and animations
+            const pieces = [
+                // Top left
+                {
+                    clipPath: 'polygon(0 0, 45% 0, 40% 35%, 35% 30%, 0 35%)',
+                    animation: 'pieceShiftLeft 2.5s ease-in-out forwards',
+                    delay: '0s'
+                },
+                // Top right
+                {
+                    clipPath: 'polygon(55% 0, 100% 0, 100% 35%, 65% 30%, 60% 35%)',
+                    animation: 'pieceShiftRight 2.5s ease-in-out forwards',
+                    delay: '0s'
+                },
+                // Middle left upper
+                {
+                    clipPath: 'polygon(0 35%, 35% 30%, 40% 35%, 38% 50%, 30% 48%, 0 50%)',
+                    animation: 'pieceShiftLeft 2.5s ease-in-out forwards',
+                    delay: '0.1s'
+                },
+                // Middle right upper
+                {
+                    clipPath: 'polygon(60% 35%, 65% 30%, 100% 35%, 100% 50%, 70% 48%, 62% 50%)',
+                    animation: 'pieceShiftRight 2.5s ease-in-out forwards',
+                    delay: '0.1s'
+                },
+                // Middle left lower
+                {
+                    clipPath: 'polygon(0 50%, 30% 48%, 38% 50%, 36% 65%, 28% 63%, 0 68%)',
+                    animation: 'pieceShiftLeft 2.5s ease-in-out forwards',
+                    delay: '0.2s'
+                },
+                // Middle right lower
+                {
+                    clipPath: 'polygon(62% 50%, 70% 48%, 100% 50%, 100% 68%, 72% 63%, 64% 65%)',
+                    animation: 'pieceShiftRight 2.5s ease-in-out forwards',
+                    delay: '0.2s'
+                },
+                // Bottom left
+                {
+                    clipPath: 'polygon(0 68%, 28% 63%, 36% 65%, 40% 100%, 0 100%)',
+                    animation: 'pieceShiftLeft 2.5s ease-in-out forwards',
+                    delay: '0.3s'
+                },
+                // Bottom right
+                {
+                    clipPath: 'polygon(64% 65%, 72% 63%, 100% 68%, 100% 100%, 60% 100%)',
+                    animation: 'pieceShiftRight 2.5s ease-in-out forwards',
+                    delay: '0.3s'
                 }
-                
-                // Update UI
-                progressFill.style.width = progress + '%';
-                percentage.textContent = Math.floor(progress) + '%';
-                
-                // Update loading message
-                if (progress % 12 < increment && messageIndex < loadingMessages.length) {
-                    loadingMessage.textContent = loadingMessages[messageIndex];
-                    messageIndex++;
-                }
-                
-                // Add pulse effect at milestones
-                if (Math.floor(progress) % 25 === 0 && progress > 0 && progress < 100) {
-                    percentage.style.transform = 'scale(1.3)';
-                    setTimeout(() => {
-                        percentage.style.transform = 'scale(1)';
-                    }, 200);
-                }
-            }, interval);
+            ];
+            
+            pieces.forEach(piece => {
+                const div = document.createElement('div');
+                div.className = 'absolute inset-0 ground-texture';
+                div.style.clipPath = piece.clipPath;
+                div.style.animation = piece.animation;
+                div.style.animationDelay = piece.delay;
+                div.style.boxShadow = 'inset 0 0 30px rgba(255, 69, 0, 0.5)';
+                container.appendChild(div);
+            });
         }
         
-        // Complete preloader and show main content
-        function completePreloader() {
-            const preloader = document.getElementById('preloader');
-            const mainContent = document.getElementById('main-content');
-            
-            isPreloaderComplete = true;
-            
-            // Fade out preloader
-            preloader.classList.add('preloader-hidden');
-            
-            // Show main content
-            setTimeout(() => {
-                preloader.style.display = 'none';
-                mainContent.classList.remove('hidden');
-                mainContent.style.animation = 'fadeIn 0.5s ease-in';
-            }, 500);
-        }
-        
-        // Initialize preloader on page load
+        // Initialize on page load
         window.addEventListener('DOMContentLoaded', () => {
-            bangInSequence();
+            earthquakeSequence();
         });
         
         // Element SDK implementation
         async function onConfigChange(newConfig) {
-            const loadingTextEl = document.getElementById('loading-text');
-            if (loadingTextEl) {
-                loadingTextEl.textContent = newConfig.loading_text || defaultConfig.loading_text;
-                loadingTextEl.setAttribute('data-text', newConfig.loading_text || defaultConfig.loading_text);
+            const portalOpeningText = document.getElementById('portal-opening-text');
+            const eventName = document.getElementById('event-name');
+            
+            if (portalOpeningText) {
+                portalOpeningText.textContent = newConfig.portal_text || defaultConfig.portal_text;
+            }
+            
+            if (eventName) {
+                eventName.textContent = newConfig.event_name || defaultConfig.event_name;
             }
         }
         
@@ -663,11 +446,11 @@
                         }
                     },
                     {
-                        get: () => config.primary_color || defaultConfig.primary_color,
+                        get: () => config.lava_color || defaultConfig.lava_color,
                         set: (value) => {
-                            config.primary_color = value;
+                            config.lava_color = value;
                             if (window.elementSdk) {
-                                window.elementSdk.setConfig({ primary_color: value });
+                                window.elementSdk.setConfig({ lava_color: value });
                             }
                         }
                     },
@@ -677,24 +460,6 @@
                             config.text_color = value;
                             if (window.elementSdk) {
                                 window.elementSdk.setConfig({ text_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.accent_color || defaultConfig.accent_color,
-                        set: (value) => {
-                            config.accent_color = value;
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ accent_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.progress_color || defaultConfig.progress_color,
-                        set: (value) => {
-                            config.progress_color = value;
-                            if (window.elementSdk) {
-                                window.elementSdk.setConfig({ progress_color: value });
                             }
                         }
                     }
@@ -707,7 +472,8 @@
         
         function mapToEditPanelValues(config) {
             return new Map([
-                ['loading_text', config.loading_text || defaultConfig.loading_text]
+                ['portal_text', config.portal_text || defaultConfig.portal_text],
+                ['event_name', config.event_name || defaultConfig.event_name]
             ]);
         }
         
@@ -720,23 +486,6 @@
                 mapToEditPanelValues
             });
         }
-        
-        // Add fadeIn animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
-            }
-            @keyframes shimmer {
-                0% { transform: translateX(-100%); }
-                100% { transform: translateX(100%); }
-            }
-            .animate-shimmer {
-                animation: shimmer 2s infinite;
-            }
-        `;
-        document.head.appendChild(style);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c2745e017bc396c',t:'MTc2OTE3MTExOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c2e7e7be1867f97',t:'MTc2OTI0NjgzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
