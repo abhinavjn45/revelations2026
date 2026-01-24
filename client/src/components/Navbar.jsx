@@ -13,7 +13,7 @@ export function Navbar() {
     let raf;
     const animate = () => {
       const amplitude = 25; // degrees
-      const frequency = 0.5;
+      const frequency = 0.1;
       const angle = amplitude * Math.sin(frequency * frame * 0.03);
       if (torchRef.current) {
         torchRef.current.style.transform = `rotate(${angle}deg)`;
