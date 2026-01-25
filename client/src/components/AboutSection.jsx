@@ -116,7 +116,7 @@ export default function AboutSection() {
     return (
         <section
             ref={containerRef}
-            className="relative w-full min-h-[90vh] flex flex-col items-center justify-center py-32 bg-[#050505] overflow-hidden perspective-1000"
+            className="relative w-full min-h-auto md:min-h-[90vh] flex flex-col items-center justify-center py-20 md:py-32 bg-[#050505] overflow-hidden perspective-1000"
         >
 
             {/* 1. ATMOSPHERIC FOG LAYERS */}
@@ -175,11 +175,11 @@ export default function AboutSection() {
                 }}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
-                className="relative z-10 w-full max-w-5xl px-6 perspective-1000 group mx-auto"
+                className="relative z-10 w-full max-w-5xl px-4 md:px-6 perspective-1000 group mx-auto"
             >
 
                 {/* CARD CONTAINER */}
-                <div className="relative bg-[#0a0a0a]/80 backdrop-blur-xl border border-red-900/30 p-8 md:p-16 rounded-sm shadow-[0_0_50px_rgba(220,38,38,0.1)] overflow-hidden">
+                <div className="relative bg-[#0a0a0a]/80 backdrop-blur-xl border border-red-900/30 p-6 md:p-16 rounded-sm shadow-[0_0_50px_rgba(220,38,38,0.1)] overflow-hidden">
 
                     {/* MOUSE FOLLOW SPOTLIGHT */}
                     <motion.div
@@ -191,8 +191,8 @@ export default function AboutSection() {
 
                     {/* VEIN GROWTH OVERLAY */}
                     <div className="absolute inset-0 pointer-events-none z-0">
-                        <VeinSVG className="top-0 left-0 w-64 h-64 -translate-x-1/3 -translate-y-1/3 rotate-180" delay={0.2} />
-                        <VeinSVG className="bottom-0 right-0 w-64 h-64 translate-x-1/3 translate-y-1/3" delay={0.4} />
+                        <VeinSVG className="top-0 left-0 w-32 h-32 md:w-64 md:h-64 -translate-x-1/3 -translate-y-1/3 rotate-180" delay={0.2} />
+                        <VeinSVG className="bottom-0 right-0 w-32 h-32 md:w-64 md:h-64 translate-x-1/3 translate-y-1/3" delay={0.4} />
                     </div>
 
                     {/* CONTENT INSIDE CARD */}
@@ -200,22 +200,22 @@ export default function AboutSection() {
 
                         {/* GLITCH TITLE */}
                         <motion.div
-                            className="mb-10 relative"
+                            className="mb-6 md:mb-10 relative"
                             initial={{ filter: "blur(10px)", opacity: 0 }}
                             whileInView={{ filter: "blur(0px)", opacity: 1 }}
                             transition={{ duration: 1 }}
                         >
-                            <h2 className="font-stranger text-5xl md:text-7xl text-red-600 tracking-widest drop-shadow-[0_0_15px_rgba(220,38,38,0.8)] relative z-10">
+                            <h2 className="font-stranger text-3xl md:text-7xl text-red-600 tracking-widest drop-shadow-[0_0_15px_rgba(220,38,38,0.8)] relative z-10">
                                 <DecryptText text="ABOUT REVELATIONS" className="" />
                             </h2>
                             {/* Glitch clone behind */}
-                            <h2 className="font-stranger text-5xl md:text-7xl text-cyan-600/50 tracking-widest absolute top-0 left-0 -translate-x-1 translate-y-0.5 mix-blend-screen animate-pulse z-0 select-none">
+                            <h2 className="font-stranger text-3xl md:text-7xl text-cyan-600/50 tracking-widest absolute top-0 left-0 -translate-x-1 translate-y-0.5 mix-blend-screen animate-pulse z-0 select-none">
                                 ABOUT REVELATIONS
                             </h2>
                         </motion.div>
 
                         {/* TEXT BODY */}
-                        <div className="space-y-8 font-typewriter text-gray-300 text-lg md:text-xl leading-relaxed max-w-3xl">
+                        <div className="space-y-6 md:space-y-8 font-typewriter text-gray-300 text-base md:text-xl leading-relaxed max-w-3xl">
 
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
@@ -237,16 +237,16 @@ export default function AboutSection() {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, delay: 0.4 }}
-                                className="text-justify md:text-center"
+                                className="text-justify md:text-center text-sm md:text-xl"
                             >
-                                This year, we open the gate to the <strong className="text-red-500 text-2xl animate-pulse">UPSIDE DOWN</strong>. The boundary between reality and code is thinning. We invite you to step through the breach—where innovation thrives in the shadow of the unknown.
+                                This year, we open the gate to the <strong className="text-red-500 text-xl md:text-2xl animate-pulse">UPSIDE DOWN</strong>. The boundary between reality and code is thinning. We invite you to step through the breach—where innovation thrives in the shadow of the unknown.
                             </motion.p>
 
                         </div>
 
                         {/* INTERACTIVE CALL TO ACTION OR DECORATION */}
                         <motion.div
-                            className="mt-12 opacity-60 hover:opacity-100 transition-opacity cursor-none"
+                            className="mt-8 md:mt-12 opacity-60 hover:opacity-100 transition-opacity cursor-none"
                             whileHover={{ scale: 1.1 }}
                         >
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-red-600 animate-bounce">
