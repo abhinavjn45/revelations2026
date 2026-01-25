@@ -12,7 +12,7 @@ export function MainContent({ isVisible }) {
         display: isVisible ? 'block' : 'none',
       }}
     >
-      <HeroSection />
+      <HeroSection startAnimation={isVisible} />
       <Navbar />
     </div>
   );

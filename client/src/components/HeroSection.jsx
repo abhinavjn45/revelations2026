@@ -11,13 +11,24 @@ function getTimeRemaining(targetDate) {
   return { total, days, hours, minutes, seconds };
 }
 
-export default function HeroSection() {
+export default function HeroSection({ startAnimation }) {
   // Set your event date here
   const eventDate = '2026-01-31T09:00:00';
   const [timeLeft, setTimeLeft] = useState(getTimeRemaining(eventDate));
   const [spotlightAngle, setSpotlightAngle] = useState(0);
   const spotlightRef = useRef(null);
   const canvasRef = useRef(null);
+  const [animationActive, setAnimationActive] = useState(false);
+
+  useEffect(() => {
+    if (startAnimation) {
+      setAnimationActive(true);
+      const timer = setTimeout(() => {
+        setAnimationActive(false);
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [startAnimation]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -28,9 +39,12 @@ export default function HeroSection() {
 
   // Spotlight pendulum animation
   useEffect(() => {
+    if (!animationActive) return;
     let frame = 0;
     let raf;
     const animate = () => {
+      if (!animationActive) return;
+
       // Responsive amplitude: higher for larger screens
       let amplitude = 35;
       if (window.innerWidth >= 1024) amplitude = 55; // desktop/laptop
@@ -47,7 +61,7 @@ export default function HeroSection() {
     };
     animate();
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, [animationActive]);
 
 
   // Canvas spotlight overlay logic
@@ -99,17 +113,25 @@ export default function HeroSection() {
     }
 
     function animateCanvas() {
+      if (!animationActive) {
+        ctx.clearRect(0, 0, width, height);
+        return;
+      }
       drawSpotlight(spotlightAngle);
       animationFrameId = requestAnimationFrame(animateCanvas);
     }
     animateCanvas();
     return () => cancelAnimationFrame(animationFrameId);
-  }, [spotlightAngle]);
+  }, [spotlightAngle, animationActive]);
 
   return (
     <section className="relative w-full h-screen min-h-[100vh] flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
       {/* Spotlight beam: topmost layer, always visible */}
-      <div className="absolute left-1/2 top-0 z-40 pointer-events-none" style={{ transform: 'translateX(-50%)', width: '100vw', height: '100vh' }}>
+      {/* Spotlight beam: topmost layer, always visible */}
+      <div
+        className={`absolute left-1/2 top-0 z-40 pointer-events-none transition-opacity duration-1000 ${animationActive ? 'opacity-100' : 'opacity-0'}`}
+        style={{ transform: 'translateX(-50%)', width: '100vw', height: '100vh' }}
+      >
         <svg
           ref={spotlightRef}
           width="100vw"
@@ -180,23 +202,23 @@ export default function HeroSection() {
       {/* Canvas overlay for spotlight effect (z-20) */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 z-20 pointer-events-none"
+        className={`absolute inset-0 z-20 pointer-events-none transition-opacity duration-1000 ${animationActive ? 'opacity-100' : 'opacity-0'}`}
         style={{ width: '100vw', height: '100vh', display: 'block' }}
       />
 
       {/* Netflix-like video play button bottom left */}
-          <div className="absolute bottom-6 left-6 z-40 flex flex-col items-start gap-1 select-none">
-            <button
-              className="flex items-center gap-1 p-0 bg-transparent border-none shadow-none text-white font-semibold text-sm md:text-base hover:bg-transparent focus:outline-none"
-              style={{ boxShadow: 'none', background: 'none', border: 'none' }}
-            >
-              <span className="inline-flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded-full border border-red-600 text-red-600 mr-1 md:mr-2 bg-transparent">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="md:w-5 md:h-5"><polygon points="6,4 20,12 6,20" /></svg>
-              </span>
-              <span className="text-red-600 font-normal">Watch Now</span>
-            </button>
-            <span className="text-white text-xs font-normal mt-1 mx-auto tracking-wide opacity-80 self-center">2025 After Movie</span>
-          </div>
+      <div className="absolute bottom-6 left-6 z-40 flex flex-col items-start gap-1 select-none">
+        <button
+          className="flex items-center gap-1 p-0 bg-transparent border-none shadow-none text-white font-semibold text-sm md:text-base hover:bg-transparent focus:outline-none"
+          style={{ boxShadow: 'none', background: 'none', border: 'none' }}
+        >
+          <span className="inline-flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded-full border border-red-600 text-red-600 mr-1 md:mr-2 bg-transparent">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="md:w-5 md:h-5"><polygon points="6,4 20,12 6,20" /></svg>
+          </span>
+          <span className="text-red-600 font-normal">Watch Now</span>
+        </button>
+        <span className="text-white text-xs font-normal mt-1 mx-auto tracking-wide opacity-80 self-center">2025 After Movie</span>
+      </div>
     </section>
   );
 }
