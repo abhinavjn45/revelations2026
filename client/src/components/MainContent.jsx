@@ -3,6 +3,7 @@ import React from 'react';
 import styles from '../styles/animations.module.css';
 import { Navbar } from './Navbar';
 import HeroSection from './HeroSection';
+import AboutSection from './AboutSection';
 
 export function MainContent({ isVisible }) {
   return (
@@ -13,6 +14,7 @@ export function MainContent({ isVisible }) {
       }}
     >
       <HeroSection startAnimation={isVisible} />
+      <AboutSection />
       <Navbar />
     </div>
   );
