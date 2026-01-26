@@ -5,6 +5,7 @@ import { Navbar } from './Navbar';
 import HeroSection from './HeroSection';
 import AboutSection from './AboutSection';
 import ScheduleSection from './ScheduleSection';
+import Footer from './Footer';
 
 export function MainContent({ isVisible }) {
   return (
@@ -17,6 +18,7 @@ export function MainContent({ isVisible }) {
       <HeroSection startAnimation={isVisible} />
       <AboutSection />
       <ScheduleSection />
+      <Footer />
       <Navbar />
     </div>
   );
