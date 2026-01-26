@@ -7,14 +7,21 @@ import { motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTe
 const VeinSVG = ({ className, delay = 0 }) => (
     <svg
         viewBox="0 0 100 100"
-        className={`absolute pointer-events-none opacity-60 mix-blend-overlay ${className}`}
+        className={`absolute pointer-events-none opacity-80 mix-blend-overlay ${className}`}
         preserveAspectRatio="none"
     >
+        <defs>
+            <filter id="veinDisplacement">
+                <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+            </filter>
+        </defs>
         <motion.path
             d="M50,100 C50,100 20,80 30,60 C40,40 10,30 20,10"
             fill="none"
             stroke="#7f1d1d" // red-900
             strokeWidth="2"
+            filter="url(#veinDisplacement)"
             initial={{ pathLength: 0, opacity: 0 }}
             whileInView={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 2, delay: delay, ease: "easeInOut" }}
@@ -22,8 +29,9 @@ const VeinSVG = ({ className, delay = 0 }) => (
         <motion.path
             d="M50,100 C50,100 80,80 70,60 C60,40 90,30 80,10"
             fill="none"
-            stroke="#7f1d1d"
+            stroke="#991b1b"
             strokeWidth="1.5"
+            filter="url(#veinDisplacement)"
             initial={{ pathLength: 0, opacity: 0 }}
             whileInView={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 2.5, delay: delay + 0.2, ease: "easeInOut" }}
@@ -34,28 +42,32 @@ const VeinSVG = ({ className, delay = 0 }) => (
 // Decrypting Text Effect
 const DecryptText = ({ text, className }) => {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
-    const [displayText, setDisplayText] = useState(text.split('').map(() => " "));
-    const [isHovered, setIsHovered] = useState(false);
+    const [displayText, setDisplayText] = useState(() => 
+        text.split('').map(() => chars[Math.floor(Math.random() * chars.length)])
+    );
 
     useEffect(() => {
         let interval;
         let iteration = 0;
 
         const animate = () => {
+            clearInterval(interval);
             interval = setInterval(() => {
                 setDisplayText(prev =>
-                    prev.map((char, index) => {
+                    text.split('').map((char, index) => {
                         if (index < iteration) return text[index];
                         return chars[Math.floor(Math.random() * chars.length)];
                     })
                 );
 
-                if (iteration >= text.length) clearInterval(interval);
-                iteration += 1 / 3;
+                if (iteration >= text.length) {
+                    clearInterval(interval);
+                }
+                iteration += 1 / 2; // Speed up slightly
             }, 30);
         };
 
-        // Trigger on view or hover
+        // Start animation immediately
         animate();
 
         return () => clearInterval(interval);
@@ -124,18 +136,23 @@ export default function AboutSection() {
                 {/* Base Red Glow */}
                 <div className="absolute inset-0 bg-gradient-radial from-red-900/10 via-black to-black opacity-40"></div>
 
-                {/* Fog Layer 1 - Slow Horizontal */}
-                <motion.div
-                    className="absolute inset-0 bg-[url('https://raw.githubusercontent.com/sannidhyoroy/revelations22/main/src/assets/fog1.png')] bg-cover opacity-30 mix-blend-screen"
-                    animate={{ x: ["0%", "100%"] }}
-                    transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                />
-                {/* Fog Layer 2 - Faster Reverse */}
-                <motion.div
-                    className="absolute inset-0 bg-[url('https://raw.githubusercontent.com/sannidhyoroy/revelations22/main/src/assets/fog2.png')] bg-cover opacity-20 mix-blend-screen"
-                    animate={{ x: ["100%", "-100%"] }}
-                    transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-                />
+                {/* Fog Layer - CSS Generated (Replaces broken images) */}
+                <div className="absolute inset-0 opacity-40 mix-blend-screen filter blur-[80px]">
+                    <motion.div 
+                        className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] rounded-full bg-gradient-to-br from-red-800/20 via-transparent to-gray-800/20"
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                    />
+                    <motion.div 
+                        className="absolute bottom-[-20%] right-[-20%] w-[150%] h-[150%] rounded-full bg-[radial-gradient(circle,rgba(220,38,38,0.15)_0%,transparent_70%)]"
+                        animate={{ 
+                            scale: [1, 1.2, 1],
+                            x: [0, 50, 0],
+                            y: [0, -30, 0]
+                        }}
+                        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                </div>
 
                 {/* Floating Spores/Dust */}
                 {[...Array(30)].map((_, i) => (
