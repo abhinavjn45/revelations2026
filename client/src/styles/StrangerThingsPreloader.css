@@ -1,0 +1,101 @@
+/* Import the ITC Benguiat font (Stranger Things style) */
+@import url('https://fonts.cdnfonts.com/css/itc-benguiat');
+
+/* Main preloader container */
+.stranger-things-preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    overflow: hidden;
+}
+
+/* Inner container for the SVG */
+.stranger-things-container {
+    width: 90%;
+    max-width: 1000px;
+    position: relative;
+}
+
+.stranger-things-container svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+/* Individual letter styling - Stranger Things style */
+.stranger-letter {
+    font-family: 'ITC Benguiat', serif;
+    font-weight: 900;
+    font-size: 100px;
+    fill: transparent;
+    stroke: #e71d24;
+    /* Stranger Things Red */
+    stroke-width: 2px;
+    letter-spacing: -3px;
+    text-transform: uppercase;
+
+    /* Initial subtle glow */
+    filter: drop-shadow(0 0 5px rgba(231, 29, 36, 0.5));
+}
+
+/* Glow overlay for extra atmospheric effect */
+.glow-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(ellipse at center,
+            rgba(231, 29, 36, 0.1) 0%,
+            transparent 70%);
+}
+
+/* Vignette effect for cinematic feel */
+.stranger-things-preloader::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center,
+            transparent 30%,
+            rgba(0, 0, 0, 0.8) 100%);
+    pointer-events: none;
+}
+
+/* Scanlines effect for retro feel */
+.stranger-things-preloader::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg,
+            rgba(0, 0, 0, 0.1) 0px,
+            rgba(0, 0, 0, 0.1) 1px,
+            transparent 1px,
+            transparent 2px);
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .stranger-letter {
+        font-size: 60px;
+        stroke-width: 1.5px;
+    }
+
+    .stranger-things-container {
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .stranger-letter {
+        font-size: 40px;
+        stroke-width: 1px;
+    }
+}
