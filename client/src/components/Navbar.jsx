@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import revelationsLogo from '../assets/images/revelations-logo.svg';
 import christLogo from '../assets/images/christ-logo.svg';
 import christSmallLogo from '../assets/images/christ-small-logo.svg';
@@ -43,24 +44,24 @@ export function Navbar() {
   };
 
   return (
-    <nav 
+    <nav
       className={`fixed top-0 left-0 right-0 z-50 px-4 md:px-8 lg:px-12 py-2 md:py-3 transition-all duration-400 bg-[#0a0a0a] ${isScrolled ? 'backdrop-blur-md shadow-[0_4px_20px_rgba(24,24,27,0.3)]' : ''}`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between relative" style={{ minHeight: '5rem' }}>
         {/* Left: Christ University Logo */}
         <div className="flex items-center h-full z-10" style={{ minHeight: 'inherit' }}>
-          <a 
-            href="https://christuniversity.in/" 
-            target="_blank" 
+          <a
+            href="https://christuniversity.in/"
+            target="_blank"
             rel="noopener noreferrer"
             className="flex items-center hover:opacity-80 transition-opacity duration-300"
             style={{ height: '100%' }}
           >
             <picture>
               <source srcSet={christSmallLogo} media="(max-width: 767px)" />
-              <img 
-                src={christLogo} 
-                alt="Christ University Logo" 
+              <img
+                src={christLogo}
+                alt="Christ University Logo"
                 className="w-10 h-4 md:w-24 md:h-7 lg:w-36 lg:h-10 py-1"
                 style={{ maxWidth: 'none', height: 'auto', objectFit: 'contain', display: 'block' }}
               />
@@ -83,7 +84,7 @@ export function Navbar() {
 
         {/* Right: Toggle Button (All Devices) */}
         <div className="flex items-center h-full z-10" style={{ minHeight: 'inherit' }}>
-          <button 
+          <button
             onClick={toggleMenu}
             className="focus:outline-none"
             aria-label="Toggle menu"
@@ -91,18 +92,18 @@ export function Navbar() {
           >
             <svg width="40" height="40" viewBox="0 0 40 40" className={`transition-all duration-300 ${isMenuOpen ? 'portal-active' : ''}`} style={{ display: 'block' }}>
               <circle cx="20" cy="20" r="16" fill="none" stroke="#b91c1c" strokeWidth="2" opacity="0.6" />
-              <line 
-                x1="12" y1="15" x2="28" y2="15" 
+              <line
+                x1="12" y1="15" x2="28" y2="15"
                 stroke="#ff3333" strokeWidth="2.5" strokeLinecap="round"
                 className={`transition-all duration-300 origin-center ${isMenuOpen ? 'translate-y-[5px] rotate-45' : ''}`}
               />
-              <line 
-                x1="12" y1="20" x2="28" y2="20" 
+              <line
+                x1="12" y1="20" x2="28" y2="20"
                 stroke="#ff3333" strokeWidth="2.5" strokeLinecap="round"
                 className={`transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}
               />
-              <line 
-                x1="12" y1="25" x2="28" y2="25" 
+              <line
+                x1="12" y1="25" x2="28" y2="25"
                 stroke="#ff3333" strokeWidth="2.5" strokeLinecap="round"
                 className={`transition-all duration-300 origin-center ${isMenuOpen ? '-translate-y-[5px] -rotate-45' : ''}`}
               />
@@ -126,36 +127,36 @@ export function Navbar() {
 
           {/* Menu Items */}
           <div className="flex flex-col items-center space-y-5">
-            <a 
-              href="#home" 
+            <a
+              href="#home"
               onClick={closeMenu}
               className="menu-item font-stranger text-2xl text-gray-300 hover:text-red-400 cursor-pointer transition-all py-2 border-b border-red-900/20 hover:border-red-600/50 hover:pl-2"
             >
               Home
             </a>
-            <a 
-              href="#events" 
+            <Link
+              to="/events"
               onClick={closeMenu}
               className="menu-item font-stranger text-2xl text-gray-300 hover:text-red-400 cursor-pointer transition-all py-2 border-b border-red-900/20 hover:border-red-600/50 hover:pl-2"
             >
               Events
-            </a>
-            <a 
-              href="#about" 
+            </Link>
+            <a
+              href="#about"
               onClick={closeMenu}
               className="menu-item font-stranger text-2xl text-gray-300 hover:text-red-400 cursor-pointer transition-all py-2 border-b border-red-900/20 hover:border-red-600/50 hover:pl-2"
             >
               About
             </a>
-            <a 
-              href="#schedule" 
+            <a
+              href="#schedule"
               onClick={closeMenu}
               className="menu-item font-stranger text-2xl text-gray-300 hover:text-red-400 cursor-pointer transition-all py-2 border-b border-red-900/20 hover:border-red-600/50 hover:pl-2"
             >
               Schedule
             </a>
-            <a 
-              href="#gallery" 
+            <a
+              href="#gallery"
               onClick={closeMenu}
               className="menu-item font-stranger text-2xl text-gray-300 hover:text-red-400 cursor-pointer transition-all py-2 hover:pl-2"
             >

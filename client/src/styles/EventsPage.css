@@ -1,0 +1,231 @@
+/* Events Page Styles with GSAP Scroll Animation */
+
+.events-page-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #0a0a0a;
+}
+
+.events-page-container * {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.events-page-container a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.events-page-container a:hover {
+  color: #ff3333;
+  text-shadow: 0 0 10px rgba(185, 28, 28, 0.6);
+}
+
+/* Header */
+.events-header {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  width: 100%;
+  z-index: 10;
+  height: 7em;
+  font-size: clamp(0.66rem, 2vw, 1rem);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.events-logo {
+  font-family: 'Benguiat', 'Bebas Neue', serif;
+  font-size: 1.5em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 20px rgba(185, 28, 28, 0.5);
+}
+
+.events-nav {
+  display: flex;
+  gap: 2em;
+}
+
+.events-nav-link {
+  position: relative;
+  font-weight: 500;
+}
+
+.events-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #b91c1c, transparent);
+  transition: width 0.3s ease;
+}
+
+.events-nav-link:hover::after {
+  width: 100%;
+}
+
+/* Sections */
+.events-section {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  position: fixed;
+  visibility: hidden;
+}
+
+.events-outer,
+.events-inner {
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.events-bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Section Heading */
+.events-section-heading {
+  font-family: 'Benguiat', 'Bebas Neue', serif;
+  font-size: clamp(2rem, 8vw, 10rem);
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+  width: 90vw;
+  max-width: 1200px;
+  color: #ffffff;
+  text-shadow: 
+    0 0 40px rgba(185, 28, 28, 0.8),
+    0 0 80px rgba(185, 28, 28, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.events-section-heading * {
+  will-change: transform;
+}
+
+/* Clip text wrapper for character animations */
+.clip-text {
+  overflow: hidden;
+  display: inline-block;
+}
+
+/* Character and word styling */
+.events-section-heading .char {
+  display: inline-block;
+}
+
+.events-section-heading .word {
+  display: inline-block;
+}
+
+/* Vignette overlay effect */
+.events-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Scanlines effect */
+.events-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Scroll indicator */
+.events-page-container::after {
+  content: 'Scroll';
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  z-index: 10;
+  animation: scrollPulse 2s infinite ease-in-out;
+}
+
+@keyframes scrollPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .events-header {
+    height: 5em;
+    font-size: clamp(0.5rem, 1.5vw, 0.9rem);
+    letter-spacing: 0.3em;
+    padding: 0 3%;
+  }
+
+  .events-logo {
+    font-size: 1.2em;
+  }
+
+  .events-section-heading {
+    font-size: clamp(1.5rem, 10vw, 4rem);
+  }
+}
+
+/* Red glow accent for headings on hover sections */
+.events-section:nth-child(2n) .events-section-heading {
+  text-shadow: 
+    0 0 40px rgba(139, 0, 0, 0.9),
+    0 0 80px rgba(139, 0, 0, 0.5),
+    0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.events-section:nth-child(3n) .events-section-heading {
+  text-shadow: 
+    0 0 40px rgba(255, 50, 50, 0.8),
+    0 0 80px rgba(255, 50, 50, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.5);
+}
