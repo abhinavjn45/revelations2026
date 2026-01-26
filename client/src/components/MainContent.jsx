@@ -4,6 +4,7 @@ import styles from '../styles/animations.module.css';
 import { Navbar } from './Navbar';
 import HeroSection from './HeroSection';
 import AboutSection from './AboutSection';
+import ScheduleSection from './ScheduleSection';
 
 export function MainContent({ isVisible }) {
   return (
@@ -15,6 +16,7 @@ export function MainContent({ isVisible }) {
     >
       <HeroSection startAnimation={isVisible} />
       <AboutSection />
+      <ScheduleSection />
       <Navbar />
     </div>
   );
