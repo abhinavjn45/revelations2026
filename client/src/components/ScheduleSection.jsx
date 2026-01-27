@@ -63,7 +63,7 @@ const EventCard = ({ event, index }) => {
     >
       {/* Glow Effect on Hover */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-red-900/10 to-transparent transition-opacity pointer-events-none" />
-      
+
       {/* Time */}
       <div className="flex flex-row sm:flex-col justify-between sm:justify-center w-full sm:w-auto sm:min-w-[100px] sm:border-r border-red-900/30 sm:pr-6">
         <span className="font-stranger text-xl sm:text-2xl text-red-500 tracking-wider whitespace-nowrap">{event.time}</span>
@@ -76,13 +76,13 @@ const EventCard = ({ event, index }) => {
           {event.title}
         </h3>
         <div className="flex flex-wrap items-center gap-3 mt-2">
-            <span className="px-2 py-0.5 text-[10px] sm:text-xs font-typewriter tracking-widest border border-red-900/50 bg-red-900/10 text-red-400 rounded-sm uppercase">
-                {event.type}
-            </span>
-            <span className="font-typewriter text-xs sm:text-sm text-gray-400 uppercase tracking-wider flex items-center gap-1.5">
-                <span className="w-1 h-1 bg-gray-600 rounded-full" />
-                {event.venue}
-            </span>
+          <span className="px-2 py-0.5 text-[10px] sm:text-xs font-typewriter tracking-widest border border-red-900/50 bg-red-900/10 text-red-400 rounded-sm uppercase">
+            {event.type}
+          </span>
+          <span className="font-typewriter text-xs sm:text-sm text-gray-400 uppercase tracking-wider flex items-center gap-1.5">
+            <span className="w-1 h-1 bg-gray-600 rounded-full" />
+            {event.venue}
+          </span>
         </div>
       </div>
 
@@ -100,41 +100,41 @@ export default function ScheduleSection() {
   // Helper to render a specific day's content
   const renderDayGroup = (dayData) => (
     <div key={dayData.id} className="space-y-4 mb-12 last:mb-0">
-        {/* Day Title Decoration */}
-        <div className="mb-4 sm:mb-6 border-b border-red-900/30 pb-2 flex flex-col sm:flex-row justify-between sm:items-end gap-2">
-            <h3 className="font-typewriter text-xl sm:text-2xl text-gray-200">
-                MISSION: <span className="text-red-500">{dayData.title}</span>
-            </h3>
-            <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
-                <span className="text-xs font-mono text-red-400/80 block sm:hidden">
-                    {dayData.label} // {dayData.date}
-                </span>
-                <span className="text-[10px] sm:text-xs font-mono text-gray-600 uppercase tracking-wider">
-                    STATUS: ACTIVE
-                </span>
-            </div>
+      {/* Day Title Decoration */}
+      <div className="mb-4 sm:mb-6 border-b border-red-900/30 pb-2 flex flex-col sm:flex-row justify-between sm:items-end gap-2">
+        <h3 className="font-typewriter text-xl sm:text-2xl text-gray-200">
+          MISSION: <span className="text-red-500">{dayData.title}</span>
+        </h3>
+        <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
+          <span className="text-xs font-mono text-red-400/80 block sm:hidden">
+            {dayData.label}
+          </span>
+          <span className="text-[10px] sm:text-xs font-mono text-gray-600 uppercase tracking-wider">
+            STATUS: ACTIVE
+          </span>
         </div>
+      </div>
 
-        {/* Event List */}
-        <div className="grid gap-3 sm:gap-4">
-            {dayData.events.map((event, idx) => (
-                <EventCard key={event.id} event={event} index={idx} />
-            ))}
-        </div>
+      {/* Event List */}
+      <div className="grid gap-3 sm:gap-4">
+        {dayData.events.map((event, idx) => (
+          <EventCard key={event.id} event={event} index={idx} />
+        ))}
+      </div>
     </div>
   );
 
   return (
     <section className="relative w-full py-16 sm:py-20 bg-[#050505] overflow-hidden">
-       {/* Background Grid/Noise */}
-       <div className="absolute inset-0 opacity-10 pointer-events-none" 
-            style={{ backgroundImage: 'linear-gradient(rgba(50, 0, 0, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(50, 0, 0, 0.5) 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
-       </div>
+      {/* Background Grid/Noise */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none"
+        style={{ backgroundImage: 'linear-gradient(rgba(50, 0, 0, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(50, 0, 0, 0.5) 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
+      </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
-        
+
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -155,51 +155,50 @@ export default function ScheduleSection() {
               key={day.id}
               onClick={() => setSelectedDayId(day.id)}
               className={`relative px-4 sm:px-6 py-2 sm:py-3 min-w-[100px] sm:min-w-[140px] border transition-all duration-300 group overflow-hidden
-                ${selectedDayId === day.id 
-                  ? 'border-red-600 bg-red-900/20 text-red-100 shadow-[0_0_15px_rgba(220,38,38,0.3)]' 
+                ${selectedDayId === day.id
+                  ? 'border-red-600 bg-red-900/20 text-red-100 shadow-[0_0_15px_rgba(220,38,38,0.3)]'
                   : 'border-gray-800 bg-black/50 text-gray-500 hover:border-gray-600 hover:text-gray-300'
                 }`}
             >
               <div className="relative z-10 flex flex-col items-center">
-                 <span className={`font-stranger text-lg sm:text-xl ${selectedDayId === day.id ? 'text-red-500' : 'text-current'}`}>
-                    {day.label}
-                 </span>
-                 <span className="font-typewriter text-[10px] sm:text-xs mt-1">{day.date}</span>
+                <span className={`font-stranger text-lg sm:text-xl ${selectedDayId === day.id ? 'text-red-500' : 'text-current'}`}>
+                  {day.label}
+                </span>
               </div>
-              
+
               {selectedDayId === day.id && (
-                <motion.div 
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-red-600/5 z-0"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute inset-0 bg-red-600/5 z-0"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
                 />
               )}
             </button>
           ))}
-          
+
           {/* ALL EVENTS BUTTON */}
           <button
-              onClick={() => setSelectedDayId('all')}
-              className={`relative px-4 sm:px-6 py-2 sm:py-3 min-w-[100px] sm:min-w-[140px] border transition-all duration-300 group overflow-hidden
-                ${selectedDayId === 'all' 
-                  ? 'border-red-600 bg-red-900/20 text-red-100 shadow-[0_0_15px_rgba(220,38,38,0.3)]' 
-                  : 'border-gray-800 bg-black/50 text-gray-500 hover:border-gray-600 hover:text-gray-300'
-                }`}
-            >
-               <div className="relative z-10 flex flex-col items-center justify-center h-full">
-                 <span className={`font-stranger text-lg sm:text-xl ${selectedDayId === 'all' ? 'text-red-500' : 'text-current'}`}>
-                    ALL DAYS
-                 </span>
-                 <span className="font-typewriter text-[10px] sm:text-xs mt-1">FULL LOG</span>
-              </div>
-               {selectedDayId === 'all' && (
-                <motion.div 
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-red-600/5 z-0"
-                />
-              )}
+            onClick={() => setSelectedDayId('all')}
+            className={`relative px-4 sm:px-6 py-2 sm:py-3 min-w-[100px] sm:min-w-[140px] border transition-all duration-300 group overflow-hidden
+                ${selectedDayId === 'all'
+                ? 'border-red-600 bg-red-900/20 text-red-100 shadow-[0_0_15px_rgba(220,38,38,0.3)]'
+                : 'border-gray-800 bg-black/50 text-gray-500 hover:border-gray-600 hover:text-gray-300'
+              }`}
+          >
+            <div className="relative z-10 flex flex-col items-center justify-center h-full">
+              <span className={`font-stranger text-lg sm:text-xl ${selectedDayId === 'all' ? 'text-red-500' : 'text-current'}`}>
+                ALL DAYS
+              </span>
+              <span className="font-typewriter text-[10px] sm:text-xs mt-1">FULL LOG</span>
+            </div>
+            {selectedDayId === 'all' && (
+              <motion.div
+                layoutId="activeTab"
+                className="absolute inset-0 bg-red-600/5 z-0"
+              />
+            )}
           </button>
         </div>
 
@@ -213,10 +212,10 @@ export default function ScheduleSection() {
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
             >
-                {selectedDayId === 'all' 
-                    ? SCHEDULE_DATA.map(day => renderDayGroup(day))
-                    : renderDayGroup(SCHEDULE_DATA.find(d => d.id === selectedDayId))
-                }
+              {selectedDayId === 'all'
+                ? SCHEDULE_DATA.map(day => renderDayGroup(day))
+                : renderDayGroup(SCHEDULE_DATA.find(d => d.id === selectedDayId))
+              }
             </motion.div>
           </AnimatePresence>
         </div>
