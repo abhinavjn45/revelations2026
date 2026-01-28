@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { Observer } from 'gsap/Observer';
+import AtmosphereBackground from './AtmosphereBackground';
+import VeinOverlay from './VeinOverlay';
+import DecryptText from './DecryptText';
 import '../styles/EventsPage.css';
 
 gsap.registerPlugin(Observer);
 
-// Event data - you can customize these
 // Event data - you can customize these
 const events = [
     {
@@ -165,15 +167,15 @@ const EventDetails = React.forwardRef(({ event }, ref) => {
             <h3 className="event-info-title">{event.subtitle}</h3>
             <div className="event-meta-grid">
                 <div className="event-meta-item">
-                    <span className="event-meta-label">DATE</span>
+                    <span className="event-meta-label"><DecryptText text="DATE" /></span>
                     <span className="event-meta-value">{event.date}</span>
                 </div>
                 <div className="event-meta-item">
-                    <span className="event-meta-label">VENUE</span>
+                    <span className="event-meta-label"><DecryptText text="VENUE" /></span>
                     <span className="event-meta-value">{event.venue}</span>
                 </div>
                 <div className="event-meta-item">
-                    <span className="event-meta-label">TYPE</span>
+                    <span className="event-meta-label"><DecryptText text="TYPE" /></span>
                     <span className="event-meta-value">{event.type}</span>
                 </div>
             </div>
@@ -305,7 +307,14 @@ const EventsPage = () => {
     }, []);
 
     return (
-        <div ref={containerRef} className="events-page-container">
+        <div ref={containerRef} className="events-page-container overflow-hidden">
+            {/* Atmosphere Fixed Background */}
+            <AtmosphereBackground className="fixed z-0 opacity-60" />
+            <div className="fixed inset-0 pointer-events-none z-[100]">
+                <VeinOverlay className="top-0 right-0 w-48 h-48 md:w-96 md:h-96 translate-x-1/3 -translate-y-1/3" delay={0.2} rotate={90} />
+                <VeinOverlay className="bottom-0 left-0 w-48 h-48 md:w-96 md:h-96 -translate-x-1/3 translate-y-1/3" delay={0.4} rotate={-90} />
+            </div>
+
             <Navbar />
 
             {events.map((event, index) => (

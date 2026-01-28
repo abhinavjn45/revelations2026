@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import AtmosphereBackground from './AtmosphereBackground';
+import VeinOverlay from './VeinOverlay';
 import './styles/TeamSection.css';
 
 const TEAMS = [
@@ -85,8 +87,14 @@ export default function TeamSection() {
 
   return (
     <section className="relative w-full py-16 sm:py-20 bg-[#050505] overflow-hidden">
-      {/* Cinematic background noise/texture */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none bg-noise" style={{ backgroundImage: 'linear-gradient(rgba(50, 0, 0, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(50, 0, 0, 0.5) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+      {/* Cinematic background noise/texture REPLACE with Atmosphere */}
+      <AtmosphereBackground />
+      {/* Vein Overlays - Top Right & Bottom Left */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <VeinOverlay className="top-0 right-0 w-48 h-48 md:w-96 md:h-96 translate-x-1/3 -translate-y-1/3" delay={0} rotate={90} />
+        <VeinOverlay className="bottom-0 left-0 w-48 h-48 md:w-96 md:h-96 -translate-x-1/3 translate-y-1/3" delay={0.5} rotate={-90} />
+      </div>
+
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
