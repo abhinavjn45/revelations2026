@@ -183,13 +183,16 @@ const EventDetails = React.forwardRef(({ event }, ref) => {
 
 EventDetails.displayName = 'EventDetails';
 
+import { Navbar } from './Navbar';
+import Footer from './Footer';
+
 const EventsPage = () => {
     const containerRef = useRef(null);
     const sectionsRef = useRef([]);
     const imagesRef = useRef([]);
     const outerWrappersRef = useRef([]);
     const innerWrappersRef = useRef([]);
-    const charsRefs = useRef(events.map(() => ({ current: [] })));
+    const charsRefs = useRef([]);
     const detailsRefs = useRef([]); // Refs for detail containers
     const currentIndexRef = useRef(-1);
     const animatingRef = useRef(false);
@@ -198,7 +201,8 @@ const EventsPage = () => {
 
     // Initialize character refs array
     useEffect(() => {
-        charsRefs.current = events.map(() => ({ current: [] }));
+        // +1 for the footer section
+        charsRefs.current = [...events.map(() => ({ current: [] })), { current: [] }];
         setInitialized(true);
     }, []);
 
@@ -250,7 +254,7 @@ const EventsPage = () => {
                 )
                     .fromTo(images[index], { yPercent: 15 * dFactor }, { yPercent: 0 }, 0);
 
-                // Animate characters
+                // Animate characters (only if they exist for this section)
                 const chars = charsRefs.current[index]?.current?.filter(Boolean);
                 if (chars && chars.length > 0) {
                     tl.fromTo(
@@ -270,7 +274,7 @@ const EventsPage = () => {
                     );
                 }
 
-                // Animate Details
+                // Animate Details (only if they exist for this section)
                 const currentDetail = detailsRefs.current[index];
                 if (currentDetail) {
                     tl.fromTo(
@@ -312,12 +316,7 @@ const EventsPage = () => {
 
     return (
         <div ref={containerRef} className="events-page-container">
-            <header className="events-header">
-                <div className="events-logo">Revelations 2026</div>
-                <div className="events-nav">
-                    <a href="/" className="events-nav-link">Home</a>
-                </div>
-            </header>
+            <Navbar />
 
             {events.map((event, index) => (
                 <section
@@ -353,6 +352,32 @@ const EventsPage = () => {
                     </div>
                 </section>
             ))}
+
+            {/* Footer Section */}
+            <section
+                ref={(el) => (sectionsRef.current[events.length] = el)}
+                className={`events-section section-footer`}
+            >
+                <div
+                    ref={(el) => (outerWrappersRef.current[events.length] = el)}
+                    className="events-outer"
+                >
+                    <div
+                        ref={(el) => (innerWrappersRef.current[events.length] = el)}
+                        className="events-inner"
+                    >
+                        <div
+                            ref={(el) => (imagesRef.current[events.length] = el)}
+                            className="events-bg"
+                            style={{ backgroundColor: '#000' }}
+                        >
+                            <div className="w-full h-full flex items-center justify-center">
+                                <Footer />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     );
 };
