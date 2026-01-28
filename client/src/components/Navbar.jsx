@@ -4,7 +4,7 @@ import revelationsLogo from '../assets/images/revelations-logo.svg';
 import christLogo from '../assets/images/christ-logo.svg';
 import christSmallLogo from '../assets/images/christ-small-logo.svg';
 
-export function Navbar({ transparent = false }) {
+export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const torchRef = useRef(null);
@@ -45,19 +45,8 @@ export function Navbar({ transparent = false }) {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 px-4 md:px-8 lg:px-12 py-2 md:py-3 transition-all duration-400 ${transparent ? 'bg-transparent' : 'bg-[#0a0a0a]'} ${isScrolled ? 'backdrop-blur-md shadow-[0_4px_20px_rgba(24,24,27,0.3)]' : ''}`}
-      style={{ boxShadow: isScrolled && !transparent ? '0 8px 40px 0 #dc2626cc' : undefined }}
+      className={`fixed top-0 left-0 right-0 z-50 px-4 md:px-8 lg:px-12 py-2 md:py-3 transition-all duration-400 bg-[#0a0a0a] ${isScrolled ? 'backdrop-blur-md shadow-[0_4px_20px_rgba(24,24,27,0.3)]' : ''}`}
     >
-      {/* Bottom Glow (Stranger Things style) */}
-      {isScrolled && (
-        <div className="pointer-events-none absolute left-0 right-0 bottom-0 h-3 z-50"
-          style={{
-            background: 'radial-gradient(ellipse at center, #dc2626cc 0%, transparent 80%)',
-            filter: 'blur(6px)',
-            opacity: 0.85
-          }}
-        />
-      )}
       <div className="max-w-7xl mx-auto flex items-center justify-between relative" style={{ minHeight: '5rem' }}>
         {/* Left: Christ University Logo */}
         <div className="flex items-center h-full z-10" style={{ minHeight: 'inherit' }}>
@@ -138,13 +127,13 @@ export function Navbar({ transparent = false }) {
 
           {/* Menu Items */}
           <div className="flex flex-col items-center space-y-5">
-            <a
-              href="#home"
+            <Link
+              to="/"
               onClick={closeMenu}
               className="menu-item font-stranger text-2xl text-gray-300 hover:text-red-400 cursor-pointer transition-all py-2 border-b border-red-900/20 hover:border-red-600/50 hover:pl-2"
             >
               Home
-            </a>
+            </Link>
             <Link
               to="/events"
               onClick={closeMenu}
@@ -152,20 +141,20 @@ export function Navbar({ transparent = false }) {
             >
               Events
             </Link>
-            <a
-              href="#about"
+            <Link
+              to="/about"
               onClick={closeMenu}
               className="menu-item font-stranger text-2xl text-gray-300 hover:text-red-400 cursor-pointer transition-all py-2 border-b border-red-900/20 hover:border-red-600/50 hover:pl-2"
             >
-              About
-            </a>
-            <a
-              href="#schedule"
+              Our Team
+            </Link>
+            <Link
+              to="/schedule"
               onClick={closeMenu}
               className="menu-item font-stranger text-2xl text-gray-300 hover:text-red-400 cursor-pointer transition-all py-2 border-b border-red-900/20 hover:border-red-600/50 hover:pl-2"
             >
               Schedule
-            </a>
+            </Link>
             <Link
               to="/gallery"
               onClick={closeMenu}

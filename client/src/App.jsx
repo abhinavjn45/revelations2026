@@ -4,7 +4,9 @@ import { MainContent } from './components/MainContent';
 import CustomCursor from './components/CustomCursor';
 import EventsPage from './components/EventsPage';
 import GalleryPage from './components/GalleryPage';
+
 import { Preloader } from './components/Preloader';
+import AboutPage from './components/AboutPage';
 import './App.css';
 
 function HomePage() {
@@ -29,6 +31,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/about" element={<AboutPage />} />
         </Routes>
       </div>
     </Router>
