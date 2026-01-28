@@ -1,15 +1,22 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AtmosphereBackground from './AtmosphereBackground';
 import VeinOverlay from './VeinOverlay';
 import './styles/TeamSection.css';
 
+// Import images for reliable build output
+import henryImg from '../assets/images/homepage/henry001-removebg.png';
+import vecnaImg from '../assets/images/homepage/vecna.png';
+import willImg from '../assets/images/homepage/will.png';
+import heroMainImg from '../assets/images/homepage/hero-main.png';
+
 const TEAMS = [
   {
     id: 1,
     name: 'Mind Flayers',
     tagline: 'We control the system.',
-    logo: '/src/assets/images/homepage/henry001-removebg.png',
+    logo: henryImg,
     students: 18,
     description: 'We control the system.',
   },
@@ -17,7 +24,7 @@ const TEAMS = [
     id: 2,
     name: 'Hawkins Labs',
     tagline: 'Experiment. Break. Innovate.',
-    logo: '/src/assets/images/homepage/vecna.png',
+    logo: vecnaImg,
     students: 17,
     description: 'Experiment. Break. Innovate.',
   },
@@ -25,7 +32,7 @@ const TEAMS = [
     id: 3,
     name: 'The Demogorgans',
     tagline: 'Code. Conquer. Consume.',
-    logo: '/src/assets/images/homepage/will.png',
+    logo: willImg,
     students: 19,
     description: 'Code. Conquer. Consume.',
   },
@@ -33,7 +40,7 @@ const TEAMS = [
     id: 4,
     name: 'The Upside Down',
     tagline: 'We live in the parallel network',
-    logo: '/src/assets/images/homepage/hero-main.png',
+    logo: heroMainImg,
     students: 16,
     description: 'We live in the parallel network',
   },
@@ -41,7 +48,7 @@ const TEAMS = [
     id: 5,
     name: 'The Signal Seekers',
     tagline: 'Searching for hidden signals.',
-    logo: '/src/assets/images/homepage/henry001-removebg.png',
+    logo: henryImg,
     students: 20,
     description: 'Searching for hidden signals.',
   },
@@ -49,7 +56,7 @@ const TEAMS = [
     id: 6,
     name: 'Starcourt Squad',
     tagline: 'Style meets science.',
-    logo: '/src/assets/images/homepage/vecna.png',
+    logo: vecnaImg,
     students: 15,
     description: 'Style meets science.',
   },

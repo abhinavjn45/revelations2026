@@ -51,7 +51,7 @@ export default function AboutSection() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full min-h-auto md:min-h-[90vh] flex flex-col items-center justify-center py-20 md:py-32 bg-[#050505] overflow-hidden perspective-1000 mt-12 md:mt-24"
+      className="relative w-full min-h-auto md:min-h-[90vh] flex flex-col items-center justify-center py-16 md:py-28 bg-[#050505] overflow-hidden perspective-1000"
     >
 
       {/* 1. ATMOSPHERIC FOG LAYERS */}

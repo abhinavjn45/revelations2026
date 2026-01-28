@@ -23,12 +23,27 @@ export default function HeroSection({ startAnimation }) {
   const canvasRef = useRef(null);
   const [animationActive, setAnimationActive] = useState(false);
   const [activeCharacter, setActiveCharacter] = useState('main');
+  const [autoCycle, setAutoCycle] = useState(true);
+  const characterOrder = ['vecna', 'main', 'henry'];
+  const cycleIndex = useRef(0);
 
+  // Auto-cycle images every 1.5s
   useEffect(() => {
+    if (!autoCycle) return;
+    const interval = setInterval(() => {
+      cycleIndex.current = (cycleIndex.current + 1) % characterOrder.length;
+      setActiveCharacter(characterOrder[cycleIndex.current]);
+    }, 1500);
+    return () => clearInterval(interval);
+  }, [autoCycle]);
+
+  // Pause auto-cycle on mouse move, resume after 4s idle
+  useEffect(() => {
+    let resumeTimeout;
     const handleMouseMove = (e) => {
       const width = window.innerWidth;
       const x = e.clientX;
-
+      setAutoCycle(false);
       if (x < width / 3) {
         setActiveCharacter('vecna');
       } else if (x > (width * 2) / 3) {
@@ -36,10 +51,14 @@ export default function HeroSection({ startAnimation }) {
       } else {
         setActiveCharacter('main');
       }
+      clearTimeout(resumeTimeout);
+      resumeTimeout = setTimeout(() => setAutoCycle(true), 4000);
     };
-
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      clearTimeout(resumeTimeout);
+    };
   }, []);
 
   useEffect(() => {
