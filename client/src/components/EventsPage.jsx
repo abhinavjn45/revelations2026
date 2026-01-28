@@ -192,23 +192,13 @@ const EventsPage = () => {
     const imagesRef = useRef([]);
     const outerWrappersRef = useRef([]);
     const innerWrappersRef = useRef([]);
-    const charsRefs = useRef([]);
+    const charsRefs = useRef([...events.map(() => ({ current: [] })), { current: [] }]);
     const detailsRefs = useRef([]); // Refs for detail containers
     const currentIndexRef = useRef(-1);
     const animatingRef = useRef(false);
     const observerRef = useRef(null);
-    const [initialized, setInitialized] = useState(false);
-
-    // Initialize character refs array
-    useEffect(() => {
-        // +1 for the footer section
-        charsRefs.current = [...events.map(() => ({ current: [] })), { current: [] }];
-        setInitialized(true);
-    }, []);
 
     useEffect(() => {
-        if (!initialized) return;
-
         const sections = sectionsRef.current.filter(Boolean);
         const images = imagesRef.current.filter(Boolean);
         const outerWrappers = outerWrappersRef.current.filter(Boolean);
@@ -312,7 +302,7 @@ const EventsPage = () => {
             }
             gsap.killTweensOf([...sections, ...images, ...outerWrappers, ...innerWrappers]);
         };
-    }, [initialized]);
+    }, []);
 
     return (
         <div ref={containerRef} className="events-page-container">
