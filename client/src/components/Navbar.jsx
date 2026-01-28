@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import revelationsLogo from '../assets/images/revelations-logo.svg';
 import christLogo from '../assets/images/christ-logo.svg';
 import christSmallLogo from '../assets/images/christ-small-logo.svg';
+import { usePageTransition } from './PageTransition';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const torchRef = useRef(null);
+  const { navigateWithTransition } = usePageTransition();
   // Torch pendulum animation for spotlight
   useEffect(() => {
     let frame = 0;
@@ -134,13 +135,15 @@ export function Navbar() {
             >
               Home
             </a>
-            <Link
-              to="/events"
-              onClick={closeMenu}
+            <button
+              onClick={() => {
+                closeMenu();
+                navigateWithTransition('/events');
+              }}
               className="menu-item font-stranger text-2xl text-gray-300 hover:text-red-400 cursor-pointer transition-all py-2 border-b border-red-900/20 hover:border-red-600/50 hover:pl-2"
             >
               Events
-            </Link>
+            </button>
             <a
               href="#about"
               onClick={closeMenu}

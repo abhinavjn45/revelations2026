@@ -4,6 +4,7 @@ import { MainContent } from './components/MainContent';
 import CustomCursor from './components/CustomCursor';
 import EventsPage from './components/EventsPage';
 import { Preloader } from './components/Preloader';
+import { PageTransitionProvider } from './components/PageTransition';
 import './App.css';
 
 function HomePage() {
@@ -22,13 +23,15 @@ function HomePage() {
 function App() {
   return (
     <Router>
-      <div className="bg-[#0a0a0a]">
-        <CustomCursor />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/events" element={<EventsPage />} />
-        </Routes>
-      </div>
+      <PageTransitionProvider>
+        <div className="bg-[#0a0a0a]">
+          <CustomCursor />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/events" element={<EventsPage />} />
+          </Routes>
+        </div>
+      </PageTransitionProvider>
     </Router>
   );
 }

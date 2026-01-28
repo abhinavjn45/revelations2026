@@ -99,3 +99,19 @@
         stroke-width: 1px;
     }
 }
+
+/* Curved reveal overlay - slides up from bottom with wave */
+.curve-reveal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+.curve-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 110%;
+}
