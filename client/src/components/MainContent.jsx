@@ -4,7 +4,7 @@ import styles from '../styles/animations.module.css';
 import { Navbar } from './Navbar';
 import HeroSection from './HeroSection';
 import AboutSection from './AboutSection';
-import ScheduleSection from './ScheduleSection';
+import TeamSection from './TeamSection';
 import Footer from './Footer';
 
 export function MainContent({ isVisible }) {
@@ -17,7 +17,7 @@ export function MainContent({ isVisible }) {
     >
       <HeroSection startAnimation={isVisible} />
       <AboutSection />
-      <ScheduleSection />
+      <TeamSection />
       <Footer />
       <Navbar />
     </div>
