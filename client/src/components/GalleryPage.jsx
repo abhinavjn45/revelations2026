@@ -2,73 +2,98 @@ import React, { useState } from 'react';
 import { Navbar } from './Navbar';
 import '../styles/GalleryPage.css';
 
+// 2024 Images
+import img24_inauguration from '../assets/images/rvlns_images/24/24_inaugration.JPG';
+import img24_charades from '../assets/images/rvlns_images/24/24_charades.JPG';
+import img24_coding from '../assets/images/rvlns_images/24/24_coding_and_debugging.JPG';
+import img24_it_manager from '../assets/images/rvlns_images/24/24_it_manager.JPG';
+import img24_it_quiz from '../assets/images/rvlns_images/24/24_it_quiz.JPG';
+import img24_popquiz from '../assets/images/rvlns_images/24/24_popquiz.JPG';
+import img24_promptmania from '../assets/images/rvlns_images/24/24_promptmania.JPG';
+import img24_sports from '../assets/images/rvlns_images/24/24_sports.JPG';
+import img24_uiux from '../assets/images/rvlns_images/24/24_uiux.JPG';
+import img24_valedictory from '../assets/images/rvlns_images/24/24_valedictory.JPG';
+import img24_weebwars from '../assets/images/rvlns_images/24/24_weebwars.JPG';
+
+// 2025 Images
+import img25_highlight from '../assets/images/rvlns_images/25/25_1.jpg';
+import img25_cosplay from '../assets/images/rvlns_images/25/25_cosplay_dance.JPG';
+import img25_dream_team from '../assets/images/rvlns_images/25/25_dream_team.JPG';
+import img25_emcee from '../assets/images/rvlns_images/25/25_emcee.JPG';
+import img25_group_photo from '../assets/images/rvlns_images/25/25_group_photo.JPG';
+import img25_guest from '../assets/images/rvlns_images/25/25_guest_of_honour.JPG';
+import img25_inauguration from '../assets/images/rvlns_images/25/25_inaugration.JPG';
+import img25_sports from '../assets/images/rvlns_images/25/25_sports.JPG';
+import img25_website_demonstration from '../assets/images/rvlns_images/25/25_website_demonstration.JPG';
+import img25_website_dev from '../assets/images/rvlns_images/25/25_website_dev.JPG';
+
 const galleryData = {
     2024: [
         {
             id: 1,
             title: "Inauguration",
             desc: "Revelations '24",
-            image: "/rvlns_images/24/24_inaugration.JPG"
+            image: img24_inauguration
         },
         {
             id: 2,
             title: "Charades",
             desc: "Revelations '24",
-            image: "/rvlns_images/24/24_charades.JPG"
+            image: img24_charades
         },
         {
             id: 3,
             title: "Coding & Debugging",
             desc: "Revelations '24",
-            image: "/rvlns_images/24/24_coding_and_debugging.JPG"
+            image: img24_coding
         },
         {
             id: 4,
             title: "IT Manager",
             desc: "Revelations '24",
-            image: "/rvlns_images/24/24_it_manager.JPG"
+            image: img24_it_manager
         },
         {
             id: 5,
             title: "IT Quiz",
             desc: "Revelations '24",
-            image: "/rvlns_images/24/24_it_quiz.JPG"
+            image: img24_it_quiz
         },
         {
             id: 6,
             title: "Pop Quiz",
             desc: "Revelations '24",
-            image: "/rvlns_images/24/24_popquiz.JPG"
+            image: img24_popquiz
         },
         {
             id: 7,
             title: "Prompt Mania",
             desc: "Revelations '24",
-            image: "/rvlns_images/24/24_promptmania.JPG"
+            image: img24_promptmania
         },
         {
             id: 8,
             title: "Sports",
             desc: "Revelations '24",
-            image: "/rvlns_images/24/24_sports.JPG"
+            image: img24_sports
         },
         {
             id: 9,
             title: "UI/UX Design",
             desc: "Revelations '24",
-            image: "/rvlns_images/24/24_uiux.JPG"
+            image: img24_uiux
         },
         {
             id: 10,
             title: "Valedictory",
             desc: "Revelations '24",
-            image: "/rvlns_images/24/24_valedictory.JPG"
+            image: img24_valedictory
         },
         {
             id: 11,
             title: "Weeb Wars",
             desc: "Revelations '24",
-            image: "/rvlns_images/24/24_weebwars.JPG"
+            image: img24_weebwars
         }
     ],
     2025: [
@@ -76,61 +101,61 @@ const galleryData = {
             id: 12,
             title: "Highlight Moment",
             desc: "Revelations '25",
-            image: "/rvlns_images/25/25_1.jpg"
+            image: img25_highlight
         },
         {
             id: 13,
             title: "Cosplay",
             desc: "Revelations '25",
-            image: "/rvlns_images/25/25_cosplay_dance.JPG"
+            image: img25_cosplay
         },
         {
             id: 14,
             title: "Dream Team",
             desc: "Revelations '25",
-            image: "/rvlns_images/25/25_dream_team.JPG"
+            image: img25_dream_team
         },
         {
             id: 15,
             title: "Emcee",
             desc: "Revelations '25",
-            image: "/rvlns_images/25/25_emcee.JPG"
+            image: img25_emcee
         },
         {
             id: 16,
             title: "Group Photo",
             desc: "Revelations '25",
-            image: "/rvlns_images/25/25_group_photo.JPG"
+            image: img25_group_photo
         },
         {
             id: 17,
             title: "Guest of Honour",
             desc: "Revelations '25",
-            image: "/rvlns_images/25/25_guest_of_honour.JPG"
+            image: img25_guest
         },
         {
             id: 18,
             title: "Inauguration",
             desc: "Revelations '25",
-            image: "/rvlns_images/25/25_inaugration.JPG"
+            image: img25_inauguration
         },
         {
             id: 19,
             title: "Sports",
             desc: "Revelations '25",
-            image: "/rvlns_images/25/25_sports.JPG"
+            image: img25_sports
         },
         {
             id: 20,
             title: "Website Demo",
             desc: "Revelations '25",
-            image: "/rvlns_images/25/25_website_demonstration.JPG"
+            image: img25_website_demonstration
         },
         {
             id: 21,
             title: "Website Dev",
             desc: "Revelations '25",
-            image: "/rvlns_images/25/25_website_dev.JPG"
+            image: img25_website_dev
         }
     ]
 };
@@ -154,22 +179,26 @@ const GalleryPage = () => {
             <Navbar />
             <div className="gallery-container">
                 <header className="gallery-header">
-                    <h1 className="gallery-title">TIMELESS MOMENTS</h1>
-                    <p className="gallery-subtitle">Highlights from Revelations</p>
+                    <h1 className="gallery-title">HAWKINS ARCHIVES</h1>
+                    <p className="gallery-description">
+                        RESTRICTED ACCESS. The following visual records document the strange occurrences and community gatherings observed within the Central Campus radius during 2024 and 2025. Authorized personnel only.
+                    </p>
 
-                    <div className="year-selector">
-                        <button
-                            className={`year-pill ${selectedYear === 2024 ? 'active' : ''}`}
-                            onClick={() => setSelectedYear(2024)}
-                        >
-                            2024
-                        </button>
-                        <button
-                            className={`year-pill ${selectedYear === 2025 ? 'active' : ''}`}
-                            onClick={() => setSelectedYear(2025)}
-                        >
-                            2025
-                        </button>
+                    <div className="year-selector-container">
+                        <div className="year-selector">
+                            <button
+                                className={`year-toggle-btn ${selectedYear === 2024 ? 'active' : ''}`}
+                                onClick={() => setSelectedYear(2024)}
+                            >
+                                <span>2024</span>
+                            </button>
+                            <button
+                                className={`year-toggle-btn ${selectedYear === 2025 ? 'active' : ''}`}
+                                onClick={() => setSelectedYear(2025)}
+                            >
+                                <span>2025</span>
+                            </button>
+                        </div>
                     </div>
                 </header>
 
