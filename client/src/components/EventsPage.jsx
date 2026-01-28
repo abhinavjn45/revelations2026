@@ -315,7 +315,7 @@ const EventsPage = () => {
                 <VeinOverlay className="bottom-0 left-0 w-48 h-48 md:w-96 md:h-96 -translate-x-1/3 translate-y-1/3" delay={0.4} rotate={-90} />
             </div>
 
-            <Navbar />
+            <Navbar transparent={true} />
 
             {events.map((event, index) => (
                 <section
