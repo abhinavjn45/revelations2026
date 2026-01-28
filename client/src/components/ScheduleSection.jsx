@@ -81,7 +81,7 @@ const SCHEDULE_DATA = [
     date: 'FRIDAY',
     title: 'CODE RED',
     events: [
-      { id: 9, time: '09:00 AM', title: 'Code Red: Demogorgon Debug', venue: 'MCA Lab 811', type: 'Technical' },
+      { id: 9, time: '09:00 AM', title: 'Code Red: Demogorgon (Code Debug)', venue: 'MCA Lab 811', type: 'Technical' },
     ]
   },
   {
