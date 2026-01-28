@@ -19,6 +19,7 @@ export default function HeroSection({ startAnimation }) {
   const [timeLeft, setTimeLeft] = useState(getTimeRemaining(eventDate));
   const [spotlightAngle, setSpotlightAngle] = useState(0);
   const spotlightRef = useRef(null);
+  const shouldStopRef = useRef(false);
   const canvasRef = useRef(null);
   const [animationActive, setAnimationActive] = useState(false);
   const [activeCharacter, setActiveCharacter] = useState('main');
@@ -44,9 +45,10 @@ export default function HeroSection({ startAnimation }) {
   useEffect(() => {
     if (startAnimation) {
       setAnimationActive(true);
+      shouldStopRef.current = false;
       const timer = setTimeout(() => {
-        setAnimationActive(false);
-      }, 4000);
+        shouldStopRef.current = true;
+      }, 7000);
       return () => clearTimeout(timer);
     }
   }, [startAnimation]);
@@ -61,26 +63,42 @@ export default function HeroSection({ startAnimation }) {
   // Spotlight pendulum animation
   useEffect(() => {
     if (!animationActive) return;
-    let frame = 0;
+    let startTime;
     let raf;
-    const animate = () => {
+    const animate = (timestamp) => {
       if (!animationActive) return;
+      if (startTime === undefined) startTime = timestamp;
+      const elapsed = (timestamp - startTime) / 1000; // seconds
 
       // Responsive amplitude: higher for larger screens
       let amplitude = 35;
       if (window.innerWidth >= 1024) amplitude = 55; // desktop/laptop
       else if (window.innerWidth >= 768) amplitude = 50; // tablet
-      const frequency = 0.8; // speed
-      const angle = amplitude * Math.sin(frequency * frame * 0.025);
+
+      // Speed factor calculation to match original ~60fps speed:
+      // Original: 0.8 (freq) * frame * 0.025
+      // Rate per frame = 0.8 * 0.025 = 0.02
+      // Rate per second (60fps) = 0.02 * 60 = 1.2
+      const speed = 1.2;
+
+      const sineVal = Math.sin(speed * elapsed);
+      const angle = amplitude * sineVal;
       setSpotlightAngle(angle);
       if (spotlightRef.current) {
         spotlightRef.current.style.transform = `rotate(${angle}deg)`;
         spotlightRef.current.style.transformOrigin = '50% 0%';
       }
-      frame++;
+
+      if (shouldStopRef.current && Math.abs(sineVal) < 0.05) {
+        setAnimationActive(false);
+        setSpotlightAngle(0);
+        if (spotlightRef.current) spotlightRef.current.style.transform = `rotate(0deg)`;
+        return;
+      }
+
       raf = requestAnimationFrame(animate);
     };
-    animate();
+    raf = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(raf);
   }, [animationActive]);
 
