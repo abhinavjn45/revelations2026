@@ -6,65 +6,114 @@ import '../styles/EventsPage.css';
 gsap.registerPlugin(Observer);
 
 // Event data - you can customize these
+// Event data - you can customize these
 const events = [
     {
         id: 1,
         title: "Vecna's Mind Maze",
+        subtitle: "IT Quiz",
+        date: "FEB 02",
+        venue: "Room 815",
+        type: "Technical",
         bgImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80",
     },
     {
         id: 2,
         title: "Scoops Troop Snippets",
+        subtitle: "Reel Making",
+        date: "FEB 03",
+        venue: "Entire Campus / Online",
+        type: "Non-Technical",
         bgImage: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1920&q=80",
     },
     {
         id: 3,
         title: "Hawkins Arena",
+        subtitle: "Sports",
+        date: "FEB 07-08",
+        venue: "Multiple Venues",
+        type: "Non-Technical",
         bgImage: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1920&q=80",
     },
     {
         id: 4,
         title: "Mr. Clarke's Journal",
+        subtitle: "Infobahn (Writing)",
+        date: "FEB 15",
+        venue: "Online Submissions",
+        type: "Non-Technical",
         bgImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&q=80",
     },
     {
         id: 5,
         title: "The Snow Ball Showdown",
+        subtitle: "Cosplay",
+        date: "FEB 16",
+        venue: "911 / Campus View",
+        type: "Non-Technical",
         bgImage: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1920&q=80",
     },
     {
         id: 6,
         title: "The Prompt Flayer",
+        subtitle: "Prompt Engineering",
+        date: "FEB 17",
+        venue: "Room 815",
+        type: "Technical",
         bgImage: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80",
     },
     {
         id: 7,
         title: "Mindscape Design",
+        subtitle: "UI/UX",
+        date: "FEB 18",
+        venue: "MCA Lab 811",
+        type: "Technical",
         bgImage: "https://images.unsplash.com/photo-1558655146-d09347e0b7a9?w=1920&q=80",
     },
     {
         id: 8,
         title: "Will's Visions",
+        subtitle: "Drawing/Painting",
+        date: "FEB 19",
+        venue: "Round Table Area",
+        type: "Non-Technical",
         bgImage: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1920&q=80",
     },
     {
         id: 9,
         title: "Code Red",
+        subtitle: "Demogorgon Debug",
+        date: "FEB 20",
+        venue: "MCA Lab 811",
+        type: "Technical",
         bgImage: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&q=80",
     },
     {
         id: 10,
         title: "Capture the Gate",
+        subtitle: "CTF",
+        date: "FEB 21",
+        venue: "MCA Lab 811",
+        type: "Technical",
         bgImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1920&q=80",
     },
     {
         id: 11,
-        title: "D&D: Dumb Deeds",
+        title: "Ddumb Deeds",
+        subtitle: "Dumb Charades",
+        date: "FEB 23",
+        venue: "Room 815",
+        type: "Non-Technical",
         bgImage: "https://images.unsplash.com/photo-1624138784181-dc7f5b759b2d?w=1920&q=80",
     },
     {
         id: 12,
-        title: "Plan B: Joyce Blueprint",
+        title: "Planner B",
+        subtitle: "IT Manager",
+        date: "FEB 24",
+        venue: "Room 815",
+        type: "Technical",
         bgImage: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&q=80",
     },
 ];
@@ -110,6 +159,30 @@ const AnimatedHeading = React.forwardRef(({ text, charsRef }, ref) => {
 
 AnimatedHeading.displayName = 'AnimatedHeading';
 
+const EventDetails = React.forwardRef(({ event }, ref) => {
+    return (
+        <div ref={ref} className="event-info-container">
+            <h3 className="event-info-title">{event.subtitle}</h3>
+            <div className="event-meta-grid">
+                <div className="event-meta-item">
+                    <span className="event-meta-label">DATE</span>
+                    <span className="event-meta-value">{event.date}</span>
+                </div>
+                <div className="event-meta-item">
+                    <span className="event-meta-label">VENUE</span>
+                    <span className="event-meta-value">{event.venue}</span>
+                </div>
+                <div className="event-meta-item">
+                    <span className="event-meta-label">TYPE</span>
+                    <span className="event-meta-value">{event.type}</span>
+                </div>
+            </div>
+        </div>
+    );
+});
+
+EventDetails.displayName = 'EventDetails';
+
 const EventsPage = () => {
     const containerRef = useRef(null);
     const sectionsRef = useRef([]);
@@ -117,6 +190,7 @@ const EventsPage = () => {
     const outerWrappersRef = useRef([]);
     const innerWrappersRef = useRef([]);
     const charsRefs = useRef(events.map(() => ({ current: [] })));
+    const detailsRefs = useRef([]); // Refs for detail containers
     const currentIndexRef = useRef(-1);
     const animatingRef = useRef(false);
     const observerRef = useRef(null);
@@ -135,6 +209,8 @@ const EventsPage = () => {
         const images = imagesRef.current.filter(Boolean);
         const outerWrappers = outerWrappersRef.current.filter(Boolean);
         const innerWrappers = innerWrappersRef.current.filter(Boolean);
+        // Details refs might contain nulls if not rendered yet, but should exist
+        const details = detailsRefs.current;
 
         if (sections.length === 0) return;
 
@@ -191,6 +267,17 @@ const EventsPage = () => {
                             }
                         },
                         0.2
+                    );
+                }
+
+                // Animate Details
+                const currentDetail = detailsRefs.current[index];
+                if (currentDetail) {
+                    tl.fromTo(
+                        currentDetail,
+                        { autoAlpha: 0, y: 20 },
+                        { autoAlpha: 1, y: 0, duration: 1, ease: "power2.out" },
+                        0.5 // Delay slightly after title starts
                     );
                 }
             }
@@ -256,6 +343,10 @@ const EventsPage = () => {
                                 <AnimatedHeading
                                     text={event.title}
                                     charsRef={charsRefs.current[index]}
+                                />
+                                <EventDetails
+                                    event={event}
+                                    ref={(el) => (detailsRefs.current[index] = el)}
                                 />
                             </div>
                         </div>
