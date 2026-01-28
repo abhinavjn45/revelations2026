@@ -1,6 +1,9 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import heroMain from '../assets/images/homepage/hero-main.png';
+import vecnaImg from '../assets/images/homepage/vecna.png';
+import henryImg from '../assets/images/homepage/henry001-removebg.png';
+import willImg from '../assets/images/homepage/will.png';
 
 function getTimeRemaining(targetDate) {
   const total = Date.parse(targetDate) - Date.now();
@@ -19,6 +22,25 @@ export default function HeroSection({ startAnimation }) {
   const spotlightRef = useRef(null);
   const canvasRef = useRef(null);
   const [animationActive, setAnimationActive] = useState(false);
+  const [activeCharacter, setActiveCharacter] = useState('main');
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const width = window.innerWidth;
+      const x = e.clientX;
+
+      if (x < width / 3) {
+        setActiveCharacter('vecna');
+      } else if (x > (width * 2) / 3) {
+        setActiveCharacter('henry');
+      } else {
+        setActiveCharacter('main');
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   useEffect(() => {
     if (startAnimation) {
@@ -189,13 +211,31 @@ export default function HeroSection({ startAnimation }) {
             </div>
           </div>
           {/* Hero Main Image at Bottom Center */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full flex justify-center z-30">
-            <img
-              src={heroMain}
-              alt="Hero Main"
-              className="max-w-[100px] w-2/6 md:max-w-[100px] lg:max-w-[120px] h-auto select-none pointer-events-none"
-              draggable="false"
-            />
+          {/* Hero Main Image at Bottom Center */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full flex justify-center z-30 pb-4">
+            <div className="grid place-items-end relative">
+              {/* Vecna */}
+              <img
+                src={vecnaImg}
+                alt="Vecna"
+                className={`col-start-1 row-start-1 max-w-[180px] w-auto h-[250px] md:h-[300px] lg:h-[350px] object-contain select-none pointer-events-none transition-opacity duration-700 ease-in-out ${activeCharacter === 'vecna' ? 'opacity-100' : 'opacity-0'}`}
+                draggable="false"
+              />
+              {/* Main */}
+              <img
+                src={willImg}
+                alt="Will"
+                className={`col-start-1 row-start-1 max-w-[180px] w-auto h-[250px] md:h-[300px] lg:h-[350px] object-contain select-none pointer-events-none transition-opacity duration-700 ease-in-out ${activeCharacter === 'main' ? 'opacity-100' : 'opacity-0'}`}
+                draggable="false"
+              />
+              {/* Henry */}
+              <img
+                src={henryImg}
+                alt="Henry"
+                className={`col-start-1 row-start-1 max-w-[180px] w-auto h-[250px] md:h-[300px] lg:h-[350px] object-contain select-none pointer-events-none transition-opacity duration-700 ease-in-out ${activeCharacter === 'henry' ? 'opacity-100' : 'opacity-0'}`}
+                draggable="false"
+              />
+            </div>
           </div>
         </div>
       </div>
