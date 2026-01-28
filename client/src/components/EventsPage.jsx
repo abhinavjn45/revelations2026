@@ -9,28 +9,63 @@ gsap.registerPlugin(Observer);
 const events = [
     {
         id: 1,
-        title: "Revelations 2026",
+        title: "Vecna's Mind Maze",
         bgImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80",
     },
     {
         id: 2,
-        title: "Opening Ceremony",
+        title: "Scoops Troop Snippets",
         bgImage: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1920&q=80",
     },
     {
         id: 3,
-        title: "Tech Summit",
+        title: "Hawkins Arena",
         bgImage: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1920&q=80",
     },
     {
         id: 4,
-        title: "Hackathon",
+        title: "Mr. Clarke's Journal",
         bgImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&q=80",
     },
     {
         id: 5,
-        title: "Closing Night",
+        title: "The Snow Ball Showdown",
         bgImage: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1920&q=80",
+    },
+    {
+        id: 6,
+        title: "The Prompt Flayer",
+        bgImage: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80",
+    },
+    {
+        id: 7,
+        title: "Mindscape Design",
+        bgImage: "https://images.unsplash.com/photo-1558655146-d09347e0b7a9?w=1920&q=80",
+    },
+    {
+        id: 8,
+        title: "Will's Visions",
+        bgImage: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1920&q=80",
+    },
+    {
+        id: 9,
+        title: "Code Red",
+        bgImage: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&q=80",
+    },
+    {
+        id: 10,
+        title: "Capture the Gate",
+        bgImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1920&q=80",
+    },
+    {
+        id: 11,
+        title: "D&D: Dumb Deeds",
+        bgImage: "https://images.unsplash.com/photo-1624138784181-dc7f5b759b2d?w=1920&q=80",
+    },
+    {
+        id: 12,
+        title: "Plan B: Joyce Blueprint",
+        bgImage: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&q=80",
     },
 ];
 

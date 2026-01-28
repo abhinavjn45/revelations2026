@@ -221,7 +221,7 @@ export default function HeroSection({ startAnimation }) {
                 className={`col-start-1 row-start-1 max-w-[180px] w-auto h-[250px] md:h-[300px] lg:h-[350px] object-contain select-none pointer-events-none transition-opacity duration-700 ease-in-out ${activeCharacter === 'vecna' ? 'opacity-100' : 'opacity-0'}`}
                 draggable="false"
               />
-              {/* Main */}
+              {/* Will */}
               <img
                 src={willImg}
                 alt="Will"

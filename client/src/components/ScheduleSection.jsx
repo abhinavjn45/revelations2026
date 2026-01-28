@@ -4,70 +4,145 @@ import { motion, AnimatePresence } from 'framer-motion';
 // --- Dummy Data ---
 const SCHEDULE_DATA = [
   {
-    id: 'day1',
-    label: 'DAY 01',
-    date: 'OCT 26',
-    title: 'THE VANISHING',
+    id: 'e1',
+    label: 'FEB 02',
+    date: 'MONDAY',
+    title: 'THE MIND MAZE',
     events: [
-      { id: 101, time: '09:00 AM', title: 'OPENING CEREMONY', venue: 'Hawkins High Gym', type: 'General' },
-      { id: 102, time: '11:00 AM', title: 'KEYNOTE: THE UPSIDE DOWN', venue: 'AV Room', type: 'Talk' },
-      { id: 103, time: '02:00 PM', title: 'CTF: HACKING THE GATE', venue: 'Computer Lab', type: 'Competition' },
+      { id: 1, time: '09:00 AM', title: "Vecna's Mind Maze (IT Quiz)", venue: 'Room 815', type: 'Technical' },
     ]
   },
   {
-    id: 'day2',
-    label: 'DAY 02',
-    date: 'OCT 27',
-    title: 'THE MIND FLAYER',
+    id: 'e2',
+    label: 'FEB 03',
+    date: 'TUESDAY',
+    title: 'THE SNIPPETS',
     events: [
-      { id: 201, time: '10:00 AM', title: 'CODING MARATHON BEGINS', venue: 'Starcourt Mall Atrium', type: 'Competition' },
-      { id: 202, time: '01:00 PM', title: 'UI/UX WORKSHOP', venue: 'Scoops Ahoy', type: 'Workshop' },
-      { id: 203, time: '04:00 PM', title: 'VR EXPERIENCE', venue: 'Arcade', type: 'Exhibition' },
+      { id: 2, time: '09:00 AM', title: 'Scoops Troop Snippets (Reel Making)', venue: 'Entire Campus / Online', type: 'Non-Technical' },
     ]
   },
   {
-    id: 'day3',
-    label: 'DAY 03',
-    date: 'OCT 28',
-    title: 'THE SPY',
+    id: 'e3',
+    label: 'FEB 07-08',
+    date: 'WEEKEND',
+    title: 'THE ARENA',
     events: [
-      { id: 301, time: '09:30 AM', title: 'DEBUGGING CONTEST', venue: 'Russian Base', type: 'Competition' },
-      { id: 302, time: '12:00 PM', title: 'AI & ROBOTICS TALK', venue: 'Cerebro', type: 'Talk' },
-      { id: 303, time: '03:00 PM', title: 'LAN GAMING FINALS', venue: 'The Palace Arcade', type: 'Gaming' },
+      { id: 3, time: '09:00 AM', title: 'Hawkins Arena (Sports)', venue: 'Multiple Venues', type: 'Non-Technical' },
     ]
   },
   {
-    id: 'day4',
-    label: 'DAY 04',
-    date: 'OCT 29',
+    id: 'e4',
+    label: 'FEB 15',
+    date: 'SUNDAY',
+    title: 'THE JOURNAL',
+    events: [
+      { id: 4, time: '09:00 AM', title: "Mr. Clarke's Journal (Infobahn)", venue: 'Online Submissions', type: 'Non-Technical' },
+    ]
+  },
+  {
+    id: 'e5',
+    label: 'FEB 16',
+    date: 'MONDAY',
+    title: 'THE SHOWDOWN',
+    events: [
+      { id: 5, time: '09:00 AM', title: 'The Snow Ball Showdown (Cosplay)', venue: '911 / Campus View / Sky View', type: 'Non-Technical' },
+    ]
+  },
+  {
+    id: 'e6',
+    label: 'FEB 17',
+    date: 'TUESDAY',
+    title: 'THE FLAYER',
+    events: [
+      { id: 6, time: '09:00 AM', title: 'The Prompt Flayer (Prompt Eng.)', venue: 'Room 815', type: 'Technical' },
+    ]
+  },
+  {
+    id: 'e7',
+    label: 'FEB 18',
+    date: 'WEDNESDAY',
+    title: 'THE DESIGN',
+    events: [
+      { id: 7, time: '09:00 AM', title: 'Mindscape Design (UI/UX)', venue: 'MCA Lab 811', type: 'Technical' },
+    ]
+  },
+  {
+    id: 'e8',
+    label: 'FEB 19',
+    date: 'THURSDAY',
+    title: 'THE VISIONS',
+    events: [
+      { id: 8, time: '09:00 AM', title: "Will's Visions (Drawing/Painting)", venue: 'Round Table Area 8th Floor', type: 'Non-Technical' },
+    ]
+  },
+  {
+    id: 'e9',
+    label: 'FEB 20',
+    date: 'FRIDAY',
+    title: 'CODE RED',
+    events: [
+      { id: 9, time: '09:00 AM', title: 'Code Red: Demogorgon Debug', venue: 'MCA Lab 811', type: 'Technical' },
+    ]
+  },
+  {
+    id: 'e10',
+    label: 'FEB 21',
+    date: 'SATURDAY',
     title: 'THE GATE',
     events: [
-      { id: 401, time: '10:00 AM', title: 'PROJECT SHOWCASE', venue: 'Town Hall', type: 'Exhibition' },
-      { id: 402, time: '02:00 PM', title: 'CLOSING KEYNOTE', venue: 'Hawkins High Gym', type: 'Talk' },
-      { id: 403, time: '06:00 PM', title: 'AWARDS NIGHT', venue: 'Snow Ball', type: 'Celebration' },
+      { id: 10, time: '09:00 AM', title: 'Capture the Gate (CTF)', venue: 'MCA Lab 811', type: 'Technical' },
+    ]
+  },
+  {
+    id: 'e11',
+    label: 'FEB 23',
+    date: 'MONDAY',
+    title: 'DUMB DEEDS',
+    events: [
+      { id: 11, time: '09:00 AM', title: 'D&D: Dumb Deeds (Dumb Charads)', venue: 'Room 815', type: 'Non-Technical' },
+    ]
+  },
+  {
+    id: 'e12',
+    label: 'FEB 24',
+    date: 'TUESDAY',
+    title: 'THE BLUEPRINT',
+    events: [
+      { id: 12, time: '09:00 AM', title: 'Plan B: Joyce Blueprint (IT Manager)', venue: 'Room 815', type: 'Technical' },
     ]
   }
 ];
 
 // ... (previous imports and data remain the same, I will just rewrite the component part)
 
-const EventCard = ({ event, index }) => {
+const EventCard = ({ event, index, dayLabel, disableScrollAnimation }) => {
+  const motionProps = disableScrollAnimation
+    ? {}
+    : {
+      initial: { opacity: 0, y: 20 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true, margin: "-50px" },
+      transition: { duration: 0.3, delay: index * 0.05 }
+    };
+
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.3, delay: index * 0.05 }}
+      {...motionProps}
       className="group relative flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 bg-black/40 border border-red-900/30 p-4 sm:p-6 rounded-sm hover:bg-red-900/10 transition-colors w-full"
     >
       {/* Glow Effect on Hover */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-red-900/10 to-transparent transition-opacity pointer-events-none" />
 
-      {/* Time */}
+      {/* Date & Time */}
       <div className="flex flex-row sm:flex-col justify-between sm:justify-center w-full sm:w-auto sm:min-w-[100px] sm:border-r border-red-900/30 sm:pr-6">
-        <span className="font-stranger text-xl sm:text-2xl text-red-500 tracking-wider whitespace-nowrap">{event.time}</span>
-        <span className="font-mono text-[10px] text-gray-600 sm:hidden uppercase tracking-tighter">TIMESTAMP</span>
+        <div className="flex flex-col sm:items-center text-left sm:text-center">
+          {dayLabel && (
+            <span className="font-typewriter text-base sm:text-lg text-gray-200 mb-1 sm:mb-2 block uppercase tracking-wider font-bold">{dayLabel}</span>
+          )}
+          <span className="font-stranger text-xl sm:text-2xl text-red-500 tracking-wider whitespace-nowrap">{event.time}</span>
+        </div>
+        <span className="font-mono text-[10px] text-gray-600 sm:hidden uppercase tracking-tighter self-center">TIMESTAMP</span>
       </div>
 
       {/* Details */}
@@ -95,7 +170,13 @@ const EventCard = ({ event, index }) => {
 };
 
 export default function ScheduleSection() {
-  const [selectedDayId, setSelectedDayId] = useState('day1');
+  const [selectedDayId, setSelectedDayId] = useState('all');
+  const [hasSwitchedTab, setHasSwitchedTab] = useState(false);
+
+  const handleTabClick = (id) => {
+    setSelectedDayId(id);
+    setHasSwitchedTab(true);
+  };
 
   // Helper to render a specific day's content
   const renderDayGroup = (dayData) => (
@@ -118,7 +199,13 @@ export default function ScheduleSection() {
       {/* Event List */}
       <div className="grid gap-3 sm:gap-4">
         {dayData.events.map((event, idx) => (
-          <EventCard key={event.id} event={event} index={idx} />
+          <EventCard
+            key={event.id}
+            event={event}
+            index={idx}
+            dayLabel={dayData.label}
+            disableScrollAnimation={hasSwitchedTab}
+          />
         ))}
       </div>
     </div>
@@ -153,7 +240,7 @@ export default function ScheduleSection() {
           {SCHEDULE_DATA.map((day) => (
             <button
               key={day.id}
-              onClick={() => setSelectedDayId(day.id)}
+              onClick={() => handleTabClick(day.id)}
               className={`relative px-4 sm:px-6 py-2 sm:py-3 min-w-[100px] sm:min-w-[140px] border transition-all duration-300 group overflow-hidden
                 ${selectedDayId === day.id
                   ? 'border-red-600 bg-red-900/20 text-red-100 shadow-[0_0_15px_rgba(220,38,38,0.3)]'
@@ -180,7 +267,7 @@ export default function ScheduleSection() {
 
           {/* ALL EVENTS BUTTON */}
           <button
-            onClick={() => setSelectedDayId('all')}
+            onClick={() => handleTabClick('all')}
             className={`relative px-4 sm:px-6 py-2 sm:py-3 min-w-[100px] sm:min-w-[140px] border transition-all duration-300 group overflow-hidden
                 ${selectedDayId === 'all'
                 ? 'border-red-600 bg-red-900/20 text-red-100 shadow-[0_0_15px_rgba(220,38,38,0.3)]'
