@@ -155,13 +155,13 @@ export function Navbar() {
             >
               Schedule
             </a>
-            <a
-              href="#gallery"
+            <Link
+              to="/gallery"
               onClick={closeMenu}
               className="menu-item font-stranger text-2xl text-gray-300 hover:text-red-400 cursor-pointer transition-all py-2 hover:pl-2"
             >
               Gallery
-            </a>
+            </Link>
           </div>
 
           {/* Decorative bottom element */}

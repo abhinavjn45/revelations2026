@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { MainContent } from './components/MainContent';
 import CustomCursor from './components/CustomCursor';
 import EventsPage from './components/EventsPage';
+import GalleryPage from './components/GalleryPage';
 import { Preloader } from './components/Preloader';
 import './App.css';
 
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
         </Routes>
       </div>
     </Router>
