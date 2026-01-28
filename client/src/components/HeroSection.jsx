@@ -44,7 +44,8 @@ export default function HeroSection({ startAnimation }) {
 
   useEffect(() => {
     if (startAnimation) {
-      setAnimationActive(true);
+      // Defer setState to avoid cascading renders warning
+      Promise.resolve().then(() => setAnimationActive(true));
       shouldStopRef.current = false;
       const timer = setTimeout(() => {
         shouldStopRef.current = true;
@@ -229,27 +230,27 @@ export default function HeroSection({ startAnimation }) {
           </div>
           {/* Hero Main Image at Bottom Center */}
           {/* Hero Main Image at Bottom Center */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full flex justify-center z-30 pb-4">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full flex justify-center z-30">
             <div className="grid place-items-end relative">
               {/* Vecna */}
               <img
                 src={vecnaImg}
                 alt="Vecna"
-                className={`col-start-1 row-start-1 max-w-[180px] w-auto h-[250px] md:h-[300px] lg:h-[350px] object-contain select-none pointer-events-none transition-opacity duration-700 ease-in-out ${activeCharacter === 'vecna' ? 'opacity-100' : 'opacity-0'}`}
+                className={`col-start-1 row-start-1 max-w-[140px] w-auto h-[180px] md:h-[220px] lg:h-[260px] object-contain select-none pointer-events-none transition-opacity duration-700 ease-in-out ${activeCharacter === 'vecna' ? 'opacity-100' : 'opacity-0'}`}
                 draggable="false"
               />
               {/* Will */}
               <img
                 src={willImg}
                 alt="Will"
-                className={`col-start-1 row-start-1 max-w-[180px] w-auto h-[250px] md:h-[300px] lg:h-[350px] object-contain select-none pointer-events-none transition-opacity duration-700 ease-in-out ${activeCharacter === 'main' ? 'opacity-100' : 'opacity-0'}`}
+                className={`col-start-1 row-start-1 max-w-[140px] w-auto h-[180px] md:h-[220px] lg:h-[260px] object-contain select-none pointer-events-none transition-opacity duration-700 ease-in-out ${activeCharacter === 'main' ? 'opacity-100' : 'opacity-0'}`}
                 draggable="false"
               />
               {/* Henry */}
               <img
                 src={henryImg}
                 alt="Henry"
-                className={`col-start-1 row-start-1 max-w-[180px] w-auto h-[250px] md:h-[300px] lg:h-[350px] object-contain select-none pointer-events-none transition-opacity duration-700 ease-in-out ${activeCharacter === 'henry' ? 'opacity-100' : 'opacity-0'}`}
+                className={`col-start-1 row-start-1 max-w-[140px] w-auto h-[180px] md:h-[220px] lg:h-[260px] object-contain select-none pointer-events-none transition-opacity duration-700 ease-in-out ${activeCharacter === 'henry' ? 'opacity-100' : 'opacity-0'}`}
                 draggable="false"
               />
             </div>
