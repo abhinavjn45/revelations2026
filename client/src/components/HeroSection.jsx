@@ -1,5 +1,136 @@
 
 import React, { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import leaderboardData from '../data/leaderboardData';
+
+function LeaderboardPopup({ open, onClose }) {
+  // Sort leaderboard in descending order by points
+  const sortedLeaderboard = [...leaderboardData].sort((a, b) => b.points - a.points);
+  // Compute ranks with ties
+  let lastPoints = null;
+  let lastRank = 0;
+  let skip = 1;
+  const rankedRows = sortedLeaderboard.map((row, idx) => {
+    if (row.points !== lastPoints) {
+      lastRank = idx;
+      skip = 1;
+    } else {
+      skip++;
+    }
+    lastPoints = row.points;
+    return { ...row, rank: lastRank };
+  });
+
+  // Check if all teams have 0 points
+  const allZero = rankedRows.every(row => row.points === 0);
+  // Count unique nonzero point ranks
+  const nonZeroRanks = rankedRows.filter(row => row.points > 0).map(row => row.rank);
+  const uniqueNonZeroRanks = Array.from(new Set(nonZeroRanks));
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-gradient-to-br from-[#1a0505ee] via-[#0a0a0acc] to-[#18181bee] backdrop-blur-[2px]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <motion.div
+            className="relative bg-gradient-to-br from-[#18181b] via-[#1a0505] to-[#18181b] border-2 border-red-700 rounded-3xl shadow-[0_8px_48px_8px_rgba(220,38,38,0.25)] p-8 w-[95vw] max-w-lg mx-auto flex flex-col items-center"
+            initial={{ scale: 0.8, y: 40, opacity: 0 }}
+            animate={{ scale: 1, y: 0, opacity: 1 }}
+            exit={{ scale: 0.8, y: 40, opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            style={{ boxShadow: '0 0 60px 0 #dc2626cc, 0 0 0 2px #b91c1c44' }}
+          >
+            {/* Close button */}
+            <button
+              onClick={onClose}
+              className="absolute top-3 right-3 w-9 h-9 flex items-center justify-center rounded-full bg-red-900/40 hover:bg-red-700/90 text-red-200 hover:text-white transition-all duration-200 focus:outline-none shadow-lg"
+              aria-label="Close leaderboard"
+            >
+              <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path d="M6 6l12 12M6 18L18 6" />
+              </svg>
+            </button>
+            <h2 className="font-stranger text-3xl text-red-500 mb-6 text-center tracking-wider drop-shadow-lg animate-pulse">Leaderboard</h2>
+            <div className="w-full">
+              <table className="w-full text-left font-typewriter text-lg text-gray-200 mb-6">
+                <tbody>
+                <thead>
+                </thead>
+                  {rankedRows.map((row, idx) => {
+                    let colorClass = '';
+                    let icon = null;
+                    let style = {};
+                    if (!allZero && row.points > 0) {
+                      // Only show gold/silver/bronze for as many unique nonzero ranks as exist (max 3)
+                      if (row.rank === 0 && uniqueNonZeroRanks.length >= 1) {
+                        colorClass = 'bg-gradient-to-r from-yellow-400/20 to-yellow-200/10 font-extrabold text-yellow-300 shadow-[0_0_24px_2px_rgba(255,215,0,0.25)] relative rounded-xl';
+                        style = { boxShadow: '0 0 24px 2px #ffd70055, 0 0 0 2px #ffd70044' };
+                        icon = (
+                          <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-yellow-400/80 text-yellow-900 shadow-lg animate-bounce mr-2">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                              <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935"/>
+                            </svg>
+                          </span>
+                        );
+                      } else if (row.rank === 1 && uniqueNonZeroRanks.length >= 2) {
+                        colorClass = 'bg-gradient-to-r from-gray-300/20 to-gray-100/10 font-bold text-gray-200 shadow-[0_0_18px_2px_rgba(180,180,180,0.18)] relative rounded-xl';
+                        style = { boxShadow: '0 0 18px 2px #b0b0b055, 0 0 0 2px #b0b0b044' };
+                        icon = (
+                          <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gray-300/80 text-gray-700 shadow-lg animate-bounce mr-2">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                              <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935"/>
+                            </svg>
+                          </span>
+                        );
+                      } else if (row.rank === 2 && uniqueNonZeroRanks.length >= 3) {
+                        colorClass = 'bg-gradient-to-r from-amber-700/20 to-amber-400/10 font-bold text-amber-300 shadow-[0_0_14px_2px_rgba(205,127,50,0.18)] relative rounded-xl';
+                        style = { boxShadow: '0 0 14px 2px #cd7f3255, 0 0 0 2px #cd7f3244' };
+                        icon = (
+                          <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-400/80 text-amber-900 shadow-lg animate-bounce mr-2">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                              <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935"/>
+                            </svg>
+                          </span>
+                        );
+                      } else {
+                        colorClass = 'hover:bg-red-900/10';
+                      }
+                    } else {
+                      colorClass = 'hover:bg-red-900/10';
+                    }
+                    return (
+                      <tr
+                        key={row.team}
+                        className={`transition-all ${colorClass} mb-2 flex items-center`}
+                        style={style}
+                      >
+                        <td className="py-2 pl-2 flex items-center gap-2 w-3/4">
+                          {icon}
+                          {row.team}
+                        </td>
+                        <td className="py-2 pr-2 text-right w-1/4">{row.points}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+            <button
+              className="mt-2 w-full py-2 rounded-lg bg-gradient-to-r from-red-700 via-red-600 to-red-700 hover:from-yellow-400 hover:to-yellow-500 hover:text-red-900 text-white font-stranger text-base tracking-wide shadow-md transition-all duration-200 border border-red-800 hover:border-yellow-400"
+              style={{ maxWidth: '260px', margin: '0 auto', display: 'block' }}
+              onClick={() => window.open('/leaderboard', '_blank')}
+            >
+              View Full Leaderboard
+            </button>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
 import vecnaImg from '../assets/images/homepage/vecna.png';
 import henryImg from '../assets/images/homepage/henry001-removebg.png';
 import willImg from '../assets/images/homepage/will.png';
@@ -183,6 +314,8 @@ export default function HeroSection({ startAnimation }) {
     return () => cancelAnimationFrame(animationFrameId);
   }, [spotlightAngle, animationActive]);
 
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
+
   return (
     <section className="relative w-full h-screen min-h-[100vh] flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
       {/* Spotlight beam: topmost layer, always visible */}
@@ -304,9 +437,10 @@ export default function HeroSection({ startAnimation }) {
         <button
           className="flex items-center gap-1 p-0 bg-transparent border-none shadow-none text-white font-semibold text-sm md:text-base hover:bg-transparent focus:outline-none"
           style={{ boxShadow: 'none', background: 'none', border: 'none' }}
+          onClick={() => setShowLeaderboard(true)}
         >
           <span className="inline-flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded-full border border-red-600 text-red-600 mr-1 md:mr-2 bg-transparent">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-trophy-fill" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="bi bi-trophy-fill" viewBox="0 0 16 16">
               <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935"/>
             </svg>
           </span>
@@ -314,6 +448,9 @@ export default function HeroSection({ startAnimation }) {
         </button>
         <span className="text-white text-xs font-normal mt-1 mx-auto tracking-wide opacity-80 self-center">Check Team Rankings</span>
       </div>
+
+      {/* Leaderboard Popup */}
+      <LeaderboardPopup open={showLeaderboard} onClose={() => setShowLeaderboard(false)} />
     </section>
   );
 }
