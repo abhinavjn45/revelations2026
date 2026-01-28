@@ -1,14 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { Observer } from 'gsap/Observer';
+import { Flip } from 'gsap/Flip';
 import AtmosphereBackground from './AtmosphereBackground';
 import VeinOverlay from './VeinOverlay';
-import DecryptText from './DecryptText';
+import { Navbar } from './Navbar';
+import Footer from './Footer';
 import '../styles/EventsPage.css';
 
-gsap.registerPlugin(Observer);
+gsap.registerPlugin(Flip);
 
-// Event data - you can customize these
+// Event data with images - customize these
 const events = [
     {
         id: 1,
@@ -64,251 +65,105 @@ const events = [
         type: "Technical",
         bgImage: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80",
     },
-    {
-        id: 7,
-        title: "Mindscape Design",
-        subtitle: "UI/UX",
-        date: "FEB 18",
-        venue: "MCA Lab 811",
-        type: "Technical",
-        bgImage: "https://images.unsplash.com/photo-1558655146-d09347e0b7a9?w=1920&q=80",
-    },
-    {
-        id: 8,
-        title: "Will's Visions",
-        subtitle: "Drawing/Painting",
-        date: "FEB 19",
-        venue: "Round Table Area",
-        type: "Non-Technical",
-        bgImage: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1920&q=80",
-    },
-    {
-        id: 9,
-        title: "Code Red",
-        subtitle: "Demogorgon Debug",
-        date: "FEB 20",
-        venue: "MCA Lab 811",
-        type: "Technical",
-        bgImage: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&q=80",
-    },
-    {
-        id: 10,
-        title: "Capture the Gate",
-        subtitle: "CTF",
-        date: "FEB 21",
-        venue: "MCA Lab 811",
-        type: "Technical",
-        bgImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1920&q=80",
-    },
-    {
-        id: 11,
-        title: "Ddumb Deeds",
-        subtitle: "Dumb Charades",
-        date: "FEB 23",
-        venue: "Room 815",
-        type: "Non-Technical",
-        bgImage: "https://images.unsplash.com/photo-1624138784181-dc7f5b759b2d?w=1920&q=80",
-    },
-    {
-        id: 12,
-        title: "Planner B",
-        subtitle: "IT Manager",
-        date: "FEB 24",
-        venue: "Room 815",
-        type: "Technical",
-        bgImage: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&q=80",
-    },
 ];
 
-// Split text into animated characters
-const AnimatedHeading = React.forwardRef(({ text, charsRef }, ref) => {
-    const words = text.split(' ');
-    let charIndex = 0;
-
-    return (
-        <h2 ref={ref} className="events-section-heading">
-            <div className="clip-text">
-                {words.map((word, wordIdx) => (
-                    <React.Fragment key={wordIdx}>
-                        <span className="word" style={{ display: 'inline-block' }}>
-                            {word.split('').map((char, charIdx) => {
-                                const currentCharIndex = charIndex++;
-                                return (
-                                    <span
-                                        key={charIdx}
-                                        ref={(el) => {
-                                            if (charsRef.current) {
-                                                charsRef.current[currentCharIndex] = el;
-                                            }
-                                        }}
-                                        className="char"
-                                        style={{ display: 'inline-block', opacity: 0 }}
-                                    >
-                                        {char}
-                                    </span>
-                                );
-                            })}
-                        </span>
-                        {wordIdx < words.length - 1 && (
-                            <span style={{ display: 'inline-block' }}>&nbsp;</span>
-                        )}
-                    </React.Fragment>
-                ))}
-            </div>
-        </h2>
-    );
-});
-
-AnimatedHeading.displayName = 'AnimatedHeading';
-
-const EventDetails = React.forwardRef(({ event }, ref) => {
-    return (
-        <div ref={ref} className="event-info-container">
-            <h3 className="event-info-title">{event.subtitle}</h3>
-            <div className="event-meta-grid">
-                <div className="event-meta-item">
-                    <span className="event-meta-label"><DecryptText text="DATE" /></span>
-                    <span className="event-meta-value">{event.date}</span>
-                </div>
-                <div className="event-meta-item">
-                    <span className="event-meta-label"><DecryptText text="VENUE" /></span>
-                    <span className="event-meta-value">{event.venue}</span>
-                </div>
-                <div className="event-meta-item">
-                    <span className="event-meta-label"><DecryptText text="TYPE" /></span>
-                    <span className="event-meta-value">{event.type}</span>
-                </div>
-            </div>
-        </div>
-    );
-});
-
-EventDetails.displayName = 'EventDetails';
-
-import { Navbar } from './Navbar';
-import Footer from './Footer';
-
 const EventsPage = () => {
-    const containerRef = useRef(null);
-    const sectionsRef = useRef([]);
-    const imagesRef = useRef([]);
-    const outerWrappersRef = useRef([]);
-    const innerWrappersRef = useRef([]);
-    const charsRefs = useRef([...events.map(() => ({ current: [] })), { current: [] }]);
-    const detailsRefs = useRef([]); // Refs for detail containers
-    const currentIndexRef = useRef(-1);
-    const animatingRef = useRef(false);
-    const observerRef = useRef(null);
+    const modalRef = useRef(null);
+    const modalContentRef = useRef(null);
+    const modalOverlayRef = useRef(null);
+    const boxesRef = useRef([]);
+    const boxContentsRef = useRef([]);
+    const boxIndexRef = useRef(undefined);
 
     useEffect(() => {
-        const sections = sectionsRef.current.filter(Boolean);
-        const images = imagesRef.current.filter(Boolean);
-        const outerWrappers = outerWrappersRef.current.filter(Boolean);
-        const innerWrappers = innerWrappersRef.current.filter(Boolean);
-        // Details refs might contain nulls if not rendered yet, but should exist
-        const details = detailsRefs.current;
+        const modal = modalRef.current;
+        const modalContent = modalContentRef.current;
+        const modalOverlay = modalOverlayRef.current;
+        const boxes = boxesRef.current.filter(Boolean);
+        const boxesContent = boxContentsRef.current.filter(Boolean);
 
-        if (sections.length === 0) return;
+        if (!modal || !modalContent || !modalOverlay) return;
 
-        const wrap = gsap.utils.wrap(0, sections.length);
+        // Close modal function - called when clicking overlay
+        const closeModal = () => {
+            if (boxIndexRef.current === undefined) return;
 
-        // Initial setup
-        gsap.set(outerWrappers, { yPercent: 100 });
-        gsap.set(innerWrappers, { yPercent: -100 });
+            const currentBox = boxContentsRef.current[boxIndexRef.current];
+            if (!currentBox) return;
 
-        function gotoSection(index, direction) {
-            index = wrap(index);
-            animatingRef.current = true;
+            const state = Flip.getState(currentBox);
+            boxes[boxIndexRef.current].appendChild(currentBox);
+            boxIndexRef.current = undefined;
 
-            const fromTop = direction === -1;
-            const dFactor = fromTop ? -1 : 1;
-            const currentIndex = currentIndexRef.current;
-
-            const tl = gsap.timeline({
-                defaults: { duration: 1.25, ease: "power1.inOut" },
-                onComplete: () => { animatingRef.current = false; }
+            gsap.to([modal, modalOverlay], {
+                autoAlpha: 0,
+                ease: "power2.out",
+                duration: 0.4
             });
 
-            if (currentIndex >= 0 && sections[currentIndex]) {
-                gsap.set(sections[currentIndex], { zIndex: 0 });
-                tl.to(images[currentIndex], { yPercent: -15 * dFactor })
-                    .set(sections[currentIndex], { autoAlpha: 0 });
-            }
-
-            if (sections[index]) {
-                gsap.set(sections[index], { autoAlpha: 1, zIndex: 1 });
-
-                tl.fromTo(
-                    [outerWrappers[index], innerWrappers[index]],
-                    { yPercent: (i) => i ? -100 * dFactor : 100 * dFactor },
-                    { yPercent: 0 },
-                    0
-                )
-                    .fromTo(images[index], { yPercent: 15 * dFactor }, { yPercent: 0 }, 0);
-
-                // Animate characters (only if they exist for this section)
-                const chars = charsRefs.current[index]?.current?.filter(Boolean);
-                if (chars && chars.length > 0) {
-                    tl.fromTo(
-                        chars,
-                        { autoAlpha: 0, yPercent: 150 * dFactor },
-                        {
-                            autoAlpha: 1,
-                            yPercent: 0,
-                            duration: 1,
-                            ease: "power2",
-                            stagger: {
-                                each: 0.02,
-                                from: "random"
-                            }
-                        },
-                        0.2
-                    );
+            Flip.from(state, {
+                duration: 0.5,
+                ease: "power2.out",
+                absolute: true,
+                scale: true,
+                onComplete: () => {
+                    gsap.set(currentBox, { zIndex: "auto", clearProps: "transform" });
                 }
+            });
 
-                // Animate Details (only if they exist for this section)
-                const currentDetail = detailsRefs.current[index];
-                if (currentDetail) {
-                    tl.fromTo(
-                        currentDetail,
-                        { autoAlpha: 0, y: 20 },
-                        { autoAlpha: 1, y: 0, duration: 1, ease: "power2.out" },
-                        0.5 // Delay slightly after title starts
-                    );
+            gsap.set(currentBox, { zIndex: 1002 });
+        };
+
+        // Open modal function - called when clicking a box
+        const openModal = (box, i) => {
+            if (boxIndexRef.current !== undefined) return; // Already open
+
+            const state = Flip.getState(box);
+            modalContent.appendChild(box);
+            boxIndexRef.current = i;
+
+            gsap.set(modal, { autoAlpha: 1 });
+            gsap.set(box, { zIndex: 1002 });
+
+            Flip.from(state, {
+                duration: 0.5,
+                ease: "power2.out",
+                scale: true,
+                absolute: true
+            });
+
+            gsap.to(modalOverlay, { autoAlpha: 0.75, duration: 0.4, ease: "power2.out" });
+        };
+
+        // Add click handlers for opening boxes
+        const handlers = boxesContent.map((box, i) => {
+            const handler = (e) => {
+                e.stopPropagation();
+                if (boxIndexRef.current === undefined) {
+                    openModal(box, i);
                 }
-            }
-
-            currentIndexRef.current = index;
-        }
-
-        // Create observer for scroll/touch interactions
-        observerRef.current = Observer.create({
-            type: "wheel,touch,pointer",
-            wheelSpeed: -1,
-            onDown: () => !animatingRef.current && gotoSection(currentIndexRef.current - 1, -1),
-            onUp: () => !animatingRef.current && gotoSection(currentIndexRef.current + 1, 1),
-            tolerance: 10,
-            preventDefault: true
+            };
+            box.addEventListener('click', handler);
+            return handler;
         });
 
-        // Initialize first section after a short delay
-        const timer = setTimeout(() => {
-            gotoSection(0, 1);
-        }, 100);
+        // Add click handler for overlay to close modal
+        modalOverlay.addEventListener('click', closeModal);
 
         // Cleanup
         return () => {
-            clearTimeout(timer);
-            if (observerRef.current) {
-                observerRef.current.kill();
-            }
-            gsap.killTweensOf([...sections, ...images, ...outerWrappers, ...innerWrappers]);
+            boxesContent.forEach((box, i) => {
+                if (box && handlers[i]) {
+                    box.removeEventListener('click', handlers[i]);
+                }
+            });
+            modalOverlay.removeEventListener('click', closeModal);
         };
     }, []);
 
     return (
-        <div ref={containerRef} className="events-page-container overflow-hidden">
-            {/* Atmosphere Fixed Background */}
+        <div className="events-page-container">
+            {/* Background Effects */}
             <AtmosphereBackground className="fixed z-0 opacity-60" />
             <div className="fixed inset-0 pointer-events-none z-[100]">
                 <VeinOverlay className="top-0 right-0 w-48 h-48 md:w-96 md:h-96 translate-x-1/3 -translate-y-1/3" delay={0.2} rotate={90} />
@@ -317,66 +172,54 @@ const EventsPage = () => {
 
             <Navbar transparent={true} />
 
-            {events.map((event, index) => (
-                <section
-                    key={event.id}
-                    ref={(el) => (sectionsRef.current[index] = el)}
-                    className={`events-section section-${index + 1}`}
-                >
-                    <div
-                        ref={(el) => (outerWrappersRef.current[index] = el)}
-                        className="events-outer"
-                    >
+            {/* Main Content Wrapper */}
+            <div className="events-wrapper">
+                {/* Header */}
+                <div className="events-header-section">
+                    <h2 className="font-stranger text-3xl sm:text-4xl md:text-6xl text-red-600 drop-shadow-[0_0_10px_rgba(220,38,38,0.6)]">
+                        REVELATIONS EVENTS
+                    </h2>
+                    <p className="font-typewriter text-gray-500 mt-2 tracking-widest text-xs sm:text-sm md:text-base">
+                        CLICK ON ANY EVENT TO EXPLORE // LEVEL 4 CLEARANCE
+                    </p>
+                </div>
+
+                {/* Boxes Container */}
+                <div className="boxes-container">
+                    {events.map((event, index) => (
                         <div
-                            ref={(el) => (innerWrappersRef.current[index] = el)}
-                            className="events-inner"
+                            key={event.id}
+                            ref={(el) => (boxesRef.current[index] = el)}
+                            className="box"
                         >
                             <div
-                                ref={(el) => (imagesRef.current[index] = el)}
-                                className="events-bg"
-                                style={{
-                                    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.1) 100%), url(${event.bgImage})`,
-                                }}
+                                ref={(el) => (boxContentsRef.current[index] = el)}
+                                className={`box-content box-content-${index + 1}`}
+                                style={{ backgroundImage: `url(${event.bgImage})` }}
                             >
-                                <AnimatedHeading
-                                    text={event.title}
-                                    charsRef={charsRefs.current[index]}
-                                />
-                                <EventDetails
-                                    event={event}
-                                    ref={(el) => (detailsRefs.current[index] = el)}
-                                />
+                                {/* Event info overlay */}
+                                <div className="event-overlay">
+                                    <h3 className="event-title">{event.title}</h3>
+                                    <span className="event-subtitle">{event.subtitle}</span>
+                                    <div className="event-meta">
+                                        <span className="event-date">{event.date}</span>
+                                        <span className="event-type">{event.type}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-            ))}
-
-            {/* Footer Section */}
-            <section
-                ref={(el) => (sectionsRef.current[events.length] = el)}
-                className={`events-section section-footer`}
-            >
-                <div
-                    ref={(el) => (outerWrappersRef.current[events.length] = el)}
-                    className="events-outer"
-                >
-                    <div
-                        ref={(el) => (innerWrappersRef.current[events.length] = el)}
-                        className="events-inner"
-                    >
-                        <div
-                            ref={(el) => (imagesRef.current[events.length] = el)}
-                            className="events-bg"
-                            style={{ backgroundColor: '#000' }}
-                        >
-                            <div className="w-full h-full flex items-center justify-center">
-                                <Footer />
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
-            </section>
+            </div>
+
+            {/* Modal */}
+            <div ref={modalRef} className="events-modal">
+                <div ref={modalOverlayRef} className="modal-overlay"></div>
+                <div ref={modalContentRef} className="modal-content"></div>
+            </div>
+
+            {/* Footer */}
+            <Footer />
         </div>
     );
 };
