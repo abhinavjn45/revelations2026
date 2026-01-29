@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import AtmosphereBackground from './AtmosphereBackground';
 import DecryptText from './DecryptText';
 import VeinOverlay from './VeinOverlay';
@@ -100,15 +101,18 @@ export default function CTASection() {
           </motion.div>
         </motion.div>
 
-        <motion.a
-          href="#contact"
-          className="inline-block px-8 py-3 bg-red-700 text-white font-typewriter text-lg rounded-none shadow-lg border-2 border-red-600 hover:bg-red-900 transition-colors"
+        <motion.div
           variants={itemVariants}
           whileHover={{ scale: 1.1, textShadow: "0 0 8px rgb(255, 255, 255)" }}
           whileTap={{ scale: 0.95 }}
         >
-          Explore Events
-        </motion.a>
+          <Link
+            to="/events"
+            className="inline-block px-8 py-3 bg-red-700 text-white font-typewriter text-lg rounded-none shadow-lg border-2 border-red-600 hover:bg-red-900 transition-colors"
+          >
+            Explore Events
+          </Link>
+        </motion.div>
       </motion.div>
     </section>
   );

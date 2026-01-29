@@ -71,7 +71,7 @@ export default function AboutSection() {
       >
 
         {/* CARD CONTAINER */}
-        <div className="relative bg-[#0a0a0a]/80 backdrop-blur-xl border border-red-900/30 p-6 md:p-16 rounded-sm shadow-[0_0_50px_rgba(220,38,38,0.1)] overflow-hidden">
+        <div className="relative bg-[#0a0a0a]/80 backdrop-blur-xl border border-red-900/30 p-6 md:px-16 md:pt-16 rounded-sm shadow-[0_0_50px_rgba(220,38,38,0.1)] overflow-hidden">
 
           {/* MOUSE FOLLOW SPOTLIGHT */}
           <motion.div
