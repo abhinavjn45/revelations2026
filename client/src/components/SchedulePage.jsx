@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Navbar } from './Navbar';
+import Footer from './Footer';
 
 // --- Dummy Data ---
 const SCHEDULE_DATA = [
@@ -169,7 +171,7 @@ const EventCard = ({ event, index, dayLabel, disableScrollAnimation }) => {
   );
 };
 
-export default function ScheduleSection() {
+export default function SchedulePage() {
   const [selectedDayId, setSelectedDayId] = useState('all');
   const [hasSwitchedTab, setHasSwitchedTab] = useState(false);
 
@@ -212,102 +214,106 @@ export default function ScheduleSection() {
   );
 
   return (
-    <section className="relative w-full py-16 sm:py-20 bg-[#050505] overflow-hidden">
-      {/* Background Grid/Noise */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none"
-        style={{ backgroundImage: 'linear-gradient(rgba(50, 0, 0, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(50, 0, 0, 0.5) 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
-      </div>
+    <div className="min-h-screen bg-[#050505] flex flex-col">
+      <Navbar />
+      <section className="relative w-full flex-grow py-24 sm:py-28 bg-[#050505] overflow-hidden">
+        {/* Background Grid/Noise */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none"
+          style={{ backgroundImage: 'linear-gradient(rgba(50, 0, 0, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(50, 0, 0, 0.5) 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
+        </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
 
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-10 sm:mb-16"
-        >
-          <h2 className="font-stranger text-3xl sm:text-4xl md:text-6xl text-red-600 drop-shadow-[0_0_10px_rgba(220,38,38,0.6)]">
-            OPERATIONAL TIMELINE
-          </h2>
-          <p className="font-typewriter text-gray-500 mt-2 tracking-widest text-xs sm:text-sm md:text-base">
-            CLASSIFIED EVENT SCHEDULE // LEVEL 4 CLEARANCE
-          </p>
-        </motion.div>
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10 sm:mb-16"
+          >
+            <h2 className="font-stranger text-3xl sm:text-4xl md:text-6xl text-red-600 drop-shadow-[0_0_10px_rgba(220,38,38,0.6)]">
+              OPERATIONAL TIMELINE
+            </h2>
+            <p className="font-typewriter text-gray-500 mt-2 tracking-widest text-xs sm:text-sm md:text-base">
+              CLASSIFIED EVENT SCHEDULE // LEVEL 4 CLEARANCE
+            </p>
+          </motion.div>
 
-        {/* Day Selection Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10 sm:mb-12">
-          {SCHEDULE_DATA.map((day) => (
-            <button
-              key={day.id}
-              onClick={() => handleTabClick(day.id)}
-              className={`relative px-4 sm:px-6 py-2 sm:py-3 min-w-[100px] sm:min-w-[140px] border transition-all duration-300 group overflow-hidden
+          {/* Day Selection Tabs */}
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10 sm:mb-12">
+            {SCHEDULE_DATA.map((day) => (
+              <button
+                key={day.id}
+                onClick={() => handleTabClick(day.id)}
+                className={`relative px-4 sm:px-6 py-2 sm:py-3 min-w-[100px] sm:min-w-[140px] border transition-all duration-300 group overflow-hidden
                 ${selectedDayId === day.id
+                    ? 'border-red-600 bg-red-900/20 text-red-100 shadow-[0_0_15px_rgba(220,38,38,0.3)]'
+                    : 'border-gray-800 bg-black/50 text-gray-500 hover:border-gray-600 hover:text-gray-300'
+                  }`}
+              >
+                <div className="relative z-10 flex flex-col items-center">
+                  <span className={`font-stranger text-lg sm:text-xl ${selectedDayId === day.id ? 'text-red-500' : 'text-current'}`}>
+                    {day.label}
+                  </span>
+                </div>
+
+                {selectedDayId === day.id && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute inset-0 bg-red-600/5 z-0"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  />
+                )}
+              </button>
+            ))}
+
+            {/* ALL EVENTS BUTTON */}
+            <button
+              onClick={() => handleTabClick('all')}
+              className={`relative px-4 sm:px-6 py-2 sm:py-3 min-w-[100px] sm:min-w-[140px] border transition-all duration-300 group overflow-hidden
+                ${selectedDayId === 'all'
                   ? 'border-red-600 bg-red-900/20 text-red-100 shadow-[0_0_15px_rgba(220,38,38,0.3)]'
                   : 'border-gray-800 bg-black/50 text-gray-500 hover:border-gray-600 hover:text-gray-300'
                 }`}
             >
-              <div className="relative z-10 flex flex-col items-center">
-                <span className={`font-stranger text-lg sm:text-xl ${selectedDayId === day.id ? 'text-red-500' : 'text-current'}`}>
-                  {day.label}
+              <div className="relative z-10 flex flex-col items-center justify-center h-full">
+                <span className={`font-stranger text-lg sm:text-xl ${selectedDayId === 'all' ? 'text-red-500' : 'text-current'}`}>
+                  ALL DAYS
                 </span>
+                <span className="font-typewriter text-[10px] sm:text-xs mt-1">FULL LOG</span>
               </div>
-
-              {selectedDayId === day.id && (
+              {selectedDayId === 'all' && (
                 <motion.div
                   layoutId="activeTab"
                   className="absolute inset-0 bg-red-600/5 z-0"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
                 />
               )}
             </button>
-          ))}
+          </div>
 
-          {/* ALL EVENTS BUTTON */}
-          <button
-            onClick={() => handleTabClick('all')}
-            className={`relative px-4 sm:px-6 py-2 sm:py-3 min-w-[100px] sm:min-w-[140px] border transition-all duration-300 group overflow-hidden
-                ${selectedDayId === 'all'
-                ? 'border-red-600 bg-red-900/20 text-red-100 shadow-[0_0_15px_rgba(220,38,38,0.3)]'
-                : 'border-gray-800 bg-black/50 text-gray-500 hover:border-gray-600 hover:text-gray-300'
-              }`}
-          >
-            <div className="relative z-10 flex flex-col items-center justify-center h-full">
-              <span className={`font-stranger text-lg sm:text-xl ${selectedDayId === 'all' ? 'text-red-500' : 'text-current'}`}>
-                ALL DAYS
-              </span>
-              <span className="font-typewriter text-[10px] sm:text-xs mt-1">FULL LOG</span>
-            </div>
-            {selectedDayId === 'all' && (
+          {/* Schedule Content */}
+          <div className="min-h-[400px]">
+            <AnimatePresence mode="wait">
               <motion.div
-                layoutId="activeTab"
-                className="absolute inset-0 bg-red-600/5 z-0"
-              />
-            )}
-          </button>
-        </div>
+                key={selectedDayId}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                {selectedDayId === 'all'
+                  ? SCHEDULE_DATA.map(day => renderDayGroup(day))
+                  : renderDayGroup(SCHEDULE_DATA.find(d => d.id === selectedDayId))
+                }
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
-        {/* Schedule Content */}
-        <div className="min-h-[400px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={selectedDayId}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              {selectedDayId === 'all'
-                ? SCHEDULE_DATA.map(day => renderDayGroup(day))
-                : renderDayGroup(SCHEDULE_DATA.find(d => d.id === selectedDayId))
-              }
-            </motion.div>
-          </AnimatePresence>
         </div>
-
-      </div>
-    </section>
+      </section>
+      <Footer />
+    </div>
   );
 }

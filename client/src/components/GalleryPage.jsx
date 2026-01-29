@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navbar } from './Navbar';
+import Footer from './Footer';
 import '../styles/GalleryPage.css';
 
 // 2024 Images
@@ -238,6 +239,8 @@ const GalleryPage = () => {
                     </div>
                 </div>
             )}
+
+            <Footer />
         </div>
     );
 };

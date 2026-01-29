@@ -5,6 +5,7 @@ import CustomCursor from './components/CustomCursor';
 import EventsPage from './components/EventsPage';
 import GalleryPage from './components/GalleryPage';
 import LeaderboardPage from './components/LeaderboardPage';
+import SchedulePage from './components/SchedulePage';
 
 import { Preloader } from './components/Preloader';
 import AboutPage from './components/AboutPage';
@@ -34,6 +35,7 @@ function App() {
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/leaderboard" element={<LeaderboardPage />} />
+          <Route path="/schedule" element={<SchedulePage />} />
         </Routes>
       </div>
     </Router>
