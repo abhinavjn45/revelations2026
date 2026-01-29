@@ -131,6 +131,61 @@ export default function LeaderboardPage() {
                         </div>
                     </motion.div>
 
+                    {/* Top 3 Podium */}
+                    {!allZero && rankedRows.length >= 3 && (
+                        <div className="flex justify-center items-end gap-4 md:gap-8 mb-16 h-64 md:h-80 select-none">
+                            {/* 2nd Place */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.4 }}
+                                className="flex flex-col items-center w-1/3 md:w-1/4"
+                            >
+                                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-gray-400 overflow-hidden mb-4 shadow-[0_0_20px_rgba(156,163,175,0.5)] bg-gray-900 flex items-center justify-center z-10">
+                                    <span className="font-stranger text-2xl md:text-3xl text-gray-400">2</span>
+                                </div>
+                                <div className="w-full bg-gradient-to-t from-gray-900 to-gray-800 border-t-4 border-gray-400 h-32 md:h-40 rounded-t-lg flex flex-col items-center justify-start pt-4 shadow-[0_0_15px_rgba(156,163,175,0.2)]">
+                                    <p className="font-typewriter text-red-400 text-xs md:text-sm font-bold truncate w-full px-2 text-center mb-1">{rankedRows[1].team}</p>
+                                    <p className="font-stranger text-xl md:text-3xl text-white drop-shadow-md">{rankedRows[1].points}</p>
+                                </div>
+                            </motion.div>
+
+                            {/* 1st Place */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.2 }}
+                                className="flex flex-col items-center w-1/3 md:w-1/4 z-20"
+                            >
+                                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border-4 border-yellow-500 overflow-hidden mb-4 shadow-[0_0_30px_rgba(234,179,8,0.6)] bg-gray-900 flex items-center justify-center relative">
+                                    <div className="absolute inset-0 bg-yellow-500/20 animate-pulse rounded-full"></div>
+                                    <span className="font-stranger text-3xl md:text-4xl text-yellow-500 relative z-10">1</span>
+                                </div>
+                                <div className="w-full bg-gradient-to-t from-gray-900 to-yellow-900/30 border-t-4 border-yellow-500 h-40 md:h-52 rounded-t-lg flex flex-col items-center justify-start pt-6 shadow-[0_0_40px_rgba(234,179,8,0.3)]">
+                                    <span className="text-yellow-500 text-2xl md:text-3xl animate-bounce mb-2">👑</span>
+                                    <p className="font-typewriter text-yellow-400 text-xs md:text-base font-bold truncate w-full px-2 text-center mb-1">{rankedRows[0].team}</p>
+                                    <p className="font-stranger text-3xl md:text-5xl text-white drop-shadow-lg">{rankedRows[0].points}</p>
+                                </div>
+                            </motion.div>
+
+                            {/* 3rd Place */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.6 }}
+                                className="flex flex-col items-center w-1/3 md:w-1/4"
+                            >
+                                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-amber-700 overflow-hidden mb-4 shadow-[0_0_20px_rgba(180,83,9,0.5)] bg-gray-900 flex items-center justify-center z-10">
+                                    <span className="font-stranger text-2xl md:text-3xl text-amber-700">3</span>
+                                </div>
+                                <div className="w-full bg-gradient-to-t from-gray-900 to-amber-900/20 border-t-4 border-amber-700 h-24 md:h-32 rounded-t-lg flex flex-col items-center justify-start pt-4 shadow-[0_0_15px_rgba(180,83,9,0.2)]">
+                                    <p className="font-typewriter text-amber-600 text-xs md:text-sm font-bold truncate w-full px-2 text-center mb-1">{rankedRows[2].team}</p>
+                                    <p className="font-stranger text-xl md:text-3xl text-white drop-shadow-md">{rankedRows[2].points}</p>
+                                </div>
+                            </motion.div>
+                        </div>
+                    )}
+
                     {/* Leaderboard Table */}
                     <motion.div
                         className="bg-gradient-to-br from-gray-900/80 via-[#1a0505]/60 to-gray-900/80 border border-red-900/30 rounded-2xl p-6 md:p-8 backdrop-blur-sm shadow-[0_0_60px_rgba(220,38,38,0.15)]"
