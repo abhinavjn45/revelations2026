@@ -2,123 +2,107 @@ import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import '../styles/StrangerThingsPreloader.css';
 
-/**
- * StrangerThingsPreloader - A Stranger Things inspired SVG line animation preloader
- * Uses GSAP for smooth stroke drawing animation with neon glow effects
- */
 export function StrangerThingsPreloader({ onComplete, text = "REVELATIONS" }) {
     const containerRef = useRef(null);
     const textGroupRef = useRef(null);
     const lettersRef = useRef([]);
     const [isVisible, setIsVisible] = useState(true);
 
-    // Letter spacing configuration
-    const spacing = 65;
-
     useEffect(() => {
         if (!textGroupRef.current) return;
 
         const letters = lettersRef.current.filter(Boolean);
 
-        // Calculate stroke length for each letter and set up dasharray/dashoffset
+        // 1. Setup Stroke Logic
         letters.forEach(letter => {
             if (letter) {
-                const length = letter.getComputedTextLength() * 3; // Estimate stroke length
+                const length = letter.getComputedTextLength() * 5;
                 letter.style.strokeDasharray = length;
                 letter.style.strokeDashoffset = length;
             }
         });
 
-        // Create the main GSAP animation timeline
+        // 2. Main Animation Timeline
         const tl = gsap.timeline({
-            delay: 0.5,
+            delay: 0.1, // Reduced start delay
             onComplete: () => {
-                // Wait a bit then fade out and complete
+                // Reduced wait time significantly (was 1500ms)
                 setTimeout(() => {
                     gsap.to(containerRef.current, {
                         opacity: 0,
-                        duration: 0.5,
+                        duration: 0.4, // Faster fade out
                         onComplete: () => {
                             setIsVisible(false);
                             onComplete?.();
                         }
                     });
-                }, 1500);
+                }, 400); // Only wait 0.4s after animation finishes
             }
         });
 
-        // Phase 1: Stroke Drawing Animation (R -> S sequence)
-        tl.to(letters, {
-            strokeDashoffset: 0,
-            duration: 2.5,
-            ease: "power2.inOut",
-            stagger: 0.2
-        })
-
-            // Phase 2: Fill Fade In
+        tl
+            // Phase 1: Draw Strokes (Total time approx 1.8s)
+            .to(letters, {
+                strokeDashoffset: 0,
+                duration: 1.2,      // Was 2.5
+                ease: "power2.inOut",
+                stagger: 0.08       // Was 0.2 (Tightens the sequence)
+            })
+            // Phase 2: Fade in Red Fill (Happens during the last part of strokes)
             .to(letters, {
                 fill: "#e71d24",
-                strokeWidth: 0,
-                duration: 1.5,
+                stroke: "#e71d24",
+                strokeWidth: 1,
+                duration: 0.8,      // Was 1.5
                 ease: "power2.out",
-                opacity: 1
-            }, "-=1") // Overlap slightly with drawing
-
-            // Phase 3: Slow Zoom effect
+                opacity: 1,
+                filter: "drop-shadow(0 0 10px rgba(231, 29, 36, 0.8))"
+            }, "-=1.0") // Overlap aggressively
+            // Phase 3: Subtle Zoom
             .to(textGroupRef.current, {
-                scale: 1.1,
+                scale: 1.05, // Reduced scale slightly since time is shorter
                 transformOrigin: "center center",
-                duration: 5,
+                duration: 2.5, // Matches total shortened time
                 ease: "linear"
-            }, 0); // Start scaling at the beginning
+            }, 0);
 
-        // Phase 4: Flickering Neon Glow (continuous)
-        gsap.to(letters, {
-            filter: "drop-shadow(0 0 15px rgba(231, 29, 36, 0.8))",
-            duration: 0.1,
-            repeat: -1,
-            yoyo: true,
-            repeatDelay: 0.2,
-            ease: "power1.inOut"
-        });
-
-        // Cleanup
         return () => {
             tl.kill();
             gsap.killTweensOf(letters);
         };
     }, [onComplete]);
 
-    // Calculate starting X position for centering
-    const startX = 400 - ((text.length * spacing) / 2);
-
     if (!isVisible) return null;
 
     return (
-        <div
-            ref={containerRef}
-            className="stranger-things-preloader"
-        >
+        <div ref={containerRef} className="stranger-things-preloader">
             <div className="stranger-things-container">
                 <svg viewBox="0 0 800 150">
-                    <g ref={textGroupRef} id="text-group">
+                    <text
+                        ref={textGroupRef}
+                        x="50%"
+                        y="100"
+                        textAnchor="middle"
+                        className="stranger-text-group"
+                        style={{ letterSpacing: '-20px' }}
+                    >
                         {text.split('').map((char, index) => (
-                            <text
+                            <tspan
                                 key={index}
                                 ref={el => lettersRef.current[index] = el}
-                                className="stranger-letter"
-                                x={startX + (index * spacing)}
-                                y="100"
+                                className="stranger-letter font-stranger"
+                                style={{
+                                    fill: 'transparent',
+                                    stroke: '#e71d24',
+                                    strokeWidth: '2px',
+                                }}
                             >
                                 {char}
-                            </text>
+                            </tspan>
                         ))}
-                    </g>
+                    </text>
                 </svg>
             </div>
-
-            {/* Glow overlay for extra effect */}
-            <div className="glow-overlay"></div>
         </div>
     );
 }
