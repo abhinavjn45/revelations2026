@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from './Navbar';
@@ -9,7 +8,20 @@ import DrSrideviImg from '../assets/images/team/Dr. Shidevi R.jpeg';
 import DrShivangiImg from '../assets/images/team/Dr. Shivangi Singh.jpeg';
 import DrSureshImg from '../assets/images/team/Dr. Suresh Kalaimani.jpeg';
 
-// Example data (replace with real data and images)
+// Import core committee images
+import KripaDhandhaniaImg from '../assets/images/team/Kripa Dhandhania_CC_MCAA.png';
+import EvanaImg from '../assets/images/team/Evana_CC_MCA_B.jpg';
+import VanshikaImg from '../assets/images/team/Vanshika_CC_MscAIML.png';
+import AdarshGuptaImg from '../assets/images/team/Adarsh Gupta_CC_MCA A.jpg';
+import BhavyaImg from '../assets/images/team/bhavya.png';
+import ChrisAsirImg from '../assets/images/team/Chris Asir Samuel _CC_MScAIML.png';
+
+// Import website developer images
+import HariPrasadImg from '../assets/images/team/Hari Prasad.png';
+import DarshanHebleImg from '../assets/images/team/darshanheble.png';
+import AbhinavJainImg from '../assets/images/team/abhinav.png';
+
+
 const facultyCoordinators = [
 	{
 		name: 'Dr. Sridevi R',
@@ -36,19 +48,19 @@ const websiteDevelopers = [
 		name: 'Darshan Heble',
 		class: '3 MCA A',
 		phrase: 'Crafting portals to new worlds.',
-		image: '/images/devs/darshan.jpg',
+		image: DarshanHebleImg,
 	},
 	{
 		name: 'Hari Prasad',
 		class: '3 MCA A',
 		phrase: 'Animating the Upside Down.',
-		image: '/images/devs/hari.jpg',
+		image: HariPrasadImg,
 	},
 	{
 		name: 'Abhinav Jain',
 		class: '3 MCA B',
 		phrase: 'Code, coffee, and curiosity.',
-		image: '/images/devs/abhinav.jpg',
+		image: AbhinavJainImg,
 	},
 ];
 
@@ -57,37 +69,37 @@ const coreCommittee = [
 		name: 'Kripa Dhandhania',
 		class: '3 MCA A',
 		phrase: 'Master of the upside.',
-		image: '/images/core/kripa.jpg',
+		image: KripaDhandhaniaImg,
 	},
 	{
 		name: 'Evana Joseph',
 		class: '3 MCA B',
 		phrase: 'Stranger things within.',
-		image: '/images/core/evana.jpg',
+		image: EvanaImg,
 	},
 	{
 		name: 'Vanshika Srinivas',
 		class: '3 MSC AIML',
 		phrase: 'The code whisperer.',
-		image: '/images/core/vanshika.jpg',
+		image: VanshikaImg,
 	},
 	{
 		name: 'Adarsh Gupta',
 		class: '3 MCA A',
 		phrase: 'Bringing order to chaos.',
-		image: '/images/core/adarsh.jpg',
+		image: AdarshGuptaImg,
 	},
 	{
 		name: 'Bhavya Dhanuka',
 		class: '3 MCA B',
 		phrase: 'The creative spark.',
-		image: '/images/core/bhavya.jpg',
+		image: BhavyaImg,
 	},
 	{
-		name: 'Chris Asir Samuel ',
+		name: 'Chris Asir Samuel',
 		class: '3 MSC AIML',
 		phrase: 'Guardian of the gate.',
-		image: '/images/core/chris.jpg',
+		image: ChrisAsirImg,
 	},
 ];
 
