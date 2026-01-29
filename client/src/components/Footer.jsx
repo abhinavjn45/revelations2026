@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const SocialLink = ({ href, label, icon }) => (
@@ -17,6 +17,12 @@ const SocialLink = ({ href, label, icon }) => (
 );
 
 const Footer = () => {
+    const location = useLocation();
+    const handleHomeClick = (e) => {
+        if (location.pathname === '/') {
+            window.location.reload();
+        }
+    };
     return (
         <footer className="relative w-full bg-black pt-20 pb-10 overflow-hidden border-t border-red-900/30">
             {/* --- ATMOSPHERIC EFFECTS --- */}
@@ -89,7 +95,7 @@ const Footer = () => {
                             Transmission
                         </h3>
                         <ul className="space-y-3 font-typewriter text-sm text-gray-400">
-                            {[
+                            {[ 
                                 { name: 'Home', path: '/' },
                                 { name: 'Events', path: '/events' },
                                 { name: 'Our Team', path: '/about' },
@@ -103,7 +109,7 @@ const Footer = () => {
                                     className="cursor-pointer flex items-center gap-2"
                                 >
                                     <span className="w-1 h-1 bg-red-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    <Link to={item.path}>{item.name}</Link>
+                                    <Link to={item.path} onClick={item.name === 'Home' ? handleHomeClick : undefined}>{item.name}</Link>
                                 </motion.li>
                             ))}
                         </ul>

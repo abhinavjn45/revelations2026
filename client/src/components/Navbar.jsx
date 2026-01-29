@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import revelationsLogo from '../assets/images/revelations-logo.svg';
 import christLogo from '../assets/images/christ-logo.svg';
 import christSmallLogo from '../assets/images/christ-small-logo.svg';
 
 export function Navbar() {
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const torchRef = useRef(null);
@@ -84,7 +85,7 @@ export function Navbar() {
 
         {/* Right: Inline Links (Desktop) */}
         <div className="hidden lg:flex items-center gap-8 z-30 mr-8 ml-auto" style={{ height: '100%' }}>
-          {[
+          {[ 
             { name: 'Home', path: '/' },
             { name: 'Events', path: '/events' },
             { name: 'Schedule', path: '/schedule' },
@@ -93,6 +94,7 @@ export function Navbar() {
               key={link.name}
               to={link.path}
               className="font-stranger text-lg text-gray-300 hover:text-red-500 transition-colors tracking-wide drop-shadow-md"
+              onClick={link.name === 'Home' ? (e => { if (location.pathname === '/') window.location.reload(); }) : undefined}
             >
               {link.name}
             </Link>
@@ -146,7 +148,7 @@ export function Navbar() {
           <div className="flex flex-col items-center space-y-5">
             <Link
               to="/"
-              onClick={closeMenu}
+              onClick={e => { closeMenu(); if (location.pathname === '/') window.location.reload(); }}
               className="menu-item font-stranger text-2xl text-gray-300 hover:text-red-400 cursor-pointer transition-all py-2 border-b border-red-900/20 hover:border-red-600/50 hover:pl-2"
             >
               Home

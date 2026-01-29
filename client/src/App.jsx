@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { MainContent } from './components/MainContent';
 import CustomCursor from './components/CustomCursor';
@@ -53,6 +53,16 @@ function HomePage() {
 // Separate component to use useLocation inside Router
 function AppRoutes() {
   const location = useLocation();
+
+  // Scroll to top on route change
+  useEffect(() => {
+    // Scroll both window and root element to handle all cases
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    const root = document.getElementById('root');
+    if (root) root.scrollTop = 0;
+  }, [location.pathname]);
 
   return (
     <div className="bg-[#0a0a0a]">
