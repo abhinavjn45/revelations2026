@@ -142,7 +142,6 @@ const EventCard = ({ event, index, dayLabel, disableScrollAnimation }) => {
           {dayLabel && (
             <span className="font-typewriter text-base sm:text-lg text-gray-200 mb-1 sm:mb-2 block uppercase tracking-wider font-bold">{dayLabel}</span>
           )}
-          <span className="font-stranger text-xl sm:text-2xl text-red-500 tracking-wider whitespace-nowrap">{event.time}</span>
         </div>
         <span className="font-mono text-[10px] text-gray-600 sm:hidden uppercase tracking-tighter self-center">TIMESTAMP</span>
       </div>
