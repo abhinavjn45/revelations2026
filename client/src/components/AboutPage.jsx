@@ -8,19 +8,19 @@ import Footer from './Footer';
 const facultyCoordinators = [
 	{
 		name: 'Dr. Sridevi R',
-		designation: 'Professor',
+		designation: 'Associate Professor',
 		phrase: 'Guiding us through the Upside Down.',
 		image: '/images/faculty/sridevi.jpg',
 	},
     {
-		name: 'Dr. Shivani Singh',
+		name: 'Dr. Shivangi Singh',
 		designation: 'Assistant Professor',
 		phrase: 'Lighting the way for all.',
-		image: '/images/faculty/shivani.jpg',
+		image: '/images/faculty/shivangi.jpg',
 	},
 	{
 		name: 'Dr. Suresh Kalaimani',
-		designation: 'Associate Professor',
+		designation: 'Assistant Professor',
 		phrase: 'The mind behind the code.',
 		image: '/images/faculty/suresh.jpg',
 	},
