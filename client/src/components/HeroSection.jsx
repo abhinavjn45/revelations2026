@@ -57,8 +57,8 @@ function LeaderboardPopup({ open, onClose }) {
             <div className="w-full">
               <table className="w-full text-left font-typewriter text-lg text-gray-200 mb-6">
                 <tbody>
-                <thead>
-                </thead>
+                  <thead>
+                  </thead>
                   {rankedRows.map((row, idx) => {
                     let colorClass = '';
                     let icon = null;
@@ -71,7 +71,7 @@ function LeaderboardPopup({ open, onClose }) {
                         icon = (
                           <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-yellow-400/80 text-yellow-900 shadow-lg animate-bounce mr-2">
                             <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                              <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935"/>
+                              <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935" />
                             </svg>
                           </span>
                         );
@@ -81,7 +81,7 @@ function LeaderboardPopup({ open, onClose }) {
                         icon = (
                           <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gray-300/80 text-gray-700 shadow-lg animate-bounce mr-2">
                             <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                              <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935"/>
+                              <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935" />
                             </svg>
                           </span>
                         );
@@ -91,7 +91,7 @@ function LeaderboardPopup({ open, onClose }) {
                         icon = (
                           <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-400/80 text-amber-900 shadow-lg animate-bounce mr-2">
                             <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                              <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935"/>
+                              <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935" />
                             </svg>
                           </span>
                         );
@@ -441,9 +441,9 @@ export default function HeroSection({ startAnimation }) {
               <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
             </svg>
           </span>
-          <span className="text-red-600 font-normal">Watch Now</span>
+          <span className="text-red-600 font-typewriter">Watch Now</span>
         </button>
-        <span className="text-white text-xs font-normal mt-1 mx-auto tracking-wide opacity-80 self-center">2026 Theme Reveal</span>
+        <span className="text-white text-xs font-typewriter mt-1 mx-auto tracking-wide opacity-80 self-center">2026 Theme Reveal</span>
       </div>
 
       {/* leaderboard button bottom right */}
@@ -457,9 +457,9 @@ export default function HeroSection({ startAnimation }) {
               <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935" />
             </svg>
           </span>
-          <span className="text-red-600 font-normal">Leaderboard</span>
+          <span className="text-red-600 font-typewriter">Leaderboard</span>
         </Link>
-        <span className="text-white text-xs font-normal mt-1 mx-auto tracking-wide opacity-80 self-center">Check Team Rankings</span>
+        <span className="text-white text-xs font-typewriter mt-1 mx-auto tracking-wide opacity-80 self-center">Check Team Rankings</span>
       </div>
 
       {/* Leaderboard Popup */}

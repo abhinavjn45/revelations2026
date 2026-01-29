@@ -31,3 +31,81 @@ body,
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+/* ========================================
+   CUSTOM SCROLLBAR - Stranger Things Theme
+   ======================================== */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b91c1c #0a0a0a;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(
+    180deg,
+    #0a0a0a 0%,
+    #111111 50%,
+    #0a0a0a 100%
+  );
+  border-left: 1px solid rgba(185, 28, 28, 0.15);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    #8b1a1a 0%,
+    #b91c1c 30%,
+    #dc2626 50%,
+    #b91c1c 70%,
+    #8b1a1a 100%
+  );
+  border-radius: 6px;
+  border: 1px solid rgba(255, 51, 51, 0.3);
+  box-shadow: 
+    0 0 8px rgba(185, 28, 28, 0.5),
+    inset 0 0 6px rgba(255, 100, 100, 0.2);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    #a62020 0%,
+    #dc2626 30%,
+    #ef4444 50%,
+    #dc2626 70%,
+    #a62020 100%
+  );
+  box-shadow: 
+    0 0 15px rgba(220, 38, 38, 0.8),
+    0 0 25px rgba(185, 28, 28, 0.4),
+    inset 0 0 8px rgba(255, 150, 150, 0.3);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(
+    180deg,
+    #7f1d1d 0%,
+    #991b1b 30%,
+    #b91c1c 50%,
+    #991b1b 70%,
+    #7f1d1d 100%
+  );
+  box-shadow: 
+    0 0 20px rgba(239, 68, 68, 0.9),
+    0 0 35px rgba(220, 38, 38, 0.6),
+    inset 0 0 10px rgba(255, 200, 200, 0.4);
+}
+
+::-webkit-scrollbar-corner {
+  background: #0a0a0a;
+}
