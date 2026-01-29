@@ -22,7 +22,7 @@ const facultyCoordinators = [
 		name: 'Dr. Suresh Kalaimani',
 		designation: 'Assistant Professor',
 		phrase: 'The mind behind the code.',
-		image: '/images/faculty/suresh.jpg',
+		image: 'https://media.licdn.com/dms/image/v2/C5603AQG11oQQPpIp_A/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1624613520462?e=1771459200&v=beta&t=CY-uudTLfW-tLZs-7iej7ZDEX2rzXKZNE-H2eGp47u8',
 	},
 ];
 
