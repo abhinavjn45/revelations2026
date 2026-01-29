@@ -136,6 +136,7 @@ import { Link } from 'react-router-dom';
 import vecnaImg from '../assets/images/homepage/vecna.png';
 import henryImg from '../assets/images/homepage/henry001-removebg.png';
 import willImg from '../assets/images/homepage/will.png';
+import strangerThingsBg from '../assets/images/strngrthings bg.png';
 
 
 function getTimeRemaining(targetDate) {
@@ -321,6 +322,16 @@ export default function HeroSection({ startAnimation }) {
 
   return (
     <section className="relative w-full h-screen min-h-[100vh] flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 z-0 opacity-10 pointer-events-none"
+        style={{
+          backgroundImage: `url('${strangerThingsBg}')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      />
       {/* Spotlight beam: topmost layer, always visible */}
       {/* Spotlight beam: topmost layer, always visible */}
       <div
