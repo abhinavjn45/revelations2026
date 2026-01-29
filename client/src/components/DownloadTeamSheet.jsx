@@ -1,23 +1,65 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import teamSheetFile from '../assets/csv/Team Details Sheet.xlsx';
+import * as XLSX from 'xlsx';
+import { TEAMS_DATA } from '../data/teamData';
 
 export default function DownloadTeamSheet() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Create a temporary link to trigger download
-        const link = document.createElement('a');
-        link.href = teamSheetFile;
-        link.download = 'Revelations_2026_Team_Details.xlsx';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        // Create workbook
+        const workbook = XLSX.utils.book_new();
+
+        // Create a summary sheet with all teams
+        const summaryData = TEAMS_DATA.map(team => ({
+            'Team Name': team.name,
+            'Tagline': team.tagline,
+            'Total Members': team.students.length,
+            'Description': team.description
+        }));
+        const summarySheet = XLSX.utils.json_to_sheet(summaryData);
+        XLSX.utils.book_append_sheet(workbook, summarySheet, 'Summary');
+
+        // Create a sheet for each team
+        TEAMS_DATA.forEach(team => {
+            const teamData = team.students.map(student => ({
+                'Sl. No': student.slNo,
+                'Name': student.name,
+                'Register Number': student.regNo,
+                'Section': student.section
+            }));
+
+            const teamSheet = XLSX.utils.json_to_sheet(teamData);
+
+            // Truncate sheet name to 31 chars (Excel limit)
+            const sheetName = team.name.substring(0, 31);
+            XLSX.utils.book_append_sheet(workbook, teamSheet, sheetName);
+        });
+
+        // Create a combined "All Students" sheet
+        const allStudents = [];
+        TEAMS_DATA.forEach(team => {
+            team.students.forEach(student => {
+                allStudents.push({
+                    'Team': team.name,
+                    'Sl. No': student.slNo,
+                    'Name': student.name,
+                    'Register Number': student.regNo,
+                    'Section': student.section
+                });
+            });
+        });
+        const allStudentsSheet = XLSX.utils.json_to_sheet(allStudents);
+        XLSX.utils.book_append_sheet(workbook, allStudentsSheet, 'All Students');
+
+        // Generate file and trigger download
+        const fileName = `Revelations_2026_Team_Sheet.xlsx`;
+        XLSX.writeFile(workbook, fileName);
 
         // Redirect back to home after download
         setTimeout(() => {
             navigate('/');
-        }, 1500);
+        }, 1000);
     }, [navigate]);
 
     return (
@@ -30,7 +72,7 @@ export default function DownloadTeamSheet() {
                 </div>
                 <h1 className="font-stranger text-3xl text-red-600 mb-2">DOWNLOADING...</h1>
                 <p className="font-typewriter text-gray-400 text-sm">
-                    Your team sheet is being downloaded
+                    Your team sheet is being prepared
                 </p>
             </div>
         </div>
