@@ -48,24 +48,6 @@ function HomePage() {
   );
 }
 
-function App() {
-  return (
-    <Router>
-      <div className="bg-[#0a0a0a]">
-        <CustomCursor />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/events" element={<EventsPage />} />
-          <Route path="/gallery" element={<GalleryPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/leaderboard" element={<LeaderboardPage />} />
-          <Route path="/schedule" element={<SchedulePage />} />
-        </Routes>
-      </div>
-    </Router>
-  );
-}
-
 // Separate component to use useLocation inside Router
 function AppRoutes() {
   const location = useLocation();
@@ -90,8 +72,26 @@ function AppRoutes() {
             <AboutPage />
           </PageWrapper>
         } />
+        <Route path="/leaderboard" element={
+          <PageWrapper key={location.key}>
+            <LeaderboardPage />
+          </PageWrapper>
+        } />
+        <Route path="/schedule" element={
+          <PageWrapper key={location.key}>
+            <SchedulePage />
+          </PageWrapper>
+        } />
       </Routes>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppRoutes />
+    </Router>
   );
 }
 
