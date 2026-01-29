@@ -117,8 +117,8 @@ const committeeHeads = [
 const techStack = [
 	{ name: 'React', icon: 'https://skillicons.dev/icons?i=react', description: 'Frontend Library' },
 	{ name: 'Tailwind CSS', icon: 'https://skillicons.dev/icons?i=tailwind', description: 'Styling' },
-	{ name: 'Framer Motion', icon: 'https://skillicons.dev/icons?i=framer', description: 'Animations' },
-	{ name: 'Vite', icon: 'https://skillicons.dev/icons?i=vite', description: 'Build Tool' },
+	{ name: 'Framer Motion', icon: 'https://cdn.brandfetch.io/idDJv1mfrb/w/1080/h/1080/theme/dark/icon.png?c=1bxid64Mup7aczewSAYMX&t=1753779057992', description: 'Animations' },
+	{ name: 'GSAP', icon: 'https://miro.medium.com/v2/resize:fit:4800/format:webp/1*wGdP-ym3kqQopOA9us8nXg.jpeg', description: 'Animations' },
 ];
 
 function ThemedTechCard({ name, icon, description }) {
@@ -131,7 +131,7 @@ function ThemedTechCard({ name, icon, description }) {
 				<img
 					src={icon}
 					alt={name}
-					className="w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300"
+					className="w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300 rounded-xl"
 				/>
 			</div>
 			<div className="font-stranger text-lg text-red-400">{name}</div>
@@ -250,7 +250,7 @@ export default function AboutPage() {
 						transition={{ delay: 0.2 }}
 						className="border-t border-red-900/30 pt-10"
 					>
-						<h2 className="font-stranger text-xl md:text-2xl text-red-800/80 mb-6 text-center tracking-widest drop-shadow">Tech Stack</h2>
+						<h2 className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse">Tech Stack</h2>
 						<div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
 							{techStack.map((t) => (
 								<ThemedTechCard key={t.name} name={t.name} icon={t.icon} description={t.description} />

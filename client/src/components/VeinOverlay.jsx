@@ -11,7 +11,7 @@ export default function VeinOverlay({ className = "", delay = 0, rotate = 0 }) {
     return (
         <svg
             viewBox="0 0 100 100"
-            className={`absolute pointer-events-none opacity-80 mix-blend-overlay ${className}`}
+            className={`absolute pointer-events-none opacity-30 mix-blend-overlay ${className}`}
             preserveAspectRatio="none"
             style={style}
         >

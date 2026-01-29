@@ -218,10 +218,10 @@ const EventsPage = () => {
     return (
         <div className="events-page-container">
             {/* Background Effects */}
-            <AtmosphereBackground className="fixed z-0 opacity-60" />
+            <AtmosphereBackground className="fixed z-0" />
             <div className="overlay fixed inset-0 pointer-events-none z-0">
-                <VeinOverlay className="top-0 opacity-80 right-0 w-48 h-48 md:w-96 md:h-96 translate-x-1/3 -translate-y-1/3" delay={0.2} rotate={90} />
-                <VeinOverlay className="bottom-0 opacity-80 left-0 w-48 h-48 md:w-96 md:h-96 -translate-x-1/3 translate-y-1/3" delay={0.4} rotate={-90} />
+                <VeinOverlay className="top-0 right-0 w-48 h-48 md:w-96 md:h-96 translate-x-1/3 -translate-y-1/3" delay={0.2} rotate={90} />
+                <VeinOverlay className="bottom-0 left-0 w-48 h-48 md:w-96 md:h-96 -translate-x-1/3 translate-y-1/3" delay={0.4} rotate={-90} />
             </div>
 
             <Navbar transparent={true} />
