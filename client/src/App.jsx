@@ -7,6 +7,7 @@ import GalleryPage from './components/GalleryPage';
 import { StrangerThingsPreloader } from './components/StrangerThingsPreloader';
 import LeaderboardPage from './components/LeaderboardPage';
 import SchedulePage from './components/SchedulePage';
+import TeamDetailsPage from './components/TeamDetailsPage';
 
 import { Preloader } from './components/Preloader';
 import AboutPage from './components/AboutPage';
@@ -80,6 +81,11 @@ function AppRoutes() {
         <Route path="/schedule" element={
           <PageWrapper key={location.key}>
             <SchedulePage />
+          </PageWrapper>
+        } />
+        <Route path="/team/:slug" element={
+          <PageWrapper key={location.key}>
+            <TeamDetailsPage />
           </PageWrapper>
         } />
       </Routes>
