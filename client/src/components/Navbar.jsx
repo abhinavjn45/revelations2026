@@ -158,9 +158,16 @@ export function Navbar() {
             <Link
               to="/gallery"
               onClick={closeMenu}
-              className="menu-item font-stranger text-2xl text-gray-300 hover:text-red-400 cursor-pointer transition-all py-2 hover:pl-2"
+              className="menu-item font-stranger text-2xl text-gray-300 hover:text-red-400 cursor-pointer transition-all py-2 border-b border-red-900/20 hover:border-red-600/50 hover:pl-2"
             >
               Gallery
+            </Link>
+            <Link
+              to="/leaderboard"
+              onClick={closeMenu}
+              className="menu-item font-stranger text-2xl text-gray-300 hover:text-red-400 cursor-pointer transition-all py-2 hover:pl-2"
+            >
+              Leaderboard
             </Link>
           </div>
 

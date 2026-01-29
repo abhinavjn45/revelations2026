@@ -5,6 +5,9 @@ import CustomCursor from './components/CustomCursor';
 import EventsPage from './components/EventsPage';
 import GalleryPage from './components/GalleryPage';
 import { StrangerThingsPreloader } from './components/StrangerThingsPreloader';
+import LeaderboardPage from './components/LeaderboardPage';
+import SchedulePage from './components/SchedulePage';
+
 import { Preloader } from './components/Preloader';
 import AboutPage from './components/AboutPage';
 import './App.css';
@@ -48,7 +51,17 @@ function HomePage() {
 function App() {
   return (
     <Router>
-      <AppRoutes />
+      <div className="bg-[#0a0a0a]">
+        <CustomCursor />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/leaderboard" element={<LeaderboardPage />} />
+          <Route path="/schedule" element={<SchedulePage />} />
+        </Routes>
+      </div>
     </Router>
   );
 }
