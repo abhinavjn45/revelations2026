@@ -10,9 +10,9 @@ const facultyCoordinators = [
 		name: 'Dr. Sridevi R',
 		designation: 'Associate Professor',
 		phrase: 'Guiding us through the Upside Down.',
-		image: '/images/faculty/sridevi.jpg',
+		image: 'https://media.licdn.com/dms/image/v2/D4E03AQENjsxyxiC7Dw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1707318772758?e=1771459200&v=beta&t=bIGKRLHlM-b92cJtlR8rcgyIyrJ0knaam074Rr81jEA',
 	},
-    {
+	{
 		name: 'Dr. Shivangi Singh',
 		designation: 'Assistant Professor',
 		phrase: 'Lighting the way for all.',
@@ -113,6 +113,33 @@ const committeeHeads = [
 	{ name: 'Deon Binny', role: 'Media', phrase: '3 MSC AIML' },
 ];
 
+
+const techStack = [
+	{ name: 'React', icon: 'https://skillicons.dev/icons?i=react', description: 'Frontend Library' },
+	{ name: 'Tailwind CSS', icon: 'https://skillicons.dev/icons?i=tailwind', description: 'Styling' },
+	{ name: 'Framer Motion', icon: 'https://skillicons.dev/icons?i=framer', description: 'Animations' },
+	{ name: 'Vite', icon: 'https://skillicons.dev/icons?i=vite', description: 'Build Tool' },
+];
+
+function ThemedTechCard({ name, icon, description }) {
+	return (
+		<motion.div
+			whileHover={{ scale: 1.1, y: -5 }}
+			className="flex flex-col items-center justify-center p-4 bg-[#18181b]/60 border border-red-900/30 rounded-xl shadow-md transition-all duration-300 hover:bg-[#1a0505]/80 hover:border-red-600/50 group"
+		>
+			<div className="mb-3 filter drop-shadow hover:drop-shadow-[0_0_8px_rgba(220,38,38,0.6)] transition-all">
+				<img
+					src={icon}
+					alt={name}
+					className="w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300"
+				/>
+			</div>
+			<div className="font-stranger text-lg text-red-400">{name}</div>
+			<div className="font-typewriter text-xs text-gray-500">{description}</div>
+		</motion.div>
+	);
+}
+
 function ThemedCard({ image, name, designation, phrase, className }) {
 	return (
 		<motion.div
@@ -166,54 +193,71 @@ export default function AboutPage() {
 		<>
 			<Navbar />
 			<main className="min-h-screen w-full bg-[#050505] flex flex-col items-center justify-center py-6 px-4">
-								<motion.section
-										initial={{ opacity: 0, y: 40 }}
-										animate={{ opacity: 1, y: 0 }}
-										transition={{ duration: 0.8 }}
-										className="max-w-5xl w-full mx-auto bg-[#0a0a0a]/90 rounded-lg shadow-2xl border border-red-900/40 p-4 md:p-10 mt-28 mb-6"
-								>
-										<OurTeamHeading />
-								</motion.section>
+				<motion.section
+					initial={{ opacity: 0, y: 40 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.8 }}
+					className="max-w-5xl w-full mx-auto bg-[#0a0a0a]/90 rounded-lg shadow-2xl border border-red-900/40 p-4 md:p-10 mt-28 mb-6"
+				>
+					<OurTeamHeading />
+				</motion.section>
 
-								{/* Faculty Coordinators */}
-								<section className="max-w-5xl w-full mx-auto mt-8 mb-10 px-6">
-									<h2 className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse">Faculty Coordinators</h2>
-									<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-										{facultyCoordinators.map((f) => (
-											<ThemedCard key={f.name} image={f.image} name={f.name} designation={f.designation} phrase={f.phrase} />
-										))}
-									</div>
-								</section>
+				{/* Faculty Coordinators */}
+				<section className="max-w-5xl w-full mx-auto mt-8 mb-10 px-6">
+					<h2 className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse">Faculty Coordinators</h2>
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+						{facultyCoordinators.map((f) => (
+							<ThemedCard key={f.name} image={f.image} name={f.name} designation={f.designation} phrase={f.phrase} />
+						))}
+					</div>
+				</section>
 
-								{/* Website Developers */}
-								<section className="max-w-5xl w-full mx-auto mb-10 px-6">
-									<h2 className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse">Website Developers</h2>
-									<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-										{websiteDevelopers.map((d) => (
-											<ThemedCard key={d.name} image={d.image} name={d.name} className={d.class} phrase={d.phrase} />
-										))}
-									</div>
-								</section>
+				{/* Core Committee */}
+				<section className="max-w-5xl w-full mx-auto mb-10 px-6">
+					<h2 className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse">Core Committee</h2>
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+						{coreCommittee.map((c) => (
+							<ThemedCard key={c.name} image={c.image} name={c.name} className={c.class} phrase={c.phrase} />
+						))}
+					</div>
+				</section>
 
-								{/* Core Committee */}
-								<section className="max-w-5xl w-full mx-auto mb-10 px-6">
-									<h2 className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse">Core Committee</h2>
-									<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-										{coreCommittee.map((c) => (
-											<ThemedCard key={c.name} image={c.image} name={c.name} className={c.class} phrase={c.phrase} />
-										))}
-									</div>
-								</section>
+				{/* Website Developers */}
+				<section className="max-w-5xl w-full mx-auto mb-10 px-6">
+					<h2 className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse">Website Developers</h2>
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+						{websiteDevelopers.map((d) => (
+							<ThemedCard key={d.name} image={d.image} name={d.name} className={d.class} phrase={d.phrase} />
+						))}
+					</div>
+				</section>
 
-								{/* Committee Heads */}
-								<section className="max-w-5xl w-full mx-auto mb-8 px-6">
-									<h2 className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse">Committee Heads</h2>
-									<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-										{committeeHeads.map((h) => (
-											<ThemedHeadCard key={h.name} name={h.name} role={h.role} phrase={h.phrase} />
-										))}
-									</div>
-								</section>
+				{/* Committee Heads */}
+				<section className="max-w-5xl w-full mx-auto mb-8 px-6">
+					<h2 className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse">Committee Heads</h2>
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+						{committeeHeads.map((h) => (
+							<ThemedHeadCard key={h.name} name={h.name} role={h.role} phrase={h.phrase} />
+						))}
+					</div>
+				</section>
+
+				{/* Tech Stack */}
+				<section className="max-w-4xl w-full mx-auto mb-16 px-6">
+					<motion.div
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						transition={{ delay: 0.2 }}
+						className="border-t border-red-900/30 pt-10"
+					>
+						<h2 className="font-stranger text-xl md:text-2xl text-red-800/80 mb-6 text-center tracking-widest drop-shadow">Tech Stack</h2>
+						<div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+							{techStack.map((t) => (
+								<ThemedTechCard key={t.name} name={t.name} icon={t.icon} description={t.description} />
+							))}
+						</div>
+					</motion.div>
+				</section>
 			</main>
 			<Footer />
 		</>
