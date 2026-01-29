@@ -62,7 +62,7 @@ export function Navbar() {
               <img
                 src={christLogo}
                 alt="Christ University Logo"
-                className="w-10 h-4 md:w-24 md:h-7 lg:w-36 lg:h-10 py-1"
+                className="w-16 h-6 md:w-36 md:h-12 lg:w-56 lg:h-16 py-1"
                 style={{ maxWidth: 'none', height: 'auto', objectFit: 'contain', display: 'block' }}
               />
             </picture>
@@ -78,11 +78,28 @@ export function Navbar() {
             src={revelationsLogo}
             alt="Revelations Logo"
             className="logo-flicker drop-shadow-[0_0_30px_rgba(185,28,28,0.8)] py-1"
-            style={{ width: '60vw', minWidth: '180px', maxWidth: '320px', height: 'auto' }}
+            style={{ width: '50vw', minWidth: '160px', maxWidth: '280px', height: 'auto' }}
           />
         </a>
 
-        {/* Right: Toggle Button (All Devices) */}
+        {/* Right: Inline Links (Desktop) */}
+        <div className="hidden lg:flex items-center gap-8 z-30 mr-8 ml-auto" style={{ height: '100%' }}>
+          {[
+            { name: 'Home', path: '/' },
+            { name: 'Events', path: '/events' },
+            { name: 'Schedule', path: '/schedule' },
+          ].map((link) => (
+            <Link
+              key={link.name}
+              to={link.path}
+              className="font-stranger text-lg text-gray-300 hover:text-red-500 transition-colors tracking-wide drop-shadow-md"
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
+
+        {/* Right: Toggle Button (All Screens) */}
         <div className="flex items-center h-full z-10" style={{ minHeight: 'inherit' }}>
           <button
             onClick={toggleMenu}

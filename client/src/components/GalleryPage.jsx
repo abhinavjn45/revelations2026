@@ -100,7 +100,7 @@ const galleryData = {
     2025: [
         {
             id: 12,
-            title: "Highlight Moment",
+            title: "The Theme",
             desc: "Revelations '25",
             image: img25_highlight
         },
