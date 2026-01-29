@@ -93,7 +93,8 @@ const Footer = () => {
                                 { name: 'Events', path: '/events' },
                                 { name: 'Our Team', path: '/about' },
                                 { name: 'Schedule', path: '/schedule' },
-                                { name: 'Gallery', path: '/gallery' }
+                                { name: 'Gallery', path: '/gallery' },
+                                { name: 'Leaderboard', path: '/leaderboard' }
                             ].map((item) => (
                                 <motion.li
                                     key={item.name}
