@@ -4,25 +4,30 @@ import { motion } from 'framer-motion';
 import { Navbar } from './Navbar';
 import Footer from './Footer';
 
+// Import faculty images from team folder
+import DrSrideviImg from '../assets/images/team/Dr. Shidevi R.jpeg';
+import DrShivangiImg from '../assets/images/team/Dr. Shivangi Singh.jpeg';
+import DrSureshImg from '../assets/images/team/Dr. Suresh Kalaimani.jpeg';
+
 // Example data (replace with real data and images)
 const facultyCoordinators = [
 	{
 		name: 'Dr. Sridevi R',
 		designation: 'Associate Professor',
 		phrase: 'Guiding us through the Upside Down.',
-		image: 'https://media.licdn.com/dms/image/v2/D4E03AQENjsxyxiC7Dw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1707318772758?e=1771459200&v=beta&t=bIGKRLHlM-b92cJtlR8rcgyIyrJ0knaam074Rr81jEA',
+		image: DrSrideviImg,
 	},
 	{
 		name: 'Dr. Shivangi Singh',
 		designation: 'Assistant Professor',
 		phrase: 'Lighting the way for all.',
-		image: 'https://media.licdn.com/dms/image/v2/D5603AQGo-9z8Pe_hzg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718254079358?e=1771459200&v=beta&t=Y4DKDnaZF2K_2335r3IaxuuCPDFye1JbiBGm-Eor5Z8'
+		image: DrShivangiImg,
 	},
 	{
 		name: 'Dr. Suresh Kalaimani',
 		designation: 'Assistant Professor',
 		phrase: 'The mind behind the code.',
-		image: 'https://media.licdn.com/dms/image/v2/C5603AQG11oQQPpIp_A/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1624613520462?e=1771459200&v=beta&t=CY-uudTLfW-tLZs-7iej7ZDEX2rzXKZNE-H2eGp47u8',
+		image: DrSureshImg,
 	},
 ];
 
