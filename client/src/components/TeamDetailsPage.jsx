@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Navbar } from './Navbar';
@@ -8,6 +8,11 @@ import { getTeamBySlug, TEAMS_DATA } from '../data/teamData';
 export default function TeamDetailsPage() {
     const { slug } = useParams();
     const team = getTeamBySlug(slug);
+
+    // Scroll to top when page loads
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [slug]);
 
     if (!team) {
         return (
