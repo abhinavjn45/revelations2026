@@ -45,7 +45,7 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 px-4 md:px-8 lg:px-12 py-2 md:py-3 transition-all duration-400 bg-[#0a0a0a] ${isScrolled ? 'backdrop-blur-md shadow-[0_4px_20px_rgba(24,24,27,0.3)]' : ''}`}
+      className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 lg:px-12 py-2 md:py-3 transition-all duration-400 bg-black shadow-[0_4px_20px_rgba(220,38,38,0.1)]"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between relative" style={{ minHeight: '5rem' }}>
         {/* Left: Christ University Logo */}

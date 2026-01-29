@@ -368,7 +368,7 @@ export default function HeroSection({ startAnimation }) {
               The World Upside Down
             </span>
             <h1
-              className="font-stranger text-5xl md:text-7xl lg:text-8xl mt-2 mb-2 text-center"
+              className="font-stranger text-5xl md:text-7xl lg:text-8xl mt-2 mb-2 text-center drop-shadow-[0_0_15px_rgba(220,38,38,0.8)]"
               style={{
                 color: 'transparent',
                 WebkitTextStroke: '2px var(--stranger-red)',
@@ -387,7 +387,7 @@ export default function HeroSection({ startAnimation }) {
               <span>:</span>
               <span>{String(timeLeft.seconds).padStart(2, '0')}</span>
             </div>
-            <div className="flex flex-row items-center justify-center gap-2 text-xs text-gray-400 font-typewriter mb-2">
+            <div className="flex flex-row items-center justify-center gap-8 text-s text-gray-400 font-typewriter mb-2">
               <span>DAYS</span>
               <span>HRS</span>
               <span>MIN</span>

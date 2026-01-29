@@ -97,7 +97,7 @@ export default function TeamSection() {
       {/* Cinematic background noise/texture REPLACE with Atmosphere */}
       <AtmosphereBackground />
       {/* Vein Overlays - Top Right & Bottom Left */}
-      <div className="absolute inset-0 pointer-events-none z-0">
+      <div className="absolute inset-0 pointer-events-none z-0 opacity-30">
         <VeinOverlay className="top-0 right-0 w-48 h-48 md:w-96 md:h-96 translate-x-1/3 -translate-y-1/3" delay={0} rotate={90} />
         <VeinOverlay className="bottom-0 left-0 w-48 h-48 md:w-96 md:h-96 -translate-x-1/3 translate-y-1/3" delay={0.5} rotate={-90} />
       </div>
@@ -148,12 +148,7 @@ export default function TeamSection() {
                   {/* Back Side */}
                   <div className="flip-card-back absolute inset-0 flex flex-col items-center justify-center bg-black/90 rounded-lg z-20 px-6" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)', minHeight: 220 }}>
                     <p className="font-typewriter text-gray-200 mb-4">{team.tagline}</p>
-                    <button
-                      className="px-4 py-2 bg-transparent text-red-600 font-typewriter rounded border-2 border-red-600 hover:border-red-600 transition-colors mt-2 focus:outline-none shadow-lg"
-                      style={{ boxShadow: isFlipped ? '0 0 16px 2px #ec1d24' : 'none' }}
-                    >
-                      View Team Details
-                    </button>
+
                   </div>
                 </div>
                 <style>{`

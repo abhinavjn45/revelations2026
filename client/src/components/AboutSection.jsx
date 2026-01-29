@@ -82,7 +82,7 @@ export default function AboutSection() {
           />
 
           {/* VEIN GROWTH OVERLAY */}
-          <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute inset-0 pointer-events-none z-0 opacity-30">
             <VeinOverlay className="top-0 left-0 w-32 h-32 md:w-64 md:h-64 -translate-x-1/3 -translate-y-1/3" rotate={180} delay={0.2} />
             <VeinOverlay className="bottom-0 right-0 w-32 h-32 md:w-64 md:h-64 translate-x-1/3 translate-y-1/3" delay={0.4} />
           </div>
