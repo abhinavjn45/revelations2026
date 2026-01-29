@@ -7,6 +7,20 @@ import { Navbar } from './Navbar';
 import Footer from './Footer';
 import '../styles/EventsPage.css';
 
+// Import event images
+import Event1Img from '../assets/images/events/1.png';
+import Event2Img from '../assets/images/events/2.png';
+import Event3Img from '../assets/images/events/3.png';
+import Event4Img from '../assets/images/events/4.png';
+import Event5Img from '../assets/images/events/5.png';
+import Event6Img from '../assets/images/events/6.png';
+import Event7Img from '../assets/images/events/7.png';
+import Event8Img from '../assets/images/events/8.png';
+import Event9Img from '../assets/images/events/9.png';
+import Event10Img from '../assets/images/events/10.png';
+import Event11Img from '../assets/images/events/11.png';
+import Event12Img from '../assets/images/events/12.png';
+
 gsap.registerPlugin(Flip);
 
 // Event data with images - customize these
@@ -18,7 +32,7 @@ const events = [
         date: "FEB 02",
         venue: "Room 815",
         type: "Technical",
-        bgImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80",
+        bgImage: Event1Img,
     },
     {
         id: 2,
@@ -27,7 +41,7 @@ const events = [
         date: "FEB 03",
         venue: "Entire Campus / Online",
         type: "Non-Technical",
-        bgImage: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1920&q=80",
+        bgImage: Event2Img,
     },
     {
         id: 3,
@@ -36,7 +50,7 @@ const events = [
         date: "FEB 07-08",
         venue: "Multiple Venues",
         type: "Non-Technical",
-        bgImage: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1920&q=80",
+        bgImage: Event3Img,
     },
     {
         id: 4,
@@ -45,7 +59,7 @@ const events = [
         date: "FEB 15",
         venue: "Online Submissions",
         type: "Non-Technical",
-        bgImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&q=80",
+        bgImage: Event4Img,
     },
     {
         id: 5,
@@ -54,7 +68,7 @@ const events = [
         date: "FEB 16",
         venue: "911 / Campus View",
         type: "Non-Technical",
-        bgImage: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1920&q=80",
+        bgImage: Event5Img,
     },
     {
         id: 6,
@@ -63,7 +77,7 @@ const events = [
         date: "FEB 17",
         venue: "Room 815",
         type: "Technical",
-        bgImage: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80",
+        bgImage: Event6Img,
     },
     {
         id: 7,
@@ -72,7 +86,7 @@ const events = [
         date: "FEB 18",
         venue: "MCA Lab 811",
         type: "Technical",
-        bgImage: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1920&q=80",
+        bgImage: Event7Img,
     },
     {
         id: 8,
@@ -81,7 +95,7 @@ const events = [
         date: "FEB 19",
         venue: "Round Table Area (8th Floor)",
         type: "Non-Technical",
-        bgImage: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1920&q=80",
+        bgImage: Event8Img,
     },
     {
         id: 9,
@@ -90,7 +104,7 @@ const events = [
         date: "FEB 20",
         venue: "MCA Lab 811",
         type: "Technical",
-        bgImage: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&q=80",
+        bgImage: Event9Img,
     },
     {
         id: 10,
@@ -99,7 +113,7 @@ const events = [
         date: "FEB 21",
         venue: "MCA Lab 811",
         type: "Technical",
-        bgImage: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&q=80",
+        bgImage: Event10Img,
     },
     {
         id: 11,
@@ -108,7 +122,7 @@ const events = [
         date: "FEB 23",
         venue: "Room 815",
         type: "Non-Technical",
-        bgImage: "https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=1920&q=80",
+        bgImage: Event11Img,
     },
     {
         id: 12,
@@ -117,7 +131,7 @@ const events = [
         date: "FEB 24",
         venue: "Room 815",
         type: "Technical",
-        bgImage: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80",
+        bgImage: Event12Img,
     },
 ];
 
