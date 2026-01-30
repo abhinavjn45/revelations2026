@@ -36,7 +36,7 @@ function LeaderboardPopup({ open, onClose }) {
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="relative bg-gradient-to-br from-[#18181b] via-[#1a0505] to-[#18181b] border-2 border-red-700 rounded-3xl shadow-[0_8px_48px_8px_rgba(220,38,38,0.25)] p-8 w-[95vw] max-w-lg mx-auto flex flex-col items-center"
+            className="relative bg-gradient-to-br from-[#18181b] via-[#1a0505] to-[#18181b] border-2 border-red-700 rounded-3xl shadow-[0_8px_48px_8px_rgba(220,38,38,0.25)] p-3 sm:p-6 md:p-8 w-[95vw] max-w-lg mx-auto flex flex-col items-center"
             initial={{ scale: 0.8, y: 40, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.8, y: 40, opacity: 0 }}
