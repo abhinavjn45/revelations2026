@@ -61,7 +61,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
 
                     {/* BRANDING */}
-                    <div className="md:col-span-5 space-y-6">
+                    <div className="md:col-span-5 space-y-6 flex flex-col items-center md:items-start">
                         <div className="relative inline-block">
                             <h2 className="font-stranger text-center text-3xl sm:text-4xl md:text-5xl text-red-600 tracking-widest drop-shadow-[0_0_10px_rgba(220,38,38,0.5)]">
                                 REVELATIONS
