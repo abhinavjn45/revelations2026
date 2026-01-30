@@ -63,7 +63,7 @@ export function Navbar() {
               <img
                 src={christLogo}
                 alt="Christ University Logo"
-                className="w-16 h-6 md:w-36 md:h-12 lg:w-56 lg:h-16 py-1"
+                className="w-16 h-6 md:w-36 md:h-12 lg:w-40 lg:h-12 xl:w-56 xl:h-16 py-1"
                 style={{ maxWidth: 'none', height: 'auto', objectFit: 'contain', display: 'block' }}
               />
             </picture>
@@ -79,30 +79,29 @@ export function Navbar() {
             src={revelationsLogo}
             alt="Revelations Logo"
             className="logo-flicker drop-shadow-[0_0_30px_rgba(185,28,28,0.8)] py-1"
-            style={{ width: '50vw', minWidth: '160px', maxWidth: '280px', height: 'auto' }}
+            style={{ width: '40vw', minWidth: '140px', maxWidth: '260px', height: 'auto' }}
           />
         </a>
 
         {/* Right: Inline Links (Desktop) */}
-        <div className="hidden lg:flex items-center gap-8 z-30 mr-8 ml-auto" style={{ height: '100%' }}>
+        <div className="hidden lg:flex items-center gap-4 xl:gap-8 z-30 mr-2 xl:mr-8 ml-auto" style={{ height: '100%' }}>
           {[ 
-            { name: 'Home', path: '/' },
             { name: 'Events', path: '/events' },
+            { name: 'Our Team', path: '/about' },
             { name: 'Schedule', path: '/schedule' },
           ].map((link) => (
             <Link
               key={link.name}
               to={link.path}
-              className="font-stranger text-lg text-gray-300 hover:text-red-500 transition-colors tracking-wide drop-shadow-md"
-              onClick={link.name === 'Home' ? (e => { if (location.pathname === '/') window.location.reload(); }) : undefined}
+              className="font-stranger text-base lg:text-lg text-gray-300 hover:text-red-500 transition-colors tracking-wide drop-shadow-md whitespace-nowrap"
             >
               {link.name}
             </Link>
           ))}
         </div>
 
-        {/* Right: Toggle Button (All Screens) */}
-        <div className="flex items-center h-full z-10" style={{ minHeight: 'inherit' }}>
+        {/* Right: Toggle Button (Mobile Only) */}
+        <div className="lg:hidden flex items-center h-full z-10" style={{ minHeight: 'inherit' }}>
           <button
             onClick={toggleMenu}
             className="focus:outline-none"
