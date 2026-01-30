@@ -63,7 +63,7 @@ const Footer = () => {
                     {/* BRANDING */}
                     <div className="md:col-span-5 space-y-6">
                         <div className="relative inline-block">
-                            <h2 className="font-stranger text-5xl md:text-6xl text-red-600 tracking-widest drop-shadow-[0_0_10px_rgba(220,38,38,0.5)]">
+                            <h2 className="font-stranger text-center text-3xl sm:text-4xl md:text-5xl text-red-600 tracking-widest drop-shadow-[0_0_10px_rgba(220,38,38,0.5)]">
                                 REVELATIONS
                             </h2>
                             <span className="absolute -top-6 -right-12 rotate-12 bg-red-600 text-black font-bold font-mono text-base px-3 py-1 rounded-sm animate-pulse shadow-[0_0_10px_rgba(220,38,38,0.8)]">
