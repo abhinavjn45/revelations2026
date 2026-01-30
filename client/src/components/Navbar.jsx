@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import revelationsLogo from '../assets/images/revelations-logo.svg';
-import christLogo from '../assets/images/christ-logo.svg';
-import christSmallLogo from '../assets/images/christ-small-logo.svg';
+// import revelationsLogo from '../assets/images/revelations-logo.svg';
+import revelationsLogoPng from '../assets/images/revelations-logo.png';
+// import christLogo from '../assets/images/christ-logo.svg';
+import christLogoPng from '../assets/images/christ-logo.png';
+// import christSmallLogo from '../assets/images/christ-small-logo.svg';
+import christSmallLogoPng from '../assets/images/christ-small-logo.png';
 
 export function Navbar() {
   const location = useLocation();
@@ -46,9 +49,9 @@ export function Navbar() {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 lg:px-12 py-2 md:py-3 transition-all duration-400 bg-black shadow-[0_4px_20px_rgba(220,38,38,0.1)]"
+      className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 lg:px-4 py-2 md:py-3 transition-all duration-400 bg-black shadow-[0_4px_20px_rgba(220,38,38,0.1)]"
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between relative" style={{ minHeight: '5rem' }}>
+      <div className="max-w-full mx-auto flex items-center justify-between relative" style={{ minHeight: '5rem' }}>
         {/* Left: Christ University Logo */}
         <div className="flex items-center h-full z-10" style={{ minHeight: 'inherit' }}>
           <a
@@ -59,9 +62,9 @@ export function Navbar() {
             style={{ height: '100%' }}
           >
             <picture>
-              <source srcSet={christSmallLogo} media="(max-width: 767px)" />
+              <source srcSet={christSmallLogoPng} media="(max-width: 767px)" />
               <img
-                src={christLogo}
+                src={christLogoPng}
                 alt="Christ University Logo"
                 className="w-16 h-6 md:w-36 md:h-12 lg:w-40 lg:h-12 xl:w-56 xl:h-16 py-1"
                 style={{ maxWidth: 'none', height: 'auto', objectFit: 'contain', display: 'block' }}
@@ -76,7 +79,7 @@ export function Navbar() {
           className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-20 flex items-center hover:opacity-90 transition-opacity duration-300"
         >
           <img
-            src={revelationsLogo}
+            src={revelationsLogoPng}
             alt="Revelations Logo"
             className="logo-flicker drop-shadow-[0_0_30px_rgba(185,28,28,0.8)] py-1"
             style={{ width: '40vw', minWidth: '140px', maxWidth: '260px', height: 'auto' }}
@@ -84,7 +87,7 @@ export function Navbar() {
         </a>
 
         {/* Right: Inline Links (Desktop) */}
-        <div className="hidden lg:flex items-center gap-4 xl:gap-8 z-30 mr-2 xl:mr-8 ml-auto" style={{ height: '100%' }}>
+        <div className="hidden lg:flex items-center gap-4 xl:gap-8 z-30 mr-2 ml-auto" style={{ height: '100%' }}>
           {[ 
             { name: 'Events', path: '/events' },
             { name: 'Our Team', path: '/about' },

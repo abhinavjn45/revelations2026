@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from '../styles/animations.module.css';
 import logoImage from '../assets/images/revelations-logo.svg';
+import logoImagePng from '../assets/images/revelations-logo.png';
 import { 
   Eleven, Demogorgon, Vecna, MindFlayer, Will, Spore, GridPattern 
 } from './Characters';
@@ -150,7 +151,7 @@ export function Preloader({ onComplete }) {
           {/* Main Logo */}
           <div className="text-center relative">
             <img
-              src={logoImage}
+              src={logoImagePng}
               alt="Revelations 2026"
               className="mx-auto w-64 md:w-80 lg:w-[28rem]"
             />
