@@ -265,7 +265,7 @@ export default function AboutPage() {
 				<motion.section
 					initial={{ opacity: 0, y: 40, scale: 0.95 }}
 					animate={{ opacity: 1, y: 0, scale: 1 }}
-					transition={{ duration: 0.8, ease: 'easeOut' }}
+					transition={{ duration: 0.8, ease: 'easeOut', delay: 3.3 }}
 					className="max-w-5xl w-full mx-auto bg-[#0a0a0a]/90 rounded-lg shadow-2xl border border-red-900/40 p-4 md:p-10 mt-28 mb-6"
 				>
 					<OurTeamHeading />
@@ -273,28 +273,36 @@ export default function AboutPage() {
 
 				{/* Faculty Coordinators */}
 				<motion.section
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true, amount: 0.2 }}
-					variants={sectionVariants}
+					initial={{ opacity: 0, y: 50 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6, delay: 3.5 }}
 					className="max-w-5xl w-full mx-auto mt-8 mb-10 px-6"
 				>
 					<motion.h2
-						variants={headingVariants}
+						initial={{ opacity: 0, scale: 0.8, y: -20 }}
+						animate={{ opacity: 1, scale: 1, y: 0 }}
+						transition={{ type: 'spring', stiffness: 120, damping: 10, delay: 3.6 }}
 						className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse"
 					>
 						Faculty Coordinators
 					</motion.h2>
-					<motion.div
-						variants={containerVariants}
-						className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
-					>
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
 						{facultyCoordinators.map((f, index) => (
-							<motion.div key={f.name} variants={itemVariants}>
+							<motion.div
+								key={f.name}
+								initial={{ opacity: 0, y: 30, scale: 0.9 }}
+								animate={{ opacity: 1, y: 0, scale: 1 }}
+								transition={{
+									type: 'spring',
+									stiffness: 100,
+									damping: 12,
+									delay: 3.7 + index * 0.15,
+								}}
+							>
 								<ThemedCard image={f.image} name={f.name} designation={f.designation} phrase={f.phrase} />
 							</motion.div>
 						))}
-					</motion.div>
+					</div>
 				</motion.section>
 
 				{/* Core Committee */}
@@ -376,21 +384,32 @@ export default function AboutPage() {
 				</motion.section>
 
 				{/* Tech Stack */}
-				<section className="max-w-4xl w-full mx-auto mb-16 px-6">
-					<motion.div
-						initial={{ opacity: 0 }}
-						whileInView={{ opacity: 1 }}
-						transition={{ delay: 0.2 }}
-						className="border-t border-red-900/30 pt-10"
-					>
-						<h2 className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse">Tech Stack</h2>
-						<div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+				<motion.section
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true, amount: 0.2 }}
+					variants={sectionVariants}
+					className="max-w-4xl w-full mx-auto mb-16 px-6"
+				>
+					<div className="border-t border-red-900/30 pt-10">
+						<motion.h2
+							variants={headingVariants}
+							className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse"
+						>
+							Tech Stack
+						</motion.h2>
+						<motion.div
+							variants={containerVariants}
+							className="grid grid-cols-2 sm:grid-cols-4 gap-4"
+						>
 							{techStack.map((t) => (
-								<ThemedTechCard key={t.name} name={t.name} icon={t.icon} description={t.description} />
+								<motion.div key={t.name} variants={itemVariants}>
+									<ThemedTechCard name={t.name} icon={t.icon} description={t.description} />
+								</motion.div>
 							))}
-						</div>
-					</motion.div>
-				</section>
+						</motion.div>
+					</div>
+				</motion.section>
 			</main>
 			<Footer />
 		</>
