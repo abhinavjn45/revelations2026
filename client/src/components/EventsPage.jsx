@@ -8,18 +8,18 @@ import Footer from './Footer';
 import '../styles/EventsPage.css';
 
 // Import event images
-import Event1Img from '../assets/images/events/1.png';
-import Event2Img from '../assets/images/events/2.png';
-import Event3Img from '../assets/images/events/3.png';
-import Event4Img from '../assets/images/events/4.png';
-import Event5Img from '../assets/images/events/5.png';
-import Event6Img from '../assets/images/events/6.png';
-import Event7Img from '../assets/images/events/7.png';
-import Event8Img from '../assets/images/events/8.png';
-import Event9Img from '../assets/images/events/9.png';
-import Event10Img from '../assets/images/events/10.png';
-import Event11Img from '../assets/images/events/11.png';
-import Event12Img from '../assets/images/events/12.png';
+import HawkinsArenaImg from '../assets/images/events/1.png';
+import ScoopsTroopSnippetsImg from '../assets/images/events/2.png';
+import MrClarkeJournalImg from '../assets/images/events/3.png';
+import TheSnowBallShowdownImg from '../assets/images/events/4.png';
+import MindscapeDesignImg from '../assets/images/events/5.png';
+import WillsVisionsImg from '../assets/images/events/6.png';
+import ThePromptFlayerImg from '../assets/images/events/7.png';
+import DumbDeedsImg from '../assets/images/events/8.png';
+import JoyceBlueprintImg from '../assets/images/events/9.png';
+import CodeRedDemogorgonImg from '../assets/images/events/10.png';
+import VecnaMindMazeImg from '../assets/images/events/11.png';
+import CapturetheGateImg from '../assets/images/events/12.png';
 
 gsap.registerPlugin(Flip);
 
@@ -32,7 +32,7 @@ const events = [
         date: "FEB 02",
         venue: "Room 815",
         type: "Technical",
-        bgImage: Event1Img,
+        bgImage: VecnaMindMazeImg,
     },
     {
         id: 2,
@@ -41,7 +41,7 @@ const events = [
         date: "FEB 03",
         venue: "Entire Campus / Online",
         type: "Non-Technical",
-        bgImage: Event2Img,
+        bgImage: ScoopsTroopSnippetsImg,
     },
     {
         id: 3,
@@ -50,7 +50,7 @@ const events = [
         date: "FEB 07-08",
         venue: "Multiple Venues",
         type: "Non-Technical",
-        bgImage: Event3Img,
+        bgImage: HawkinsArenaImg,
     },
     {
         id: 4,
@@ -59,7 +59,7 @@ const events = [
         date: "FEB 15",
         venue: "Online Submissions",
         type: "Non-Technical",
-        bgImage: Event4Img,
+        bgImage: MrClarkeJournalImg,
     },
     {
         id: 5,
@@ -68,7 +68,7 @@ const events = [
         date: "FEB 16",
         venue: "911 / Campus View",
         type: "Non-Technical",
-        bgImage: Event5Img,
+        bgImage: TheSnowBallShowdownImg,
     },
     {
         id: 6,
@@ -77,7 +77,7 @@ const events = [
         date: "FEB 17",
         venue: "Room 815",
         type: "Technical",
-        bgImage: Event6Img,
+        bgImage: ThePromptFlayerImg,
     },
     {
         id: 7,
@@ -86,7 +86,7 @@ const events = [
         date: "FEB 18",
         venue: "MCA Lab 811",
         type: "Technical",
-        bgImage: Event7Img,
+        bgImage: MindscapeDesignImg,
     },
     {
         id: 8,
@@ -95,7 +95,7 @@ const events = [
         date: "FEB 19",
         venue: "Round Table Area (8th Floor)",
         type: "Non-Technical",
-        bgImage: Event8Img,
+        bgImage: WillsVisionsImg,
     },
     {
         id: 9,
@@ -104,7 +104,7 @@ const events = [
         date: "FEB 20",
         venue: "MCA Lab 811",
         type: "Technical",
-        bgImage: Event9Img,
+        bgImage: CodeRedDemogorgonImg,
     },
     {
         id: 10,
@@ -113,7 +113,7 @@ const events = [
         date: "FEB 21",
         venue: "MCA Lab 811",
         type: "Technical",
-        bgImage: Event10Img,
+        bgImage: CapturetheGateImg,
     },
     {
         id: 11,
@@ -122,7 +122,7 @@ const events = [
         date: "FEB 23",
         venue: "Room 815",
         type: "Non-Technical",
-        bgImage: Event11Img,
+        bgImage: DumbDeedsImg,
     },
     {
         id: 12,
@@ -131,7 +131,7 @@ const events = [
         date: "FEB 24",
         venue: "Room 815",
         type: "Technical",
-        bgImage: Event12Img,
+        bgImage: JoyceBlueprintImg,
     },
 ];
 
