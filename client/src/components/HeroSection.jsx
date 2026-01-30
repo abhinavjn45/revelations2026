@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import leaderboardData from '../data/leaderboardData';
+import TimerZeroAnimation from './TimerZeroAnimation';
 
 function LeaderboardPopup({ open, onClose }) {
   // Sort leaderboard in descending order by points
@@ -161,6 +162,10 @@ export default function HeroSection({ startAnimation }) {
   const characterOrder = ['vecna', 'main', 'henry'];
   const cycleIndex = useRef(0);
 
+  // Timer zero animation state
+  const [timerZeroTriggered, setTimerZeroTriggered] = useState(false);
+  const hasTriggeredZeroAnimation = useRef(false);
+
   // Auto-cycle images every 1.5s
   useEffect(() => {
     if (!autoCycle) return;
@@ -209,7 +214,14 @@ export default function HeroSection({ startAnimation }) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimeLeft(getTimeRemaining(eventDate));
+      const newTimeLeft = getTimeRemaining(eventDate);
+      setTimeLeft(newTimeLeft);
+
+      // Trigger the epic animation when timer hits zero (only once)
+      if (newTimeLeft.total <= 0 && !hasTriggeredZeroAnimation.current) {
+        hasTriggeredZeroAnimation.current = true;
+        setTimerZeroTriggered(true);
+      }
     }, 1000);
     return () => clearInterval(interval);
   }, [eventDate]);
@@ -464,6 +476,12 @@ export default function HeroSection({ startAnimation }) {
 
       {/* Leaderboard Popup */}
       <LeaderboardPopup open={showLeaderboard} onClose={() => setShowLeaderboard(false)} />
+
+      {/* Epic Timer Zero Animation - Upside Down Portal */}
+      <TimerZeroAnimation
+        trigger={timerZeroTriggered}
+        onComplete={() => setTimerZeroTriggered(false)}
+      />
     </section>
   );
 }

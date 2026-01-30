@@ -1,0 +1,544 @@
+/* ==========================================
+   TIMER ZERO ANIMATION - Stranger Things Theme
+   Epic "Upside Down Portal" Animation
+   ========================================== */
+
+/* Import Stranger Things fonts */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&display=swap');
+
+/* Main overlay container */
+.timer-zero-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at center,
+            rgba(20, 5, 5, 0.95) 0%,
+            rgba(10, 10, 10, 0.98) 50%,
+            rgba(0, 0, 0, 1) 100%);
+    overflow: hidden;
+}
+
+/* Scanlines for retro CRT effect */
+.scanlines-overlay {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg,
+            rgba(0, 0, 0, 0.1) 0px,
+            rgba(0, 0, 0, 0.1) 1px,
+            transparent 1px,
+            transparent 2px);
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.4;
+}
+
+/* Vignette effect */
+.vignette-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center,
+            transparent 0%,
+            transparent 40%,
+            rgba(0, 0, 0, 0.8) 100%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Flicker effect - simulates lights going crazy */
+.flicker-layer {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center,
+            rgba(220, 38, 38, 0.3) 0%,
+            transparent 70%);
+    animation: intenseFlicker 0.15s infinite;
+    pointer-events: none;
+    z-index: 5;
+}
+
+@keyframes intenseFlicker {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    20% {
+        opacity: 0.2;
+    }
+
+    30% {
+        opacity: 0.9;
+    }
+
+    40% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 0.4;
+    }
+
+    70% {
+        opacity: 0.7;
+    }
+
+    80% {
+        opacity: 0.1;
+    }
+
+    90% {
+        opacity: 0.6;
+    }
+}
+
+/* Lightning container */
+.lightning-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    z-index: 15;
+}
+
+.lightning-bolt {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform-origin: bottom center;
+    background: linear-gradient(to top,
+            #fff 0%,
+            #ff6b6b 20%,
+            #dc2626 50%,
+            #991b1b 80%,
+            transparent 100%);
+    border-radius: 2px;
+    box-shadow:
+        0 0 10px #ff3333,
+        0 0 20px #dc2626,
+        0 0 30px #991b1b,
+        0 0 40px rgba(220, 38, 38, 0.5);
+    filter: blur(1px);
+}
+
+/* Particle container */
+.particle-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    z-index: 20;
+}
+
+.explosion-particle {
+    position: absolute;
+    border-radius: 50%;
+    box-shadow:
+        0 0 6px currentColor,
+        0 0 12px currentColor;
+}
+
+/* Portal wrapper */
+.portal-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 25;
+}
+
+/* Portal rings - expanding shockwave */
+.portal-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin: -50px 0 0 -50px;
+    border: 3px solid #dc2626;
+    border-radius: 50%;
+    box-shadow:
+        0 0 20px #ff3333,
+        0 0 40px #dc2626,
+        inset 0 0 20px rgba(220, 38, 38, 0.3);
+}
+
+.portal-ring-1 {
+    border-color: #ff3333;
+}
+
+.portal-ring-2 {
+    border-color: #dc2626;
+}
+
+.portal-ring-3 {
+    border-color: #991b1b;
+}
+
+/* Main portal rift */
+.portal-rift {
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+.rift-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    animation: portalPulse 2s ease-in-out infinite;
+}
+
+@keyframes portalPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Core of the rift */
+.rift-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    margin: -40px 0 0 -40px;
+    background: radial-gradient(ellipse at center,
+            #1a0505 0%,
+            #0a0000 40%,
+            transparent 100%);
+    border-radius: 50%;
+    box-shadow:
+        0 0 60px 30px rgba(0, 0, 0, 0.9),
+        0 0 100px 50px rgba(139, 26, 26, 0.4),
+        inset 0 0 30px rgba(220, 38, 38, 0.3);
+    animation: coreGlow 1s ease-in-out infinite alternate;
+}
+
+@keyframes coreGlow {
+    0% {
+        box-shadow:
+            0 0 60px 30px rgba(0, 0, 0, 0.9),
+            0 0 100px 50px rgba(139, 26, 26, 0.4),
+            inset 0 0 30px rgba(220, 38, 38, 0.3);
+    }
+
+    100% {
+        box-shadow:
+            0 0 80px 40px rgba(0, 0, 0, 0.95),
+            0 0 120px 60px rgba(185, 28, 28, 0.5),
+            inset 0 0 40px rgba(255, 51, 51, 0.4);
+    }
+}
+
+/* Tentacle-like extensions from the rift */
+.rift-tentacle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 120px;
+    background: linear-gradient(to top,
+            #dc2626 0%,
+            #991b1b 30%,
+            #7f1d1d 60%,
+            transparent 100%);
+    border-radius: 4px;
+    transform-origin: bottom center;
+    animation: tentacleWave 3s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+.rift-tentacle-1 {
+    transform: translateX(-50%) rotate(-30deg);
+    animation-delay: 0s;
+}
+
+.rift-tentacle-2 {
+    transform: translateX(-50%) rotate(30deg);
+    animation-delay: 0.5s;
+}
+
+.rift-tentacle-3 {
+    transform: translateX(-50%) rotate(-60deg);
+    animation-delay: 1s;
+}
+
+.rift-tentacle-4 {
+    transform: translateX(-50%) rotate(60deg);
+    animation-delay: 1.5s;
+}
+
+@keyframes tentacleWave {
+
+    0%,
+    100% {
+        height: 120px;
+        opacity: 0.8;
+    }
+
+    25% {
+        height: 100px;
+        opacity: 0.6;
+    }
+
+    50% {
+        height: 140px;
+        opacity: 0.9;
+    }
+
+    75% {
+        height: 110px;
+        opacity: 0.7;
+    }
+}
+
+/* Screen crack effect overlay */
+.crack-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(45deg, transparent 45%, rgba(220, 38, 38, 0.1) 47%, transparent 49%),
+        linear-gradient(-45deg, transparent 45%, rgba(220, 38, 38, 0.1) 47%, transparent 49%),
+        linear-gradient(90deg, transparent 48%, rgba(139, 26, 26, 0.05) 50%, transparent 52%);
+    pointer-events: none;
+    z-index: 30;
+}
+
+/* Reveal container */
+.reveal-container {
+    position: relative;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Main reveal title */
+.reveal-title {
+    font-family: 'ITC Benguiat', 'Creepster', serif;
+    font-size: clamp(3rem, 12vw, 8rem);
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 3px #dc2626;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-shadow:
+        0 0 20px rgba(220, 38, 38, 0.8),
+        0 0 40px rgba(220, 38, 38, 0.6),
+        0 0 60px rgba(220, 38, 38, 0.4);
+    animation: titleFlicker 0.1s infinite;
+    margin: 0;
+    line-height: 1;
+}
+
+.reveal-subtitle {
+    font-family: 'ITC Benguiat', 'Creepster', serif;
+    font-size: clamp(2rem, 8vw, 5rem);
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 2px #ff3333;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-shadow:
+        0 0 15px rgba(255, 51, 51, 0.8),
+        0 0 30px rgba(255, 51, 51, 0.5);
+    animation: titleFlicker 0.15s infinite 0.05s;
+    margin: 0.5rem 0 0 0;
+    line-height: 1;
+}
+
+@keyframes titleFlicker {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.95;
+    }
+
+    75% {
+        opacity: 0.98;
+    }
+}
+
+/* Decorative line */
+.reveal-line {
+    width: 300px;
+    max-width: 80vw;
+    height: 3px;
+    margin: 2rem 0;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            #dc2626 20%,
+            #ff3333 50%,
+            #dc2626 80%,
+            transparent 100%);
+    box-shadow:
+        0 0 10px #ff3333,
+        0 0 20px #dc2626;
+    transform-origin: center;
+}
+
+/* Tagline text */
+.reveal-tagline {
+    font-family: 'Special Elite', monospace;
+    font-size: clamp(0.9rem, 3vw, 1.5rem);
+    color: #888;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    animation: taglinePulse 2s ease-in-out infinite;
+}
+
+@keyframes taglinePulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+        color: #aaa;
+    }
+}
+
+/* Upside Down floating spores/ash */
+.upside-down-spores {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.spore {
+    position: absolute;
+    background: radial-gradient(circle at center,
+            rgba(120, 120, 120, 0.6) 0%,
+            rgba(80, 80, 80, 0.3) 50%,
+            transparent 100%);
+    border-radius: 50%;
+    filter: blur(1px);
+}
+
+/* Screen shake trigger */
+.screen-shake-trigger {
+    position: fixed;
+    inset: 0;
+    animation: screenShakeIntense 0.5s ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes screenShakeIntense {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-8px, 5px) rotate(-0.5deg);
+    }
+
+    20% {
+        transform: translate(8px, -5px) rotate(0.5deg);
+    }
+
+    30% {
+        transform: translate(-6px, 8px) rotate(-0.3deg);
+    }
+
+    40% {
+        transform: translate(6px, -8px) rotate(0.3deg);
+    }
+
+    50% {
+        transform: translate(-4px, 4px) rotate(-0.2deg);
+    }
+
+    60% {
+        transform: translate(4px, -4px) rotate(0.2deg);
+    }
+
+    70% {
+        transform: translate(-2px, 2px) rotate(-0.1deg);
+    }
+
+    80% {
+        transform: translate(2px, -2px) rotate(0.1deg);
+    }
+
+    90% {
+        transform: translate(-1px, 1px) rotate(0deg);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .portal-rift {
+        width: 150px;
+        height: 150px;
+    }
+
+    .rift-core {
+        width: 60px;
+        height: 60px;
+        margin: -30px 0 0 -30px;
+    }
+
+    .rift-tentacle {
+        height: 90px;
+        width: 6px;
+    }
+
+    .lightning-bolt {
+        opacity: 0.7;
+    }
+}
+
+@media (max-width: 480px) {
+    .portal-rift {
+        width: 120px;
+        height: 120px;
+    }
+
+    .rift-core {
+        width: 50px;
+        height: 50px;
+        margin: -25px 0 0 -25px;
+    }
+
+    .rift-tentacle {
+        height: 70px;
+        width: 5px;
+    }
+
+    .reveal-line {
+        width: 200px;
+    }
+}

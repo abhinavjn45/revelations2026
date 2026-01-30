@@ -9,6 +9,7 @@ import LeaderboardPage from './components/LeaderboardPage';
 import SchedulePage from './components/SchedulePage';
 import TeamDetailsPage from './components/TeamDetailsPage';
 import DownloadTeamSheet from './components/DownloadTeamSheet';
+import AnimationDemoPage from './components/AnimationDemoPage';
 
 import { Preloader } from './components/Preloader';
 import AboutPage from './components/AboutPage';
@@ -100,6 +101,7 @@ function AppRoutes() {
           </PageWrapper>
         } />
         <Route path="/download-team-sheet" element={<DownloadTeamSheet />} />
+        <Route path="/animation-demo" element={<AnimationDemoPage />} />
       </Routes>
     </div>
   );
