@@ -7,8 +7,8 @@ import VeinOverlay from './VeinOverlay';
 import { TEAMS_DATA } from '../data/teamData';
 import './styles/TeamSection.css';
 
-// Reveal date: January 31, 2026 at 12:00 PM IST
-const REVEAL_DATE = new Date('2026-01-31T12:00:00+05:30');
+// Reveal date: January 30, 2026 at 10:00 AM IST
+const REVEAL_DATE = new Date('2026-01-30T10:00:00+05:30');
 
 export default function TeamSection() {
   const [openCard, setOpenCard] = useState(null); // for mobile overlay

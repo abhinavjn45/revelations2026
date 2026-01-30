@@ -118,13 +118,12 @@ function LeaderboardPopup({ open, onClose }) {
                 </tbody>
               </table>
             </div>
-            <button
-              className="mt-2 w-full py-2 rounded-lg bg-gradient-to-r from-red-700 via-red-600 to-red-700 hover:from-yellow-400 hover:to-yellow-500 hover:text-red-900 text-white font-stranger text-base tracking-wide shadow-md transition-all duration-200 border border-red-800 hover:border-yellow-400"
-              style={{ maxWidth: '260px', margin: '0 auto', display: 'block' }}
-              onClick={() => window.open('/leaderboard', '_blank')}
+            <Link
+              to="/leaderboard"
+              className="inline-block px-8 py-3 bg-red-700 text-white font-typewriter text-lg rounded-none shadow-lg border-2 border-red-600 hover:bg-red-900 transition-colors"
             >
               View Full Leaderboard
-            </button>
+            </Link>
           </motion.div>
         </motion.div>
       )}
@@ -448,8 +447,9 @@ export default function HeroSection({ startAnimation }) {
 
       {/* leaderboard button bottom right */}
       <div className="absolute bottom-6 right-6 z-40 flex flex-col items-start gap-1 select-none">
-        <Link
-          to="/leaderboard"
+        <button
+          type="button"
+          onClick={() => setShowLeaderboard(true)}
           className="flex items-center gap-1 p-0 bg-transparent border-none shadow-none text-white font-semibold text-sm md:text-base hover:bg-transparent focus:outline-none"
         >
           <span className="inline-flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded-full border border-red-600 text-red-600 mr-1 md:mr-2 bg-transparent">
@@ -458,7 +458,7 @@ export default function HeroSection({ startAnimation }) {
             </svg>
           </span>
           <span className="text-red-600 font-typewriter">Leaderboard</span>
-        </Link>
+        </button>
         <span className="text-white text-xs font-typewriter mt-1 mx-auto tracking-wide opacity-80 self-center">Check Team Rankings</span>
       </div>
 
