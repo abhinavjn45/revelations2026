@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/TimerZeroAnimation.css';
 
@@ -86,6 +86,12 @@ export default function TimerZeroAnimation({ trigger, onComplete }) {
         }));
     }, []);
 
+    // Use ref for onComplete to avoid restarting effect when callback changes
+    const onCompleteRef = useRef(onComplete);
+    useEffect(() => {
+        onCompleteRef.current = onComplete;
+    }, [onComplete]);
+
     useEffect(() => {
         if (!trigger) return;
 
@@ -113,7 +119,9 @@ export default function TimerZeroAnimation({ trigger, onComplete }) {
         // Complete callback
         const completeTimer = setTimeout(() => {
             setPhase('idle');
-            onComplete?.();
+            if (onCompleteRef.current) {
+                onCompleteRef.current();
+            }
         }, 10500);
 
         return () => {
@@ -122,7 +130,7 @@ export default function TimerZeroAnimation({ trigger, onComplete }) {
             clearTimeout(fadeTimer);
             clearTimeout(completeTimer);
         };
-    }, [trigger, onComplete]);
+    }, [trigger]); // Only depend on trigger to prevent restarts
 
     if (phase === 'idle') return null;
 

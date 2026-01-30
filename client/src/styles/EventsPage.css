@@ -523,3 +523,58 @@
 .box:nth-child(even) .box-content {
     animation: glowPulse 4s ease-in-out infinite 2s;
 }
+
+/* Action Buttons */
+.event-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.action-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 0.8rem 1.5rem;
+    text-align: center;
+    font-family: 'Special Elite', cursive;
+    font-size: 1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    gap: 0.5rem;
+}
+
+.register-btn {
+    background: rgba(220, 38, 38, 0.8);
+    color: white;
+    border: 1px solid rgba(220, 38, 38, 1);
+    box-shadow: 0 0 15px rgba(220, 38, 38, 0.4);
+}
+
+.register-btn:hover {
+    background: rgba(220, 38, 38, 1);
+    box-shadow: 0 0 25px rgba(220, 38, 38, 0.6);
+    transform: translateY(-2px);
+}
+
+.rules-btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rules-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: white;
+    transform: translateY(-2px);
+}

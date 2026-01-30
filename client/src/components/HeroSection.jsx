@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import leaderboardData from '../data/leaderboardData';
 import TimerZeroAnimation from './TimerZeroAnimation';
@@ -150,7 +150,7 @@ function getTimeRemaining(targetDate) {
 
 export default function HeroSection({ startAnimation }) {
   // Set your event date here
-  const eventDate = '2026-01-31T09:00:00';
+  const eventDate = '2026-01-31T01:46:00+05:30';
   const [timeLeft, setTimeLeft] = useState(getTimeRemaining(eventDate));
   const [spotlightAngle, setSpotlightAngle] = useState(0);
   const spotlightRef = useRef(null);
@@ -216,15 +216,18 @@ export default function HeroSection({ startAnimation }) {
     const interval = setInterval(() => {
       const newTimeLeft = getTimeRemaining(eventDate);
       setTimeLeft(newTimeLeft);
-
-      // Trigger the epic animation when timer hits zero (only once)
-      if (newTimeLeft.total <= 0 && !hasTriggeredZeroAnimation.current) {
-        hasTriggeredZeroAnimation.current = true;
-        setTimerZeroTriggered(true);
-      }
     }, 1000);
     return () => clearInterval(interval);
   }, [eventDate]);
+
+  // Trigger the epic animation when timer hits zero (only once)
+  // Only trigger if the main animation has started (preloader finished)
+  useEffect(() => {
+    if (startAnimation && timeLeft.total <= 0 && !hasTriggeredZeroAnimation.current) {
+      hasTriggeredZeroAnimation.current = true;
+      setTimerZeroTriggered(true);
+    }
+  }, [timeLeft, startAnimation]);
 
   // Spotlight pendulum animation
   useEffect(() => {
@@ -328,6 +331,11 @@ export default function HeroSection({ startAnimation }) {
     animateCanvas();
     return () => cancelAnimationFrame(animationFrameId);
   }, [spotlightAngle, animationActive]);
+
+
+  const handleTimerComplete = useCallback(() => {
+    setTimerZeroTriggered(false);
+  }, []);
 
   const [showLeaderboard, setShowLeaderboard] = useState(false);
 
@@ -477,10 +485,9 @@ export default function HeroSection({ startAnimation }) {
       {/* Leaderboard Popup */}
       <LeaderboardPopup open={showLeaderboard} onClose={() => setShowLeaderboard(false)} />
 
-      {/* Epic Timer Zero Animation - Upside Down Portal */}
       <TimerZeroAnimation
         trigger={timerZeroTriggered}
-        onComplete={() => setTimerZeroTriggered(false)}
+        onComplete={handleTimerComplete}
       />
     </section>
   );

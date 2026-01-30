@@ -331,39 +331,13 @@ export default function AboutPage() {
 					</motion.div>
 				</motion.section>
 
-				{/* Website Developers */}
-				<motion.section
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true, amount: 0.2 }}
-					variants={sectionVariants}
-					className="max-w-5xl w-full mx-auto mb-10 px-6"
-				>
-					<motion.h2
-						variants={headingVariants}
-						className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse"
-					>
-						Website Developers
-					</motion.h2>
-					<motion.div
-						variants={containerVariants}
-						className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
-					>
-						{websiteDevelopers.map((d) => (
-							<motion.div key={d.name} variants={itemVariants}>
-								<ThemedCard image={d.image} name={d.name} className={d.class} phrase={d.phrase} />
-							</motion.div>
-						))}
-					</motion.div>
-				</motion.section>
-
 				{/* Committee Heads */}
 				<motion.section
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: true, amount: 0.1 }}
 					variants={sectionVariants}
-					className="max-w-5xl w-full mx-auto mb-8 px-6"
+					className="max-w-5xl w-full mx-auto mb-10 px-6"
 				>
 					<motion.h2
 						variants={headingVariants}
@@ -378,6 +352,32 @@ export default function AboutPage() {
 						{committeeHeads.map((h) => (
 							<motion.div key={h.name} variants={itemVariants}>
 								<ThemedHeadCard name={h.name} role={h.role} phrase={h.phrase} />
+							</motion.div>
+						))}
+					</motion.div>
+				</motion.section>
+
+				{/* Website Developers */}
+				<motion.section
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true, amount: 0.2 }}
+					variants={sectionVariants}
+					className="max-w-5xl w-full mx-auto mb-8 px-6"
+				>
+					<motion.h2
+						variants={headingVariants}
+						className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse"
+					>
+						Website Developers
+					</motion.h2>
+					<motion.div
+						variants={containerVariants}
+						className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+					>
+						{websiteDevelopers.map((d) => (
+							<motion.div key={d.name} variants={itemVariants}>
+								<ThemedCard image={d.image} name={d.name} className={d.class} phrase={d.phrase} />
 							</motion.div>
 						))}
 					</motion.div>

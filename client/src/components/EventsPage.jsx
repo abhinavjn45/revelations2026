@@ -234,20 +234,35 @@ const EventsPage = () => {
                                             </span>
                                         </div>
 
-                                        {/* Registration Button - Only show if status is 'open' */}
-                                        {event.registrationStatus === 'open' && event.registrationLink && (
-                                            <div className="event-registration">
+                                        {/* Action Buttons */}
+                                        {/* Action Buttons */}
+                                        <div className="event-actions">
+                                            {/* Registration Button - Only show if status is 'open' */}
+                                            {event.registrationStatus === 'open' && event.registrationLink && (
                                                 <a
                                                     href={event.registrationLink}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="registration-btn"
+                                                    className="action-btn register-btn"
                                                     onClick={(e) => e.stopPropagation()}
                                                 >
                                                     🎫 Register Now
                                                 </a>
-                                            </div>
-                                        )}
+                                            )}
+
+                                            {/* Detailed Rules Button */}
+                                            {event.rulesLink && (
+                                                <a
+                                                    href={event.rulesLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="action-btn rules-btn"
+                                                    onClick={(e) => e.stopPropagation()}
+                                                >
+                                                    📄 Detailed Rules
+                                                </a>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
