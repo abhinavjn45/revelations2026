@@ -23,115 +23,259 @@ import CapturetheGateImg from '../assets/images/events/12.png';
 
 gsap.registerPlugin(Flip);
 
-// Event data with images - customize these
+// Event data with images and detailed info
 const events = [
     {
         id: 1,
         title: "Vecna's Mind Maze",
         subtitle: "IT Quiz",
         date: "FEB 02",
+        time: "09:00 AM - 12:00 PM",
         venue: "Room 815",
         type: "Technical",
         bgImage: VecnaMindMazeImg,
+        venueImage: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
+        description: "Enter the mind of Vecna and navigate through layers of technical puzzles. Test your knowledge across programming, databases, networking, and more in this thrilling IT quiz competition.",
+        rules: [
+            "Team of 2 members",
+            "3 rounds: Prelims, Semi-finals, Finals",
+            "No electronic devices allowed",
+            "Decision of judges is final"
+        ],
+        eligibility: "Open to all MCA and MSc students",
+        prizes: "1st: ₹3000 | 2nd: ₹2000 | 3rd: ₹1000",
+        coordinators: ["Kripa Dhandhania", "Adarsh Gupta"]
     },
     {
         id: 2,
         title: "Scoops Troop Snippets",
         subtitle: "Reel Making",
         date: "FEB 03",
+        time: "All Day Event",
         venue: "Entire Campus / Online",
         type: "Non-Technical",
         bgImage: ScoopsTroopSnippetsImg,
+        venueImage: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80",
+        description: "Unleash your creativity and storytelling skills! Create engaging reels that capture the essence of college life, technology, or the Stranger Things theme.",
+        rules: [
+            "Individual or team of 2",
+            "Reel duration: 30-60 seconds",
+            "Must include event hashtag",
+            "No copyrighted music without permission"
+        ],
+        eligibility: "Open to all students",
+        prizes: "1st: ₹2500 | 2nd: ₹1500 | 3rd: ₹1000",
+        coordinators: ["Evana Joseph", "Bhavya Dhanuka"]
     },
     {
         id: 3,
         title: "Hawkins Arena",
         subtitle: "Sports",
         date: "FEB 07-08",
+        time: "08:00 AM - 05:00 PM",
         venue: "Multiple Venues",
         type: "Non-Technical",
         bgImage: HawkinsArenaImg,
+        venueImage: "https://images.unsplash.com/photo-1461896836934- voices-of-the-world?w=800&q=80",
+        description: "Step into the Hawkins Arena for an action-packed sports extravaganza! Compete in various sports events and prove your athletic prowess.",
+        rules: [
+            "Team registrations required",
+            "Proper sports attire mandatory",
+            "Follow fair play guidelines",
+            "Events: Cricket, Football, Badminton, Table Tennis"
+        ],
+        eligibility: "Open to all department students",
+        prizes: "Varies by sport category",
+        coordinators: ["Chris Asir Samuel", "Vanshika Srinivas"]
     },
     {
         id: 4,
         title: "Mr. Clarke's Journal",
         subtitle: "Infobahn (Writing)",
         date: "FEB 15",
+        time: "Online Submission",
         venue: "Online Submissions",
         type: "Non-Technical",
         bgImage: MrClarkeJournalImg,
+        venueImage: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&q=80",
+        description: "Channel your inner Mr. Clarke and pen down your thoughts! Write articles, stories, or technical blogs that inspire and inform.",
+        rules: [
+            "Individual participation only",
+            "Word limit: 500-1500 words",
+            "Original content only",
+            "Submit in PDF format"
+        ],
+        eligibility: "Open to all students",
+        prizes: "1st: ₹2000 | 2nd: ₹1500 | 3rd: ₹1000",
+        coordinators: ["Neha N", "Ekta Singh"]
     },
     {
         id: 5,
         title: "The Snow Ball Showdown",
         subtitle: "Cosplay",
         date: "FEB 16",
+        time: "02:00 PM - 05:00 PM",
         venue: "911 / Campus View",
         type: "Non-Technical",
         bgImage: TheSnowBallShowdownImg,
+        venueImage: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80",
+        description: "Transform into your favorite character! Whether it's Eleven, Hopper, or the Demogorgon - bring your best cosplay to the Snow Ball.",
+        rules: [
+            "Individual participation",
+            "Costumes must be self-made or customized",
+            "Props allowed (no sharp objects)",
+            "5-minute stage presentation"
+        ],
+        eligibility: "Open to all students",
+        prizes: "1st: ₹3000 | 2nd: ₹2000 | 3rd: ₹1000",
+        coordinators: ["Shreya G", "Jai Pareek"]
     },
     {
         id: 6,
         title: "The Prompt Flayer",
         subtitle: "Prompt Engineering",
         date: "FEB 17",
+        time: "10:00 AM - 01:00 PM",
         venue: "Room 815",
         type: "Technical",
         bgImage: ThePromptFlayerImg,
+        venueImage: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
+        description: "Master the art of AI communication! Craft the perfect prompts to solve complex problems using AI tools like ChatGPT, Claude, and more.",
+        rules: [
+            "Individual participation",
+            "3 rounds of increasing difficulty",
+            "Internet access provided",
+            "Time-bound challenges"
+        ],
+        eligibility: "Open to all MCA and MSc students",
+        prizes: "1st: ₹3000 | 2nd: ₹2000 | 3rd: ₹1000",
+        coordinators: ["JV Baarathi", "Abhinav Jain"]
     },
     {
         id: 7,
         title: "Mindscape Design",
         subtitle: "UI/UX",
         date: "FEB 18",
+        time: "09:00 AM - 04:00 PM",
         venue: "MCA Lab 811",
         type: "Technical",
         bgImage: MindscapeDesignImg,
+        venueImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+        description: "Design interfaces that users love! Create stunning UI/UX designs for given problem statements using tools like Figma or Adobe XD.",
+        rules: [
+            "Team of 1-2 members",
+            "Bring your own laptop",
+            "Design tools: Figma/Adobe XD/Sketch",
+            "Prototype must be interactive"
+        ],
+        eligibility: "Open to all design enthusiasts",
+        prizes: "1st: ₹3500 | 2nd: ₹2500 | 3rd: ₹1500",
+        coordinators: ["Kusum S", "Praneeth M"]
     },
     {
         id: 8,
         title: "Will's Visions",
         subtitle: "Drawing/Painting",
         date: "FEB 19",
+        time: "10:00 AM - 01:00 PM",
         venue: "Round Table Area (8th Floor)",
         type: "Non-Technical",
         bgImage: WillsVisionsImg,
+        venueImage: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80",
+        description: "Like Will's visions of the Upside Down, express your imagination through art! Showcase your drawing and painting skills on given themes.",
+        rules: [
+            "Individual participation",
+            "Materials will be provided",
+            "Theme revealed on spot",
+            "Time limit: 2 hours"
+        ],
+        eligibility: "Open to all students",
+        prizes: "1st: ₹2000 | 2nd: ₹1500 | 3rd: ₹1000",
+        coordinators: ["Bhagyashree Roy", "Sheethal T Kochery"]
     },
     {
         id: 9,
         title: "Code Red: Demogorgon",
         subtitle: "Code Debug",
         date: "FEB 20",
+        time: "10:00 AM - 01:00 PM",
         venue: "MCA Lab 811",
         type: "Technical",
         bgImage: CodeRedDemogorgonImg,
+        venueImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+        description: "Hunt down the bugs like hunting a Demogorgon! Find and fix errors in code snippets across multiple programming languages.",
+        rules: [
+            "Individual participation",
+            "Languages: C, Java, Python",
+            "Multiple rounds",
+            "No internet access during event"
+        ],
+        eligibility: "Open to all MCA and MSc students",
+        prizes: "1st: ₹3000 | 2nd: ₹2000 | 3rd: ₹1000",
+        coordinators: ["Darshan Heble", "Hari Prasad"]
     },
     {
         id: 10,
         title: "Capture the Gate",
         subtitle: "CTF",
         date: "FEB 21",
+        time: "09:00 AM - 05:00 PM",
         venue: "MCA Lab 811",
         type: "Technical",
         bgImage: CapturetheGateImg,
+        venueImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+        description: "Break through the gate's defenses! A cybersecurity challenge where you solve puzzles, crack codes, and capture flags.",
+        rules: [
+            "Team of 2-3 members",
+            "Bring your own laptop",
+            "Categories: Web, Crypto, Forensics, Reversing",
+            "No attacks on infrastructure"
+        ],
+        eligibility: "Open to cybersecurity enthusiasts",
+        prizes: "1st: ₹5000 | 2nd: ₹3000 | 3rd: ₹2000",
+        coordinators: ["Amogh Sahore", "Deon Binny"]
     },
     {
         id: 11,
         title: "D&D: Dumb Deeds",
         subtitle: "Dumb Charades",
         date: "FEB 23",
+        time: "02:00 PM - 05:00 PM",
         venue: "Room 815",
         type: "Non-Technical",
         bgImage: DumbDeedsImg,
+        venueImage: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
+        description: "No talking allowed! Act out movies, shows, and tech terms in this hilarious game of dumb charades with a Stranger Things twist.",
+        rules: [
+            "Team of 4 members",
+            "Categories: Movies, TV Shows, Tech Terms",
+            "Time limit per round: 2 minutes",
+            "No props or sounds allowed"
+        ],
+        eligibility: "Open to all students",
+        prizes: "1st: ₹2500 | 2nd: ₹1500 | 3rd: ₹1000",
+        coordinators: ["Annie Neena", "Binosh Sibi"]
     },
     {
         id: 12,
         title: "Plan B: Joyce Blueprint",
         subtitle: "IT Manager",
         date: "FEB 24",
+        time: "09:00 AM - 04:00 PM",
         venue: "Room 815",
         type: "Technical",
         bgImage: JoyceBlueprintImg,
+        venueImage: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
+        description: "Think like Joyce planning to save Will! Manage resources, make strategic decisions, and lead your team to victory in this IT management simulation.",
+        rules: [
+            "Team of 3-4 members",
+            "Multiple business scenarios",
+            "Presentation required",
+            "Decision-making under pressure"
+        ],
+        eligibility: "Open to all MCA and MSc students",
+        prizes: "1st: ₹4000 | 2nd: ₹2500 | 3rd: ₹1500",
+        coordinators: ["Jariwala Mohit S", "Nishit Daruwala"]
     },
 ];
 
@@ -301,6 +445,52 @@ const EventsPage = () => {
                                     <div className="event-meta">
                                         <span className="event-date">{event.date}</span>
                                         <span className="event-type">{event.type}</span>
+                                    </div>
+                                    
+                                    {/* Detailed info - visible only in modal */}
+                                    <div className="event-details">
+                                        {/* Venue Image */}
+                                        {event.venueImage && (
+                                            <div className="venue-image-container">
+                                                <img src={event.venueImage} alt={`${event.venue} venue`} className="venue-image" />
+                                                <span className="venue-image-label">📍 {event.venue}</span>
+                                            </div>
+                                        )}
+                                        
+                                        <p className="event-description">{event.description}</p>
+                                        
+                                        <div className="event-info-grid">
+                                            <div className="event-info-item">
+                                                <span className="info-label">📍 Venue</span>
+                                                <span className="info-value">{event.venue}</span>
+                                            </div>
+                                            <div className="event-info-item">
+                                                <span className="info-label">🕐 Time</span>
+                                                <span className="info-value">{event.time}</span>
+                                            </div>
+                                            <div className="event-info-item">
+                                                <span className="info-label">👥 Eligibility</span>
+                                                <span className="info-value">{event.eligibility}</span>
+                                            </div>
+                                            <div className="event-info-item">
+                                                <span className="info-label">🏆 Prizes</span>
+                                                <span className="info-value">{event.prizes}</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="event-rules">
+                                            <span className="info-label">📋 Rules</span>
+                                            <ul className="rules-list">
+                                                {event.rules.map((rule, idx) => (
+                                                    <li key={idx}>{rule}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                        
+                                        <div className="event-coordinators">
+                                            <span className="info-label">📞 Coordinators</span>
+                                            <span className="info-value">{event.coordinators.join(' | ')}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

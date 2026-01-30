@@ -12,7 +12,7 @@ const SocialLink = ({ href, label, icon }) => (
         <span className="w-8 h-8 flex items-center justify-center border border-gray-800 rounded-sm bg-black/50 group-hover:border-red-600 group-hover:bg-red-900/10 transition-all">
             {icon}
         </span>
-        <span className="font-typewriter text-xs tracking-widest hidden sm:block">{label}</span>
+        <span className="font-typewriter text-xs tracking-widest  sm:block">{label}</span>
     </motion.a>
 );
 
@@ -58,10 +58,10 @@ const Footer = () => {
 
             <div className="relative z-10 max-w-7xl mx-auto px-6">
 
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
 
                     {/* BRANDING */}
-                    <div className="md:col-span-5 space-y-6 flex flex-col items-center md:items-start">
+                    <div className="lg:col-span-5 space-y-6 flex flex-col items-center lg:items-start">
                         <div className="relative inline-block">
                             <h2 className="font-stranger text-center text-3xl sm:text-4xl md:text-5xl text-red-600 tracking-widest drop-shadow-[0_0_10px_rgba(220,38,38,0.5)]">
                                 REVELATIONS
@@ -82,15 +82,17 @@ const Footer = () => {
                                 <span className="font-stranger text-xl text-red-500">CS</span>
                             </div>
                             <div className="flex flex-col">
-                                <span className="font-bold text-gray-300 text-xs tracking-widest uppercase">Dept. of Computer Science</span>
+                                <span className="font-bold text-gray-300 text-xs tracking-widest uppercase">Department of Computer Science</span>
                                 <span className="text-[10px] text-red-400 font-mono">CHRIST (DEEMED TO BE UNIVERSITY) // CENTRAL CAMPUS</span>
                             </div>
                         </div>
                     </div>
 
 
-                    {/* LINKS */}
-                    <div className="md:col-span-3 space-y-6">
+                    {/* LINKS & CONNECT - Side by side on sm, separate columns on lg */}
+                    <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-8 justify-items-center lg:justify-items-start">
+                        {/* LINKS */}
+                        <div className="space-y-6">
                         <h3 className="font-bold text-gray-200 tracking-widest uppercase border-b border-red-900/50 pb-2 inline-block">
                             Transmission
                         </h3>
@@ -113,24 +115,25 @@ const Footer = () => {
                                 </motion.li>
                             ))}
                         </ul>
-                    </div>
+                        </div>
 
-                    {/* CONNECT */}
-                    <div className="md:col-span-4 space-y-6">
-                        <h3 className="font-bold text-gray-200 tracking-widest uppercase border-b border-red-900/50 pb-2 inline-block">
-                            Frequency
-                        </h3>
-                        <div className="flex flex-col gap-3">
-                            <SocialLink
-                                href="https://www.instagram.com/computer_science_bangalore?igsh=OXQxc2pkMGt4YXU2"
-                                label="INSTAGRAM // @revelations"
-                                icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>}
-                            />
-                            <SocialLink
-                                href="https://www.linkedin.com/in/christ-university-computer-science-cucs-958aaa299/"
-                                label="LINKEDIN // REVELATIONS"
-                                icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>}
-                            />
+                        {/* CONNECT */}
+                        <div className="space-y-6">
+                            <h3 className="font-bold text-gray-200 tracking-widest uppercase border-b border-red-900/50 pb-2 inline-block">
+                                Frequency
+                            </h3>
+                            <div className="flex flex-col gap-3">
+                                <SocialLink
+                                    href="https://www.instagram.com/computer_science_bangalore?igsh=OXQxc2pkMGt4YXU2"
+                                    label="INSTAGRAM // @revelations"
+                                    icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>}
+                                />
+                                <SocialLink
+                                    href="https://www.linkedin.com/in/christ-university-computer-science-cucs-958aaa299/"
+                                    label="LINKEDIN // REVELATIONS"
+                                    icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -141,8 +144,8 @@ const Footer = () => {
                         &copy; 1986-2026 CHRIST (DEEMED TO BE UNIVERSITY). ALL RIGHTS RESERVED.
                     </p>
                     <div className="flex items-center gap-6">
-                        <span className="font-stranger text-lg text-red-800/50 animate-pulse">FRIENDS DON'T LIE</span>
-                        <div className="h-px w-10 bg-red-900/50"></div>
+                        <span className="font-stranger text-lg text-red-700 animate-pulse">FRIENDS DON'T LIE</span>
+                        <div className="h-px w-10 bg-red-900 animate-pulse"></div>
                         <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Stranger_Things_logo.png" alt="ST" className="h-4 opacity-20 invert grayscale" />
                     </div>
                 </div>

@@ -66,7 +66,7 @@ export function Navbar() {
               <img
                 src={christLogoPng}
                 alt="Christ University Logo"
-                className="w-16 h-6 md:w-36 md:h-12 lg:w-40 lg:h-12 xl:w-56 xl:h-16 py-1"
+                className="w-12 h-5 md:w-36 md:h-12 lg:w-40 lg:h-12 xl:w-56 xl:h-16 py-1"
                 style={{ maxWidth: 'none', height: 'auto', objectFit: 'contain', display: 'block' }}
               />
             </picture>
@@ -90,7 +90,7 @@ export function Navbar() {
         <div className="hidden lg:flex items-center gap-4 xl:gap-8 z-30 mr-2 ml-auto" style={{ height: '100%' }}>
           {[ 
             { name: 'Events', path: '/events' },
-            { name: 'Our Team', path: '/about' },
+            { name: 'About', path: '/about' },
             { name: 'Schedule', path: '/schedule' },
           ].map((link) => (
             <Link
