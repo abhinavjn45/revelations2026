@@ -3,8 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Navbar } from './Navbar';
 import Footer from './Footer';
 import { EVENT_DETAILS, SCHEDULE_DATA } from '../data/eventsData';
+import '../styles/EventsPage.css'; // Import styles to match Events Page popup
 
 // Event Popup Modal Component
+// Event Popup Modal Component - Styled to match EventsPage modal
 const EventPopupModal = ({ event, onClose }) => {
   if (!event) return null;
 
@@ -13,97 +15,118 @@ const EventPopupModal = ({ event, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center events-modal-wrapper bg-black/80 backdrop-blur-sm"
       onClick={onClose}
     >
-      {/* Backdrop */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.85 }}
-        exit={{ opacity: 0 }}
-        className="absolute inset-0 bg-black"
-      />
-
-      {/* Modal Content */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.9, y: 20 }}
-        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        className="modal-content relative m-4 pointer-events-auto"
         onClick={(e) => e.stopPropagation()}
-        className="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#0a0a0a] border border-red-900/50 rounded-sm shadow-2xl shadow-red-900/20"
       >
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center bg-black/60 border border-red-900/50 text-gray-400 hover:text-red-500 hover:border-red-500 transition-colors rounded-sm"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+        <div className="box-content w-full h-full rounded-lg overflow-hidden relative" style={{ backgroundImage: `url(${event.bgImage})` }}>
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 z-50 w-8 h-8 flex items-center justify-center bg-black/50 hover:bg-red-900/50 text-white rounded-full transition-colors backdrop-blur-sm border border-white/10"
+          >
+            ✕
+          </button>
 
-        {/* Event Image */}
-        <div className="relative h-48 sm:h-64 overflow-hidden">
-          <img
-            src={event.bgImage}
-            alt={event.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
-          <div className="absolute bottom-4 left-4 right-4">
-            <span className="px-3 py-1 text-xs font-typewriter tracking-widest border border-red-900/50 bg-red-900/20 text-red-400 rounded-sm uppercase inline-block mb-2">
-              {event.type}
-            </span>
-            <h2 className="font-stranger text-2xl sm:text-3xl text-red-500 drop-shadow-[0_0_10px_rgba(220,38,38,0.6)]">
-              {event.title}
-            </h2>
-            <p className="font-typewriter text-gray-400 text-sm mt-1">{event.subtitle}</p>
-          </div>
-        </div>
-
-        {/* Event Details */}
-        <div className="p-6 space-y-6">
-          {/* Description */}
-          <p className="text-gray-300 leading-relaxed">{event.description}</p>
-
-          {/* Info Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="bg-black/40 border border-red-900/30 p-4 rounded-sm">
-              <span className="text-xs font-typewriter text-gray-500 uppercase tracking-wider block mb-1">📍 Venue</span>
-              <span className="text-gray-200">{event.venue}</span>
+          <div className="event-overlay w-full h-full absolute inset-0 overflow-y-auto">
+            <h3 className="event-title">{event.title}</h3>
+            <span className="event-subtitle">{event.subtitle}</span>
+            <div className="event-meta">
+              <span className="event-date">{event.date}</span>
+              <span className="event-type">{event.type}</span>
             </div>
-            <div className="bg-black/40 border border-red-900/30 p-4 rounded-sm">
-              <span className="text-xs font-typewriter text-gray-500 uppercase tracking-wider block mb-1">🕐 Time</span>
-              <span className="text-gray-200">{event.time}</span>
-            </div>
-            <div className="bg-black/40 border border-red-900/30 p-4 rounded-sm">
-              <span className="text-xs font-typewriter text-gray-500 uppercase tracking-wider block mb-1">👥 Eligibility</span>
-              <span className="text-gray-200">{event.eligibility}</span>
-            </div>
-            <div className="bg-black/40 border border-red-900/30 p-4 rounded-sm">
-              <span className="text-xs font-typewriter text-gray-500 uppercase tracking-wider block mb-1">🏆 Prizes</span>
-              <span className="text-gray-200">{event.prizes}</span>
-            </div>
-          </div>
 
-          {/* Rules */}
-          <div className="bg-black/40 border border-red-900/30 p-4 rounded-sm">
-            <span className="text-xs font-typewriter text-gray-500 uppercase tracking-wider block mb-3">📋 Rules</span>
-            <ul className="space-y-2">
-              {event.rules.map((rule, idx) => (
-                <li key={idx} className="text-gray-300 flex items-start gap-2">
-                  <span className="text-red-500 mt-1">•</span>
-                  {rule}
-                </li>
-              ))}
-            </ul>
-          </div>
+            {/* Detailed info matched from EventsPage */}
+            <div className="event-details" style={{ display: 'block', opacity: 1, maxHeight: 'none' }}>
+              {/* Venue Image */}
+              {event.venueImage && (
+                <div className="venue-image-container">
+                  <img src={event.venueImage} alt={`${event.venue} venue`} className="venue-image" />
+                  <span className="venue-image-label">📍 {event.venue}</span>
+                </div>
+              )}
 
-          {/* Coordinators */}
-          <div className="bg-black/40 border border-red-900/30 p-4 rounded-sm">
-            <span className="text-xs font-typewriter text-gray-500 uppercase tracking-wider block mb-1">📞 Coordinators</span>
-            <span className="text-gray-200">{event.coordinators.join(' | ')}</span>
+              <p className="event-description">{event.description}</p>
+
+              <div className="event-info-grid">
+                <div className="event-info-item">
+                  <span className="info-label">📍 Venue</span>
+                  <span className="info-value">{event.venue}</span>
+                </div>
+                <div className="event-info-item">
+                  <span className="info-label">🕐 Time</span>
+                  <span className="info-value">{event.time}</span>
+                </div>
+                <div className="event-info-item">
+                  <span className="info-label">👥 Eligibility</span>
+                  <span className="info-value">{event.eligibility}</span>
+                </div>
+                <div className="event-info-item">
+                  <span className="info-label">🏆 Prizes</span>
+                  <span className="info-value">
+                    {Array.isArray(event.prizes) ? event.prizes.join(' | ') : event.prizes}
+                  </span>
+                </div>
+              </div>
+
+              <div className="event-rules">
+                <span className="info-label">📋 Rules</span>
+                <ul className="rules-list">
+                  {event.rules && event.rules.map((rule, idx) => (
+                    <li key={idx}>{rule}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="event-coordinators">
+                <span className="info-label">📞 Coordinators</span>
+                <span className="info-value">
+                  {Array.isArray(event.coordinators)
+                    ? event.coordinators.map(c =>
+                      typeof c === 'object'
+                        ? `${c.name}${c.contact ? ` (${c.contact})` : ''}`
+                        : c
+                    ).join(' | ')
+                    : event.coordinators
+                  }
+                </span>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="event-actions">
+                {/* Registration Button - Only show if status is 'open' */}
+                {event.registrationStatus === 'open' && event.registrationLink && (
+                  <a
+                    href={event.registrationLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="action-btn register-btn"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    🎫 Register Now
+                  </a>
+                )}
+
+                {/* Detailed Rules Button */}
+                {event.rulesLink && (
+                  <a
+                    href={event.rulesLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="action-btn rules-btn"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    📄 Detailed Rules
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </motion.div>
