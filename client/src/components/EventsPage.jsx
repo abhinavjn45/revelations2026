@@ -44,7 +44,7 @@ const EventsPage = () => {
 
         // Set initial state for boxes
         gsap.set(boxes, { opacity: 0, y: 50, scale: 0.9 });
-        
+
         // Animate boxes with stagger
         gsap.to(boxes, {
             opacity: 1,
@@ -177,7 +177,7 @@ const EventsPage = () => {
                                         <span className="event-date">{event.date}</span>
                                         <span className="event-type">{event.type}</span>
                                     </div>
-                                    
+
                                     {/* Detailed info - visible only in modal */}
                                     <div className="event-details">
                                         {/* Venue Image */}
@@ -187,9 +187,9 @@ const EventsPage = () => {
                                                 <span className="venue-image-label">📍 {event.venue}</span>
                                             </div>
                                         )}
-                                        
+
                                         <p className="event-description">{event.description}</p>
-                                        
+
                                         <div className="event-info-grid">
                                             <div className="event-info-item">
                                                 <span className="info-label">📍 Venue</span>
@@ -205,10 +205,12 @@ const EventsPage = () => {
                                             </div>
                                             <div className="event-info-item">
                                                 <span className="info-label">🏆 Prizes</span>
-                                                <span className="info-value">{event.prizes}</span>
+                                                <span className="info-value">
+                                                    {Array.isArray(event.prizes) ? event.prizes.join(' | ') : event.prizes}
+                                                </span>
                                             </div>
                                         </div>
-                                        
+
                                         <div className="event-rules">
                                             <span className="info-label">📋 Rules</span>
                                             <ul className="rules-list">
@@ -217,11 +219,35 @@ const EventsPage = () => {
                                                 ))}
                                             </ul>
                                         </div>
-                                        
+
                                         <div className="event-coordinators">
                                             <span className="info-label">📞 Coordinators</span>
-                                            <span className="info-value">{event.coordinators.join(' | ')}</span>
+                                            <span className="info-value">
+                                                {Array.isArray(event.coordinators)
+                                                    ? event.coordinators.map(c =>
+                                                        typeof c === 'object'
+                                                            ? `${c.name}${c.contact ? ` (${c.contact})` : ''}`
+                                                            : c
+                                                    ).join(' | ')
+                                                    : event.coordinators
+                                                }
+                                            </span>
                                         </div>
+
+                                        {/* Registration Button - Only show if status is 'open' */}
+                                        {event.registrationStatus === 'open' && event.registrationLink && (
+                                            <div className="event-registration">
+                                                <a
+                                                    href={event.registrationLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="registration-btn"
+                                                    onClick={(e) => e.stopPropagation()}
+                                                >
+                                                    🎫 Register Now
+                                                </a>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>

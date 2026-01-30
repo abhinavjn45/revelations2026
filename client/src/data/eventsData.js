@@ -11,6 +11,13 @@ import JoyceBlueprintImg from '../assets/images/events/9.png';
 import CodeRedDemogorgonImg from '../assets/images/events/10.png';
 import VecnaMindMazeImg from '../assets/images/events/11.png';
 import CapturetheGateImg from '../assets/images/events/12.png';
+import VenueClassImg from '../assets/images/venue/class.png';
+import VenueGround1Img from '../assets/images/venue/ground1.jpeg';
+import VenueGround2Img from '../assets/images/venue/ground2.jpeg';
+import VenueLabImg from '../assets/images/venue/lab.png';
+import VenueSports1Img from '../assets/images/venue/sports1.png';
+import VenueSports2Img from '../assets/images/venue/sports2.png';
+import VenueTableImg from '../assets/images/venue/table.png';
 
 // Event data with images and detailed info
 export const events = [
@@ -20,20 +27,36 @@ export const events = [
         subtitle: "IT Quiz",
         date: "FEB 06",
         time: "02:30 PM Onwards",
-        venue: "Room 815",
+        venue: "Room 815, 8th Floor, Central Block",
         type: "Technical",
         bgImage: VecnaMindMazeImg,
-        venueImage: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
-        description: "Enter the mind of Vecna and navigate through layers of technical puzzles. Test your knowledge across programming, databases, networking, and more in this thrilling IT quiz competition.",
+        venueImage: VenueClassImg,
+        description: "If you want to test how sharp your mind really is, step into Vecna's Mind Maze — the IT Quiz of Revelations '26. This team-based technical quiz challenges your logic, technical knowledge, and teamwork through carefully designed rounds that get tougher as you go.",
         rules: [
             "Team of 2 members",
             "3 rounds: Prelims, Semi-finals, Finals",
             "No electronic devices allowed",
-            "Decision of judges is final"
+            "Decision of judges is final",
+            "Rules and Regulations are subject to change at any point."
         ],
         eligibility: "Open to all MCA and MSc students",
-        prizes: "1st: ₹3000 | 2nd: ₹2000 | 3rd: ₹1000",
-        coordinators: ["Joshua Joby", "Abhinav Jain"]
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "Second Runner-up", points: 3 },
+        ],
+        rulesLink: "https://abhinavjain.site/",
+        coordinators: [
+            { name: "Joshua Joby", contact: "+91 96068 27876" },
+            { name: "Abhinav Jain", contact: "+91 92145 44078" }
+        ],
+        registrationLink: "https://forms.gle/cYGzUH3U622HA46TA",
+        registrationStatus: "open",
     },
     {
         id: 2,
@@ -41,41 +64,72 @@ export const events = [
         subtitle: "IT Manager",
         date: "FEB 18 & 24",
         time: "02:30 PM Onwards",
-        venue: "Room 815",
+        venue: "Room 815, 8th Floor, Central Block",
         type: "Technical",
         bgImage: JoyceBlueprintImg,
-        venueImage: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
-        description: "Think like Joyce planning to save Will! Manage resources, make strategic decisions, and lead your team to victory in this IT management simulation.",
+        venueImage: VenueClassImg,
+        description: "Think like Joyce planning to save Will! Manage resources, make strategic decisions, and lead your team to victory in this IT management simulation that tests your business acumen and technical leadership.",
         rules: [
             "Team of 3-4 members",
             "Multiple business scenarios",
             "Presentation required",
-            "Decision-making under pressure"
+            "Decision-making under pressure",
+            "Rules and Regulations are subject to change at any point."
         ],
         eligibility: "Open to all MCA and MSc students",
-        prizes: "1st: ₹4000 | 2nd: ₹2500 | 3rd: ₹1500",
-        coordinators: ["Rahul", "Abhinav Jain"]
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "Second Runner-up", points: 3 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Rahul", contact: "" },
+            { name: "Abhinav Jain", contact: "+91 92145 44078" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
     },
     {
         id: 3,
         title: "Mindscape Design",
         subtitle: "UI/UX",
         date: "FEB 18",
-        time: "02:30 PM Onwards",
-        venue: "MCA Lab 811",
+        time: "01:30 PM Onwards",
+        venue: "MCA Lab 811, 8th Floor, Central Block",
         type: "Technical",
         bgImage: MindscapeDesignImg,
-        venueImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
-        description: "Design interfaces that users love! Create stunning UI/UX designs for given problem statements using tools like Figma or Adobe XD.",
+        venueImage: VenueLabImg,
+        description: "Design interfaces that users love! Create stunning UI/UX designs for given problem statements using tools like Figma or Adobe XD. Showcase your creativity and user-centric thinking.",
         rules: [
             "Team of 1-2 members",
             "Bring your own laptop",
             "Design tools: Figma/Adobe XD/Sketch",
-            "Prototype must be interactive"
+            "Prototype must be interactive",
+            "Rules and Regulations are subject to change at any point."
         ],
         eligibility: "Open to all design enthusiasts",
-        prizes: "1st: ₹3500 | 2nd: ₹2500 | 3rd: ₹1500",
-        coordinators: ["Merry Don"]
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "Second Runner-up", points: 3 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Merry Don", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
     },
     {
         id: 4,
@@ -83,20 +137,36 @@ export const events = [
         subtitle: "CTF: Capture the Flag",
         date: "FEB 20",
         time: "02:30 PM Onwards",
-        venue: "MCA Lab 811",
+        venue: "MCA Lab 811, 8th Floor, Central Block",
         type: "Technical",
         bgImage: CapturetheGateImg,
-        venueImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
-        description: "Break through the gate's defenses! A cybersecurity challenge where you solve puzzles, crack codes, and capture flags.",
+        venueImage: VenueLabImg,
+        description: "Break through the gate's defenses! A cybersecurity challenge where you solve puzzles, crack codes, and capture flags. Test your hacking skills in a safe, competitive environment.",
         rules: [
             "Team of 2-3 members",
             "Bring your own laptop",
             "Categories: Web, Crypto, Forensics, Reversing",
-            "No attacks on infrastructure"
+            "No attacks on infrastructure",
+            "Rules and Regulations are subject to change at any point."
         ],
         eligibility: "Open to cybersecurity enthusiasts",
-        prizes: "1st: ₹5000 | 2nd: ₹3000 | 3rd: ₹2000",
-        coordinators: ["Baarathi", "I Blessy"]
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "Second Runner-up", points: 3 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Baarathi", contact: "" },
+            { name: "I Blessy", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
     },
     {
         id: 5,
@@ -104,20 +174,36 @@ export const events = [
         subtitle: "Coding-Debugging",
         date: "FEB 16",
         time: "02:30 PM Onwards",
-        venue: "MCA Lab 811",
+        venue: "MCA Lab 811, 8th Floor, Central Block",
         type: "Technical",
         bgImage: CodeRedDemogorgonImg,
-        venueImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
-        description: "Hunt down the bugs like hunting a Demogorgon! Find and fix errors in code snippets across multiple programming languages.",
+        venueImage: VenueLabImg,
+        description: "Hunt down the bugs like hunting a Demogorgon! Find and fix errors in code snippets across multiple programming languages. Test your debugging skills under pressure.",
         rules: [
             "Individual participation",
             "Languages: C, Java, Python",
             "Multiple rounds",
-            "No internet access during event"
+            "No internet access during event",
+            "Rules and Regulations are subject to change at any point."
         ],
         eligibility: "Open to all MCA and MSc students",
-        prizes: "1st: ₹3000 | 2nd: ₹2000 | 3rd: ₹1000",
-        coordinators: ["Abhinav Jain", "Paavan"]
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "Second Runner-up", points: 3 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Abhinav Jain", contact: "+91 92145 44078" },
+            { name: "Paavan", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
     },
     {
         id: 6,
@@ -125,41 +211,250 @@ export const events = [
         subtitle: "Prompt Engineering",
         date: "FEB 17",
         time: "02:30 PM Onwards",
-        venue: "Room 815",
+        venue: "Room 815, 8th Floor, Central Block",
         type: "Technical",
         bgImage: ThePromptFlayerImg,
-        venueImage: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
-        description: "Master the art of AI communication! Craft the perfect prompts to solve complex problems using AI tools like ChatGPT, Claude, and more.",
+        venueImage: VenueClassImg,
+        description: "Master the art of AI communication! Craft the perfect prompts to solve complex problems using AI tools like ChatGPT, Claude, and more. The future belongs to prompt engineers!",
         rules: [
             "Individual participation",
             "3 rounds of increasing difficulty",
             "Internet access provided",
-            "Time-bound challenges"
+            "Time-bound challenges",
+            "Rules and Regulations are subject to change at any point."
         ],
         eligibility: "Open to all MCA and MSc students",
-        prizes: "1st: ₹3000 | 2nd: ₹2000 | 3rd: ₹1000",
-        coordinators: ["Baarathi", "Xavier Amith"]
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "Second Runner-up", points: 3 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Baarathi", contact: "" },
+            { name: "Xavier Amith", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
     },
     {
         id: 7,
-        title: "Hawkins Arena",
-        subtitle: "Sports",
-        date: "FEB 02 (Chess) + TBD",
-        time: "02:30 PM / 07:30 PM Onwards",
-        venue: "Multiple Venues",
+        title: "Hawkins Arena - Cricket",
+        subtitle: "Cricket (Mixed)",
+        date: "TBD",
+        time: "07:30 AM Onwards",
+        venue: "Dharmaram / Football Ground",
         type: "Non-Technical",
         bgImage: HawkinsArenaImg,
-        venueImage: "https://images.unsplash.com/photo-1461896836934-28f9c37e9eb2?w=800&q=80",
-        description: "Step into the Hawkins Arena for an action-packed sports extravaganza! Compete in various sports events and prove your athletic prowess.",
+        venueImage: VenueGround1Img,
+        description: "Step into the Hawkins Arena for an action-packed cricket match! Form your team and compete in this exciting mixed cricket tournament.",
         rules: [
-            "Cricket (Mixed) - 07:30 PM - Dharmaram / Football Ground - Abhishek Kumar",
-            "Football (Mixed) - 07:30 PM - Dharmaram / Football Ground - Abhinav Jain, Mohit",
-            "Badminton (Mixed) - 07:30 PM - Chrispo Arena",
-            "Chess (Individual) - FEB 02 - 02:30 PM - Online / Room 815 + Room 814 - Omkaar"
+            "Mixed team participation",
+            "Tournament format",
+            "Standard cricket rules apply",
+            "Decision of umpires is final",
+            "Rules and Regulations are subject to change at any point."
         ],
         eligibility: "Open to all department students",
-        prizes: "Varies by sport category",
-        coordinators: ["Abhishek Kumar", "Abhinav Jain", "Mohit", "Omkaar"]
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Abhishek Kumar", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
+    },
+    {
+        id: 13,
+        title: "Hawkins Arena - Football",
+        subtitle: "Football (Mixed)",
+        date: "TBD",
+        time: "07:30 AM Onwards",
+        venue: "Dharmaram / Football Ground",
+        type: "Non-Technical",
+        bgImage: HawkinsArenaImg,
+        venueImage: VenueGround2Img,
+        description: "Kick off your competitive spirit in the Hawkins Arena football tournament! Show your skills on the field and lead your team to victory.",
+        rules: [
+            "Mixed team participation",
+            "Tournament format",
+            "Standard football rules apply",
+            "Decision of referees is final",
+            "Rules and Regulations are subject to change at any point."
+        ],
+        eligibility: "Open to all department students",
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Abhinav Jain", contact: "+91 92145 44078" },
+            { name: "Mohit", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
+    },
+    {
+        id: 14,
+        title: "Hawkins Arena - Table Tennis (Boys)",
+        subtitle: "Table Tennis Singles - Boys",
+        date: "TBD",
+        time: "07:30 AM Onwards",
+        venue: "Chrispo Arena",
+        type: "Non-Technical",
+        bgImage: HawkinsArenaImg,
+        venueImage: VenueSports1Img,
+        description: "Test your reflexes and precision in the Table Tennis singles tournament for boys at Hawkins Arena! Fast-paced action awaits.",
+        rules: [
+            "Individual participation (Boys)",
+            "Knockout format",
+            "Standard TT rules apply",
+            "Best of 3 sets",
+            "Rules and Regulations are subject to change at any point."
+        ],
+        eligibility: "Open to all male students",
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Abhinav Jain", contact: "+91 92145 44078" },
+            { name: "Slaven", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
+    },
+    {
+        id: 15,
+        title: "Hawkins Arena - Table Tennis (Girls)",
+        subtitle: "Table Tennis Singles - Girls",
+        date: "TBD",
+        time: "07:30 AM Onwards",
+        venue: "Chrispo Arena",
+        type: "Non-Technical",
+        bgImage: HawkinsArenaImg,
+        venueImage: VenueSports1Img,
+        description: "Test your reflexes and precision in the Table Tennis singles tournament for girls at Hawkins Arena! Fast-paced action awaits.",
+        rules: [
+            "Individual participation (Girls)",
+            "Knockout format",
+            "Standard TT rules apply",
+            "Best of 3 sets",
+            "Rules and Regulations are subject to change at any point."
+        ],
+        eligibility: "Open to all female students",
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Abhinav Jain", contact: "+91 92145 44078" },
+            { name: "Slaven", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
+    },
+    {
+        id: 16,
+        title: "Hawkins Arena - Badminton",
+        subtitle: "Badminton (Mixed)",
+        date: "TBD",
+        time: "07:30 AM Onwards",
+        venue: "Chrispo Arena",
+        type: "Non-Technical",
+        bgImage: HawkinsArenaImg,
+        venueImage: VenueSports2Img,
+        description: "Smash your way to victory in the Hawkins Arena badminton tournament! Open for mixed participation.",
+        rules: [
+            "Mixed participation",
+            "Knockout format",
+            "Standard badminton rules apply",
+            "Best of 3 sets",
+            "Rules and Regulations are subject to change at any point."
+        ],
+        eligibility: "Open to all department students",
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Abhinav Jain", contact: "+91 92145 44078" },
+            { name: "Slaven", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
+    },
+    {
+        id: 17,
+        title: "Hawkins Arena - Chess",
+        subtitle: "Chess (Individual)",
+        date: "FEB 02",
+        time: "02:30 PM Onwards",
+        venue: "Online / Room 815 + Room 814",
+        type: "Non-Technical",
+        bgImage: HawkinsArenaImg,
+        venueImage: VenueClassImg,
+        description: "Strategize like a grandmaster in the Hawkins Arena chess tournament! Test your tactical skills in this classic battle of minds.",
+        rules: [
+            "Individual participation",
+            "Swiss format / Knockout",
+            "Standard chess rules apply",
+            "Time control: Rapid",
+            "Rules and Regulations are subject to change at any point."
+        ],
+        eligibility: "Open to all department students",
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Omkaar", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
     },
     {
         id: 8,
@@ -170,59 +465,105 @@ export const events = [
         venue: "Campus View",
         type: "Non-Technical",
         bgImage: TheSnowBallShowdownImg,
-        venueImage: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80",
-        description: "Transform into your favorite character! Whether it's Eleven, Hopper, or the Demogorgon - bring your best cosplay to the Snow Ball.",
+        venueImage: VenueGround1Img,
+        description: "Transform into your favorite character! Whether it's Eleven, Hopper, or the Demogorgon - bring your best cosplay to the Snow Ball and shine on stage.",
         rules: [
             "Individual participation",
             "Costumes must be self-made or customized",
             "Props allowed (no sharp objects)",
-            "5-minute stage presentation"
+            "5-minute stage presentation",
+            "Rules and Regulations are subject to change at any point."
         ],
         eligibility: "Open to all students",
-        prizes: "1st: ₹3000 | 2nd: ₹2000 | 3rd: ₹1000",
-        coordinators: ["Baarathi"]
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "Second Runner-up", points: 3 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Baarathi", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
     },
     {
         id: 9,
         title: "Scoops Troop Snippets",
         subtitle: "Reel Making",
-        date: "FEB 03",
+        date: "JAN 31 - FEB 03",
         time: "10:00 PM (Deadline)",
         venue: "Entire Campus / Online Submissions",
         type: "Non-Technical",
         bgImage: ScoopsTroopSnippetsImg,
-        venueImage: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80",
+        venueImage: VenueGround2Img,
         description: "Unleash your creativity and storytelling skills! Create engaging reels that capture the essence of college life, technology, or the Stranger Things theme.",
         rules: [
             "Individual or team of 2",
             "Reel duration: 30-60 seconds",
             "Must include event hashtag",
-            "No copyrighted music without permission"
+            "No copyrighted music without permission",
+            "Rules and Regulations are subject to change at any point."
         ],
         eligibility: "Open to all students",
-        prizes: "1st: ₹2500 | 2nd: ₹1500 | 3rd: ₹1000",
-        coordinators: ["Baarathi", "Roy Mathew"]
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "Second Runner-up", points: 3 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Baarathi", contact: "" },
+            { name: "Roy Mathew", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "open",
     },
     {
         id: 10,
         title: "Mr. Clarke's Journal",
         subtitle: "Infobahn (Writing)",
-        date: "JAN 31 - FEB 07",
+        date: "JAN 31 - FEB 06",
         time: "10:00 PM (Deadline)",
         venue: "Online Submissions",
         type: "Non-Technical",
         bgImage: MrClarkeJournalImg,
-        venueImage: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&q=80",
-        description: "Channel your inner Mr. Clarke and pen down your thoughts! Write articles, stories, or technical blogs that inspire and inform.",
+        venueImage: VenueClassImg,
+        description: "Channel your inner Mr. Clarke and pen down your thoughts! Write articles, stories, or technical blogs that inspire and inform. Let your words create impact.",
         rules: [
             "Individual participation only",
             "Word limit: 500-1500 words",
             "Original content only",
-            "Submit in PDF format"
+            "Submit in PDF format",
+            "Rules and Regulations are subject to change at any point."
         ],
         eligibility: "Open to all students",
-        prizes: "1st: ₹2000 | 2nd: ₹1500 | 3rd: ₹1000",
-        coordinators: ["Infobahn Team"]
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "Second Runner-up", points: 3 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Infobahn Team", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "open",
     },
     {
         id: 11,
@@ -230,20 +571,36 @@ export const events = [
         subtitle: "Dumb Charades",
         date: "FEB 23",
         time: "02:30 PM Onwards",
-        venue: "Room 815",
+        venue: "Room 815, 8th Floor, Central Block",
         type: "Non-Technical",
         bgImage: DumbDeedsImg,
-        venueImage: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
-        description: "No talking allowed! Act out movies, shows, and tech terms in this hilarious game of dumb charades with a Stranger Things twist.",
+        venueImage: VenueClassImg,
+        description: "No talking allowed! Act out movies, shows, and tech terms in this hilarious game of dumb charades with a Stranger Things twist. Bring your acting A-game!",
         rules: [
             "Team of 4 members",
             "Categories: Movies, TV Shows, Tech Terms",
             "Time limit per round: 2 minutes",
-            "No props or sounds allowed"
+            "No props or sounds allowed",
+            "Rules and Regulations are subject to change at any point."
         ],
         eligibility: "Open to all students",
-        prizes: "1st: ₹2500 | 2nd: ₹1500 | 3rd: ₹1000",
-        coordinators: ["Abhinav Jain", "Parthiv"]
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "Second Runner-up", points: 3 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Abhinav Jain", contact: "+91 92145 44078" },
+            { name: "Parthiv", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
     },
     {
         id: 12,
@@ -251,20 +608,73 @@ export const events = [
         subtitle: "Drawing/Painting/Sketching",
         date: "FEB 04",
         time: "02:30 PM Onwards",
-        venue: "Round Tables 8th Floor",
+        venue: "Round Tables, 8th Floor, Central Block",
         type: "Non-Technical",
         bgImage: WillsVisionsImg,
-        venueImage: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80",
+        venueImage: VenueTableImg,
         description: "Like Will's visions of the Upside Down, express your imagination through art! Showcase your drawing and painting skills on given themes.",
         rules: [
             "Individual participation",
             "Materials will be provided",
             "Theme revealed on spot",
-            "Time limit: 2 hours"
+            "Time limit: 2 hours",
+            "Rules and Regulations are subject to change at any point."
         ],
         eligibility: "Open to all students",
-        prizes: "1st: ₹2000 | 2nd: ₹1500 | 3rd: ₹1000",
-        coordinators: ["Baarathi", "Anamika KS"]
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "Second Runner-up", points: 3 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Baarathi", contact: "" },
+            { name: "Anamika KS", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
+    },
+    {
+        id: 18,
+        title: "Project 011: Appathon",
+        subtitle: "Appathon (Alternative)",
+        date: "FEB 20",
+        time: "02:30 PM Onwards",
+        venue: "MCA Lab 811, 8th Floor, Central Block",
+        type: "Technical",
+        bgImage: CapturetheGateImg,
+        venueImage: VenueLabImg,
+        description: "Build innovative applications in this exciting app development marathon! Create solutions to real-world problems using your coding and design skills.",
+        rules: [
+            "Team of 2-4 members",
+            "Bring your own laptop",
+            "Any technology stack allowed",
+            "Working prototype required",
+            "Rules and Regulations are subject to change at any point."
+        ],
+        eligibility: "Open to all MCA and MSc students",
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Participation", points: 2 },
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "Second Runner-up", points: 3 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Baarathi", contact: "" },
+            { name: "I Blessy", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
     },
 ];
 
@@ -278,7 +688,7 @@ export const EVENT_DETAILS = events.reduce((acc, event) => {
 export const SCHEDULE_DATA = [
     {
         id: 'e1',
-        label: 'JAN 31 - FEB 07',
+        label: 'JAN 31 - FEB 06',
         date: 'ONGOING',
         title: 'THE JOURNAL',
         events: [
@@ -287,20 +697,20 @@ export const SCHEDULE_DATA = [
     },
     {
         id: 'e2',
-        label: 'FEB 02',
-        date: 'SUNDAY',
-        title: 'THE ARENA',
+        label: 'JAN 31 - FEB 03',
+        date: 'ONGOING',
+        title: 'THE SNIPPETS',
         events: [
-            { id: 7, time: '02:30 PM Onwards', title: 'Hawkins Arena - Chess (Individual)', venue: 'Online / Room 815 + Room 814', type: 'Non-Technical' },
+            { id: 9, time: '10:00 PM (Deadline)', title: 'Scoops Troop Snippets (Reel Making)', venue: 'Entire Campus / Online Submissions', type: 'Non-Technical' },
         ]
     },
     {
         id: 'e3',
-        label: 'FEB 03',
-        date: 'MONDAY',
-        title: 'THE SNIPPETS',
+        label: 'FEB 02',
+        date: 'SUNDAY',
+        title: 'THE ARENA - CHESS',
         events: [
-            { id: 9, time: '10:00 PM (Deadline)', title: 'Scoops Troop Snippets (Reel Making)', venue: 'Entire Campus / Online Submissions', type: 'Non-Technical' },
+            { id: 17, time: '02:30 PM Onwards', title: 'Hawkins Arena - Chess (Individual)', venue: 'Online / Room 815 + Room 814', type: 'Non-Technical' },
         ]
     },
     {
@@ -345,7 +755,7 @@ export const SCHEDULE_DATA = [
         date: 'TUESDAY',
         title: 'THE DESIGN & BLUEPRINT',
         events: [
-            { id: 3, time: '02:30 PM Onwards', title: 'Mindscape Design (UI/UX)', venue: 'MCA Lab 811', type: 'Technical' },
+            { id: 3, time: '01:30 PM Onwards', title: 'Mindscape Design (UI/UX)', venue: 'MCA Lab 811', type: 'Technical' },
             { id: 2, time: '02:30 PM Onwards', title: 'Plan B: Joyce Blueprint (IT Manager) - Round 1', venue: 'Room 815', type: 'Technical' },
         ]
     },
@@ -362,9 +772,10 @@ export const SCHEDULE_DATA = [
         id: 'e10',
         label: 'FEB 20',
         date: 'THURSDAY',
-        title: 'THE GATE',
+        title: 'THE GATE & APPATHON',
         events: [
             { id: 4, time: '02:30 PM Onwards', title: 'Capture the Gate (CTF)', venue: 'MCA Lab 811', type: 'Technical' },
+            { id: 18, time: '02:30 PM Onwards', title: 'Project 011: Appathon (Alternative)', venue: 'MCA Lab 811', type: 'Technical' },
         ]
     },
     {
@@ -383,6 +794,19 @@ export const SCHEDULE_DATA = [
         title: 'THE BLUEPRINT FINAL',
         events: [
             { id: 2, time: '02:30 PM Onwards', title: 'Plan B: Joyce Blueprint (IT Manager) - Finals', venue: 'Room 815', type: 'Technical' },
+        ]
+    },
+    {
+        id: 'e13',
+        label: 'TBD',
+        date: 'SPORTS',
+        title: 'HAWKINS ARENA - SPORTS',
+        events: [
+            { id: 7, time: '07:30 AM Onwards', title: 'Hawkins Arena - Cricket (Mixed)', venue: 'Dharmaram / Football Ground', type: 'Non-Technical' },
+            { id: 13, time: '07:30 AM Onwards', title: 'Hawkins Arena - Football (Mixed)', venue: 'Dharmaram / Football Ground', type: 'Non-Technical' },
+            { id: 14, time: '07:30 AM Onwards', title: 'Hawkins Arena - Table Tennis (Boys)', venue: 'Chrispo Arena', type: 'Non-Technical' },
+            { id: 15, time: '07:30 AM Onwards', title: 'Hawkins Arena - Table Tennis (Girls)', venue: 'Chrispo Arena', type: 'Non-Technical' },
+            { id: 16, time: '07:30 AM Onwards', title: 'Hawkins Arena - Badminton (Mixed)', venue: 'Chrispo Arena', type: 'Non-Technical' },
         ]
     }
 ];
