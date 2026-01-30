@@ -226,8 +226,8 @@ export default function SchedulePage() {
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 3.5 }}
             className="text-center mb-10 sm:mb-16"
           >
             <h2 className="font-stranger text-3xl sm:text-4xl md:text-6xl text-red-600 drop-shadow-[0_0_10px_rgba(220,38,38,0.6)]">
@@ -239,10 +239,18 @@ export default function SchedulePage() {
           </motion.div>
 
           {/* Day Selection Tabs */}
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10 sm:mb-12">
-            {SCHEDULE_DATA.map((day) => (
-              <button
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 3.7 }}
+            className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10 sm:mb-12"
+          >
+            {SCHEDULE_DATA.map((day, index) => (
+              <motion.button
                 key={day.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 3.8 + index * 0.05 }}
                 onClick={() => handleTabClick(day.id)}
                 className={`relative px-4 sm:px-6 py-2 sm:py-3 min-w-[100px] sm:min-w-[140px] border transition-all duration-300 group overflow-hidden
                 ${selectedDayId === day.id
@@ -265,11 +273,14 @@ export default function SchedulePage() {
                     exit={{ opacity: 0 }}
                   />
                 )}
-              </button>
+              </motion.button>
             ))}
 
             {/* ALL EVENTS BUTTON */}
-            <button
+            <motion.button
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: 3.8 + SCHEDULE_DATA.length * 0.05 }}
               onClick={() => handleTabClick('all')}
               className={`relative px-4 sm:px-6 py-2 sm:py-3 min-w-[100px] sm:min-w-[140px] border transition-all duration-300 group overflow-hidden
                 ${selectedDayId === 'all'
@@ -289,8 +300,8 @@ export default function SchedulePage() {
                   className="absolute inset-0 bg-red-600/5 z-0"
                 />
               )}
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
 
           {/* Schedule Content */}
           <div className="min-h-[400px]">

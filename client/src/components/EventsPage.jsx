@@ -142,6 +142,21 @@ const EventsPage = () => {
     const boxesRef = useRef([]);
     const boxContentsRef = useRef([]);
     const boxIndexRef = useRef(undefined);
+    const headerRef = useRef(null);
+
+    // Initial header animation
+    useEffect(() => {
+        if (headerRef.current) {
+            gsap.set(headerRef.current, { opacity: 0, y: -30 });
+            gsap.to(headerRef.current, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: 'power2.out',
+                delay: 3.5
+            });
+        }
+    }, []);
 
     useEffect(() => {
         const modal = modalRef.current;
@@ -151,6 +166,20 @@ const EventsPage = () => {
         const boxesContent = boxContentsRef.current.filter(Boolean);
 
         if (!modal || !modalContent || !modalOverlay) return;
+
+        // Set initial state for boxes
+        gsap.set(boxes, { opacity: 0, y: 50, scale: 0.9 });
+        
+        // Animate boxes with stagger
+        gsap.to(boxes, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.08,
+            ease: 'power2.out',
+            delay: 3.7,
+        });
 
         // Close modal function - called when clicking overlay
         const closeModal = () => {
@@ -243,7 +272,7 @@ const EventsPage = () => {
             {/* Main Content Wrapper */}
             <div className="events-wrapper">
                 {/* Header */}
-                <div className="events-header-section">
+                <div ref={headerRef} className="events-header-section">
                     <h2 className="font-stranger text-3xl sm:text-4xl md:text-6xl text-red-600 drop-shadow-[0_0_10px_rgba(220,38,38,0.6)]">
                         REVELATIONS EVENTS
                     </h2>
