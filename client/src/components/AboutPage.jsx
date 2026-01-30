@@ -205,59 +205,175 @@ function OurTeamHeading() {
 		</>
 	);
 }
+// Animation variants
+const containerVariants = {
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.1,
+			delayChildren: 0.2,
+		},
+	},
+};
+
+const itemVariants = {
+	hidden: { opacity: 0, y: 30, scale: 0.9 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		scale: 1,
+		transition: {
+			type: 'spring',
+			stiffness: 100,
+			damping: 12,
+		},
+	},
+};
+
+const sectionVariants = {
+	hidden: { opacity: 0, y: 50 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.6,
+			ease: 'easeOut',
+		},
+	},
+};
+
+const headingVariants = {
+	hidden: { opacity: 0, scale: 0.8, y: -20 },
+	visible: {
+		opacity: 1,
+		scale: 1,
+		y: 0,
+		transition: {
+			type: 'spring',
+			stiffness: 120,
+			damping: 10,
+		},
+	},
+};
+
 export default function AboutPage() {
 	return (
 		<>
 			<Navbar />
 			<main className="min-h-screen w-full bg-[#050505] flex flex-col items-center justify-center py-6 px-4">
 				<motion.section
-					initial={{ opacity: 0, y: 40 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.8 }}
+					initial={{ opacity: 0, y: 40, scale: 0.95 }}
+					animate={{ opacity: 1, y: 0, scale: 1 }}
+					transition={{ duration: 0.8, ease: 'easeOut' }}
 					className="max-w-5xl w-full mx-auto bg-[#0a0a0a]/90 rounded-lg shadow-2xl border border-red-900/40 p-4 md:p-10 mt-28 mb-6"
 				>
 					<OurTeamHeading />
 				</motion.section>
 
 				{/* Faculty Coordinators */}
-				<section className="max-w-5xl w-full mx-auto mt-8 mb-10 px-6">
-					<h2 className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse">Faculty Coordinators</h2>
-					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-						{facultyCoordinators.map((f) => (
-							<ThemedCard key={f.name} image={f.image} name={f.name} designation={f.designation} phrase={f.phrase} />
+				<motion.section
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true, amount: 0.2 }}
+					variants={sectionVariants}
+					className="max-w-5xl w-full mx-auto mt-8 mb-10 px-6"
+				>
+					<motion.h2
+						variants={headingVariants}
+						className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse"
+					>
+						Faculty Coordinators
+					</motion.h2>
+					<motion.div
+						variants={containerVariants}
+						className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+					>
+						{facultyCoordinators.map((f, index) => (
+							<motion.div key={f.name} variants={itemVariants}>
+								<ThemedCard image={f.image} name={f.name} designation={f.designation} phrase={f.phrase} />
+							</motion.div>
 						))}
-					</div>
-				</section>
+					</motion.div>
+				</motion.section>
 
 				{/* Core Committee */}
-				<section className="max-w-5xl w-full mx-auto mb-10 px-6">
-					<h2 className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse">Core Committee</h2>
-					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+				<motion.section
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true, amount: 0.2 }}
+					variants={sectionVariants}
+					className="max-w-5xl w-full mx-auto mb-10 px-6"
+				>
+					<motion.h2
+						variants={headingVariants}
+						className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse"
+					>
+						Core Committee
+					</motion.h2>
+					<motion.div
+						variants={containerVariants}
+						className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+					>
 						{coreCommittee.map((c) => (
-							<ThemedCard key={c.name} image={c.image} name={c.name} className={c.class} phrase={c.phrase} />
+							<motion.div key={c.name} variants={itemVariants}>
+								<ThemedCard image={c.image} name={c.name} className={c.class} phrase={c.phrase} />
+							</motion.div>
 						))}
-					</div>
-				</section>
+					</motion.div>
+				</motion.section>
 
 				{/* Website Developers */}
-				<section className="max-w-5xl w-full mx-auto mb-10 px-6">
-					<h2 className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse">Website Developers</h2>
-					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+				<motion.section
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true, amount: 0.2 }}
+					variants={sectionVariants}
+					className="max-w-5xl w-full mx-auto mb-10 px-6"
+				>
+					<motion.h2
+						variants={headingVariants}
+						className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse"
+					>
+						Website Developers
+					</motion.h2>
+					<motion.div
+						variants={containerVariants}
+						className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+					>
 						{websiteDevelopers.map((d) => (
-							<ThemedCard key={d.name} image={d.image} name={d.name} className={d.class} phrase={d.phrase} />
+							<motion.div key={d.name} variants={itemVariants}>
+								<ThemedCard image={d.image} name={d.name} className={d.class} phrase={d.phrase} />
+							</motion.div>
 						))}
-					</div>
-				</section>
+					</motion.div>
+				</motion.section>
 
 				{/* Committee Heads */}
-				<section className="max-w-5xl w-full mx-auto mb-8 px-6">
-					<h2 className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse">Committee Heads</h2>
-					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+				<motion.section
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true, amount: 0.1 }}
+					variants={sectionVariants}
+					className="max-w-5xl w-full mx-auto mb-8 px-6"
+				>
+					<motion.h2
+						variants={headingVariants}
+						className="font-stranger text-2xl md:text-3xl text-red-500 mb-4 text-center tracking-wider drop-shadow animate-pulse"
+					>
+						Committee Heads
+					</motion.h2>
+					<motion.div
+						variants={containerVariants}
+						className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+					>
 						{committeeHeads.map((h) => (
-							<ThemedHeadCard key={h.name} name={h.name} role={h.role} phrase={h.phrase} />
+							<motion.div key={h.name} variants={itemVariants}>
+								<ThemedHeadCard name={h.name} role={h.role} phrase={h.phrase} />
+							</motion.div>
 						))}
-					</div>
-				</section>
+					</motion.div>
+				</motion.section>
 
 				{/* Tech Stack */}
 				<section className="max-w-4xl w-full mx-auto mb-16 px-6">
