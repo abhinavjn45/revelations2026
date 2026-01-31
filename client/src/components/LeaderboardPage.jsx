@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import Footer from './Footer';
-import leaderboardData from '../data/leaderboardData';
+import leaderboardData, { fetchLeaderboardData } from '../data/leaderboardData';
 
 export default function LeaderboardPage() {
+    const [data, setData] = useState(leaderboardData);
+    const [loading, setLoading] = useState(true);
+
+    // Fetch data from Google Sheets on mount
+    useEffect(() => {
+        fetchLeaderboardData()
+            .then(fetchedData => {
+                setData(fetchedData);
+                setLoading(false);
+            })
+            .catch(() => {
+                setLoading(false);
+            });
+    }, []);
+
     // Sort leaderboard in descending order by points
-    const sortedLeaderboard = [...leaderboardData].sort((a, b) => b.points - a.points);
+    const sortedLeaderboard = [...data].sort((a, b) => b.points - a.points);
 
     // Compute ranks with ties
     let lastPoints = null;
@@ -121,6 +136,11 @@ export default function LeaderboardPage() {
                         <h1 className="font-stranger text-5xl md:text-7xl text-red-600 tracking-widest mb-4 drop-shadow-[0_0_30px_rgba(220,38,38,0.5)]">
                             LEADERBOARD
                         </h1>
+                        {loading && (
+                            <p className="font-typewriter text-gray-400 text-sm md:text-base tracking-wider animate-pulse">
+                                Loading data from the Upside Down...
+                            </p>
+                        )}
                         <p className="font-typewriter text-gray-400 text-sm md:text-base tracking-wider">
                             {/* // THE UPSIDE DOWN RANKINGS // */}
                         </p>

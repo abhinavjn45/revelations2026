@@ -1,11 +1,28 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import leaderboardData from '../data/leaderboardData';
+import leaderboardData, { fetchLeaderboardData } from '../data/leaderboardData';
 
 function LeaderboardPopup({ open, onClose }) {
+  const [data, setData] = useState(leaderboardData);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch data when popup opens
+  useEffect(() => {
+    if (open) {
+      fetchLeaderboardData()
+        .then(fetchedData => {
+          setData(fetchedData);
+          setLoading(false);
+        })
+        .catch(() => {
+          setLoading(false);
+        });
+    }
+  }, [open]);
+
   // Sort leaderboard in descending order by points
-  const sortedLeaderboard = [...leaderboardData].sort((a, b) => b.points - a.points);
+  const sortedLeaderboard = [...data].sort((a, b) => b.points - a.points);
   // Compute ranks with ties
   let lastPoints = null;
   let lastRank = 0;
@@ -54,6 +71,11 @@ function LeaderboardPopup({ open, onClose }) {
               </svg>
             </button>
             <h2 className="font-stranger text-3xl text-red-500 mb-6 text-center tracking-wider drop-shadow-lg animate-pulse">Leaderboard</h2>
+            {loading ? (
+              <div className="w-full text-center py-8">
+                <span className="font-typewriter text-gray-400 animate-pulse">Loading...</span>
+              </div>
+            ) : (
             <div className="w-full">
               <table className="w-full text-left font-typewriter text-lg text-gray-200 mb-6">
                 <tbody>
@@ -118,6 +140,7 @@ function LeaderboardPopup({ open, onClose }) {
                 </tbody>
               </table>
             </div>
+            )}
             <Link
               to="/leaderboard"
               className="inline-block px-8 py-3 bg-red-700 text-white font-typewriter text-lg rounded-none shadow-lg border-2 border-red-600 hover:bg-red-900 transition-colors"
