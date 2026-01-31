@@ -140,14 +140,12 @@ const Footer = () => {
 
                 {/* BOTTOM BAR */}
                 <div className="border-t border-red-900/30 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 opacity-60">
-                    <p className="font-typewriter text-xs text-gray-500">
-                        &copy; 1986-2026 CHRIST (DEEMED TO BE UNIVERSITY). ALL RIGHTS RESERVED.
+                    <p className="font-stranger text-lg text-gray-500 animate-pulse text-center w-full">
+                        Designed & developed with ❤️ by &nbsp;
+                        <a href='https://www.linkedin.com/in/darshanheble/' target="_blank" rel="noopener noreferrer" className="text-red-600 hover:underline">Darshan Heble</a>, &nbsp;
+                        <a href='https://www.linkedin.com/in/hariprasad-bk/' target="_blank" rel="noopener noreferrer" className="text-red-600 hover:underline">Hariprasad B K</a>, &nbsp;
+                        <a href='https://www.linkedin.com/in/abhinavjain45/' target="_blank" rel="noopener noreferrer" className="text-red-600 hover:underline">Abhinav Jain</a>
                     </p>
-                    <div className="flex items-center gap-6">
-                        <span className="font-stranger text-lg text-red-700 animate-pulse">FRIENDS DON'T LIE</span>
-                        <div className="h-px w-10 bg-red-900 animate-pulse"></div>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Stranger_Things_logo.png" alt="ST" className="h-4 opacity-20 invert grayscale" />
-                    </div>
                 </div>
             </div>
 
