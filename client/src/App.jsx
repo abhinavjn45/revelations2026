@@ -14,6 +14,7 @@ import AnimationDemoPage from './components/AnimationDemoPage';
 import { Preloader } from './components/Preloader';
 import AboutPage from './components/AboutPage';
 import './App.css';
+import StudentSearchPage from './components/StudentSearchPage';
 
 // PageWrapper component - shows StrangerThingsPreloader on page load
 function PageWrapper({ children }) {
@@ -98,6 +99,11 @@ function AppRoutes() {
         <Route path="/team/:slug" element={
           <PageWrapper key={location.key}>
             <TeamDetailsPage />
+          </PageWrapper>
+        } />
+        <Route path="/division-search" element={
+          <PageWrapper key={location.key}>
+            <StudentSearchPage />
           </PageWrapper>
         } />
         <Route path="/download-team-sheet" element={<DownloadTeamSheet />} />
