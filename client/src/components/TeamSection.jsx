@@ -1,6 +1,128 @@
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { createPortal } from 'react-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import './styles/TeamSection.css';
+
+// Popup component for finding team by register number
+function FindYourTeamPopup({ open, onClose }) {
+  const [regNo, setRegNo] = useState("");
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState("");
+
+  function handleSearch(e) {
+    e.preventDefault();
+    setError("");
+    setResult(null);
+    if (!regNo.trim()) {
+      setError("Please enter a register number.");
+      return;
+    }
+    // Search all teams for the student
+    let found = null;
+    let foundTeam = null;
+    for (const team of TEAMS_DATA) {
+      found = team.students.find(s => s.regNo.toLowerCase() === regNo.trim().toLowerCase());
+      if (found) {
+        foundTeam = team;
+        break;
+      }
+    }
+    if (found && foundTeam) {
+      setResult({
+        name: found.name,
+        regNo: found.regNo,
+        division: found.section,
+        team: foundTeam.name,
+        groupLink: foundTeam.groupLink || null,
+      });
+    } else {
+      setError("No student found with that register number.");
+    }
+  }
+
+  // Reset popup state when closed, but avoid cascading renders
+  useEffect(() => {
+    if (!open) {
+      // Use a microtask to avoid cascading renders
+      Promise.resolve().then(() => {
+        setRegNo("");
+        setResult(null);
+        setError("");
+      });
+    }
+  }, [open]);
+
+  return createPortal(
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="fixed inset-0 z-20 flex items-center justify-center bg-black/70 backdrop-blur-[2px] p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <motion.div
+            className="relative bg-gradient-to-br from-[#18181b] via-[#1a0505] to-[#18181b] border-2 border-red-700 rounded-3xl shadow-[0_8px_48px_8px_rgba(220,38,38,0.25)] p-6 w-full max-w-md mx-auto flex flex-col items-center"
+            initial={{ scale: 0.8, y: 40, opacity: 0 }}
+            animate={{ scale: 1, y: 0, opacity: 1 }}
+            exit={{ scale: 0.8, y: 40, opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            style={{ boxShadow: '0 0 60px 0 #dc2626cc, 0 0 0 2px #b91c1c44', maxHeight: '100%', overflowY: 'auto' }}
+          >
+            <button
+              onClick={onClose}
+              className="absolute top-3 right-3 w-9 h-9 flex items-center justify-center rounded-full bg-red-900/40 hover:bg-red-700/90 text-red-200 hover:text-white transition-all duration-200 focus:outline-none shadow-lg"
+              aria-label="Close"
+            >
+              <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path d="M6 6l12 12M6 18L18 6" />
+              </svg>
+            </button>
+            <h2 className="font-stranger text-2xl text-red-500 mb-4 text-center tracking-wider drop-shadow-lg">Find Your Team</h2>
+            <form onSubmit={handleSearch} className="w-full flex flex-col items-center mb-4">
+              <input
+                type="text"
+                placeholder="Enter Register Number..."
+                value={regNo}
+                onChange={e => setRegNo(e.target.value)}
+                className="mb-3 px-4 py-2 w-full rounded border-2 border-red-600 bg-black text-white focus:outline-none focus:border-red-400 text-center"
+                autoFocus
+              />
+              <button
+                type="submit"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-red-700 to-red-600 hover:from-red-600 hover:to-red-500 text-white font-typewriter text-base tracking-wider rounded-lg border border-red-500 transition-all duration-300 shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:shadow-[0_0_30px_rgba(220,38,38,0.6)]"
+              >
+                Search
+              </button>
+            </form>
+            {error && <div className="text-red-400 font-typewriter mb-2 text-center">{error}</div>}
+            {result && (
+              <div className="w-full bg-black/60 rounded-xl p-4 mt-2 border border-red-700 flex flex-col gap-2">
+                <div className="font-typewriter text-gray-300"><span className="font-bold text-white">Name:</span> {result.name}</div>
+                <div className="font-typewriter text-gray-300"><span className="font-bold text-white">Register Number:</span> {result.regNo}</div>
+                <div className="font-typewriter text-gray-300"><span className="font-bold text-white">Division:</span> {result.division}</div>
+                <div className="font-typewriter text-gray-300"><span className="font-bold text-white">Team:</span> {result.team}</div>
+                <div className="font-typewriter text-gray-300 flex flex-col items-start gap-1">
+                  <span className="font-bold text-white">WhatsApp Group:</span>
+                  {result.groupLink ? (
+                    <a href={result.groupLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-5 py-2 bg-green-700 hover:bg-green-800 text-white rounded-full text-base shadow transition mt-1">
+                      Join WA Group
+                    </a>
+                  ) : <span className="text-gray-500 text-xs mt-1">N/A</span>}
+                </div>
+              </div>
+            )}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>,
+    document.body
+  );
+}
+
+// State for popup
+// (moved to inside TeamSection)
 import { Link } from 'react-router-dom';
 import AtmosphereBackground from './AtmosphereBackground';
 import VeinOverlay from './VeinOverlay';
@@ -13,8 +135,8 @@ const REVEAL_DATE = new Date('2026-01-30T10:00:00+05:30');
 export default function TeamSection() {
   const [openCard, setOpenCard] = useState(null); // for mobile overlay
   const [hovered, setHovered] = useState(null); // for desktop hover
-  const [buttonGlow, setButtonGlow] = useState(null);
   const [isRevealed, setIsRevealed] = useState(false);
+  const [showFindPopup, setShowFindPopup] = useState(false);
 
   // Check if team details should be revealed
   useEffect(() => {
@@ -44,18 +166,6 @@ export default function TeamSection() {
     document.addEventListener('touchstart', handler);
     return () => document.removeEventListener('touchstart', handler);
   }, [openCard, isMobile]);
-
-  // Button glow on hover entry
-  useEffect(() => {
-    let t;
-    if (hovered !== null) {
-      setButtonGlow(hovered);
-      t = setTimeout(() => setButtonGlow(null), 700);
-    }
-    return () => {
-      if (t) clearTimeout(t);
-    };
-  }, [hovered]);
 
   return (
     <section id="teams" className="relative w-full py-16 sm:py-20 bg-[#050505] overflow-hidden">
@@ -154,9 +264,36 @@ export default function TeamSection() {
                   }
                 `}</style>
               </div>
+
+              
             );
           })}
         </div>
+        <div className="flex justify-center mt-6">
+          <button
+            type="button"
+            onClick={() => setShowFindPopup(true)}
+            className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-red-700 to-red-600 hover:from-red-600 hover:to-red-500 text-white font-typewriter text-base tracking-wider rounded-lg border border-red-500 transition-all duration-300 shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:shadow-[0_0_30px_rgba(220,38,38,0.6)]"
+            style={{ textDecoration: 'none' }}
+          >
+            <span>Find Your Division</span>
+            <svg
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              className="group-hover/btn:translate-x-1 transition-transform"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              <line x1="11" y1="8" x2="11" y2="14" />
+              <line x1="8" y1="11" x2="14" y2="11" />
+            </svg>
+          </button>
+        </div>
+        <FindYourTeamPopup open={showFindPopup} onClose={() => setShowFindPopup(false)} />
       </div>
     </section>
   );

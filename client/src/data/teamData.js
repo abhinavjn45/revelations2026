@@ -50,6 +50,7 @@ export const TEAMS_DATA = [
         slug: 'mind-flayers',
         description: 'The Mind Flayers are the strategic masterminds of Revelations. We control the system with precision and power.',
         students: parseCSV(mindFlayersCSV),
+        groupLink: "https://chat.whatsapp.com/LSIxBSnLsc19fbh7OgGvBp",
     },
     {
         id: 2,
@@ -59,6 +60,7 @@ export const TEAMS_DATA = [
         slug: 'hawkins-labs',
         description: 'Hawkins Labs is where experiments happen. We break boundaries and innovate beyond limits.',
         students: parseCSV(hawkinsLabsCSV),
+        groupLink: "https://chat.whatsapp.com/Kc3d4ZsArvaCZntIwG62bs",
     },
     {
         id: 3,
@@ -68,6 +70,7 @@ export const TEAMS_DATA = [
         slug: 'the-demogorgans',
         description: 'The Demogorgans are relentless. We code, we conquer, and we consume all challenges.',
         students: parseCSV(demogorgansCSV),
+        groupLink: "https://chat.whatsapp.com/KSE6sAwaOCmLElPuGvkt79",
     },
     {
         id: 4,
@@ -77,6 +80,7 @@ export const TEAMS_DATA = [
         slug: 'the-upside-down',
         description: 'The Upside Down operates in the shadows of the parallel network, unseen but always present.',
         students: parseCSV(upsideDownCSV),
+        groupLink: "https://chat.whatsapp.com/IlUjSMx6JrtEbRhid58RuF",
     },
     {
         id: 5,
@@ -86,6 +90,7 @@ export const TEAMS_DATA = [
         slug: 'the-signal-seekers',
         description: 'The Signal Seekers are always tuned in, searching for hidden signals others miss.',
         students: parseCSV(signalSeekersCSV),
+        groupLink: "https://chat.whatsapp.com/GBMTJHYmsUB8ElXFWw8Wfj",
     },
     {
         id: 6,
@@ -95,6 +100,7 @@ export const TEAMS_DATA = [
         slug: 'starcourt-squad',
         description: 'Starcourt Squad brings style to science. Fashion-forward and technically brilliant.',
         students: parseCSV(starcourtSquadCSV),
+        groupLink: "https://chat.whatsapp.com/Jtbin3pS0oG5awTLniO9O6",
     },
 ];
 
