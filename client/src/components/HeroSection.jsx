@@ -397,21 +397,38 @@ export default function HeroSection({ startAnimation }) {
             >
               REVELATIONS
             </h1>
-            <div className="flex flex-row items-center justify-center gap-4 text-white font-typewriter text-xl md:text-2xl mb-4">
-              <span className="">{String(timeLeft.days).padStart(2, '0')}</span>
-              <span>:</span>
-              <span>{String(timeLeft.hours).padStart(2, '0')}</span>
-              <span>:</span>
-              <span>{String(timeLeft.minutes).padStart(2, '0')}</span>
-              <span>:</span>
-              <span>{String(timeLeft.seconds).padStart(2, '0')}</span>
-            </div>
-            <div className="flex flex-row items-center justify-center gap-8 text-s text-gray-400 font-typewriter mb-2">
-              <span>DAYS</span>
-              <span>HRS</span>
-              <span>MIN</span>
-              <span>SEC</span>
-            </div>
+{timeLeft.total > 0 ? (
+              <>
+                <div className="flex flex-row items-center justify-center gap-4 text-white font-typewriter text-xl md:text-2xl mb-4">
+                  <span className="">{String(timeLeft.days).padStart(2, '0')}</span>
+                  <span>:</span>
+                  <span>{String(timeLeft.hours).padStart(2, '0')}</span>
+                  <span>:</span>
+                  <span>{String(timeLeft.minutes).padStart(2, '0')}</span>
+                  <span>:</span>
+                  <span>{String(timeLeft.seconds).padStart(2, '0')}</span>
+                </div>
+                <div className="flex flex-row items-center justify-center gap-8 text-s text-gray-400 font-typewriter mb-2">
+                  <span>DAYS</span>
+                  <span>HRS</span>
+                  <span>MIN</span>
+                  <span>SEC</span>
+                </div>
+              </>
+            ) : (
+              <div className="flex flex-col items-center justify-center mb-4">
+                <span 
+                  className="font-stranger text-2xl md:text-3xl lg:text-4xl text-center animate-pulse"
+                  style={{
+                    color: 'var(--stranger-red)',
+                    textShadow: '0 0 10px rgba(220,38,38,0.8), 0 0 20px rgba(220,38,38,0.6), 0 0 30px rgba(220,38,38,0.4)',
+                    animation: 'pulse 2s ease-in-out infinite'
+                  }}
+                >
+                  GATES ARE OPENED
+                </span>
+              </div>
+            )}
           </div>
           {/* Hero Main Image at Bottom Center */}
           {/* Hero Main Image at Bottom Center */}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Navbar } from './Navbar';
 import Footer from './Footer';
 import '../styles/GalleryPage.css';
@@ -203,13 +204,36 @@ const GalleryPage = () => {
                     </div>
                 </header>
 
-                <div className="gallery-grid">
-                    {galleryData[selectedYear]?.map((item, index) => (
-                        <div
+                <motion.div
+                    className="gallery-grid"
+                    key={selectedYear} // Re-trigger animation on year change
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={{
+                        hidden: { opacity: 0 },
+                        visible: {
+                            opacity: 1,
+                            transition: {
+                                staggerChildren: 0.1
+                            }
+                        }
+                    }}
+                >
+                    {galleryData[selectedYear]?.map((item) => (
+                        <motion.div
                             key={item.id}
                             className="gallery-card"
                             onClick={() => openModal(item)}
-                            style={{ animationDelay: `${index * 0.1}s` }}
+                            variants={{
+                                hidden: { opacity: 0, y: 30 },
+                                visible: {
+                                    opacity: 1,
+                                    y: 0,
+                                    transition: { type: "spring", stiffness: 100, damping: 12 }
+                                }
+                            }}
+                            whileHover={{ y: -5, transition: { duration: 0.2 } }}
                         >
                             <div className="gallery-image-container">
                                 <img src={item.image} alt={item.title} className="gallery-image" />
@@ -221,9 +245,9 @@ const GalleryPage = () => {
                                 <h3 className="gallery-item-title">{item.title}</h3>
                                 <p className="gallery-item-desc">{item.desc}</p>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
 
             {/* Lightbox Modal */}

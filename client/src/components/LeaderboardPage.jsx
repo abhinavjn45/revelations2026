@@ -496,16 +496,35 @@ export default function LeaderboardPage() {
                         </div>
 
                         {/* Table Rows */}
-                        <div className="space-y-3">
-                            {rankedRows.map((row, idx) => {
+                        <motion.div
+                            className="space-y-3"
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={{
+                                hidden: { opacity: 0 },
+                                visible: {
+                                    opacity: 1,
+                                    transition: {
+                                        staggerChildren: 0.1
+                                    }
+                                }
+                            }}
+                        >
+                            {rankedRows.map((row) => {
                                 const style = getRankStyle(row);
                                 return (
                                     <motion.div
                                         key={row.team}
                                         className={`grid grid-cols-12 gap-4 items-center p-4 md:p-5 rounded-xl border transition-all duration-300 hover:scale-[1.02] ${style.className}`}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ duration: 0.4, delay: 0.1 * idx }}
+                                        variants={{
+                                            hidden: { opacity: 0, x: -20 },
+                                            visible: {
+                                                opacity: 1,
+                                                x: 0,
+                                                transition: { type: "spring", stiffness: 100, damping: 12 }
+                                            }
+                                        }}
                                     >
                                         {/* Rank */}
                                         <div className="col-span-2 flex justify-center">
@@ -528,7 +547,7 @@ export default function LeaderboardPage() {
                                     </motion.div>
                                 );
                             })}
-                        </div>
+                        </motion.div>
                     </motion.div>
 
                     {/* Back to Home Button */}

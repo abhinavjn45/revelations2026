@@ -206,7 +206,11 @@ const EventsPage = () => {
                                             <div className="event-info-item">
                                                 <span className="info-label">🏆 Prizes</span>
                                                 <span className="info-value">
-                                                    {Array.isArray(event.prizes) ? event.prizes.join(' | ') : event.prizes}
+                                                    {Array.isArray(event.prizes) 
+                                                        ? event.prizes.map((prize, idx) => (
+                                                            <span key={idx} style={{ display: 'block' }}>{prize}</span>
+                                                        ))
+                                                        : event.prizes}
                                                 </span>
                                             </div>
                                         </div>

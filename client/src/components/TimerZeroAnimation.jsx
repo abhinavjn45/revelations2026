@@ -332,7 +332,7 @@ export default function TimerZeroAnimation({ trigger, onComplete }) {
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ duration: 0.6, delay: 0.2 }}
                             >
-                                <h1 className="reveal-title glitch-text" data-text="THE GATE">
+                                <h1 className="reveal-title glitch-text font-stranger" data-text="THE GATE">
                                     THE GATE
                                 </h1>
                             </motion.div>
@@ -344,7 +344,7 @@ export default function TimerZeroAnimation({ trigger, onComplete }) {
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ duration: 0.6, delay: 0.5 }}
                             >
-                                <h2 className="reveal-subtitle glitch-text" data-text="HAS OPENED">
+                                <h2 className="reveal-subtitle glitch-text font-stranger" data-text="HAS OPENED">
                                     HAS OPENED
                                 </h2>
                             </motion.div>
