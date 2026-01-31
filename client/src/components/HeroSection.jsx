@@ -149,8 +149,8 @@ function getTimeRemaining(targetDate) {
 }
 
 export default function HeroSection({ startAnimation }) {
-  // Set your event date here
-  const eventDate = '2026-01-31T12:26:00+05:30';
+  // Set your event date here (13 seconds from now)
+  const [eventDate] = useState(() => new Date(Date.now() + 19 * 1000).toISOString());
   const [timeLeft, setTimeLeft] = useState(getTimeRemaining(eventDate));
   const [spotlightAngle, setSpotlightAngle] = useState(0);
   const spotlightRef = useRef(null);
