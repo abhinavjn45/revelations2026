@@ -101,8 +101,8 @@ function FindYourTeamPopup({ open, onClose }) {
               <div className="w-full bg-black/60 rounded-xl p-4 mt-2 border border-red-700 flex flex-col gap-2">
                 <div className="font-typewriter text-gray-300"><span className="font-bold text-white">Name:</span> {result.name}</div>
                 <div className="font-typewriter text-gray-300"><span className="font-bold text-white">Register Number:</span> {result.regNo}</div>
-                <div className="font-typewriter text-gray-300"><span className="font-bold text-white">Division:</span> {result.division}</div>
-                <div className="font-typewriter text-gray-300"><span className="font-bold text-white">Team:</span> {result.team}</div>
+                <div className="font-typewriter text-gray-300"><span className="font-bold text-white">Class:</span> {result.division}</div>
+                <div className="font-typewriter text-gray-300"><span className="font-bold text-white">Division:</span> {result.team}</div>
                 <div className="font-typewriter text-gray-300 flex flex-col items-start gap-1">
                   <span className="font-bold text-white">WhatsApp Group:</span>
                   {result.groupLink ? (
