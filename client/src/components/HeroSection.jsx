@@ -467,7 +467,7 @@ export default function HeroSection({ startAnimation }) {
       />
 
       {/* Netflix-like video play button bottom left */}
-      <div className="absolute bottom-6 left-6 z-40 flex flex-col items-start gap-1 select-none">
+      {/* <div className="absolute bottom-6 left-6 z-40 flex flex-col items-start gap-1 select-none">
         <button
           className="flex items-center gap-1 p-0 bg-transparent border-none shadow-none text-white font-semibold text-sm md:text-base hover:bg-transparent focus:outline-none"
           style={{ boxShadow: 'none', background: 'none', border: 'none' }}
@@ -480,7 +480,7 @@ export default function HeroSection({ startAnimation }) {
           <span className="text-red-600 font-typewriter">Watch Now</span>
         </button>
         <span className="text-white text-xs font-typewriter mt-1 mx-auto tracking-wide opacity-80 self-center">2026 Theme Reveal</span>
-      </div>
+      </div> */}
 
       {/* leaderboard button bottom right */}
       <div className="absolute bottom-6 right-6 z-40 flex flex-col items-start gap-1 select-none">
