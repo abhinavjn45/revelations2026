@@ -199,7 +199,7 @@ export const events = [
             { position: "Participation", points: 2 },
             { position: "Second Runner-up", points: 3 },
         ],
-        rulesLink: "https://abhinavjain.site/",
+        rulesLink: "https://docs.google.com/document/d/1NWw4CaUJeDNIBh4Zi69AO_mQTNPFroQf6AJ41rs9rQE/edit?usp=sharing",
         coordinators: [
             { name: "Joshua Joby", contact: "+91 96068 27876" },
             { name: "Abhinav Jain", contact: "+91 92145 44078" }

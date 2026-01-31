@@ -109,7 +109,7 @@ export default function LeaderboardPage() {
 
             {/* Main Content */}
             <main className="relative z-10 pt-32 pb-20 px-4 md:px-8">
-                <div className="max-w-4xl mx-auto">
+                <div className="w-full max-w-none mx-auto overflow-x-auto">
 
                     {/* Header */}
                     <motion.div
@@ -488,13 +488,6 @@ export default function LeaderboardPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        {/* Table Header */}
-                        <div className="grid grid-cols-12 gap-4 pb-4 mb-4 border-b border-red-900/30 font-typewriter text-xs md:text-sm text-gray-500 uppercase tracking-widest">
-                            <div className="col-span-2 text-center">Rank</div>
-                            <div className="col-span-7 md:col-span-8">Team</div>
-                            <div className="col-span-3 md:col-span-2 text-right">Points</div>
-                        </div>
-
                         {/* Table Rows */}
                         <motion.div
                             className="space-y-3"
@@ -511,12 +504,22 @@ export default function LeaderboardPage() {
                                 }
                             }}
                         >
+                            {/* Single Header Row as flex */}
+                            <div className="flex items-center p-2 md:p-3 rounded-xl border-b border-gray-700 text-gray-400 font-typewriter text-base md:text-lg uppercase tracking-wider mb-2 bg-black/30 min-w-[900px]">
+                                <div className="text-center min-w-[70px] flex-1">Rank</div>
+                                <div className="min-w-[180px] flex-1">Division Name</div>
+                                <div className="text-center min-w-[120px] flex-1">Participation</div>
+                                <div className="text-center min-w-[100px] flex-1">Winner</div>
+                                <div className="text-center min-w-[120px] flex-1">Runner-up</div>
+                                <div className="text-center min-w-[140px] flex-1">2nd Runner Up</div>
+                                <div className="text-center min-w-[100px] flex-1">Total</div>
+                            </div>
                             {rankedRows.map((row) => {
                                 const style = getRankStyle(row);
                                 return (
                                     <motion.div
                                         key={row.team}
-                                        className={`grid grid-cols-12 gap-4 items-center p-4 md:p-5 rounded-xl border transition-all duration-300 hover:scale-[1.02] ${style.className}`}
+                                        className={`flex items-center p-4 md:p-5 rounded-xl border transition-all duration-300 hover:scale-[1.02] min-w-[900px] ${style.className}`}
                                         variants={{
                                             hidden: { opacity: 0, x: -20 },
                                             visible: {
@@ -527,7 +530,7 @@ export default function LeaderboardPage() {
                                         }}
                                     >
                                         {/* Rank */}
-                                        <div className="col-span-2 flex justify-center">
+                                        <div className="text-center min-w-[70px] flex-1 flex justify-center">
                                             {style.icon ? (
                                                 style.icon
                                             ) : (
@@ -535,13 +538,33 @@ export default function LeaderboardPage() {
                                             )}
                                         </div>
 
-                                        {/* Team Name */}
-                                        <div className={`col-span-7 md:col-span-8 font-typewriter text-lg md:text-xl ${style.textClass || 'text-gray-300'}`}>
+                                        {/* Division Name */}
+                                        <div className={`min-w-[180px] flex-1 font-typewriter text-lg md:text-xl ${style.textClass || 'text-gray-300'}`}>
                                             {row.team}
                                         </div>
 
-                                        {/* Points */}
-                                        <div className={`col-span-3 md:col-span-2 text-right font-stranger text-2xl md:text-3xl ${row.points > 0 ? 'text-red-400' : 'text-gray-600'}`}>
+                                        {/* Participation */}
+                                        <div className="text-center min-w-[120px] flex-1 font-typewriter text-lg text-gray-300">
+                                            {row.participation}
+                                        </div>
+
+                                        {/* Winner */}
+                                        <div className="text-center min-w-[100px] flex-1 font-typewriter text-lg text-yellow-300">
+                                            {row.winner}
+                                        </div>
+
+                                        {/* Runner-up */}
+                                        <div className="text-center min-w-[120px] flex-1 font-typewriter text-lg text-gray-300">
+                                            {row.runnerUp}
+                                        </div>
+
+                                        {/* 2nd Runner Up */}
+                                        <div className="text-center min-w-[140px] flex-1 font-typewriter text-lg text-amber-300">
+                                            {row.secondRunnerUp}
+                                        </div>
+
+                                        {/* Total */}
+                                        <div className={`text-center min-w-[100px] flex-1 font-stranger text-2xl md:text-3xl ${row.points > 0 ? 'text-red-400' : 'text-gray-600'}`}>
                                             {row.points}
                                         </div>
                                     </motion.div>
