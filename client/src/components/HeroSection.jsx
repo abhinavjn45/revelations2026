@@ -1,8 +1,7 @@
 
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import leaderboardData from '../data/leaderboardData';
-import TimerZeroAnimation from './TimerZeroAnimation';
 
 function LeaderboardPopup({ open, onClose }) {
   // Sort leaderboard in descending order by points
@@ -139,19 +138,7 @@ import willImg from '../assets/images/homepage/will.png';
 import strangerThingsBg from '../assets/images/strngrthings bg.png';
 
 
-function getTimeRemaining(targetDate) {
-  const total = Date.parse(targetDate) - Date.now();
-  const seconds = Math.max(Math.floor((total / 1000) % 60), 0);
-  const minutes = Math.max(Math.floor((total / 1000 / 60) % 60), 0);
-  const hours = Math.max(Math.floor((total / (1000 * 60 * 60)) % 24), 0);
-  const days = Math.max(Math.floor(total / (1000 * 60 * 60 * 24)), 0);
-  return { total, days, hours, minutes, seconds };
-}
-
 export default function HeroSection({ startAnimation }) {
-  // Set your event date here (13 seconds from now)
-  const [eventDate] = useState(() => new Date(Date.now() + 17 * 1000).toISOString());
-  const [timeLeft, setTimeLeft] = useState(getTimeRemaining(eventDate));
   const [spotlightAngle, setSpotlightAngle] = useState(0);
   const spotlightRef = useRef(null);
   const shouldStopRef = useRef(false);
@@ -161,10 +148,6 @@ export default function HeroSection({ startAnimation }) {
   const [autoCycle, setAutoCycle] = useState(true);
   const characterOrder = ['vecna', 'main', 'henry'];
   const cycleIndex = useRef(0);
-
-  // Timer zero animation state
-  const [timerZeroTriggered, setTimerZeroTriggered] = useState(false);
-  const hasTriggeredZeroAnimation = useRef(false);
 
   // Auto-cycle images every 1.5s
   useEffect(() => {
@@ -211,23 +194,6 @@ export default function HeroSection({ startAnimation }) {
       return () => clearTimeout(timer);
     }
   }, [startAnimation]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const newTimeLeft = getTimeRemaining(eventDate);
-      setTimeLeft(newTimeLeft);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [eventDate]);
-
-  // Trigger the epic animation when timer hits zero (only once)
-  // Only trigger if the main animation has started (preloader finished)
-  useEffect(() => {
-    if (startAnimation && timeLeft.total <= 0 && !hasTriggeredZeroAnimation.current) {
-      hasTriggeredZeroAnimation.current = true;
-      setTimerZeroTriggered(true);
-    }
-  }, [timeLeft, startAnimation]);
 
   // Spotlight pendulum animation
   useEffect(() => {
@@ -332,11 +298,6 @@ export default function HeroSection({ startAnimation }) {
     return () => cancelAnimationFrame(animationFrameId);
   }, [spotlightAngle, animationActive]);
 
-
-  const handleTimerComplete = useCallback(() => {
-    setTimerZeroTriggered(false);
-  }, []);
-
   const [showLeaderboard, setShowLeaderboard] = useState(false);
 
   return (
@@ -397,26 +358,7 @@ export default function HeroSection({ startAnimation }) {
             >
               REVELATIONS
             </h1>
-{timeLeft.total > 0 ? (
-              <>
-                <div className="flex flex-row items-center justify-center gap-4 text-white font-typewriter text-xl md:text-2xl mb-4">
-                  <span className="">{String(timeLeft.days).padStart(2, '0')}</span>
-                  <span>:</span>
-                  <span>{String(timeLeft.hours).padStart(2, '0')}</span>
-                  <span>:</span>
-                  <span>{String(timeLeft.minutes).padStart(2, '0')}</span>
-                  <span>:</span>
-                  <span>{String(timeLeft.seconds).padStart(2, '0')}</span>
-                </div>
-                <div className="flex flex-row items-center justify-center gap-8 text-s text-gray-400 font-typewriter mb-2">
-                  <span>DAYS</span>
-                  <span>HRS</span>
-                  <span>MIN</span>
-                  <span>SEC</span>
-                </div>
-              </>
-            ) : (
-              <div className="flex flex-col items-center justify-center mb-4">
+<div className="flex flex-col items-center justify-center mb-4">
                 <span 
                   className="font-stranger text-2xl md:text-3xl lg:text-4xl text-center animate-pulse"
                   style={{
@@ -428,7 +370,6 @@ export default function HeroSection({ startAnimation }) {
                   GATES ARE OPENED
                 </span>
               </div>
-            )}
           </div>
           {/* Hero Main Image at Bottom Center */}
           {/* Hero Main Image at Bottom Center */}
@@ -501,11 +442,6 @@ export default function HeroSection({ startAnimation }) {
 
       {/* Leaderboard Popup */}
       <LeaderboardPopup open={showLeaderboard} onClose={() => setShowLeaderboard(false)} />
-
-      <TimerZeroAnimation
-        trigger={timerZeroTriggered}
-        onComplete={handleTimerComplete}
-      />
     </section>
   );
 }
