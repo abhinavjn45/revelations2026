@@ -5,20 +5,33 @@ import { Navbar } from './Navbar';
 import Footer from './Footer';
 import leaderboardData, { fetchLeaderboardData } from '../data/leaderboardData';
 
-export default function LeaderboardPage() {
+export default function LeaderboardPage({ startAnimation = false }) {
     const [data, setData] = useState(leaderboardData);
     const [loading, setLoading] = useState(true);
+    const [lastUpdated, setLastUpdated] = useState(null);
 
-    // Fetch data from Google Sheets on mount
-    useEffect(() => {
+    // Fetch data from Google Sheets
+    const loadData = () => {
         fetchLeaderboardData()
             .then(fetchedData => {
                 setData(fetchedData);
                 setLoading(false);
+                setLastUpdated(new Date());
             })
             .catch(() => {
                 setLoading(false);
             });
+    };
+
+    // Fetch on mount and auto-refresh every 1 minute
+    useEffect(() => {
+        loadData(); // Initial fetch
+        
+        const interval = setInterval(() => {
+            loadData();
+        }, 60000); // 60000ms = 1 minute
+        
+        return () => clearInterval(interval);
     }, []);
 
     // Sort leaderboard in descending order by points
@@ -130,7 +143,7 @@ export default function LeaderboardPage() {
                     <motion.div
                         className="text-center mb-12"
                         initial={{ opacity: 0, y: -30 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        animate={startAnimation ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
                         transition={{ duration: 0.6 }}
                     >
                         <h1 className="font-stranger text-5xl md:text-7xl text-red-600 tracking-widest mb-4 drop-shadow-[0_0_30px_rgba(220,38,38,0.5)]">
@@ -152,7 +165,7 @@ export default function LeaderboardPage() {
                     </motion.div>
 
                     {/* Top 3 Podium - Stranger Things / Upside Down Style */}
-                    {!allZero && rankedRows.length >= 3 && (
+                    {!allZero && rankedRows.length >= 3 && startAnimation && (
                         <div className="relative mb-12 select-none px-4">
                             {/* Background eerie glow */}
                             <div className="absolute inset-0 flex justify-center">
@@ -187,7 +200,7 @@ export default function LeaderboardPage() {
                                 {/* 2nd Place */}
                                 <motion.div
                                     initial={{ opacity: 0, y: 80, scale: 0.8 }}
-                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    animate={startAnimation ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 80, scale: 0.8 }}
                                     transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
                                     className="flex flex-col items-center group"
                                 >
@@ -266,7 +279,7 @@ export default function LeaderboardPage() {
                                 {/* 1st Place - The Champion */}
                                 <motion.div
                                     initial={{ opacity: 0, y: 100, scale: 0.8 }}
-                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    animate={startAnimation ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 100, scale: 0.8 }}
                                     transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
                                     className="flex flex-col items-center z-20 group"
                                 >
@@ -404,7 +417,7 @@ export default function LeaderboardPage() {
                                 {/* 3rd Place */}
                                 <motion.div
                                     initial={{ opacity: 0, y: 80, scale: 0.8 }}
-                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    animate={startAnimation ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 80, scale: 0.8 }}
                                     transition={{ delay: 0.6, type: "spring", stiffness: 100 }}
                                     className="flex flex-col items-center group"
                                 >
@@ -505,27 +518,38 @@ export default function LeaderboardPage() {
                     <motion.div
                         className="bg-gradient-to-br from-gray-900/80 via-[#1a0505]/60 to-gray-900/80 border border-red-900/30 rounded-2xl p-6 md:p-8 backdrop-blur-sm shadow-[0_0_60px_rgba(220,38,38,0.15)]"
                         initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        animate={startAnimation ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         {/* Table Rows */}
                         <motion.div
                             className="space-y-3"
                             initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
+                            animate={startAnimation ? "visible" : "hidden"}
+                            key={data.map(d => d.team + d.points).join('-')} // Re-animate on data change
                             variants={{
                                 hidden: { opacity: 0 },
                                 visible: {
                                     opacity: 1,
                                     transition: {
-                                        staggerChildren: 0.1
+                                        staggerChildren: 0.12,
+                                        delayChildren: 0.1
                                     }
                                 }
                             }}
                         >
                             {/* Single Header Row as flex */}
-                            <div className="flex items-center p-2 md:p-3 rounded-xl border-b border-gray-700 text-gray-400 font-typewriter text-base md:text-lg uppercase tracking-wider mb-2 bg-black/30 min-w-[900px]">
+                            <motion.div 
+                                className="flex items-center p-2 md:p-3 rounded-xl border-b border-gray-700 text-gray-400 font-typewriter text-base md:text-lg uppercase tracking-wider mb-2 bg-black/30 min-w-[900px]"
+                                variants={{
+                                    hidden: { opacity: 0, y: -10 },
+                                    visible: { 
+                                        opacity: 1, 
+                                        y: 0,
+                                        transition: { type: "spring", stiffness: 100, damping: 15 }
+                                    }
+                                }}
+                            >
                                 <div className="text-center min-w-[70px] flex-1">Rank</div>
                                 <div className="min-w-[180px] flex-1">Division Name</div>
                                 <div className="text-center min-w-[120px] flex-1">Participation</div>
@@ -533,20 +557,31 @@ export default function LeaderboardPage() {
                                 <div className="text-center min-w-[120px] flex-1">Runner-up</div>
                                 <div className="text-center min-w-[140px] flex-1">2nd Runner Up</div>
                                 <div className="text-center min-w-[100px] flex-1">Total</div>
-                            </div>
-                            {rankedRows.map((row) => {
+                            </motion.div>
+                            {rankedRows.map((row, index) => {
                                 const style = getRankStyle(row);
                                 return (
                                     <motion.div
                                         key={row.team}
                                         className={`flex items-center p-4 md:p-5 rounded-xl border transition-all duration-300 hover:scale-[1.02] min-w-[900px] ${style.className}`}
                                         variants={{
-                                            hidden: { opacity: 0, x: -20 },
+                                            hidden: { opacity: 0, x: -50, scale: 0.95 },
                                             visible: {
                                                 opacity: 1,
                                                 x: 0,
-                                                transition: { type: "spring", stiffness: 100, damping: 12 }
+                                                scale: 1,
+                                                transition: { 
+                                                    type: "spring", 
+                                                    stiffness: 100, 
+                                                    damping: 12,
+                                                    delay: index * 0.08
+                                                }
                                             }
+                                        }}
+                                        whileHover={{ 
+                                            scale: 1.02, 
+                                            boxShadow: "0 0 25px rgba(220, 38, 38, 0.3)",
+                                            transition: { duration: 0.2 }
                                         }}
                                     >
                                         {/* Rank */}
@@ -597,7 +632,7 @@ export default function LeaderboardPage() {
                     <motion.div
                         className="text-center mt-10"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
+                        animate={startAnimation ? { opacity: 1 } : { opacity: 0 }}
                         transition={{ duration: 0.6, delay: 0.5 }}
                     >
                         <Link

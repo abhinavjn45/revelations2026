@@ -7,9 +7,10 @@ function LeaderboardPopup({ open, onClose }) {
   const [data, setData] = useState(leaderboardData);
   const [loading, setLoading] = useState(true);
 
-  // Fetch data when popup opens
+  // Fetch data when popup opens and auto-refresh every 1 minute
   useEffect(() => {
     if (open) {
+      // Initial fetch
       fetchLeaderboardData()
         .then(fetchedData => {
           setData(fetchedData);
@@ -18,6 +19,17 @@ function LeaderboardPopup({ open, onClose }) {
         .catch(() => {
           setLoading(false);
         });
+      
+      // Auto-refresh every 1 minute while popup is open
+      const interval = setInterval(() => {
+        fetchLeaderboardData()
+          .then(fetchedData => {
+            setData(fetchedData);
+          })
+          .catch(() => {});
+      }, 60000); // 60000ms = 1 minute
+      
+      return () => clearInterval(interval);
     }
   }, [open]);
 

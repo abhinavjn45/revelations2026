@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, cloneElement, isValidElement, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { MainContent } from './components/MainContent';
 import CustomCursor from './components/CustomCursor';
@@ -16,7 +16,10 @@ import AboutPage from './components/AboutPage';
 import './App.css';
 import StudentSearchPage from './components/StudentSearchPage';
 
-// PageWrapper component - shows StrangerThingsPreloader on page load
+// Track if user has visited the site (for HomePage preloader only)
+const hasVisitedSite = { current: false };
+
+// PageWrapper component - ALWAYS shows StrangerThingsPreloader for other pages
 function PageWrapper({ children }) {
   const [loading, setLoading] = useState(true);
 
@@ -33,14 +36,24 @@ function PageWrapper({ children }) {
         opacity: loading ? 0 : 1,
         transition: 'opacity 0.3s ease'
       }}>
-        {children}
+        {isValidElement(children) 
+          ? cloneElement(children, { startAnimation: !loading })
+          : children
+        }
       </div>
     </>
   );
 }
 
 function HomePage() {
-  const [preloaderComplete, setPreloaderComplete] = useState(false);
+  // Only show Preloader on first visit to the site, not on internal navigation back to home
+  const isFirstVisit = !hasVisitedSite.current;
+  const [preloaderComplete, setPreloaderComplete] = useState(!isFirstVisit);
+
+  // Mark that user has visited the site
+  useEffect(() => {
+    hasVisitedSite.current = true;
+  }, []);
 
   return (
     <>
@@ -72,37 +85,37 @@ function AppRoutes() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/events" element={
-          <PageWrapper key={location.key}>
+          <PageWrapper>
             <EventsPage />
           </PageWrapper>
         } />
         <Route path="/gallery" element={
-          <PageWrapper key={location.key}>
+          <PageWrapper>
             <GalleryPage />
           </PageWrapper>
         } />
         <Route path="/about" element={
-          <PageWrapper key={location.key}>
+          <PageWrapper>
             <AboutPage />
           </PageWrapper>
         } />
         <Route path="/leaderboard" element={
-          <PageWrapper key={location.key}>
+          <PageWrapper>
             <LeaderboardPage />
           </PageWrapper>
         } />
         <Route path="/schedule" element={
-          <PageWrapper key={location.key}>
+          <PageWrapper>
             <SchedulePage />
           </PageWrapper>
         } />
         <Route path="/team/:slug" element={
-          <PageWrapper key={location.key}>
+          <PageWrapper>
             <TeamDetailsPage />
           </PageWrapper>
         } />
         <Route path="/division-search" element={
-          <PageWrapper key={location.key}>
+          <PageWrapper>
             <StudentSearchPage />
           </PageWrapper>
         } />
