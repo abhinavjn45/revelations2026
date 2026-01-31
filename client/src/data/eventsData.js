@@ -220,9 +220,9 @@ export const events = [
         description: "Think like Joyce planning to save Will! Manage resources, make strategic decisions, and lead your team to victory in this IT management simulation that tests your business acumen and technical leadership.",
         rules: [
             "Team of 3-4 members",
-            "Multiple business scenarios",
-            "Presentation required",
-            "Decision-making under pressure",
+            // "Multiple business scenarios",
+            // "Presentation required",
+            // "Decision-making under pressure",
             "Rules and Regulations are subject to change at any point."
         ],
         eligibility: "Open to all MCA and MSc students",
@@ -233,13 +233,13 @@ export const events = [
         pointSystem: [
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
-            { position: "Second Runner-up", points: 3 },
+            { position: "2nd Runner-up", points: 3 },
             { position: "Participation", points: 2 },
         ],
         rulesLink: "",
         coordinators: [
-            { name: "Rahul", contact: "" },
-            { name: "Abhinav Jain", contact: "+91 92145 44078" }
+            { name: "Rahul", contact: "+91 75067 32498" },
+            { name: "Abhinav", contact: "+91 92145 44078" }
         ],
         registrationLink: "",
         registrationStatus: "coming_soon",
@@ -249,7 +249,7 @@ export const events = [
         title: "Mindscape Design",
         subtitle: "UI/UX",
         date: "FEB 18",
-        time: "01:30 PM Onwards",
+        time: "02:30 PM Onwards",
         venue: "MCA Lab 811, 8th Floor, Central Block",
         type: "Technical",
         bgImage: MindscapeDesignImg,
@@ -257,6 +257,7 @@ export const events = [
         description: "Design interfaces that users love! Create stunning UI/UX designs for given problem statements using tools like Figma or Adobe XD. Showcase your creativity and user-centric thinking.",
         rules: [
             "Team of 1-2 members",
+            "Problem statements will be provided on the spot",
             "Bring your own laptop",
             "Design tools: Figma/Adobe XD/Sketch",
             "Prototype must be interactive",
@@ -270,12 +271,13 @@ export const events = [
         pointSystem: [
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "2nd Runner-up", points: 3 },
             { position: "Participation", points: 2 },
-            { position: "Second Runner-up", points: 3 },
         ],
         rulesLink: "",
         coordinators: [
-            { name: "Merry Don", contact: "" }
+            { name: "Merry Don", contact: "+91 90375 65824" },
+            { name: "Abhinav", contact: "+91 92145 44078" }
         ],
         registrationLink: "",
         registrationStatus: "coming_soon",
@@ -292,13 +294,13 @@ export const events = [
         venueImage: VenueLabImg,
         description: "Break through the gate's defenses! A cybersecurity challenge where you solve puzzles, crack codes, and capture flags. Test your hacking skills in a safe, competitive environment.",
         rules: [
-            "Team of 2-3 members",
+            "Team of 2 members",
             "Bring your own laptop",
-            "Categories: Web, Crypto, Forensics, Reversing",
+            "Categories: To be announced",
             "No attacks on infrastructure",
             "Rules and Regulations are subject to change at any point."
         ],
-        eligibility: "Open to cybersecurity enthusiasts",
+        eligibility: "Open to all MCA and MSc AIML students",
         prizes: [
             "1st Position",
             "2nd Position",
@@ -306,13 +308,12 @@ export const events = [
         pointSystem: [
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "2nd Runner-up", points: 3 },
             { position: "Participation", points: 2 },
-            { position: "Second Runner-up", points: 3 },
         ],
         rulesLink: "",
         coordinators: [
-            { name: "Baarathi", contact: "" },
-            { name: "I Blessy", contact: "" }
+            { name: "Baarathi", contact: "+91 94871 65589" }
         ],
         registrationLink: "",
         registrationStatus: "coming_soon",
@@ -329,8 +330,8 @@ export const events = [
         venueImage: VenueLabImg,
         description: "Hunt down the bugs like hunting a Demogorgon! Find and fix errors in code snippets across multiple programming languages. Test your debugging skills under pressure.",
         rules: [
-            "Individual participation",
-            "Languages: C, Java, Python",
+            "Team of 2 members",
+            "Languages: To be announced",
             "Multiple rounds",
             "No internet access during event",
             "Rules and Regulations are subject to change at any point."
@@ -343,13 +344,13 @@ export const events = [
         pointSystem: [
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
-            { position: "Second Runner-up", points: 3 },
+            { position: "2nd Runner-up", points: 3 },
             { position: "Participation", points: 2 },
         ],
         rulesLink: "",
         coordinators: [
-            { name: "Abhinav Jain", contact: "+91 92145 44078" },
-            { name: "Paavan", contact: "" }
+            { name: "Paavan", contact: "+91 76919 40657" },
+            { name: "Abhinav Jain", contact: "+91 92145 44078" }
         ],
         registrationLink: "",
         registrationStatus: "coming_soon",
@@ -366,9 +367,9 @@ export const events = [
         venueImage: VenueClassImg,
         description: "Master the art of AI communication! Craft the perfect prompts to solve complex problems using AI tools like ChatGPT, Claude, and more. The future belongs to prompt engineers!",
         rules: [
-            "Individual participation",
+            "Team of 2 members",
             "3 rounds of increasing difficulty",
-            "Internet access provided",
+            "Limited Internet access provided",
             "Time-bound challenges",
             "Rules and Regulations are subject to change at any point."
         ],
@@ -380,13 +381,13 @@ export const events = [
         pointSystem: [
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "2nd Runner-up", points: 3 },
             { position: "Participation", points: 2 },
-            { position: "Second Runner-up", points: 3 },
         ],
         rulesLink: "",
         coordinators: [
-            { name: "Baarathi", contact: "" },
-            { name: "Xavier Amith", contact: "" }
+            { name: "Xavier Amith", contact: "+91 73395 18912" },
+            { name: "Baarathi", contact: "+91 94871 65589" }
         ],
         registrationLink: "",
         registrationStatus: "coming_soon",
@@ -397,16 +398,17 @@ export const events = [
         subtitle: "Cricket (Mixed)",
         date: "TBD",
         time: "07:30 AM Onwards",
-        venue: "Dharmaram / Football Ground",
+        venue: "To be Announced",
         type: "Non-Technical",
         bgImage: HawkinsArenaImg,
         venueImage: VenueGround1Img,
         description: "Step into the Hawkins Arena for an action-packed cricket match! Form your team and compete in this exciting mixed cricket tournament.",
         rules: [
             "Mixed team participation",
-            "Tournament format",
-            "Standard cricket rules apply",
-            "Decision of umpires is final",
+            "1 Faculty, 2 Girls, 6 Boys per team (Mandatory)",
+            "Knockout Tournament format",
+            "Standard cricket rules apply other than LBW and Legbyes",
+            "Decision of umpires & organising committee is final",
             "Rules and Regulations are subject to change at any point."
         ],
         eligibility: "Open to all MCA and MSc AIML students",
@@ -421,7 +423,8 @@ export const events = [
         ],
         rulesLink: "",
         coordinators: [
-            { name: "Abhishek Kumar", contact: "" }
+            { name: "Abhishek", contact: "" },
+            { name: "Abhinav", contact: "+91 92145 44078" }
         ],
         registrationLink: "",
         registrationStatus: "coming_soon",
