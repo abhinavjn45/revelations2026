@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Navbar } from './Navbar';
 import Footer from './Footer';
@@ -28,6 +28,101 @@ import img25_inauguration from '../assets/images/rvlns_images/25/25_inaugration.
 import img25_sports from '../assets/images/rvlns_images/25/25_sports.JPG';
 import img25_website_demonstration from '../assets/images/rvlns_images/25/25_website_demonstration.JPG';
 import img25_website_dev from '../assets/images/rvlns_images/25/25_website_dev.JPG';
+
+// All images array for preloading
+const allImages = [
+    img24_inauguration, img24_charades, img24_coding, img24_it_manager, img24_it_quiz,
+    img24_popquiz, img24_promptmania, img24_sports, img24_uiux, img24_valedictory, img24_weebwars,
+    img25_highlight, img25_cosplay, img25_dream_team, img25_emcee, img25_group_photo,
+    img25_guest, img25_inauguration, img25_sports, img25_website_demonstration, img25_website_dev
+];
+
+// Preload images in background
+const preloadImages = (images) => {
+    images.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+    });
+};
+
+// Animation variants defined outside component to prevent recreation
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.08
+        }
+    },
+    exit: { opacity: 0 }
+};
+
+const cardVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: { type: "spring", stiffness: 100, damping: 15 }
+    },
+    exit: { opacity: 0, y: -20, scale: 0.95 }
+};
+
+const modalVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+    exit: { opacity: 0 }
+};
+
+const modalContentVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 50 },
+    visible: { 
+        opacity: 1, 
+        scale: 1, 
+        y: 0,
+        transition: { type: "spring", stiffness: 300, damping: 25 }
+    },
+    exit: { opacity: 0, scale: 0.8, y: 50 }
+};
+
+// Header animation variants
+const headerContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15,
+            delayChildren: 0.1
+        }
+    }
+};
+
+const titleVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { 
+        opacity: 1, 
+        x: 0,
+        transition: { type: "spring", stiffness: 100, damping: 15 }
+    }
+};
+
+const descVariants = {
+    hidden: { opacity: 0, x: -30 },
+    visible: { 
+        opacity: 1, 
+        x: 0,
+        transition: { type: "spring", stiffness: 100, damping: 15 }
+    }
+};
+
+const yearSelectorVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+        opacity: 1, 
+        y: 0,
+        transition: { type: "spring", stiffness: 100, damping: 15 }
+    }
+};
 
 const galleryData = {
     2024: [
@@ -162,31 +257,55 @@ const galleryData = {
     ]
 };
 
-const GalleryPage = () => {
+const GalleryPage = ({ startAnimation = false }) => {
     const [selectedYear, setSelectedYear] = useState(2024);
     const [selectedImage, setSelectedImage] = useState(null);
 
-    const openModal = (image) => {
+    // Preload all images in background when component mounts (during preloader)
+    useEffect(() => {
+        preloadImages(allImages);
+    }, []);
+
+    const openModal = useCallback((image) => {
         setSelectedImage(image);
         document.body.style.overflow = 'hidden';
-    };
+    }, []);
 
-    const closeModal = () => {
+    const closeModal = useCallback(() => {
         setSelectedImage(null);
         document.body.style.overflow = 'auto';
-    };
+    }, []);
+
+    // Memoize current year's gallery data
+    const currentGallery = useMemo(() => galleryData[selectedYear] || [], [selectedYear]);
 
     return (
         <div className="gallery-page">
             <Navbar />
             <div className="gallery-container">
-                <header className="gallery-header">
-                    <h1 className="gallery-title">HAWKINS ARCHIVES</h1>
-                    <p className="gallery-description">
+                <motion.header 
+                    className="gallery-header"
+                    variants={headerContainerVariants}
+                    initial="hidden"
+                    animate={startAnimation ? "visible" : "hidden"}
+                >
+                    <motion.h1 
+                        className="gallery-title"
+                        variants={titleVariants}
+                    >
+                        HAWKINS ARCHIVES
+                    </motion.h1>
+                    <motion.p 
+                        className="gallery-description"
+                        variants={descVariants}
+                    >
                         RESTRICTED ACCESS. The following visual records document the strange occurrences and community gatherings observed within the Central Campus radius during 2024 and 2025. Authorized personnel only.
-                    </p>
+                    </motion.p>
 
-                    <div className="year-selector-container">
+                    <motion.div 
+                        className="year-selector-container"
+                        variants={yearSelectorVariants}
+                    >
                         <div className="year-selector">
                             <button
                                 className={`year-toggle-btn ${selectedYear === 2024 ? 'active' : ''}`}
@@ -201,68 +320,80 @@ const GalleryPage = () => {
                                 <span>2025</span>
                             </button>
                         </div>
-                    </div>
-                </header>
+                    </motion.div>
+                </motion.header>
 
-                <motion.div
-                    className="gallery-grid"
-                    key={selectedYear} // Re-trigger animation on year change
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={{
-                        hidden: { opacity: 0 },
-                        visible: {
-                            opacity: 1,
-                            transition: {
-                                staggerChildren: 0.1
-                            }
-                        }
-                    }}
-                >
-                    {galleryData[selectedYear]?.map((item) => (
-                        <motion.div
-                            key={item.id}
-                            className="gallery-card"
-                            onClick={() => openModal(item)}
-                            variants={{
-                                hidden: { opacity: 0, y: 30 },
-                                visible: {
-                                    opacity: 1,
-                                    y: 0,
-                                    transition: { type: "spring", stiffness: 100, damping: 12 }
-                                }
-                            }}
-                            whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                        >
-                            <div className="gallery-image-container">
-                                <img src={item.image} alt={item.title} className="gallery-image" />
-                                <div className="gallery-overlay">
-                                    <span>View</span>
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        className="gallery-grid"
+                        key={selectedYear}
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate={startAnimation ? "visible" : "hidden"}
+                        exit="exit"
+                    >
+                        {currentGallery.map((item) => (
+                            <motion.div
+                                key={item.id}
+                                className="gallery-card"
+                                onClick={() => openModal(item)}
+                                variants={cardVariants}
+                                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                            >
+                                <div className="gallery-image-container">
+                                    <img 
+                                        src={item.image} 
+                                        alt={item.title} 
+                                        className="gallery-image"
+                                        decoding="lazy"
+                                    />
+                                    <div className="gallery-overlay">
+                                        <span>View</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="gallery-info">
-                                <h3 className="gallery-item-title">{item.title}</h3>
-                                <p className="gallery-item-desc">{item.desc}</p>
-                            </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
+                                <div className="gallery-info">
+                                    <h3 className="gallery-item-title">{item.title}</h3>
+                                    <p className="gallery-item-desc">{item.desc}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </AnimatePresence>
             </div>
 
             {/* Lightbox Modal */}
-            {selectedImage && (
-                <div className="gallery-modal" onClick={closeModal}>
-                    <div className="gallery-modal-content" onClick={e => e.stopPropagation()}>
-                        <button className="close-button" onClick={closeModal}>&times;</button>
-                        <img src={selectedImage.image} alt={selectedImage.title} className="modal-image" />
-                        <div className="modal-caption">
-                            <h3>{selectedImage.title}</h3>
-                            <p>{selectedImage.desc}</p>
-                        </div>
-                    </div>
-                </div>
-            )}
+            <AnimatePresence>
+                {selectedImage && (
+                    <motion.div 
+                        className="gallery-modal" 
+                        onClick={closeModal}
+                        variants={modalVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                    >
+                        <motion.div 
+                            className="gallery-modal-content" 
+                            onClick={e => e.stopPropagation()}
+                            variants={modalContentVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                        >
+                            <button className="close-button" onClick={closeModal}>&times;</button>
+                            <img 
+                                src={selectedImage.image} 
+                                alt={selectedImage.title} 
+                                className="modal-image" 
+                            />
+                            <div className="modal-caption">
+                                <h3>{selectedImage.title}</h3>
+                                <p>{selectedImage.desc}</p>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             <Footer />
         </div>
