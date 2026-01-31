@@ -21,7 +21,13 @@ const hasVisitedSite = { current: false };
 
 // PageWrapper component - ALWAYS shows StrangerThingsPreloader for other pages
 function PageWrapper({ children }) {
+  const location = useLocation();
   const [loading, setLoading] = useState(true);
+
+  // Reset loading state when route changes
+  useEffect(() => {
+    setLoading(true);
+  }, [location.pathname]);
 
   return (
     <>
@@ -120,7 +126,7 @@ function AppRoutes() {
           </PageWrapper>
         } />
         <Route path="/download-team-sheet" element={<DownloadTeamSheet />} />
-        <Route path="/animation-demo" element={<AnimationDemoPage />} />
+        {/* <Route path="/animation-demo" element={<AnimationDemoPage />} /> */}
       </Routes>
     </div>
   );
