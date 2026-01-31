@@ -18,7 +18,8 @@ import ChrisAsirImg from '../assets/images/team/Chris Asir Samuel _CC_MScAIML.pn
 
 // Import website developer images
 import HariPrasadImg from '../assets/images/team/Hari Prasad.png';
-import DarshanHebleImg from '../assets/images/team/darshanheble.png';
+// import DarshanHebleImg from '../assets/images/team/darshanheble.png';
+import DarshanHebleImg from '../assets/images/team/Darshan Heble.png';
 import AbhinavJainImg from '../assets/images/team/abhinav.png';
 
 

@@ -126,7 +126,7 @@ function AppRoutes() {
           </PageWrapper>
         } />
         <Route path="/download-team-sheet" element={<DownloadTeamSheet />} />
-        {/* <Route path="/animation-demo" element={<AnimationDemoPage />} /> */}
+        <Route path="/animation-demo" element={<AnimationDemoPage />} />
       </Routes>
     </div>
   );
