@@ -345,7 +345,7 @@ const GalleryPage = ({ startAnimation = false }) => {
                                         src={item.image} 
                                         alt={item.title} 
                                         className="gallery-image"
-                                        decoding="lazy"
+                                        decoding="async"
                                     />
                                     <div className="gallery-overlay">
                                         <span>View</span>
@@ -362,7 +362,7 @@ const GalleryPage = ({ startAnimation = false }) => {
             </div>
 
             {/* Lightbox Modal */}
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
                 {selectedImage && (
                     <motion.div 
                         className="gallery-modal" 
@@ -371,14 +371,12 @@ const GalleryPage = ({ startAnimation = false }) => {
                         initial="hidden"
                         animate="visible"
                         exit="exit"
+                        key="gallery-modal"
                     >
                         <motion.div 
                             className="gallery-modal-content" 
                             onClick={e => e.stopPropagation()}
                             variants={modalContentVariants}
-                            initial="hidden"
-                            animate="visible"
-                            exit="exit"
                         >
                             <button className="close-button" onClick={closeModal}>&times;</button>
                             <img 

@@ -139,7 +139,7 @@ const Footer = () => {
                 </div>
 
                 {/* BOTTOM BAR */}
-                <div className="border-t border-red-900/30 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 opacity-60">
+                <div className="border-t border-red-900/30 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
                     <p className="font-stranger text-lg text-gray-500 animate-pulse text-center w-full">
                         Designed & developed with ❤️ by &nbsp;
                         <a href='https://www.linkedin.com/in/darshanheble/' target="_blank" rel="noopener noreferrer" className="text-red-600 hover:underline">Darshan Heble</a>, &nbsp;
