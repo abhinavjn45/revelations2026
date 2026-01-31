@@ -197,7 +197,7 @@ export const events = [
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
             { position: "Participation", points: 2 },
-            { position: "Second Runner-up", points: 3 },
+            { position: "2nd Runner-up", points: 3 },
         ],
         rulesLink: "https://docs.google.com/document/d/1NWw4CaUJeDNIBh4Zi69AO_mQTNPFroQf6AJ41rs9rQE/edit?usp=sharing",
         coordinators: [
@@ -600,7 +600,7 @@ export const events = [
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
             { position: "Participation", points: 2 },
-            { position: "Second Runner-up", points: 3 },
+            { position: "2nd Runner-up", points: 3 },
         ],
         rulesLink: "",
         coordinators: [
@@ -635,7 +635,7 @@ export const events = [
         pointSystem: [
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
-            { position: "Second Runner-up", points: 3 },
+            { position: "2nd Runner-up", points: 3 },
             { position: "Participation", points: 2 },
         ],
         rulesLink: "",
@@ -672,7 +672,7 @@ export const events = [
         pointSystem: [
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
-            { position: "Second Runner-up", points: 3 },
+            { position: "2nd Runner-up", points: 3 },
             { position: "Participation", points: 2 },
         ],
         rulesLink: "",
