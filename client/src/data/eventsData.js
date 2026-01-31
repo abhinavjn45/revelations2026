@@ -22,6 +22,155 @@ import VenueTableImg from '../assets/images/venue/table.png';
 // Event data with images and detailed info
 export const events = [
     {
+        id: 17,
+        title: "Hawkins Arena - Chess",
+        subtitle: "Chess (Individual)",
+        date: "FEB 02",
+        time: "02:30 PM Onwards",
+        venue: "Online / Room 815 + Room 814",
+        type: "Non-Technical",
+        bgImage: HawkinsArenaImg,
+        venueImage: VenueClassImg,
+        description: "Strategize like a grandmaster in the Hawkins Arena chess tournament! Test your tactical skills in this classic battle of minds.",
+        rules: [
+            "Individual participation",
+            "Swiss format / Knockout",
+            "Standard chess rules apply",
+            "Time control: Rapid",
+            "Rules and Regulations are subject to change at any point."
+        ],
+        eligibility: "Open to all MCA and MSc AIML students",
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "2nd Runner-up", points: 3 },
+            { position: "Participation", points: 2 },
+        ],
+        rulesLink: "https://docs.google.com/document/d/1qHzMS7L7nBaysoaIjSX7OhOCMHKq1mCA1IIbCsKzsUM/edit?tab=t.0",
+        coordinators: [
+            { name: "Omkaar", contact: "+91 83999 45212" },
+            { name: "Abhinav", contact: "+91 92145 44078" }
+        ],
+        registrationLink: "https://forms.gle/xcR3oQhG5VAd9Thi7",
+        registrationStatus: "open",
+    },
+    {
+        id: 9,
+        title: "Scoops Troop Snippets",
+        subtitle: "Reel Making",
+        date: "JAN 31 - FEB 03",
+        time: "10:00 PM (Deadline)",
+        venue: "Entire Campus / Online Submissions",
+        type: "Non-Technical",
+        bgImage: ScoopsTroopSnippetsImg,
+        venueImage: VenueGround2Img,
+        description: "Unleash your creativity and storytelling skills! Create engaging reels that capture the essence of college life, technology, or the Stranger Things theme.",
+        rules: [
+            "Team of 2-4 members",
+            "Reel duration: 30-40 seconds (Strict)",
+            "Must include all the team members",
+            "Should follow proper decorum and guidelines",
+            "Rules and Regulations are subject to change at any point."
+        ],
+        eligibility: "Open to all MCA and MSc AIML students",
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "2nd Runner-up", points: 3 },
+            { position: "Participation", points: 2 },
+        ],
+        rulesLink: "https://docs.google.com/document/d/1euodST-RgGaJqcEioHGVBxlCQO7k1AUq/edit?usp=sharing",
+        coordinators: [
+            { name: "Roy Mathew", contact: "+91 75940 29419" },
+            { name: "Baarathi", contact: "+91 94871 65589" }
+        ],
+        registrationLink: "https://forms.gle/HTfoGDsToTYZQawD6",
+        registrationStatus: "open",
+    },
+    {
+        id: 12,
+        title: "Will's Visions",
+        subtitle: "Drawing/Painting/Sketching",
+        date: "FEB 04",
+        time: "02:30 PM Onwards",
+        venue: "Round Tables, 8th Floor, Central Block",
+        type: "Non-Technical",
+        bgImage: WillsVisionsImg,
+        venueImage: VenueTableImg,
+        description: "Like Will's visions of the Upside Down, express your imagination through art! Showcase your drawing and painting skills on given themes.",
+        rules: [
+            "Individual participation",
+            "Only A3 size paper allowed and participants must bring their own sheet and art supplies",
+            "Theme will be revealed on the spot",
+            "Time limit: 2 hours",
+            "Rules and Regulations are subject to change at any point."
+        ],
+        eligibility: "Open to all MCA and MSc AIML students",
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "2nd Runner-up", points: 3 },
+            { position: "Participation", points: 2 },
+        ],
+        rulesLink: "https://docs.google.com/document/d/1Y5TkkVQr47FOCTtNOeHuTzR628dllOkr/edit",
+        coordinators: [
+            { name: "Anamika KS", contact: "+91 73068 21180" },
+            { name: "Baarathi", contact: "+91 94871 65589" }
+        ],
+        registrationLink: "https://forms.gle/As696BhieBbsukjG8",
+        registrationStatus: "open",
+    },
+    {
+        id: 10,
+        title: "Mr. Clarke's Journal",
+        subtitle: "Infobahn (Writing)",
+        date: "JAN 31 - FEB 06",
+        time: "10:00 PM (Deadline)",
+        venue: "Online Submissions",
+        type: "Non-Technical",
+        bgImage: MrClarkeJournalImg,
+        venueImage: VenueClassImg,
+        description: "Channel your inner Mr. Clarke and pen down your thoughts! Write articles, stories, or technical blogs that inspire and inform. Let your words create impact.",
+        rules: [
+            "Individual participation only",
+            "Word limit: 250-300 words",
+            "Original content only",
+            "Submit in PDF format",
+            "Rules and Regulations are subject to change at any point."
+        ],
+        eligibility: "Open to all MCA and MSc AIML students",
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "2nd Runner-up", points: 3 },
+            { position: "Participation", points: 2 },
+        ],
+        rulesLink: "https://docs.google.com/document/d/1TkybOcZJU8x_qJtCgFuiZb-B6rMyKXdfiOp8nW9vcAU/edit?usp=sharing",
+        coordinators: [
+            { name: "Ekta", contact: "+91 82998 13635" },
+            { name: "Neha", contact: "+91 89049 15226" },
+            { name: "Baarathi", contact: "+91 94871 65589" }
+        ],
+        registrationLink: "https://forms.gle/EC7kJ5TZroqsmTuz8",
+        registrationStatus: "open",
+    },
+    {
         id: 1,
         title: "Vecna's Mind Maze",
         subtitle: "IT Quiz",
@@ -113,7 +262,7 @@ export const events = [
             "Prototype must be interactive",
             "Rules and Regulations are subject to change at any point."
         ],
-        eligibility: "Open to all design enthusiasts",
+        eligibility: "Open to all MCA and MSc AIML students",
         prizes: [
             "1st Position",
             "2nd Position",
@@ -260,7 +409,7 @@ export const events = [
             "Decision of umpires is final",
             "Rules and Regulations are subject to change at any point."
         ],
-        eligibility: "Open to all department students",
+        eligibility: "Open to all MCA and MSc AIML students",
         prizes: [
             "1st Position",
             "2nd Position",
@@ -295,7 +444,7 @@ export const events = [
             "Decision of referees is final",
             "Rules and Regulations are subject to change at any point."
         ],
-        eligibility: "Open to all department students",
+        eligibility: "Open to all MCA and MSc AIML students",
         prizes: [
             "1st Position",
             "2nd Position",
@@ -331,7 +480,7 @@ export const events = [
             "Best of 3 sets",
             "Rules and Regulations are subject to change at any point."
         ],
-        eligibility: "Open to all male students",
+        eligibility: "Open to all male MCA and MSc AIML students",
         prizes: [
             "1st Position",
             "2nd Position",
@@ -367,7 +516,7 @@ export const events = [
             "Best of 3 sets",
             "Rules and Regulations are subject to change at any point."
         ],
-        eligibility: "Open to all female students",
+        eligibility: "Open to all female MCA and MSc AIML students",
         prizes: [
             "1st Position",
             "2nd Position",
@@ -403,7 +552,7 @@ export const events = [
             "Best of 3 sets",
             "Rules and Regulations are subject to change at any point."
         ],
-        eligibility: "Open to all department students",
+        eligibility: "Open to all MCA and MSc AIML students",
         prizes: [
             "1st Position",
             "2nd Position",
@@ -419,41 +568,6 @@ export const events = [
             { name: "Slaven", contact: "" }
         ],
         registrationLink: "",
-        registrationStatus: "coming_soon",
-    },
-    {
-        id: 17,
-        title: "Hawkins Arena - Chess",
-        subtitle: "Chess (Individual)",
-        date: "FEB 02",
-        time: "02:30 PM Onwards",
-        venue: "Online / Room 815 + Room 814",
-        type: "Non-Technical",
-        bgImage: HawkinsArenaImg,
-        venueImage: VenueClassImg,
-        description: "Strategize like a grandmaster in the Hawkins Arena chess tournament! Test your tactical skills in this classic battle of minds.",
-        rules: [
-            "Individual participation",
-            "Swiss format / Knockout",
-            "Standard chess rules apply",
-            "Time control: Rapid",
-            "Rules and Regulations are subject to change at any point."
-        ],
-        eligibility: "Open to all department students",
-        prizes: [
-            "1st Position",
-            "2nd Position",
-        ],
-        pointSystem: [
-            { position: "Winner", points: 7 },
-            { position: "Runner-up", points: 5 },
-            { position: "Participation", points: 2 },
-        ],
-        rulesLink: "",
-        coordinators: [
-            { name: "Omkaar", contact: "" }
-        ],
-        registrationLink: "https://forms.gle/xcR3oQhG5VAd9Thi7",
         registrationStatus: "coming_soon",
     },
     {
@@ -474,7 +588,7 @@ export const events = [
             "5-minute stage presentation",
             "Rules and Regulations are subject to change at any point."
         ],
-        eligibility: "Open to all students",
+        eligibility: "Open to all MCA and MSc AIML students",
         prizes: [
             "1st Position",
             "2nd Position",
@@ -491,79 +605,6 @@ export const events = [
         ],
         registrationLink: "",
         registrationStatus: "coming_soon",
-    },
-    {
-        id: 9,
-        title: "Scoops Troop Snippets",
-        subtitle: "Reel Making",
-        date: "JAN 31 - FEB 03",
-        time: "10:00 PM (Deadline)",
-        venue: "Entire Campus / Online Submissions",
-        type: "Non-Technical",
-        bgImage: ScoopsTroopSnippetsImg,
-        venueImage: VenueGround2Img,
-        description: "Unleash your creativity and storytelling skills! Create engaging reels that capture the essence of college life, technology, or the Stranger Things theme.",
-        rules: [
-            "Individual or team of 2",
-            "Reel duration: 30-60 seconds",
-            "Must include event hashtag",
-            "No copyrighted music without permission",
-            "Rules and Regulations are subject to change at any point."
-        ],
-        eligibility: "Open to all students",
-        prizes: [
-            "1st Position",
-            "2nd Position",
-        ],
-        pointSystem: [
-            { position: "Winner", points: 7 },
-            { position: "Runner-up", points: 5 },
-            { position: "Second Runner-up", points: 3 },
-            { position: "Participation", points: 2 },
-        ],
-        rulesLink: "",
-        coordinators: [
-            { name: "Baarathi", contact: "" },
-            { name: "Roy Mathew", contact: "" }
-        ],
-        registrationLink: "",
-        registrationStatus: "open",
-    },
-    {
-        id: 10,
-        title: "Mr. Clarke's Journal",
-        subtitle: "Infobahn (Writing)",
-        date: "JAN 31 - FEB 06",
-        time: "10:00 PM (Deadline)",
-        venue: "Online Submissions",
-        type: "Non-Technical",
-        bgImage: MrClarkeJournalImg,
-        venueImage: VenueClassImg,
-        description: "Channel your inner Mr. Clarke and pen down your thoughts! Write articles, stories, or technical blogs that inspire and inform. Let your words create impact.",
-        rules: [
-            "Individual participation only",
-            "Word limit: 500-1500 words",
-            "Original content only",
-            "Submit in PDF format",
-            "Rules and Regulations are subject to change at any point."
-        ],
-        eligibility: "Open to all students",
-        prizes: [
-            "1st Position",
-            "2nd Position",
-        ],
-        pointSystem: [
-            { position: "Winner", points: 7 },
-            { position: "Runner-up", points: 5 },
-            { position: "Participation", points: 2 },
-            { position: "Second Runner-up", points: 3 },
-        ],
-        rulesLink: "",
-        coordinators: [
-            { name: "Infobahn Team", contact: "" }
-        ],
-        registrationLink: "https://forms.gle/EC7kJ5TZroqsmTuz8",
-        registrationStatus: "open",
     },
     {
         id: 11,
@@ -583,7 +624,7 @@ export const events = [
             "No props or sounds allowed",
             "Rules and Regulations are subject to change at any point."
         ],
-        eligibility: "Open to all students",
+        eligibility: "Open to all MCA and MSc AIML students",
         prizes: [
             "1st Position",
             "2nd Position",
@@ -598,43 +639,6 @@ export const events = [
         coordinators: [
             { name: "Abhinav Jain", contact: "+91 92145 44078" },
             { name: "Parthiv", contact: "" }
-        ],
-        registrationLink: "",
-        registrationStatus: "coming_soon",
-    },
-    {
-        id: 12,
-        title: "Will's Visions",
-        subtitle: "Drawing/Painting/Sketching",
-        date: "FEB 04",
-        time: "02:30 PM Onwards",
-        venue: "Round Tables, 8th Floor, Central Block",
-        type: "Non-Technical",
-        bgImage: WillsVisionsImg,
-        venueImage: VenueTableImg,
-        description: "Like Will's visions of the Upside Down, express your imagination through art! Showcase your drawing and painting skills on given themes.",
-        rules: [
-            "Individual participation",
-            "Materials will be provided",
-            "Theme revealed on spot",
-            "Time limit: 2 hours",
-            "Rules and Regulations are subject to change at any point."
-        ],
-        eligibility: "Open to all students",
-        prizes: [
-            "1st Position",
-            "2nd Position",
-        ],
-        pointSystem: [
-            { position: "Winner", points: 7 },
-            { position: "Runner-up", points: 5 },
-            { position: "Participation", points: 2 },
-            { position: "Second Runner-up", points: 3 },
-        ],
-        rulesLink: "",
-        coordinators: [
-            { name: "Baarathi", contact: "" },
-            { name: "Anamika KS", contact: "" }
         ],
         registrationLink: "",
         registrationStatus: "coming_soon",
