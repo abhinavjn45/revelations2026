@@ -224,6 +224,21 @@ const EventsPage = () => {
                                             </ul>
                                         </div>
 
+                                        {/* Point System */}
+                                        {event.pointSystem && event.pointSystem.length > 0 && (
+                                            <div className="event-points">
+                                                <span className="info-label">⭐ Point System</span>
+                                                <div className="points-grid">
+                                                    {event.pointSystem.map((item, idx) => (
+                                                        <div key={idx} className="point-item">
+                                                            <span className="point-position">{item.position}</span>
+                                                            <span className="point-value">{item.points} pts</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+
                                         <div className="event-coordinators">
                                             <span className="info-label">📞 Coordinators</span>
                                             <span className="info-value">
@@ -254,8 +269,8 @@ const EventsPage = () => {
                                                 </a>
                                             )}
 
-                                            {/* Detailed Rules Button */}
-                                            {event.rulesLink && (
+                                            {/* Detailed Rules Button - Always show, disabled if no link */}
+                                            {event.rulesLink ? (
                                                 <a
                                                     href={event.rulesLink}
                                                     target="_blank"
@@ -265,6 +280,14 @@ const EventsPage = () => {
                                                 >
                                                     📄 Detailed Rules
                                                 </a>
+                                            ) : (
+                                                <button
+                                                    className="action-btn rules-btn disabled"
+                                                    disabled
+                                                    onClick={(e) => e.stopPropagation()}
+                                                >
+                                                    📄 Detailed Rules
+                                                </button>
                                             )}
                                         </div>
                                     </div>

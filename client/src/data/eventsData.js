@@ -45,9 +45,9 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "Participation", points: 2 },
             { position: "Second Runner-up", points: 3 },
         ],
         rulesLink: "https://abhinavjain.site/",
@@ -82,10 +82,10 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
             { position: "Second Runner-up", points: 3 },
+            { position: "Participation", points: 2 },
         ],
         rulesLink: "",
         coordinators: [
@@ -119,9 +119,9 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "Participation", points: 2 },
             { position: "Second Runner-up", points: 3 },
         ],
         rulesLink: "",
@@ -155,9 +155,9 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "Participation", points: 2 },
             { position: "Second Runner-up", points: 3 },
         ],
         rulesLink: "",
@@ -192,10 +192,10 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
             { position: "Second Runner-up", points: 3 },
+            { position: "Participation", points: 2 },
         ],
         rulesLink: "",
         coordinators: [
@@ -229,9 +229,9 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "Participation", points: 2 },
             { position: "Second Runner-up", points: 3 },
         ],
         rulesLink: "",
@@ -266,9 +266,9 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "Participation", points: 2 },
         ],
         rulesLink: "",
         coordinators: [
@@ -301,9 +301,9 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "Participation", points: 2 },
         ],
         rulesLink: "",
         coordinators: [
@@ -337,9 +337,9 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "Participation", points: 2 },
         ],
         rulesLink: "",
         coordinators: [
@@ -373,9 +373,9 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "Participation", points: 2 },
         ],
         rulesLink: "",
         coordinators: [
@@ -409,9 +409,9 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "Participation", points: 2 },
         ],
         rulesLink: "",
         coordinators: [
@@ -445,15 +445,15 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "Participation", points: 2 },
         ],
         rulesLink: "",
         coordinators: [
             { name: "Omkaar", contact: "" }
         ],
-        registrationLink: "",
+        registrationLink: "https://forms.gle/xcR3oQhG5VAd9Thi7",
         registrationStatus: "coming_soon",
     },
     {
@@ -480,9 +480,9 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "Participation", points: 2 },
             { position: "Second Runner-up", points: 3 },
         ],
         rulesLink: "",
@@ -516,10 +516,10 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
             { position: "Second Runner-up", points: 3 },
+            { position: "Participation", points: 2 },
         ],
         rulesLink: "",
         coordinators: [
@@ -553,16 +553,16 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "Participation", points: 2 },
             { position: "Second Runner-up", points: 3 },
         ],
         rulesLink: "",
         coordinators: [
             { name: "Infobahn Team", contact: "" }
         ],
-        registrationLink: "",
+        registrationLink: "https://forms.gle/EC7kJ5TZroqsmTuz8",
         registrationStatus: "open",
     },
     {
@@ -589,10 +589,10 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
             { position: "Second Runner-up", points: 3 },
+            { position: "Participation", points: 2 },
         ],
         rulesLink: "",
         coordinators: [
@@ -626,9 +626,9 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "Participation", points: 2 },
             { position: "Second Runner-up", points: 3 },
         ],
         rulesLink: "",
@@ -663,10 +663,10 @@ export const events = [
             "2nd Position",
         ],
         pointSystem: [
-            { position: "Participation", points: 2 },
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
             { position: "Second Runner-up", points: 3 },
+            { position: "Participation", points: 2 },
         ],
         rulesLink: "",
         coordinators: [
