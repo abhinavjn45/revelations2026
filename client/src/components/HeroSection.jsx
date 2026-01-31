@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import leaderboardData from '../data/leaderboardData';
 import TimerZeroAnimation from './TimerZeroAnimation';
 
@@ -8,19 +8,17 @@ function LeaderboardPopup({ open, onClose }) {
   // Sort leaderboard in descending order by points
   const sortedLeaderboard = [...leaderboardData].sort((a, b) => b.points - a.points);
   // Compute ranks with ties
-  let lastPoints = null;
-  let lastRank = 0;
-  let skip = 1;
-  const rankedRows = sortedLeaderboard.map((row, idx) => {
-    if (row.points !== lastPoints) {
-      lastRank = idx;
-      skip = 1;
+  // Compute ranks with ties using reduce to avoid reassigning after render
+  const rankedRows = sortedLeaderboard.reduce((acc, row, idx) => {
+    if (idx === 0) {
+      acc.push({ ...row, rank: 0 });
     } else {
-      skip++;
+      const prev = acc[acc.length - 1];
+      const rank = row.points === prev.points ? prev.rank : idx;
+      acc.push({ ...row, rank });
     }
-    lastPoints = row.points;
-    return { ...row, rank: lastRank };
-  });
+    return acc;
+  }, []);
 
   // Check if all teams have 0 points
   const allZero = rankedRows.every(row => row.points === 0);
@@ -60,7 +58,7 @@ function LeaderboardPopup({ open, onClose }) {
                 <tbody>
                   <thead>
                   </thead>
-                  {rankedRows.map((row, idx) => {
+                  {rankedRows.map((row) => {
                     let colorClass = '';
                     let icon = null;
                     let style = {};
@@ -148,8 +146,8 @@ function getTimeRemaining(targetDate) {
   return { total, days, hours, minutes, seconds };
 }
 
-export default function HeroSection({ startAnimation }) {
-  // Set your event date here (13 seconds from now)
+export default function HeroSection({ startAnimation, showTimer = false }) {
+  // Timer/animation state (only if showTimer is true)
   const [eventDate] = useState(() => new Date(Date.now() + 17 * 1000).toISOString());
   const [timeLeft, setTimeLeft] = useState(getTimeRemaining(eventDate));
   const [spotlightAngle, setSpotlightAngle] = useState(0);
@@ -159,7 +157,7 @@ export default function HeroSection({ startAnimation }) {
   const [animationActive, setAnimationActive] = useState(false);
   const [activeCharacter, setActiveCharacter] = useState('main');
   const [autoCycle, setAutoCycle] = useState(true);
-  const characterOrder = ['vecna', 'main', 'henry'];
+  const characterOrder = React.useMemo(() => ['vecna', 'main', 'henry'], []);
   const cycleIndex = useRef(0);
 
   // Timer zero animation state
@@ -174,7 +172,7 @@ export default function HeroSection({ startAnimation }) {
       setActiveCharacter(characterOrder[cycleIndex.current]);
     }, 1500);
     return () => clearInterval(interval);
-  }, [autoCycle]);
+  }, [autoCycle, characterOrder]);
 
   // Pause auto-cycle on mouse move, resume after 4s idle
   useEffect(() => {
@@ -201,6 +199,7 @@ export default function HeroSection({ startAnimation }) {
   }, []);
 
   useEffect(() => {
+    if (!showTimer) return;
     if (startAnimation) {
       // Defer setState to avoid cascading renders warning
       Promise.resolve().then(() => setAnimationActive(true));
@@ -210,24 +209,27 @@ export default function HeroSection({ startAnimation }) {
       }, 7000);
       return () => clearTimeout(timer);
     }
-  }, [startAnimation]);
+  }, [startAnimation, showTimer]);
 
   useEffect(() => {
+    if (!showTimer) return;
     const interval = setInterval(() => {
       const newTimeLeft = getTimeRemaining(eventDate);
       setTimeLeft(newTimeLeft);
     }, 1000);
     return () => clearInterval(interval);
-  }, [eventDate]);
+  }, [eventDate, showTimer]);
 
   // Trigger the epic animation when timer hits zero (only once)
   // Only trigger if the main animation has started (preloader finished)
   useEffect(() => {
+    if (!showTimer) return;
     if (startAnimation && timeLeft.total <= 0 && !hasTriggeredZeroAnimation.current) {
       hasTriggeredZeroAnimation.current = true;
-      setTimerZeroTriggered(true);
+      // Use setTimeout to avoid cascading renders
+      setTimeout(() => setTimerZeroTriggered(true), 0);
     }
-  }, [timeLeft, startAnimation]);
+  }, [timeLeft, startAnimation, showTimer]);
 
   // Spotlight pendulum animation
   useEffect(() => {
@@ -338,6 +340,8 @@ export default function HeroSection({ startAnimation }) {
   }, []);
 
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+  // Video popup state (move to top to avoid hoisting issues)
+  const [showVideo, setShowVideo] = useState(false);
 
   return (
     <section className="relative w-full h-screen min-h-[100vh] flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
@@ -397,24 +401,39 @@ export default function HeroSection({ startAnimation }) {
             >
               REVELATIONS
             </h1>
-{timeLeft.total > 0 ? (
-              <>
-                <div className="flex flex-row items-center justify-center gap-4 text-white font-typewriter text-xl md:text-2xl mb-4">
-                  <span className="">{String(timeLeft.days).padStart(2, '0')}</span>
-                  <span>:</span>
-                  <span>{String(timeLeft.hours).padStart(2, '0')}</span>
-                  <span>:</span>
-                  <span>{String(timeLeft.minutes).padStart(2, '0')}</span>
-                  <span>:</span>
-                  <span>{String(timeLeft.seconds).padStart(2, '0')}</span>
+            {showTimer ? (
+              timeLeft.total > 0 ? (
+                <>
+                  <div className="flex flex-row items-center justify-center gap-4 text-white font-typewriter text-xl md:text-2xl mb-4">
+                    <span className="">{String(timeLeft.days).padStart(2, '0')}</span>
+                    <span>:</span>
+                    <span>{String(timeLeft.hours).padStart(2, '0')}</span>
+                    <span>:</span>
+                    <span>{String(timeLeft.minutes).padStart(2, '0')}</span>
+                    <span>:</span>
+                    <span>{String(timeLeft.seconds).padStart(2, '0')}</span>
+                  </div>
+                  <div className="flex flex-row items-center justify-center gap-8 text-s text-gray-400 font-typewriter mb-2">
+                    <span>DAYS</span>
+                    <span>HRS</span>
+                    <span>MIN</span>
+                    <span>SEC</span>
+                  </div>
+                </>
+              ) : (
+                <div className="flex flex-col items-center justify-center mb-4">
+                  <span 
+                    className="font-stranger text-2xl md:text-3xl lg:text-4xl text-center animate-pulse"
+                    style={{
+                      color: 'var(--stranger-red)',
+                      textShadow: '0 0 10px rgba(220,38,38,0.8), 0 0 20px rgba(220,38,38,0.6), 0 0 30px rgba(220,38,38,0.4)',
+                      animation: 'pulse 2s ease-in-out infinite'
+                    }}
+                  >
+                    GATES ARE OPENED
+                  </span>
                 </div>
-                <div className="flex flex-row items-center justify-center gap-8 text-s text-gray-400 font-typewriter mb-2">
-                  <span>DAYS</span>
-                  <span>HRS</span>
-                  <span>MIN</span>
-                  <span>SEC</span>
-                </div>
-              </>
+              )
             ) : (
               <div className="flex flex-col items-center justify-center mb-4">
                 <span 
@@ -466,22 +485,6 @@ export default function HeroSection({ startAnimation }) {
         style={{ width: '100vw', height: '100vh', display: 'block' }}
       />
 
-      {/* Netflix-like video play button bottom left */}
-      <div className="absolute bottom-6 left-6 z-40 flex flex-col items-start gap-1 select-none">
-        <button
-          className="flex items-center gap-1 p-0 bg-transparent border-none shadow-none text-white font-semibold text-sm md:text-base hover:bg-transparent focus:outline-none"
-          style={{ boxShadow: 'none', background: 'none', border: 'none' }}
-        >
-          <span className="inline-flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded-full border border-red-600 text-red-600 mr-1 md:mr-2 bg-transparent">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-play-fill" viewBox="0 0 16 16">
-              <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
-            </svg>
-          </span>
-          <span className="text-red-600 font-typewriter">Watch Now</span>
-        </button>
-        <span className="text-white text-xs font-typewriter mt-1 mx-auto tracking-wide opacity-80 self-center">2026 Theme Reveal</span>
-      </div>
-
       {/* leaderboard button bottom right */}
       <div className="absolute bottom-6 right-6 z-40 flex flex-col items-start gap-1 select-none">
         <button
@@ -502,10 +505,12 @@ export default function HeroSection({ startAnimation }) {
       {/* Leaderboard Popup */}
       <LeaderboardPopup open={showLeaderboard} onClose={() => setShowLeaderboard(false)} />
 
-      <TimerZeroAnimation
-        trigger={timerZeroTriggered}
-        onComplete={handleTimerComplete}
-      />
+      {showTimer && (
+        <TimerZeroAnimation
+          trigger={timerZeroTriggered}
+          onComplete={handleTimerComplete}
+        />
+      )}
     </section>
   );
 }

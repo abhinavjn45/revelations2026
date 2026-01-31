@@ -196,8 +196,8 @@ export const events = [
         pointSystem: [
             { position: "Winner", points: 7 },
             { position: "Runner-up", points: 5 },
+            { position: "2nd Runner-up", points: 3 },
             { position: "Participation", points: 2 },
-            { position: "Second Runner-up", points: 3 },
         ],
         rulesLink: "https://abhinavjain.site/",
         coordinators: [
