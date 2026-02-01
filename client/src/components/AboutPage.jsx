@@ -13,7 +13,7 @@ import KripaDhandhaniaImg from '../assets/images/team/Kripa Dhandhania_CC_MCAA.p
 import EvanaImg from '../assets/images/team/Evana_CC_MCA_B.jpg';
 import VanshikaImg from '../assets/images/team/Vanshika_CC_MscAIML.png';
 import AdarshGuptaImg from '../assets/images/team/Adarsh Gupta_CC_MCA A.jpg';
-import BhavyaImg from '../assets/images/team/bhavya.png';
+import BhavyaImg from '../assets/images/team/bavya.png';
 import ChrisAsirImg from '../assets/images/team/Chris Asir Samuel _CC_MScAIML.png';
 
 // Import website developer images
