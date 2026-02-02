@@ -105,7 +105,7 @@ const coreCommittee = [
 ];
 
 const committeeHeads = [
-	{ name: 'Annie Neena', role: 'Audi Management', phrase: '3 MCA B' },
+	{ name: 'Annie Neena A A', role: 'Audi Management', phrase: '3 MCA B' },
 	{ name: 'Binosh Sibi', role: 'Audi Management', phrase: '3 MSC AIML' },
 	{ name: 'Shreya G', role: 'Culturals (Dance)', phrase: '3 MSC AIML' },
 	{ name: 'Jai Pareek', role: 'Culturals (Dance)', phrase: '3 MCA B' },
