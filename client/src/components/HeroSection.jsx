@@ -402,7 +402,7 @@ export default function HeroSection({ startAnimation }) {
                     animation: 'pulse 2s ease-in-out infinite'
                   }}
                 >
-                  GATES ARE OPENED
+                  GATES ARE OPEN
                 </span>
               </div>
           </div>
