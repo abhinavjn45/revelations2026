@@ -516,7 +516,7 @@ export default function LeaderboardPage({ startAnimation = false }) {
 
                     {/* Leaderboard Table */}
                     <motion.div
-                        className="bg-gradient-to-br from-gray-900/80 via-[#1a0505]/60 to-gray-900/80 border border-red-900/30 rounded-2xl p-6 md:p-8 backdrop-blur-sm shadow-[0_0_60px_rgba(220,38,38,0.15)]"
+                        className="bg-gradient-to-br from-gray-900/80 via-[#1a0505]/60 to-gray-900/80 border border-red-900/30 rounded-2xl p-6 md:p-8 backdrop-blur-sm shadow-[0_0_60px_rgba(220,38,38,0.15)] overflow-x-auto w-full"
                         initial={{ opacity: 0, y: 30 }}
                         animate={startAnimation ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
