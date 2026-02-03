@@ -95,7 +95,11 @@
 
 @media (max-width: 480px) {
     .stranger-letter {
-        font-size: 40px;
+        font-size: 80px;
         stroke-width: 1px;
+    }
+
+    .stranger-things-container {
+        width: 100%;
     }
 }
