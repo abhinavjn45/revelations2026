@@ -88,6 +88,8 @@
     -webkit-backface-visibility: hidden;
     /* Shadow animation */
     box-shadow: 0 0 10px rgba(185, 28, 28, 0.4);
+    /* Removed continuous pulse animation */
+    animation: none !important;
 }
 
 .box:hover .box-content {
@@ -276,7 +278,7 @@
 }
 
 .box .box-content {
-    animation: glowPulse 4s ease-in-out infinite;
+    /* animation: glowPulse 4s ease-in-out infinite; */
 }
 
 /* Event Details - Hidden by default, shown in modal */
@@ -563,7 +565,7 @@
 }
 
 .box:nth-child(even) .box-content {
-    animation: glowPulse 4s ease-in-out infinite 2s;
+    /* animation: glowPulse 4s ease-in-out infinite 2s; */
 }
 
 /* Action Buttons */
