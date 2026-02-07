@@ -62,7 +62,7 @@ export const events = [
         id: 9,
         title: "Scoops Troop Snippets",
         subtitle: "Reel Making",
-        date: "JAN 31 - FEB 03",
+        date: "JAN 31 - FEB 10",
         time: "10:00 PM (Deadline)",
         venue: "Entire Campus / Online Submissions",
         type: "Non-Technical",
@@ -202,30 +202,30 @@ export const events = [
         rulesLink: "https://docs.google.com/document/d/1NWw4CaUJeDNIBh4Zi69AO_mQTNPFroQf6AJ41rs9rQE/edit?usp=sharing",
         coordinators: [
             { name: "Joshua Joby", contact: "+91 96068 27876" },
-            { name: "Abhinav Jain", contact: "+91 92145 44078" }
+            { name: "Abhinav", contact: "+91 92145 44078" }
         ],
         registrationLink: "https://forms.gle/cYGzUH3U622HA46TA",
         registrationStatus: "open",
     },
     {
-        id: 2,
-        title: "Plan B: Joyce Blueprint",
-        subtitle: "IT Manager",
-        date: "FEB 18 & 24",
-        time: "02:30 PM Onwards",
-        venue: "Room 815, 8th Floor, Central Block",
+        id: 18,
+        title: "Project 011: Hackathon",
+        subtitle: "Hackathon ",
+        date: "FEB 07",
+        time: "08:00 AM Onwards",
+        venue: "Classrooms, 8th Floor, Central Block",
         type: "Technical",
-        bgImage: JoyceBlueprintImg,
-        venueImage: VenueClassImg,
-        description: "Think like Joyce planning to save Will! Manage resources, make strategic decisions, and lead your team to victory in this IT management simulation that tests your business acumen and technical leadership.",
+        bgImage: CapturetheGateImg,
+        venueImage: VenueLabImg,
+        description: "Build innovative applications in this exciting development marathon! Create solutions to real-world problems using your coding and design skills.",
         rules: [
             "Team of 3-4 members",
-            // "Multiple business scenarios",
-            // "Presentation required",
-            // "Decision-making under pressure",
+            "Bring your own laptop",
+            "Any technology stack allowed",
+            "Working prototype required",
             "Rules and Regulations are subject to change at any point."
         ],
-        eligibility: "Open to all MCA and MSc students",
+        eligibility: "Open to all MCA and MSc AIML students",
         prizes: [
             "1st Position",
             "2nd Position",
@@ -236,25 +236,28 @@ export const events = [
             { position: "2nd Runner-up", points: 3 },
             { position: "Participation", points: 2 },
         ],
-        rulesLink: "",
+        rulesLink: "https://docs.google.com/document/d/1y0f2Syr8M0hwuvnCI23nPkSHki6Ud1F68_qukaF0hBk/edit?usp=sharing",
         coordinators: [
-            { name: "Rahul", contact: "+91 75067 32498" },
+            { name: "Shambhavi", contact: "+91 84005 75794" },
+            { name: "Yanish", contact: "+91 85098 95910" },
+            { name: "Ram", contact: "+91 94096 99664" },
+            { name: "Ram", contact: "+91 87894 94739" },
             { name: "Abhinav", contact: "+91 92145 44078" }
         ],
         registrationLink: "",
-        registrationStatus: "coming_soon",
+        registrationStatus: "not_required",
     },
     {
         id: 3,
         title: "Mindscape Design",
         subtitle: "UI/UX",
-        date: "FEB 18",
-        time: "02:30 PM Onwards",
+        date: "FEB 14",
+        time: "01:00 PM Onwards",
         venue: "MCA Lab 811, 8th Floor, Central Block",
         type: "Technical",
         bgImage: MindscapeDesignImg,
         venueImage: VenueLabImg,
-        description: "Design interfaces that users love! Create stunning UI/UX designs for given problem statements using tools like Figma or Adobe XD. Showcase your creativity and user-centric thinking.",
+        description: "Design interfaces that users love! Create stunning UI/UX designs for given problem statements using tools like Figma, Adobe XD or Sketch. Showcase your creativity and user-centric thinking.",
         rules: [
             "Team of 1-2 members",
             "Problem statements will be provided on the spot",
@@ -274,49 +277,13 @@ export const events = [
             { position: "2nd Runner-up", points: 3 },
             { position: "Participation", points: 2 },
         ],
-        rulesLink: "",
+        rulesLink: "https://docs.google.com/document/d/1yxvaEfaYnlQkDA4EBeFACIxs4zBSokFL42q2y_n3KqI/edit?usp=sharing",
         coordinators: [
             { name: "Merry Don", contact: "+91 90375 65824" },
             { name: "Abhinav", contact: "+91 92145 44078" }
         ],
-        registrationLink: "",
-        registrationStatus: "coming_soon",
-    },
-    {
-        id: 4,
-        title: "Capture the Gate",
-        subtitle: "CTF: Capture the Flag",
-        date: "FEB 20",
-        time: "02:30 PM Onwards",
-        venue: "MCA Lab 811, 8th Floor, Central Block",
-        type: "Technical",
-        bgImage: CapturetheGateImg,
-        venueImage: VenueLabImg,
-        description: "Break through the gate's defenses! A cybersecurity challenge where you solve puzzles, crack codes, and capture flags. Test your hacking skills in a safe, competitive environment.",
-        rules: [
-            "Team of 2 members",
-            "Bring your own laptop",
-            "Categories: To be announced",
-            "No attacks on infrastructure",
-            "Rules and Regulations are subject to change at any point."
-        ],
-        eligibility: "Open to all MCA and MSc AIML students",
-        prizes: [
-            "1st Position",
-            "2nd Position",
-        ],
-        pointSystem: [
-            { position: "Winner", points: 7 },
-            { position: "Runner-up", points: 5 },
-            { position: "2nd Runner-up", points: 3 },
-            { position: "Participation", points: 2 },
-        ],
-        rulesLink: "",
-        coordinators: [
-            { name: "Baarathi", contact: "+91 94871 65589" }
-        ],
-        registrationLink: "",
-        registrationStatus: "coming_soon",
+        registrationLink: "https://forms.gle/n1j3xdCzotSErZSe6",
+        registrationStatus: "open",
     },
     {
         id: 5,
@@ -336,7 +303,7 @@ export const events = [
             "No internet access during event",
             "Rules and Regulations are subject to change at any point."
         ],
-        eligibility: "Open to all MCA and MSc students",
+        eligibility: "Open to all MCA and MSc AIML students",
         prizes: [
             "1st Position",
             "2nd Position",
@@ -350,7 +317,7 @@ export const events = [
         rulesLink: "",
         coordinators: [
             { name: "Paavan", contact: "+91 76919 40657" },
-            { name: "Abhinav Jain", contact: "+91 92145 44078" }
+            { name: "Abhinav", contact: "+91 92145 44078" }
         ],
         registrationLink: "",
         registrationStatus: "coming_soon",
@@ -386,8 +353,118 @@ export const events = [
         ],
         rulesLink: "",
         coordinators: [
-            { name: "Xavier Amith", contact: "+91 73395 18912" },
+            { name: "Xavier", contact: "+91 73395 18912" },
             { name: "Baarathi", contact: "+91 94871 65589" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
+    },
+    {
+        id: 2,
+        title: "Plan B: Joyce Blueprint",
+        subtitle: "IT Manager",
+        date: "FEB 18 & 24",
+        time: "02:30 PM Onwards",
+        venue: "Room 815, 8th Floor, Central Block",
+        type: "Technical",
+        bgImage: JoyceBlueprintImg,
+        venueImage: VenueClassImg,
+        description: "Think like Joyce planning to save Will! Manage resources, make strategic decisions, and lead your team to victory in this IT management simulation that tests your business acumen and technical leadership.",
+        rules: [
+            "Team of 3-4 members",
+            // "Multiple business scenarios",
+            // "Presentation required",
+            // "Decision-making under pressure",
+            "Rules and Regulations are subject to change at any point."
+        ],
+        eligibility: "Open to all MCA and MSc AIML students",
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "2nd Runner-up", points: 3 },
+            { position: "Participation", points: 2 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Rahul", contact: "+91 75067 32498" },
+            { name: "Abhinav", contact: "+91 92145 44078" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
+    },
+    {
+        id: 8,
+        title: "The Snow Ball Showdown",
+        subtitle: "Cosplay Performance",
+        date: "FEB 19",
+        time: "03:00 PM Onwards",
+        venue: "Campus View",
+        type: "Non-Technical",
+        bgImage: TheSnowBallShowdownImg,
+        venueImage: VenueGround1Img,
+        description: "Transform into your favorite character! Whether it's Eleven, Hopper, or the Demogorgon - bring your best cosplay to the Snow Ball and shine on stage.",
+        rules: [
+            "Individual participation",
+            "Costumes must be self-made or customized",
+            "Props allowed (no sharp objects)",
+            "5-minute stage presentation",
+            "Rules and Regulations are subject to change at any point."
+        ],
+        eligibility: "Open to all MCA and MSc AIML students",
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "Participation", points: 2 },
+            { position: "2nd Runner-up", points: 3 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Baarathi", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
+    },
+    {
+        id: 11,
+        title: "D&D: Dumb Deeds",
+        subtitle: "Dumb Charades",
+        date: "FEB 20",
+        time: "02:30 PM Onwards",
+        venue: "Room 815, 8th Floor, Central Block",
+        type: "Non-Technical",
+        bgImage: DumbDeedsImg,
+        venueImage: VenueClassImg,
+        description: "No talking allowed! Act out movies, shows, and tech terms in this hilarious game of dumb charades with a Stranger Things twist. Bring your acting A-game!",
+        rules: [
+            "Team of 4 members",
+            "Categories: Movies, TV Shows, Tech Terms",
+            "Time limit per round: 2 minutes",
+            "No props or sounds allowed",
+            "Rules and Regulations are subject to change at any point."
+        ],
+        eligibility: "Open to all MCA and MSc AIML students",
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "2nd Runner-up", points: 3 },
+            { position: "Participation", points: 2 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Abhinav", contact: "+91 92145 44078" },
+            { name: "Parthiv", contact: "+91 81398 60944" }
         ],
         registrationLink: "",
         registrationStatus: "coming_soon",
@@ -459,7 +536,7 @@ export const events = [
         ],
         rulesLink: "",
         coordinators: [
-            { name: "Abhinav Jain", contact: "+91 92145 44078" },
+            { name: "Abhinav", contact: "+91 92145 44078" },
             { name: "Mohit", contact: "" }
         ],
         registrationLink: "",
@@ -495,7 +572,7 @@ export const events = [
         ],
         rulesLink: "",
         coordinators: [
-            { name: "Abhinav Jain", contact: "+91 92145 44078" },
+            { name: "Abhinav", contact: "+91 92145 44078" },
             { name: "Slaven", contact: "" }
         ],
         registrationLink: "",
@@ -531,7 +608,7 @@ export const events = [
         ],
         rulesLink: "",
         coordinators: [
-            { name: "Abhinav Jain", contact: "+91 92145 44078" },
+            { name: "Abhinav", contact: "+91 92145 44078" },
             { name: "Slaven", contact: "" }
         ],
         registrationLink: "",
@@ -567,118 +644,8 @@ export const events = [
         ],
         rulesLink: "",
         coordinators: [
-            { name: "Abhinav Jain", contact: "+91 92145 44078" },
+            { name: "Abhinav", contact: "+91 92145 44078" },
             { name: "Slaven", contact: "" }
-        ],
-        registrationLink: "",
-        registrationStatus: "coming_soon",
-    },
-    {
-        id: 8,
-        title: "The Snow Ball Showdown",
-        subtitle: "Cosplay Performance",
-        date: "FEB 19",
-        time: "03:00 PM Onwards",
-        venue: "Campus View",
-        type: "Non-Technical",
-        bgImage: TheSnowBallShowdownImg,
-        venueImage: VenueGround1Img,
-        description: "Transform into your favorite character! Whether it's Eleven, Hopper, or the Demogorgon - bring your best cosplay to the Snow Ball and shine on stage.",
-        rules: [
-            "Individual participation",
-            "Costumes must be self-made or customized",
-            "Props allowed (no sharp objects)",
-            "5-minute stage presentation",
-            "Rules and Regulations are subject to change at any point."
-        ],
-        eligibility: "Open to all MCA and MSc AIML students",
-        prizes: [
-            "1st Position",
-            "2nd Position",
-        ],
-        pointSystem: [
-            { position: "Winner", points: 7 },
-            { position: "Runner-up", points: 5 },
-            { position: "Participation", points: 2 },
-            { position: "2nd Runner-up", points: 3 },
-        ],
-        rulesLink: "",
-        coordinators: [
-            { name: "Baarathi", contact: "" }
-        ],
-        registrationLink: "",
-        registrationStatus: "coming_soon",
-    },
-    {
-        id: 11,
-        title: "D&D: Dumb Deeds",
-        subtitle: "Dumb Charades",
-        date: "FEB 23",
-        time: "02:30 PM Onwards",
-        venue: "Room 815, 8th Floor, Central Block",
-        type: "Non-Technical",
-        bgImage: DumbDeedsImg,
-        venueImage: VenueClassImg,
-        description: "No talking allowed! Act out movies, shows, and tech terms in this hilarious game of dumb charades with a Stranger Things twist. Bring your acting A-game!",
-        rules: [
-            "Team of 4 members",
-            "Categories: Movies, TV Shows, Tech Terms",
-            "Time limit per round: 2 minutes",
-            "No props or sounds allowed",
-            "Rules and Regulations are subject to change at any point."
-        ],
-        eligibility: "Open to all MCA and MSc AIML students",
-        prizes: [
-            "1st Position",
-            "2nd Position",
-        ],
-        pointSystem: [
-            { position: "Winner", points: 7 },
-            { position: "Runner-up", points: 5 },
-            { position: "2nd Runner-up", points: 3 },
-            { position: "Participation", points: 2 },
-        ],
-        rulesLink: "",
-        coordinators: [
-            { name: "Abhinav Jain", contact: "+91 92145 44078" },
-            { name: "Parthiv", contact: "" }
-        ],
-        registrationLink: "",
-        registrationStatus: "coming_soon",
-    },
-    {
-        id: 18,
-        title: "Project 011: Appathon",
-        subtitle: "Appathon (Alternative)",
-        date: "FEB 20",
-        time: "02:30 PM Onwards",
-        venue: "MCA Lab 811, 8th Floor, Central Block",
-        type: "Technical",
-        bgImage: CapturetheGateImg,
-        venueImage: VenueLabImg,
-        description: "Build innovative applications in this exciting app development marathon! Create solutions to real-world problems using your coding and design skills.",
-        rules: [
-            "Team of 2-4 members",
-            "Bring your own laptop",
-            "Any technology stack allowed",
-            "Working prototype required",
-            "Rules and Regulations are subject to change at any point."
-        ],
-        eligibility: "Open to all MCA and MSc students",
-        prizes: [
-            "1st Position",
-            "2nd Position",
-        ],
-        pointSystem: [
-            { position: "Winner", points: 7 },
-            { position: "Runner-up", points: 5 },
-            { position: "2nd Runner-up", points: 3 },
-            { position: "Participation", points: 2 },
-        ],
-        rulesLink: "",
-        coordinators: [
-            { name: "Baarathi", contact: "" },
-            { name: "I Blessy", contact: "" }
         ],
         registrationLink: "",
         registrationStatus: "coming_soon",
