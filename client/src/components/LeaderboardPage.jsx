@@ -1,14 +1,106 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Navbar } from "./Navbar";
 import Footer from "./Footer";
 import leaderboardData, { fetchLeaderboardData } from "../data/leaderboardData";
 
+// Google Sheet config for Website_DB (student details)
+const SHEET_ID = '1fRkNBb8K2ryBG_E2uUKyBPvxZjBxFanZErhnUjs8J7A';
+const WEBSITE_DB_GID = '1982798314';
+
+// Team names and their display info (consistent red theme)
+const TEAMS_INFO = [
+  { name: 'Mind Flayers', color: 'from-red-800 to-red-950', borderColor: 'border-red-500', textColor: 'text-red-400' },
+  { name: 'Hawkins Labs', color: 'from-red-800 to-red-950', borderColor: 'border-red-500', textColor: 'text-red-400' },
+  { name: 'The Demogorgans', color: 'from-red-800 to-red-950', borderColor: 'border-red-500', textColor: 'text-red-400' },
+  { name: 'The Upside Down', color: 'from-red-800 to-red-950', borderColor: 'border-red-500', textColor: 'text-red-400' },
+  { name: 'The Signal Seekers', color: 'from-red-800 to-red-950', borderColor: 'border-red-500', textColor: 'text-red-400' },
+  { name: 'Starcourt Squad', color: 'from-red-800 to-red-950', borderColor: 'border-red-500', textColor: 'text-red-400' },
+];
+
+// Helper to get position badge style and icon
+const getPositionBadge = (position) => {
+  const pos = (position || '').toLowerCase();
+  if (pos.includes('winner') && !pos.includes('runner')) {
+    return {
+      icon: '🏆',
+      className: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/50 shadow-[0_0_10px_rgba(234,179,8,0.3)]',
+      label: 'Winner'
+    };
+  } else if (pos.includes('runner') && pos.includes('2nd')) {
+    return {
+      icon: '🥉',
+      className: 'bg-amber-600/20 text-amber-400 border border-amber-500/50',
+      label: '2nd Runner Up'
+    };
+  } else if (pos.includes('runner')) {
+    return {
+      icon: '🥈',
+      className: 'bg-gray-400/20 text-gray-300 border border-gray-400/50',
+      label: 'Runner Up'
+    };
+  } else {
+    return {
+      icon: '👤',
+      className: 'bg-red-900/30 text-gray-400 border border-gray-600/50',
+      label: position || 'Participant'
+    };
+  }
+};
+
+// Fetch student data from Website_DB tab
+async function fetchStudentData() {
+  try {
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${WEBSITE_DB_GID}`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Failed to fetch student data');
+
+    const csvText = await response.text();
+    const rows = csvText.split('\n').map(row => {
+      const values = [];
+      let current = '';
+      let inQuotes = false;
+
+      for (let char of row) {
+        if (char === '"') {
+          inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+          values.push(current.trim());
+          current = '';
+        } else {
+          current += char;
+        }
+      }
+      values.push(current.trim());
+      return values;
+    });
+
+    // Skip header row, parse data: [Event Name, Team Name, Student Name, Reg No, Position]
+    const dataRows = rows.slice(1).filter(row => row.length >= 5 && row[0]);
+
+    return dataRows.map(row => ({
+      event: row[0] || '',
+      teamName: row[1] || '',
+      studentName: row[2] || '',
+      regNo: row[3] || '',
+      position: row[4] || '',
+    }));
+  } catch (error) {
+    console.error('Error fetching student data:', error);
+    return [];
+  }
+}
+
 export default function LeaderboardPage({ startAnimation = false }) {
   const [data, setData] = useState(leaderboardData);
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState(null);
+
+  // State for student data and modal
+  const [studentData, setStudentData] = useState([]);
+  const [selectedTeam, setSelectedTeam] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   // Fetch data from Google Sheets
   const loadData = () => {
@@ -33,6 +125,45 @@ export default function LeaderboardPage({ startAnimation = false }) {
 
     return () => clearInterval(interval);
   }, []);
+
+  // Fetch student data on mount
+  useEffect(() => {
+    fetchStudentData().then(setStudentData);
+  }, []);
+
+  // Helper to get position priority for sorting
+  const getPositionPriority = (position) => {
+    const pos = (position || '').toLowerCase();
+    if (pos.includes('winner') && !pos.includes('runner')) return 1;
+    if (pos.includes('runner') && !pos.includes('2nd')) return 2;
+    if (pos.includes('2nd') && pos.includes('runner')) return 3;
+    return 4; // Participation or other
+  };
+
+  // Get filtered and sorted students for selected team
+  const getTeamStudents = (teamName) => {
+    return studentData
+      .filter(s => s.teamName === teamName)
+      .sort((a, b) => getPositionPriority(a.position) - getPositionPriority(b.position));
+  };
+
+  // Open modal for a team (from leaderboard row)
+  const handleTeamClick = (teamName) => {
+    const teamInfo = TEAMS_INFO.find(t => t.name === teamName) || {
+      name: teamName,
+      color: 'from-red-600 to-red-900',
+      borderColor: 'border-red-500',
+      textColor: 'text-red-400'
+    };
+    setSelectedTeam(teamInfo);
+    setModalOpen(true);
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setModalOpen(false);
+    setSelectedTeam(null);
+  };
 
   // Sort leaderboard in descending order by points
   const sortedLeaderboard = [...data].sort((a, b) => b.points - a.points);
@@ -736,7 +867,7 @@ export default function LeaderboardPage({ startAnimation = false }) {
                 return (
                   <motion.div
                     key={row.team}
-                    className={`flex items-center p-4 md:p-5 rounded-xl border transition-all duration-300 hover:scale-[1.02] min-w-[900px] ${style.className}`}
+                    className={`flex items-center p-4 md:p-5 rounded-xl border transition-all duration-300 hover:scale-[1.02] min-w-[900px] cursor-pointer ${style.className}`}
                     variants={{
                       hidden: { opacity: 0, x: -50, scale: 0.95 },
                       visible: {
@@ -756,6 +887,7 @@ export default function LeaderboardPage({ startAnimation = false }) {
                       boxShadow: "0 0 25px rgba(220, 38, 38, 0.3)",
                       transition: { duration: 0.2 },
                     }}
+                    onClick={() => handleTeamClick(row.team)}
                   >
                     {/* Rank */}
                     <div className="text-center min-w-[70px] flex-1 flex justify-center">
@@ -831,8 +963,114 @@ export default function LeaderboardPage({ startAnimation = false }) {
               RETURN TO BASE
             </Link>
           </motion.div>
+
+
         </div>
       </main>
+
+      {/* Team Details Modal */}
+      <AnimatePresence>
+        {modalOpen && selectedTeam && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {/* Backdrop */}
+            <motion.div
+              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeModal}
+            />
+
+            {/* Modal Content */}
+            <motion.div
+              className={`relative w-full max-w-4xl max-h-[80vh] bg-gradient-to-br from-gray-900 via-[#1a0505] to-gray-900 rounded-2xl border ${selectedTeam.borderColor} shadow-[0_0_60px_rgba(220,38,38,0.3)] overflow-hidden`}
+              initial={{ scale: 0.9, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 50 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            >
+              {/* Modal Header */}
+              <div className={`flex items-center justify-between p-6 border-b border-gray-700 bg-gradient-to-r ${selectedTeam.color}`}>
+                <h3 className={`font-stranger text-2xl md:text-3xl text-white drop-shadow-lg`}>
+                  {selectedTeam.name}
+                </h3>
+                <button
+                  onClick={closeModal}
+                  className="w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center transition-colors border border-gray-600"
+                >
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Modal Body - Student Table */}
+              <div className="p-6 overflow-y-auto max-h-[60vh]">
+                {getTeamStudents(selectedTeam.name).length === 0 ? (
+                  <div className="text-center py-12">
+                    <p className="font-typewriter text-gray-400 text-lg">No participation data found</p>
+                    {/* <p className="font-typewriter text-gray-500 text-sm mt-2">Check if the GID is configured correctly</p> */}
+                  </div>
+                ) : (
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="border-b border-gray-700">
+                          <th className="px-4 py-3 text-left font-typewriter text-gray-400 text-sm uppercase tracking-wider">Student Name</th>
+                          <th className="px-4 py-3 text-left font-typewriter text-gray-400 text-sm uppercase tracking-wider">Reg No</th>
+                          <th className="px-4 py-3 text-left font-typewriter text-gray-400 text-sm uppercase tracking-wider">Event</th>
+                          <th className="px-4 py-3 text-center font-typewriter text-gray-400 text-sm uppercase tracking-wider">Position</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {getTeamStudents(selectedTeam.name).map((student, idx) => (
+                          <tr
+                            key={idx}
+                            className="border-b border-gray-800 hover:bg-white/5 transition-colors"
+                          >
+                            <td className="px-4 py-3 font-typewriter text-white">{student.studentName}</td>
+                            <td className="px-4 py-3 font-typewriter text-gray-300">{student.regNo}</td>
+                            <td className="px-4 py-3 font-typewriter text-gray-300">{student.event}</td>
+                            <td className="px-4 py-3 text-center">
+                              {(() => {
+                                const badge = getPositionBadge(student.position);
+                                return (
+                                  <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-typewriter font-bold ${badge.className}`}>
+                                    <span className="text-sm">{badge.icon}</span>
+                                    {badge.label}
+                                  </span>
+                                );
+                              })()}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+
+              {/* Modal Footer */}
+              <div className="flex items-center justify-between p-4 border-t border-gray-700 bg-black/30">
+                <p className="font-typewriter text-gray-500 text-sm">
+                  Total: {getTeamStudents(selectedTeam.name).length} entries
+                </p>
+                <button
+                  onClick={closeModal}
+                  className="px-6 py-2 bg-red-600/50 hover:bg-red-600 text-white font-typewriter text-sm rounded-lg border border-red-500/50 transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Footer />
     </div>
