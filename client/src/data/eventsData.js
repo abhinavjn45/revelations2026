@@ -10,7 +10,7 @@ import DumbDeedsImg from '../assets/images/events/8.png';
 import JoyceBlueprintImg from '../assets/images/events/9.png';
 import CodeRedDemogorgonImg from '../assets/images/events/10.png';
 import VecnaMindMazeImg from '../assets/images/events/11.png';
-import CapturetheGateImg from '../assets/images/events/12.png';
+import CapturetheGateImg from '../assets/images/events/12.jpg';
 import VenueClassImg from '../assets/images/venue/class.png';
 import VenueGround1Img from '../assets/images/venue/ground1.jpeg';
 import VenueGround2Img from '../assets/images/venue/ground2.jpeg';
@@ -209,7 +209,7 @@ export const events = [
     },
     {
         id: 18,
-        title: "Project 011: Hackathon",
+        title: "Project 011",
         subtitle: "Hackathon ",
         date: "FEB 07",
         time: "08:00 AM Onwards",
