@@ -298,7 +298,7 @@ export const events = [
         description: "Hunt down the bugs like hunting a Demogorgon! Find and fix errors in code snippets across multiple programming languages. Test your debugging skills under pressure.",
         rules: [
             "Team of 2 members",
-            "Languages: To be announced",
+            "Languages: Javascript",
             "Multiple rounds",
             "No internet access during event",
             "Rules and Regulations are subject to change at any point."
@@ -314,13 +314,13 @@ export const events = [
             { position: "2nd Runner-up", points: 3 },
             { position: "Participation", points: 2 },
         ],
-        rulesLink: "",
+        rulesLink: "https://docs.google.com/document/d/1J4SkQ_Pv7-imB5DX1-U8ff4tXmh_CJeTit9SPYMMt7A/edit?usp=sharing",
         coordinators: [
             { name: "Paavan", contact: "+91 76919 40657" },
             { name: "Abhinav", contact: "+91 92145 44078" }
         ],
-        registrationLink: "",
-        registrationStatus: "coming_soon",
+        registrationLink: "https://forms.gle/GQywqrYB6KeV6Jwe9",
+        registrationStatus: "open",
     },
     {
         id: 6,
@@ -371,10 +371,7 @@ export const events = [
         venueImage: VenueClassImg,
         description: "Think like Joyce planning to save Will! Manage resources, make strategic decisions, and lead your team to victory in this IT management simulation that tests your business acumen and technical leadership.",
         rules: [
-            "Team of 3-4 members",
-            // "Multiple business scenarios",
-            // "Presentation required",
-            // "Decision-making under pressure",
+            "Invidual participation",
             "Rules and Regulations are subject to change at any point."
         ],
         eligibility: "Open to all MCA and MSc AIML students",
@@ -388,13 +385,13 @@ export const events = [
             { position: "2nd Runner-up", points: 3 },
             { position: "Participation", points: 2 },
         ],
-        rulesLink: "",
+        rulesLink: "https://docs.google.com/document/d/1wn6mV_1PsuONoBNDw61N74QCRwG-j78I0xADy3O4Vso/edit?usp=sharing",
         coordinators: [
             { name: "Rahul", contact: "+91 75067 32498" },
             { name: "Abhinav", contact: "+91 92145 44078" }
         ],
-        registrationLink: "",
-        registrationStatus: "coming_soon",
+        registrationLink: "https://forms.gle/EtwpWZibCtHrumGL9",
+        registrationStatus: "open",
     },
     {
         id: 8,
