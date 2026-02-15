@@ -334,8 +334,8 @@ export const events = [
         venueImage: VenueClassImg,
         description: "Master the art of AI communication! Craft the perfect prompts to solve complex problems using AI tools like ChatGPT, Claude, and more. The future belongs to prompt engineers!",
         rules: [
-            "Team of 2 members",
-            "3 rounds of increasing difficulty",
+            "Individual participation",
+            "Only one rounds of prompting challenge",
             "Limited Internet access provided",
             "Time-bound challenges",
             "Rules and Regulations are subject to change at any point."
@@ -351,13 +351,13 @@ export const events = [
             { position: "2nd Runner-up", points: 3 },
             { position: "Participation", points: 2 },
         ],
-        rulesLink: "",
+        rulesLink: "https://docs.google.com/document/d/1eMN7pvsi_dRfsG0kOsxDgUHYHwcL7tuqYyuH-rWA3vY/edit?usp=sharing",
         coordinators: [
             { name: "Xavier", contact: "+91 73395 18912" },
             { name: "Baarathi", contact: "+91 94871 65589" }
         ],
-        registrationLink: "",
-        registrationStatus: "coming_soon",
+        registrationLink: "https://forms.gle/ie8eYDkWc6C259bv9",
+        registrationStatus: "open",
     },
     {
         id: 2,
