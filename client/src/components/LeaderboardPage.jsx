@@ -57,24 +57,53 @@ async function fetchStudentData() {
     if (!response.ok) throw new Error('Failed to fetch student data');
 
     const csvText = await response.text();
-    const rows = csvText.split('\n').map(row => {
-      const values = [];
-      let current = '';
-      let inQuotes = false;
 
-      for (let char of row) {
+    // Parse CSV properly, handling multi-line quoted fields
+    const rows = [];
+    let currentRow = [];
+    let currentField = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < csvText.length; i++) {
+      const char = csvText[i];
+
+      if (inQuotes) {
         if (char === '"') {
-          inQuotes = !inQuotes;
-        } else if (char === ',' && !inQuotes) {
-          values.push(current.trim());
-          current = '';
+          // Check for escaped quote (double quote "")
+          if (i + 1 < csvText.length && csvText[i + 1] === '"') {
+            currentField += '"';
+            i++; // Skip next quote
+          } else {
+            inQuotes = false; // End of quoted field
+          }
         } else {
-          current += char;
+          currentField += char;
+        }
+      } else {
+        if (char === '"') {
+          inQuotes = true;
+        } else if (char === ',') {
+          currentRow.push(currentField.trim());
+          currentField = '';
+        } else if (char === '\n' || char === '\r') {
+          // Skip \n if it follows \r (Windows line endings)
+          if (char === '\r' && i + 1 < csvText.length && csvText[i + 1] === '\n') {
+            i++;
+          }
+          currentRow.push(currentField.trim());
+          rows.push(currentRow);
+          currentRow = [];
+          currentField = '';
+        } else {
+          currentField += char;
         }
       }
-      values.push(current.trim());
-      return values;
-    });
+    }
+    // Push the last field and row
+    if (currentField || currentRow.length > 0) {
+      currentRow.push(currentField.trim());
+      rows.push(currentRow);
+    }
 
     // Skip header row, parse data: [Event Name, Team Name, Student Name, Reg No, Position]
     const dataRows = rows.slice(1).filter(row => row.length >= 5 && row[0]);
@@ -101,6 +130,7 @@ export default function LeaderboardPage({ startAnimation = false }) {
   const [studentData, setStudentData] = useState([]);
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalFilter, setModalFilter] = useState('all'); // 'all' | 'participation' | 'winner' | 'runnerUp' | 'secondRunnerUp'
 
   // Fetch data from Google Sheets
   const loadData = () => {
@@ -140,15 +170,15 @@ export default function LeaderboardPage({ startAnimation = false }) {
     return 4; // Participation or other
   };
 
-  // Get filtered and sorted students for selected team
+  // Get filtered and sorted students for selected team (excludes absent students)
   const getTeamStudents = (teamName) => {
     return studentData
-      .filter(s => s.teamName === teamName)
+      .filter(s => s.teamName === teamName && !(s.position || '').toLowerCase().includes('absent'))
       .sort((a, b) => getPositionPriority(a.position) - getPositionPriority(b.position));
   };
 
-  // Open modal for a team (from leaderboard row)
-  const handleTeamClick = (teamName) => {
+  // Open modal for a team with a specific filter
+  const handleTeamClick = (teamName, filter = 'all') => {
     const teamInfo = TEAMS_INFO.find(t => t.name === teamName) || {
       name: teamName,
       color: 'from-red-600 to-red-900',
@@ -156,6 +186,7 @@ export default function LeaderboardPage({ startAnimation = false }) {
       textColor: 'text-red-400'
     };
     setSelectedTeam(teamInfo);
+    setModalFilter(filter);
     setModalOpen(true);
   };
 
@@ -163,6 +194,37 @@ export default function LeaderboardPage({ startAnimation = false }) {
   const closeModal = () => {
     setModalOpen(false);
     setSelectedTeam(null);
+    setModalFilter('all');
+  };
+
+  // Get filtered students based on the modal filter
+  const getFilteredTeamStudents = (teamName) => {
+    const allStudents = getTeamStudents(teamName);
+    if (modalFilter === 'all' || modalFilter === 'participation') {
+      return allStudents;
+    }
+    return allStudents.filter(s => {
+      const pos = (s.position || '').toLowerCase();
+      if (modalFilter === 'winner') {
+        return pos.includes('winner') && !pos.includes('runner');
+      } else if (modalFilter === 'runnerUp') {
+        return pos.includes('runner') && !pos.includes('2nd');
+      } else if (modalFilter === 'secondRunnerUp') {
+        return pos.includes('2nd') && pos.includes('runner');
+      }
+      return true;
+    });
+  };
+
+  // Get modal title based on filter
+  const getModalTitle = () => {
+    switch (modalFilter) {
+      case 'participation': return 'All Participants';
+      case 'winner': return 'Winners';
+      case 'runnerUp': return 'Runner Ups';
+      case 'secondRunnerUp': return '2nd Runner Ups';
+      default: return 'All Entries';
+    }
   };
 
   // Sort leaderboard in descending order by points
@@ -867,7 +929,7 @@ export default function LeaderboardPage({ startAnimation = false }) {
                 return (
                   <motion.div
                     key={row.team}
-                    className={`flex items-center p-4 md:p-5 rounded-xl border transition-all duration-300 hover:scale-[1.02] min-w-[900px] cursor-pointer ${style.className}`}
+                    className={`flex items-center p-4 md:p-5 rounded-xl border transition-all duration-300 hover:scale-[1.02] min-w-[900px] ${style.className}`}
                     variants={{
                       hidden: { opacity: 0, x: -50, scale: 0.95 },
                       visible: {
@@ -887,7 +949,6 @@ export default function LeaderboardPage({ startAnimation = false }) {
                       boxShadow: "0 0 25px rgba(220, 38, 38, 0.3)",
                       transition: { duration: 0.2 },
                     }}
-                    onClick={() => handleTeamClick(row.team)}
                   >
                     {/* Rank */}
                     <div className="text-center min-w-[70px] flex-1 flex justify-center">
@@ -908,22 +969,38 @@ export default function LeaderboardPage({ startAnimation = false }) {
                     </div>
 
                     {/* Participation */}
-                    <div className="text-center min-w-[120px] flex-1 font-typewriter text-lg text-gray-300">
+                    <div
+                      className="text-center min-w-[120px] flex-1 font-typewriter text-lg text-gray-300 cursor-pointer hover:text-white hover:bg-white/10 rounded-lg py-1 transition-all duration-200"
+                      onClick={(e) => { e.stopPropagation(); handleTeamClick(row.team, 'participation'); }}
+                      title="View all participants"
+                    >
                       {row.participation}
                     </div>
 
                     {/* Winner */}
-                    <div className="text-center min-w-[100px] flex-1 font-typewriter text-lg text-yellow-300">
+                    <div
+                      className="text-center min-w-[100px] flex-1 font-typewriter text-lg text-yellow-300 cursor-pointer hover:text-yellow-200 hover:bg-yellow-500/10 rounded-lg py-1 transition-all duration-200"
+                      onClick={(e) => { e.stopPropagation(); handleTeamClick(row.team, 'winner'); }}
+                      title="View winners"
+                    >
                       {row.winner}
                     </div>
 
                     {/* Runner-up */}
-                    <div className="text-center min-w-[120px] flex-1 font-typewriter text-lg text-gray-300">
+                    <div
+                      className="text-center min-w-[120px] flex-1 font-typewriter text-lg text-gray-300 cursor-pointer hover:text-white hover:bg-white/10 rounded-lg py-1 transition-all duration-200"
+                      onClick={(e) => { e.stopPropagation(); handleTeamClick(row.team, 'runnerUp'); }}
+                      title="View runner-ups"
+                    >
                       {row.runnerUp}
                     </div>
 
                     {/* 2nd Runner Up */}
-                    <div className="text-center min-w-[140px] flex-1 font-typewriter text-lg text-amber-300">
+                    <div
+                      className="text-center min-w-[140px] flex-1 font-typewriter text-lg text-amber-300 cursor-pointer hover:text-amber-200 hover:bg-amber-500/10 rounded-lg py-1 transition-all duration-200"
+                      onClick={(e) => { e.stopPropagation(); handleTeamClick(row.team, 'secondRunnerUp'); }}
+                      title="View 2nd runner-ups"
+                    >
                       {row.secondRunnerUp}
                     </div>
 
@@ -988,7 +1065,7 @@ export default function LeaderboardPage({ startAnimation = false }) {
 
             {/* Modal Content */}
             <motion.div
-              className={`relative w-full max-w-4xl max-h-[80vh] bg-gradient-to-br from-gray-900 via-[#1a0505] to-gray-900 rounded-2xl border ${selectedTeam.borderColor} shadow-[0_0_60px_rgba(220,38,38,0.3)] overflow-hidden`}
+              className={`relative w-full max-w-4xl max-h-[80vh] flex flex-col bg-gradient-to-br from-gray-900 via-[#1a0505] to-gray-900 rounded-2xl border ${selectedTeam.borderColor} shadow-[0_0_60px_rgba(220,38,38,0.3)] overflow-hidden`}
               initial={{ scale: 0.9, opacity: 0, y: 50 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 50 }}
@@ -996,9 +1073,14 @@ export default function LeaderboardPage({ startAnimation = false }) {
             >
               {/* Modal Header */}
               <div className={`flex items-center justify-between p-6 border-b border-gray-700 bg-gradient-to-r ${selectedTeam.color}`}>
-                <h3 className={`font-stranger text-2xl md:text-3xl text-white drop-shadow-lg`}>
-                  {selectedTeam.name}
-                </h3>
+                <div>
+                  <h3 className={`font-stranger text-2xl md:text-3xl text-white drop-shadow-lg`}>
+                    {selectedTeam.name}
+                  </h3>
+                  <p className="font-typewriter text-sm text-gray-300 mt-1 tracking-wider">
+                    {getModalTitle()}
+                  </p>
+                </div>
                 <button
                   onClick={closeModal}
                   className="w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center transition-colors border border-gray-600"
@@ -1010,8 +1092,8 @@ export default function LeaderboardPage({ startAnimation = false }) {
               </div>
 
               {/* Modal Body - Student Table */}
-              <div className="p-6 overflow-y-auto max-h-[60vh]">
-                {getTeamStudents(selectedTeam.name).length === 0 ? (
+              <div className="p-6 overflow-y-auto flex-1 min-h-0">
+                {getFilteredTeamStudents(selectedTeam.name).length === 0 ? (
                   <div className="text-center py-12">
                     <p className="font-typewriter text-gray-400 text-lg">No participation data found</p>
                     {/* <p className="font-typewriter text-gray-500 text-sm mt-2">Check if the GID is configured correctly</p> */}
@@ -1028,7 +1110,7 @@ export default function LeaderboardPage({ startAnimation = false }) {
                         </tr>
                       </thead>
                       <tbody>
-                        {getTeamStudents(selectedTeam.name).map((student, idx) => (
+                        {getFilteredTeamStudents(selectedTeam.name).map((student, idx) => (
                           <tr
                             key={idx}
                             className="border-b border-gray-800 hover:bg-white/5 transition-colors"
@@ -1058,7 +1140,7 @@ export default function LeaderboardPage({ startAnimation = false }) {
               {/* Modal Footer */}
               <div className="flex items-center justify-between p-4 border-t border-gray-700 bg-black/30">
                 <p className="font-typewriter text-gray-500 text-sm">
-                  Total: {getTeamStudents(selectedTeam.name).length} entries
+                  Total: {getFilteredTeamStudents(selectedTeam.name).length} entries
                 </p>
                 <button
                   onClick={closeModal}

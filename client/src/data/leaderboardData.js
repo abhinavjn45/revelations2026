@@ -1,6 +1,3 @@
-// src/data/leaderboardData.js
-// Centralized leaderboard data for teams
-
 // Google Sheet ID from the URL
 const SHEET_ID = '1fRkNBb8K2ryBG_E2uUKyBPvxZjBxFanZErhnUjs8J7A';
 const GID = '926862716';
@@ -9,7 +6,7 @@ const GID = '926862716';
 const fallbackData = [
   { team: 'Mind Flayers', points: 0, participation: 0, winner: 0, runnerUp: 0, secondRunnerUp: 0 },
   { team: 'Hawkins Labs', points: 0, participation: 0, winner: 0, runnerUp: 0, secondRunnerUp: 0 },
-  { team: 'The Demogorgans', points: 0, participation: 0, winner: 0, runnerUp: 0, secondRunnerUp: 0 },
+  { team: 'The Demogorgons', points: 0, participation: 0, winner: 0, runnerUp: 0, secondRunnerUp: 0 },
   { team: 'The Upside Down', points: 0, participation: 0, winner: 0, runnerUp: 0, secondRunnerUp: 0 },
   { team: 'The Signal Seekers', points: 0, participation: 0, winner: 0, runnerUp: 0, secondRunnerUp: 0 },
   { team: 'Starcourt Squad', points: 0, participation: 0, winner: 0, runnerUp: 0, secondRunnerUp: 0 },
@@ -20,19 +17,19 @@ export async function fetchLeaderboardData() {
   try {
     // Use Google Sheets CSV export URL
     const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID}`;
-    
+
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error('Failed to fetch sheet data');
     }
-    
+
     const csvText = await response.text();
     const rows = csvText.split('\n').map(row => {
       // Handle CSV parsing with potential commas in values
       const values = [];
       let current = '';
       let inQuotes = false;
-      
+
       for (let char of row) {
         if (char === '"') {
           inQuotes = !inQuotes;
@@ -46,10 +43,10 @@ export async function fetchLeaderboardData() {
       values.push(current.trim());
       return values;
     });
-    
+
     // Skip header row (index 0)
     const dataRows = rows.slice(1).filter(row => row.length >= 7 && row[1]);
-    
+
     return dataRows.map(row => ({
       team: row[1] || '',                           // Division Name (Column B)
       participation: parseInt(row[2]) || 0,         // Participation (Column C)
