@@ -149,8 +149,13 @@ const EventCard = ({ event, index, dayLabel, disableScrollAnimation, onClick }) 
       layout
       {...motionProps}
       onClick={onClick}
-      className="group relative flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 bg-black/40 border border-red-900/30 p-4 sm:p-6 rounded-sm hover:bg-red-900/10 transition-colors w-full cursor-pointer"
+      className="group relative flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 bg-black/40 border border-red-900/30 p-4 sm:p-6 rounded-sm hover:bg-red-900/10 transition-colors w-full cursor-pointer opacity-70"
     >
+      {/* Completed Event Overlay */}
+      <div className="absolute top-2 right-2 px-2 py-0.5 text-[10px] font-mono text-red-400/60 border border-red-900/40 bg-black/60 rounded-sm">
+        CONCLUDED
+      </div>
+      
       {/* Glow Effect on Hover */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-red-900/10 to-transparent transition-opacity pointer-events-none" />
 
@@ -221,8 +226,8 @@ export default function SchedulePage() {
           <span className="text-xs font-mono text-red-400/80 block sm:hidden">
             {dayData.label}
           </span>
-          <span className="text-[10px] sm:text-xs font-mono text-gray-600 uppercase tracking-wider">
-            STATUS: ACTIVE
+          <span className="text-[10px] sm:text-xs font-mono text-red-400/60 uppercase tracking-wider">
+            STATUS: COMPLETED
           </span>
         </div>
       </div>

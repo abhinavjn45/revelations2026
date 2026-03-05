@@ -393,42 +393,42 @@ export const events = [
         registrationLink: "https://forms.gle/EtwpWZibCtHrumGL9",
         registrationStatus: "open",
     },
-    {
-        id: 8,
-        title: "The Snow Ball Showdown",
-        subtitle: "Cosplay Performance",
-        date: "FEB 19",
-        time: "03:00 PM Onwards",
-        venue: "Campus View",
-        type: "Non-Technical",
-        bgImage: TheSnowBallShowdownImg,
-        venueImage: VenueGround1Img,
-        description: "Transform into your favorite character! Whether it's Eleven, Hopper, or the Demogorgon - bring your best cosplay to the Snow Ball and shine on stage.",
-        rules: [
-            "Individual participation",
-            "Costumes must be self-made or customized",
-            "Props allowed (no sharp objects)",
-            "5-minute stage presentation",
-            "Rules and Regulations are subject to change at any point."
-        ],
-        eligibility: "Open to all MCA and MSc AIML students",
-        prizes: [
-            "1st Position",
-            "2nd Position",
-        ],
-        pointSystem: [
-            { position: "Winner", points: 7 },
-            { position: "Runner-up", points: 5 },
-            { position: "Participation", points: 2 },
-            { position: "2nd Runner-up", points: 3 },
-        ],
-        rulesLink: "",
-        coordinators: [
-            { name: "Baarathi", contact: "" }
-        ],
-        registrationLink: "",
-        registrationStatus: "coming_soon",
-    },
+    // {
+    //     id: 8,
+    //     title: "The Snow Ball Showdown",
+    //     subtitle: "Cosplay Performance",
+    //     date: "FEB 19",
+    //     time: "03:00 PM Onwards",
+    //     venue: "Campus View",
+    //     type: "Non-Technical",
+    //     bgImage: TheSnowBallShowdownImg,
+    //     venueImage: VenueGround1Img,
+    //     description: "Transform into your favorite character! Whether it's Eleven, Hopper, or the Demogorgon - bring your best cosplay to the Snow Ball and shine on stage.",
+    //     rules: [
+    //         "Individual participation",
+    //         "Costumes must be self-made or customized",
+    //         "Props allowed (no sharp objects)",
+    //         "5-minute stage presentation",
+    //         "Rules and Regulations are subject to change at any point."
+    //     ],
+    //     eligibility: "Open to all MCA and MSc AIML students",
+    //     prizes: [
+    //         "1st Position",
+    //         "2nd Position",
+    //     ],
+    //     pointSystem: [
+    //         { position: "Winner", points: 7 },
+    //         { position: "Runner-up", points: 5 },
+    //         { position: "Participation", points: 2 },
+    //         { position: "2nd Runner-up", points: 3 },
+    //     ],
+    //     rulesLink: "",
+    //     coordinators: [
+    //         { name: "Baarathi", contact: "" }
+    //     ],
+    //     registrationLink: "",
+    //     registrationStatus: "coming_soon",
+    // },
     {
         id: 11,
         title: "D&D: Dumb Deeds",
@@ -466,79 +466,79 @@ export const events = [
         registrationLink: "",
         registrationStatus: "coming_soon",
     },
-    {
-        id: 7,
-        title: "Hawkins Arena - Cricket",
-        subtitle: "Cricket (Mixed)",
-        date: "TBD",
-        time: "07:30 AM Onwards",
-        venue: "To be Announced",
-        type: "Non-Technical",
-        bgImage: HawkinsArenaImg,
-        venueImage: VenueGround1Img,
-        description: "Step into the Hawkins Arena for an action-packed cricket match! Form your team and compete in this exciting mixed cricket tournament.",
-        rules: [
-            "Mixed team participation",
-            "1 Faculty, 2 Girls, 6 Boys per team (Mandatory)",
-            "Knockout Tournament format",
-            "Standard cricket rules apply other than LBW and Legbyes",
-            "Decision of umpires & organising committee is final",
-            "Rules and Regulations are subject to change at any point."
-        ],
-        eligibility: "Open to all MCA and MSc AIML students",
-        prizes: [
-            "1st Position",
-            "2nd Position",
-        ],
-        pointSystem: [
-            { position: "Winner", points: 7 },
-            { position: "Runner-up", points: 5 },
-            { position: "Participation", points: 2 },
-        ],
-        rulesLink: "",
-        coordinators: [
-            { name: "Abhishek", contact: "" },
-            { name: "Abhinav", contact: "+91 92145 44078" }
-        ],
-        registrationLink: "",
-        registrationStatus: "coming_soon",
-    },
-    {
-        id: 13,
-        title: "Hawkins Arena - Football",
-        subtitle: "Football (Mixed)",
-        date: "TBD",
-        time: "07:30 AM Onwards",
-        venue: "Dharmaram / Football Ground",
-        type: "Non-Technical",
-        bgImage: HawkinsArenaImg,
-        venueImage: VenueGround2Img,
-        description: "Kick off your competitive spirit in the Hawkins Arena football tournament! Show your skills on the field and lead your team to victory.",
-        rules: [
-            "Mixed team participation",
-            "Tournament format",
-            "Standard football rules apply",
-            "Decision of referees is final",
-            "Rules and Regulations are subject to change at any point."
-        ],
-        eligibility: "Open to all MCA and MSc AIML students",
-        prizes: [
-            "1st Position",
-            "2nd Position",
-        ],
-        pointSystem: [
-            { position: "Winner", points: 7 },
-            { position: "Runner-up", points: 5 },
-            { position: "Participation", points: 2 },
-        ],
-        rulesLink: "",
-        coordinators: [
-            { name: "Abhinav", contact: "+91 92145 44078" },
-            { name: "Mohit", contact: "" }
-        ],
-        registrationLink: "",
-        registrationStatus: "coming_soon",
-    },
+    // {
+    //     id: 7,
+    //     title: "Hawkins Arena - Cricket",
+    //     subtitle: "Cricket (Mixed)",
+    //     date: "TBD",
+    //     time: "07:30 AM Onwards",
+    //     venue: "To be Announced",
+    //     type: "Non-Technical",
+    //     bgImage: HawkinsArenaImg,
+    //     venueImage: VenueGround1Img,
+    //     description: "Step into the Hawkins Arena for an action-packed cricket match! Form your team and compete in this exciting mixed cricket tournament.",
+    //     rules: [
+    //         "Mixed team participation",
+    //         "1 Faculty, 2 Girls, 6 Boys per team (Mandatory)",
+    //         "Knockout Tournament format",
+    //         "Standard cricket rules apply other than LBW and Legbyes",
+    //         "Decision of umpires & organising committee is final",
+    //         "Rules and Regulations are subject to change at any point."
+    //     ],
+    //     eligibility: "Open to all MCA and MSc AIML students",
+    //     prizes: [
+    //         "1st Position",
+    //         "2nd Position",
+    //     ],
+    //     pointSystem: [
+    //         { position: "Winner", points: 7 },
+    //         { position: "Runner-up", points: 5 },
+    //         { position: "Participation", points: 2 },
+    //     ],
+    //     rulesLink: "",
+    //     coordinators: [
+    //         { name: "Abhishek", contact: "" },
+    //         { name: "Abhinav", contact: "+91 92145 44078" }
+    //     ],
+    //     registrationLink: "",
+    //     registrationStatus: "coming_soon",
+    // },
+    // {
+    //     id: 13,
+    //     title: "Hawkins Arena - Football",
+    //     subtitle: "Football (Mixed)",
+    //     date: "TBD",
+    //     time: "07:30 AM Onwards",
+    //     venue: "Dharmaram / Football Ground",
+    //     type: "Non-Technical",
+    //     bgImage: HawkinsArenaImg,
+    //     venueImage: VenueGround2Img,
+    //     description: "Kick off your competitive spirit in the Hawkins Arena football tournament! Show your skills on the field and lead your team to victory.",
+    //     rules: [
+    //         "Mixed team participation",
+    //         "Tournament format",
+    //         "Standard football rules apply",
+    //         "Decision of referees is final",
+    //         "Rules and Regulations are subject to change at any point."
+    //     ],
+    //     eligibility: "Open to all MCA and MSc AIML students",
+    //     prizes: [
+    //         "1st Position",
+    //         "2nd Position",
+    //     ],
+    //     pointSystem: [
+    //         { position: "Winner", points: 7 },
+    //         { position: "Runner-up", points: 5 },
+    //         { position: "Participation", points: 2 },
+    //     ],
+    //     rulesLink: "",
+    //     coordinators: [
+    //         { name: "Abhinav", contact: "+91 92145 44078" },
+    //         { name: "Mohit", contact: "" }
+    //     ],
+    //     registrationLink: "",
+    //     registrationStatus: "coming_soon",
+    // },
     {
         id: 14,
         title: "Hawkins Arena - Table Tennis (Boys)",
@@ -660,7 +660,7 @@ export const SCHEDULE_DATA = [
     {
         id: 'e1',
         label: 'JAN 31 - FEB 06',
-        date: 'ONGOING',
+        date: 'COMPLETED',
         title: 'THE JOURNAL',
         events: [
             { id: 10, time: '10:00 PM (Deadline)', title: "Mr. Clarke's Journal (Infobahn)", venue: 'Online Submissions', type: 'Non-Technical' },
@@ -669,7 +669,7 @@ export const SCHEDULE_DATA = [
     {
         id: 'e2',
         label: 'JAN 31 - FEB 03',
-        date: 'ONGOING',
+        date: 'COMPLETED',
         title: 'THE SNIPPETS',
         events: [
             { id: 9, time: '10:00 PM (Deadline)', title: 'Scoops Troop Snippets (Reel Making)', venue: 'Entire Campus / Online Submissions', type: 'Non-Technical' },
@@ -678,7 +678,7 @@ export const SCHEDULE_DATA = [
     {
         id: 'e3',
         label: 'FEB 02',
-        date: 'SUNDAY',
+        date: 'COMPLETED',
         title: 'THE ARENA - CHESS',
         events: [
             { id: 17, time: '02:30 PM Onwards', title: 'Hawkins Arena - Chess (Individual)', venue: 'Online / Room 815 + Room 814', type: 'Non-Technical' },
@@ -687,7 +687,7 @@ export const SCHEDULE_DATA = [
     {
         id: 'e4',
         label: 'FEB 04',
-        date: 'TUESDAY',
+        date: 'COMPLETED',
         title: 'THE VISIONS',
         events: [
             { id: 12, time: '02:30 PM Onwards', title: "Will's Visions (Drawing/Painting/Sketching)", venue: 'Round Tables 8th Floor', type: 'Non-Technical' },
@@ -696,7 +696,7 @@ export const SCHEDULE_DATA = [
     {
         id: 'e5',
         label: 'FEB 06',
-        date: 'THURSDAY',
+        date: 'COMPLETED',
         title: 'THE MIND MAZE',
         events: [
             { id: 1, time: '02:30 PM Onwards', title: "Vecna's Mind Maze (IT Quiz)", venue: 'Room 815', type: 'Technical' },
@@ -705,7 +705,7 @@ export const SCHEDULE_DATA = [
     {
         id: 'e6',
         label: 'FEB 16',
-        date: 'SUNDAY',
+        date: 'COMPLETED',
         title: 'CODE RED',
         events: [
             { id: 5, time: '02:30 PM Onwards', title: 'Code Red: Demogorgon Debug (Coding-Debugging)', venue: 'MCA Lab 811', type: 'Technical' },
@@ -714,7 +714,7 @@ export const SCHEDULE_DATA = [
     {
         id: 'e7',
         label: 'FEB 17',
-        date: 'MONDAY',
+        date: 'COMPLETED',
         title: 'THE FLAYER',
         events: [
             { id: 6, time: '02:30 PM Onwards', title: 'The Prompt Flayer (Prompt Engineering)', venue: 'Room 815', type: 'Technical' },
@@ -723,7 +723,7 @@ export const SCHEDULE_DATA = [
     {
         id: 'e8',
         label: 'FEB 18',
-        date: 'TUESDAY',
+        date: 'COMPLETED',
         title: 'THE DESIGN & BLUEPRINT',
         events: [
             { id: 3, time: '01:30 PM Onwards', title: 'Mindscape Design (UI/UX)', venue: 'MCA Lab 811', type: 'Technical' },
@@ -733,7 +733,7 @@ export const SCHEDULE_DATA = [
     {
         id: 'e9',
         label: 'FEB 19',
-        date: 'WEDNESDAY',
+        date: 'COMPLETED',
         title: 'THE SHOWDOWN',
         events: [
             { id: 8, time: '03:00 PM Onwards', title: 'The Snow Ball Showdown (Cosplay Performance)', venue: 'Campus View', type: 'Non-Technical' },
@@ -742,7 +742,7 @@ export const SCHEDULE_DATA = [
     {
         id: 'e10',
         label: 'FEB 20',
-        date: 'THURSDAY',
+        date: 'COMPLETED',
         title: 'THE GATE & APPATHON',
         events: [
             { id: 4, time: '02:30 PM Onwards', title: 'Capture the Gate (CTF)', venue: 'MCA Lab 811', type: 'Technical' },
@@ -752,7 +752,7 @@ export const SCHEDULE_DATA = [
     {
         id: 'e11',
         label: 'FEB 23',
-        date: 'SUNDAY',
+        date: 'COMPLETED',
         title: 'DUMB DEEDS',
         events: [
             { id: 11, time: '02:30 PM Onwards', title: 'D&D: Dumb Deeds (Dumb Charades)', venue: 'Room 815', type: 'Non-Technical' },
@@ -761,7 +761,7 @@ export const SCHEDULE_DATA = [
     {
         id: 'e12',
         label: 'FEB 24',
-        date: 'MONDAY',
+        date: 'COMPLETED',
         title: 'THE BLUEPRINT FINAL',
         events: [
             { id: 2, time: '02:30 PM Onwards', title: 'Plan B: Joyce Blueprint (IT Manager) - Finals', venue: 'Room 815', type: 'Technical' },
@@ -770,7 +770,7 @@ export const SCHEDULE_DATA = [
     {
         id: 'e13',
         label: 'TBD',
-        date: 'SPORTS',
+        date: 'COMPLETED',
         title: 'HAWKINS ARENA - SPORTS',
         events: [
             { id: 7, time: '07:30 AM Onwards', title: 'Hawkins Arena - Cricket (Mixed)', venue: 'Dharmaram / Football Ground', type: 'Non-Technical' },
