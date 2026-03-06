@@ -393,42 +393,42 @@ export const events = [
         registrationLink: "https://forms.gle/EtwpWZibCtHrumGL9",
         registrationStatus: "open",
     },
-    // {
-    //     id: 8,
-    //     title: "The Snow Ball Showdown",
-    //     subtitle: "Cosplay Performance",
-    //     date: "FEB 19",
-    //     time: "03:00 PM Onwards",
-    //     venue: "Campus View",
-    //     type: "Non-Technical",
-    //     bgImage: TheSnowBallShowdownImg,
-    //     venueImage: VenueGround1Img,
-    //     description: "Transform into your favorite character! Whether it's Eleven, Hopper, or the Demogorgon - bring your best cosplay to the Snow Ball and shine on stage.",
-    //     rules: [
-    //         "Individual participation",
-    //         "Costumes must be self-made or customized",
-    //         "Props allowed (no sharp objects)",
-    //         "5-minute stage presentation",
-    //         "Rules and Regulations are subject to change at any point."
-    //     ],
-    //     eligibility: "Open to all MCA and MSc AIML students",
-    //     prizes: [
-    //         "1st Position",
-    //         "2nd Position",
-    //     ],
-    //     pointSystem: [
-    //         { position: "Winner", points: 7 },
-    //         { position: "Runner-up", points: 5 },
-    //         { position: "Participation", points: 2 },
-    //         { position: "2nd Runner-up", points: 3 },
-    //     ],
-    //     rulesLink: "",
-    //     coordinators: [
-    //         { name: "Baarathi", contact: "" }
-    //     ],
-    //     registrationLink: "",
-    //     registrationStatus: "coming_soon",
-    // },
+    {
+        id: 8,
+        title: "Bid Wars: Hawkins Artifacts",
+        subtitle: "Auction Challenge",
+        date: "FEB 19",
+        time: "03:00 PM Onwards",
+        venue: "Room 815, 8th Floor, Central Block",
+        type: "Non-Technical",
+        bgImage: TheSnowBallShowdownImg,
+        venueImage: VenueGround1Img,
+        description: "Test your negotiation and strategy skills in this thrilling auction event! Bid strategically to collect rare Hawkins Lab artifacts and mysterious items from the Upside Down. Will you outsmart other teams and secure the most valuable treasures?",
+        rules: [
+            "Team of 2-3 members",
+            "Each team gets a starting budget of virtual coins",
+            "Bid on mystery items and artifacts from Hawkins",
+            "Strategic planning and auction mechanics apply",
+            "Rules and Regulations are subject to change at any point."
+        ],
+        eligibility: "Open to all MCA and MSc AIML students",
+        prizes: [
+            "1st Position",
+            "2nd Position",
+        ],
+        pointSystem: [
+            { position: "Winner", points: 7 },
+            { position: "Runner-up", points: 5 },
+            { position: "Participation", points: 2 },
+            { position: "2nd Runner-up", points: 3 },
+        ],
+        rulesLink: "",
+        coordinators: [
+            { name: "Baarathi", contact: "" }
+        ],
+        registrationLink: "",
+        registrationStatus: "coming_soon",
+    },
     {
         id: 11,
         title: "D&D: Dumb Deeds",
